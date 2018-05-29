@@ -15,8 +15,6 @@ class App {
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: false }));
   }
-
-  // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
     router.get('/', (req, res, next) => {
@@ -26,7 +24,6 @@ class App {
     });
     this.express.use('/', router);
   }
-
 }
 
 export default new App().express;
