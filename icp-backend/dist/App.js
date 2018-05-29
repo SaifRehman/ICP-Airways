@@ -2,30 +2,37 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-// Creates and configures an ExpressJS web server.
+var ibmdb = require('ibm_db');
 class App {
-    //Run configuration methods on the Express instance.
     constructor() {
+        this.connectionString = "DATABASE=SAMPLE;HOSTNAME=localhost;UID=db2inst1;PWD=db2inst1-pwd;PORT=50000;PROTOCOL=TCPIP";
         this.express = express();
         this.middleware();
         this.routes();
     }
-    // Configure Express middleware.
     middleware() {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
     }
-    // Configure API endpoints.
     routes() {
-        /* This is just to get up and running, and to make sure what we've got is
-         * working so far. This function will change when we start to add more
-         * API endpoints */
         let router = express.Router();
-        // placeholder route handler
-        router.get('/', (req, res, next) => {
-            res.json({
-                message: 'Hello World!'
+        router.get('/test', (req, res, next) => {
+            ibmdb.open(this.connectionString, function (err, conn) {
+                if (err)
+                    return console.log(err);
+                conn.query('select * from DB2INST1.VSTAFAC2', function (err, data) {
+                    if (err)
+                        console.log(err);
+                    else
+                        console.log(data);
+                    res.json({
+                        data
+                    });
+                    conn.close(function () {
+                        console.log('done');
+                    });
+                });
             });
         });
         this.express.use('/', router);
