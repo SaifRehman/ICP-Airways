@@ -7,16 +7,16 @@ import { HomeComponent } from './home/home.component'
  
 export const AppRoutes: Routes = [
     { 
-        path: 'history', component: HistoryComponent,
+        path: 'history', component: HistoryComponent
     },
     { 
-        path: 'home', component: HomeComponent,
+        path: 'home', component: HomeComponent
     },
     { 
-        path: 'login', component: LoginComponent,
+        path: 'login', component: LoginComponent
     },
     { 
-        path: 'signup', component: SignupComponent,
+        path: 'signup', component: SignupComponent
     }
 ];
  
