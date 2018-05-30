@@ -56,11 +56,15 @@ class App {
             console.log(err);
             return conn.closeSync();
           }
-
           //Bind and Execute the statment asynchronously
           stmt.execute([this.lastName, this.firstName, this.location, this.email, this.password, this.age], function (err, result) {
             if (err) console.log(err);
-            else result.closeSync();
+            else{
+              res.json({
+                message: "sucessful"
+              });
+               result.closeSync();
+            }
             //Close the connection
             conn.close(function (err) { });
           });
