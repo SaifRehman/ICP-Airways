@@ -10,14 +10,14 @@ var dotenv = require('dotenv').config({ path: path.join('.env') })
 var ibmdb = require('ibm_db');
 
 class App {
-  public jwtOptions :any;
+  public jwtOptions: any;
   public ExtractJwt = passportJWT.ExtractJwt;
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
   public connectionString: String;
   constructor() {
-    this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
-    this.jwtOptions.secretOrKey = process.env.SECRET;
+    // this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
+    // this.jwtOptions.secretOrKey = process.env.SECRET;
     this.connectionString = 'DATABASE=' + (process.env.DATABASE) + ';' +
       'HOSTNAME=' + process.env.HOSTNAME + ';' + 'UID=' + process.env.UID + ';' +
       'PWD=' + process.env.PASSWORD + ';' + 'PORT=' + process.env.PORT + ';' +
@@ -30,35 +30,39 @@ class App {
   private middleware(): void {
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
-    // this.express.use(passport.initialize());
+    this.express.use(passport.initialize());
     this.express.use(bodyParser.urlencoded({ extended: false }));
   }
   private routes(): void {
     let router = express.Router();
-    router.post('/createUser', (req, res, next) => {
-      // this.firstName = req.body.firstName;
-      // this.lastName = req.body.lastName;
-      // this.age = req.body.age;
-      // this.email = req.body.email;
-      // this.password = req.body.password;
-      // this.location = req.body.location;
-      // this.password = passwordhash.generate(this.password);
+    router.post('/login', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare("insert into AllUsersTable (LastName, FirstName, Location, Email, Password, Age) VALUES (?, ?, ?, ?, ?, ?)", function (err, stmt) {
+        conn.prepare('SELECT Password FROM AllUsersTable WHERE Email=?', function (err, stmt) {
           if (err) {
             console.log(err);
-            return conn.closeSync();
           }
-          console.log(req.body.lastName)
-          stmt.execute([req.body.lastName, req.body.firstName, req.body.location, req.body.email, passwordhash.generate(req.body.password), req.body.age], function (err, result) {
-            if (err) console.log(err);
-            else{
-              res.json({
-                message: "sucessful"
-              });
-               result.closeSync();
-            }
-            conn.close(function (err) { });
+          stmt.execute([req.body.email], function (err, result) {
+            result.fetch(function (err, data) {
+              if (err) {
+                console.error(err);
+                res.json({
+                  sucessful: false
+                });
+              }
+              else {
+                console.log(JSON.stringify(data));
+                if (data && passwordhash.verify(req.body.password,data.PASSWORD))
+                  res.json({
+                    sucessful: true
+                  });
+                else {
+                  res.json({
+                    sucessful: false
+                  });
+                }
+              }
+              result.closeSync();
+            });
           });
         });
       });
