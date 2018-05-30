@@ -1,10 +1,10 @@
-import { IcpFrontendPage } from './app.po';
+import { AppnaqmePage } from './app.po';
 
-describe('icp-frontend App', () => {
-  let page: IcpFrontendPage;
+describe('appnaqme App', () => {
+  let page: AppnaqmePage;
 
   beforeEach(() => {
-    page = new IcpFrontendPage();
+    page = new AppnaqmePage();
   });
 
   it('should display message saying app works', () => {
