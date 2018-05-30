@@ -2,15 +2,22 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as dotenv from 'dotenv'
 var ibmdb = require('ibm_db');
 
 class App {
   public express: express.Application;
-  public connectionString:String="DATABASE=SAMPLE;HOSTNAME=localhost;UID=db2inst1;PWD=db2inst1-pwd;PORT=50000;PROTOCOL=TCPIP";
+  public connectionString = "";
+  public dotenv :any
   constructor() {
+    this.connectionString = 'DATABASE='+process.env.DATABASE+';'+
+    'HOSTNAME='+ process.env.HOSTNAME+';'+'UID='+process.env.UID+';'+
+    'PWD='+process.env.PASSWORD+';'+'PORT='+process.env.PORT+';'+
+    'PROTOCOL='+process.env.PROTOCOL+';'
     this.express = express();
     this.middleware();
     this.routes();
+    dotenv.config();
   }
   private middleware(): void {
     this.express.use(logger('dev'));
