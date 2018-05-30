@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as passport from 'passport'
 var dotenv = require('dotenv').config({path: path.join('.env')})
 var ibmdb = require('ibm_db');
 
@@ -21,6 +22,7 @@ class App {
   private middleware(): void {
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
+    this.express.use(passport.initialize());
     this.express.use(bodyParser.urlencoded({ extended: false }));
   }
   private routes(): void {
