@@ -3,6 +3,10 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as passport from 'passport'
+import * as jwt from 'jsonwebtoken'
+import * as passportJWT from 'passport-jwt'
+var ExtractJwt = passportJWT.ExtractJwt;
+var JwtStrategy = passportJWT.Strategy;
 var dotenv = require('dotenv').config({path: path.join('.env')})
 var ibmdb = require('ibm_db');
 
