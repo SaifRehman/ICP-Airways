@@ -58,9 +58,7 @@ class App {
                     token:jwt.sign(data, process.env.SECRET)
                   });
                 }else {
-                  res.json({
-                    sucessful: false
-                  });
+                  res.status(401).json({message:"passwords did not match"});
                 }
               }
               result.closeSync();
