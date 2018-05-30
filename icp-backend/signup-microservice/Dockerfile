@@ -6,4 +6,4 @@ COPY dist ./
 COPY . .
 RUN npm install
 EXPOSE 3000 50000
-CMD [ "node", "main.js" ]
+CMD [ "node", "dist/main.js" ]
