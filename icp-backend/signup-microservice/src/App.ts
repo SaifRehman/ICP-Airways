@@ -10,14 +10,15 @@ class App {
   public connectionString = "";
   public dotenv :any
   constructor() {
+    dotenv.config();
     this.connectionString = 'DATABASE='+process.env.DATABASE+';'+
     'HOSTNAME='+ process.env.HOSTNAME+';'+'UID='+process.env.UID+';'+
     'PWD='+process.env.PASSWORD+';'+'PORT='+process.env.PORT+';'+
     'PROTOCOL='+process.env.PROTOCOL+';'
+    console.log(this.connectionString);
     this.express = express();
     this.middleware();
     this.routes();
-    dotenv.config();
   }
   private middleware(): void {
     this.express.use(logger('dev'));
