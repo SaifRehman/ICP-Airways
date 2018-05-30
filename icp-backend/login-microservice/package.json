@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "node dist/main.js",
-    "build": "webpack"
+    "build": "gulp scripts"
   },
   "keywords": [],
   "author": "",
@@ -27,8 +27,13 @@
     "@types/utf8": "^2.1.6",
     "body-parser": "^1.15.2",
     "debug": "^2.2.0",
+    "dotenv": "^5.0.1",
     "express": "^4.14.0",
     "ibm_db": "^2.3.1",
-    "morgan": "^1.7.0"
+    "jsonwebtoken": "^8.2.2",
+    "morgan": "^1.7.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "password-hash": "^1.2.2"
   }
 }

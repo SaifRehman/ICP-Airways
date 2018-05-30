@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class IcpFrontendPage {
+export class AppnaqmePage {
   navigateTo() {
     return browser.get('/');
   }
