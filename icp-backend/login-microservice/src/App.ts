@@ -3,27 +3,21 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as passwordhash from 'password-hash'
-// import * as passport from 'passport'
-// import * as jwt from 'jsonwebtoken'
-// import * as passportJWT from 'passport-jwt'
+import * as passport from 'passport'
+import * as jwt from 'jsonwebtoken'
+import * as passportJWT from 'passport-jwt'
 var dotenv = require('dotenv').config({ path: path.join('.env') })
 var ibmdb = require('ibm_db');
 
 class App {
-  // public firstName: String = "";
-  // public lastName: String = "";
-  // public age: Number = 0;
-  // public email: String = "";
-  // public password: String = "";
-  // public location: String = "";
-  // public jwtOptions :any;
-  // public ExtractJwt = passportJWT.ExtractJwt;
-  // public JwtStrategy = passportJWT.ExtractJwt;
+  public jwtOptions :any;
+  public ExtractJwt = passportJWT.ExtractJwt;
+  public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
   public connectionString: String;
   constructor() {
-    // this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
-    // this.jwtOptions.secretOrKey = process.env.SECRET;
+    this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
+    this.jwtOptions.secretOrKey = process.env.SECRET;
     this.connectionString = 'DATABASE=' + (process.env.DATABASE) + ';' +
       'HOSTNAME=' + process.env.HOSTNAME + ';' + 'UID=' + process.env.UID + ';' +
       'PWD=' + process.env.PASSWORD + ';' + 'PORT=' + process.env.PORT + ';' +
