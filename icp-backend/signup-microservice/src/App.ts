@@ -2,17 +2,18 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import * as dotenv from 'dotenv/config'
+var dotenv = require('dotenv').config({path: path.join('.env')})
 var ibmdb = require('ibm_db');
 
 class App {
   public express: express.Application;
-  public connectionString ;
+  public connectionString: String;
   constructor() {
-    this.connectionString = 'DATABASE='+process.env.DATABASE+';'+
+    this.connectionString = 'DATABASE='+(process.env.DATABASE)+';'+
     'HOSTNAME='+ process.env.HOSTNAME+';'+'UID='+process.env.UID+';'+
     'PWD='+process.env.PASSWORD+';'+'PORT='+process.env.PORT+';'+
     'PROTOCOL='+process.env.PROTOCOL+';'
+    console.log(this.connectionString);
     this.express = express();
     this.middleware();
     this.routes();

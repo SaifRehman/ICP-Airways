@@ -1,13 +1,18 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "outDir": "dist"
-  },
-  "include": [
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": false,
+        "outDir": "dist"
+    },
+    "include": [
     "src/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+    "exclude": [
+        "node_modules",
+        "build",
+        "config",
+        "release"
+    ]
 }
