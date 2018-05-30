@@ -10,14 +10,14 @@ var dotenv = require('dotenv').config({ path: path.join('.env') })
 var ibmdb = require('ibm_db');
 
 class App {
-  public jwtOptions: any;
+  public jwtOptions: any={};
   public ExtractJwt = passportJWT.ExtractJwt;
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
   public connectionString: String;
   constructor() {
-    // this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
-    // this.jwtOptions.secretOrKey = process.env.SECRET;
+    this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
+    this.jwtOptions.secretOrKey = process.env.SECRET;
     this.connectionString = 'DATABASE=' + (process.env.DATABASE) + ';' +
       'HOSTNAME=' + process.env.HOSTNAME + ';' + 'UID=' + process.env.UID + ';' +
       'PWD=' + process.env.PASSWORD + ';' + 'PORT=' + process.env.PORT + ';' +
@@ -37,7 +37,7 @@ class App {
     let router = express.Router();
     router.post('/login', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare('SELECT Password FROM AllUsersTable WHERE Email=?', function (err, stmt) {
+        conn.prepare('SELECT * FROM AllUsersTable WHERE Email=?', function (err, stmt) {
           if (err) {
             console.log(err);
           }
@@ -51,11 +51,13 @@ class App {
               }
               else {
                 console.log(JSON.stringify(data));
-                if (data && passwordhash.verify(req.body.password,data.PASSWORD))
+                if (data && passwordhash.verify(req.body.password,data.PASSWORD)){
+                  console.log(process.env.SECRET)
                   res.json({
-                    sucessful: true
+                    sucessful: true,
+                    token:jwt.sign(data, process.env.SECRET)
                   });
-                else {
+                }else {
                   res.json({
                     sucessful: false
                   });
