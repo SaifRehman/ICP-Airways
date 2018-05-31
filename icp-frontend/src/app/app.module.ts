@@ -19,18 +19,17 @@ import { SignupService } from './signup/signup.component.service'
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    HistoryComponent
+    HistoryComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ROUTING,
-    RouterModule,
-    LoginService,
-    SignupService
+    RouterModule
   ],
-  providers: [Provider],
+  providers: [Provider,SignupService,LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

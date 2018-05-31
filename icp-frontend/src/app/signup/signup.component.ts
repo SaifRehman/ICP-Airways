@@ -20,15 +20,16 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
 
   }
+
   signup() {
     this.signupService.signup(this.firstName, this.lastName, this.age, this.email, this.password, this.location).subscribe((data) => {
       console.log('data', data);
       this.read = data;
-      alert(this.read['message'])
+      alert('Signup sucessfull')
     },
       (error) => {
         console.log(error)
-        alert(this.read['message'])
+        alert('signup not sucessfull')
       });
   }
 
