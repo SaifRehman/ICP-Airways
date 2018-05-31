@@ -5,7 +5,7 @@ import { error } from 'util';
 import { Provider } from '../provider/provider';
 
 @Injectable()
-export class watsonVisualRecognition {
+export class SignupService {
  
     public parameters: any;
     public params: any;
