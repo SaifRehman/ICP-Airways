@@ -9,6 +9,9 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
 import { RouterModule } from '@angular/router';
+import { Provider } from './provider/provider';
+import { LoginService } from './login/login.component.service';
+import { SignupService } from './signup/signup.component.service'
 
 @NgModule({
   declarations: [
@@ -23,9 +26,11 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     HttpModule,
     ROUTING,
-    RouterModule
+    RouterModule,
+    LoginService,
+    SignupService
   ],
-  providers: [],
+  providers: [Provider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

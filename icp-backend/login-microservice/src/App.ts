@@ -10,7 +10,7 @@ var dotenv = require('dotenv').config({ path: path.join('.env') })
 var ibmdb = require('ibm_db');
 
 class App {
-  public jwtOptions: any={};
+  public jwtOptions: any = {};
   public ExtractJwt = passportJWT.ExtractJwt;
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
@@ -45,20 +45,22 @@ class App {
             result.fetch(function (err, data) {
               if (err) {
                 console.error(err);
-                res.json({
-                  sucessful: false
-                });
+                res.status(401).json({ message: "Server error" });
+                result.closeSync();
               }
               else {
                 console.log(JSON.stringify(data));
-                if (data && passwordhash.verify(req.body.password,data.PASSWORD)){
+                if(!data){
+                  res.status(401).json({message:"Please signup, no email exists"});
+                }
+                else if (passwordhash.verify(req.body.password, data.PASSWORD)) {
                   console.log(process.env.SECRET)
                   res.json({
                     sucessful: true,
-                    token:jwt.sign(data, process.env.SECRET)
+                    token: jwt.sign(data, process.env.SECRET)
                   });
-                }else {
-                  res.status(401).json({message:"passwords did not match"});
+                } else {
+                  res.status(401).json({ message: "Password/Email did not match" });
                 }
               }
               result.closeSync();
