@@ -8,7 +8,7 @@ import { LoginService } from './login.component.service'
 export class LoginComponent implements OnInit {
   email:String;
   password:String;
-  public read:String
+  public read:any;
   constructor(public loginService:LoginService) {
 
    }
@@ -19,11 +19,10 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.email,this.password).subscribe((data) => {
       console.log('data', data);
       this.read=data;
-      alert(this.read['message'])
+      alert('Login Succesfull')
   },
   (error) => {
-      console.log(error)
-      alert(this.read['message'])
+      alert("Login not Succesfull")
   });
   }
 
