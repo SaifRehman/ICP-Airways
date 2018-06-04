@@ -37,36 +37,7 @@ class App {
     let router = express.Router();
     router.post('/login', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare('SELECT * FROM AllUsersTable WHERE Email=?', function (err, stmt) {
-          if (err) {
-            console.log(err);
-          }
-          stmt.execute([req.body.email], function (err, result) {
-            result.fetch(function (err, data) {
-              if (err) {
-                console.error(err);
-                res.status(401).json({ message: "Server error" });
-                result.closeSync();
-              }
-              else {
-                console.log(JSON.stringify(data));
-                if(!data){
-                  res.status(401).json({message:"Please signup, no email exists"});
-                }
-                else if (passwordhash.verify(req.body.password, data.PASSWORD)) {
-                  console.log(process.env.SECRET)
-                  res.json({
-                    sucessful: true,
-                    token: jwt.sign(data, process.env.SECRET)
-                  });
-                } else {
-                  res.status(401).json({ message: "Password/Email did not match" });
-                }
-              }
-              result.closeSync();
-            });
-          });
-        });
+        //service logic here
       });
     });
     this.express.use('/', router);
