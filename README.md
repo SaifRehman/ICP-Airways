@@ -2,5 +2,5 @@
 
 # creating flights table
 ```SQL
-CREATE TABLE Flights (ID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , Year int NULL , Month smallint NULL, DayofMonth smallint NULL, DepTime int NULL,  CRSDepTime int NULL, ArrTime int NULL, CRSArrTime int NULL, FlightNum int NULL, TailNum varchar(255) NULL, ActualElapsedTime smallint NULL, CRSElapsedTime smallint NULL, Airtime smallint NULL, ArrDelay smallint NULL, DepDelay smallint NULL,   Origin varchar(255) NULL, Dest varchar(255) NULL, Distance smallint NULL, PRIMARY KEY (ID) );
+CREATE TABLE SAMPLE.Flights (Year varchar(255) NULL , Month varchar(255) NULL, DayofMonth varchar(255) NULL, DepTime varchar(255) NULL,  CRSDepTime varchar(255) NULL, ArrTime varchar(255) NULL, CRSArrTime varchar(255) NULL, FlightNum varchar(255) NULL, TailNum varchar(255) NULL, ActualElapsedTime varchar(255) NULL, CRSElapsedTime varchar(255) NULL, Airtime varchar(255) NULL, ArrDelay varchar(255) NULL, DepDelay varchar(255) NULL,   Origin varchar(255) NULL, Dest varchar(255) NULL, Distance varchar(255) NULL, PRIMARY KEY (ID));
 ```
