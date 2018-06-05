@@ -61,6 +61,46 @@ class App {
           });
       });
     });
+
+
+
+    router.get('/listFlightsByID/:id', (req, res, next) => {
+      ibmdb.open(this.connectionString, function (err, conn) {
+        conn.prepare('SELECT * FROM SAMPLE.FlightsData WHERE ID=?'
+          , function (err, stmt) {
+            if (err) {
+              console.log('errorr', err);
+            }
+            stmt.execute([req.params.id], function (err, result) {
+              result.fetch(function (err, data) {
+                if (err) {
+                  console.error(err);
+                  res.status(401).json({ message: "Server error" });
+                  result.closeSync();
+                }
+                else {
+                  if (data) {
+                    res.json(
+                      {
+                        data,
+                        message: true
+                      }
+                    );
+                    result.closeSync();
+                  }
+                  else {
+                    res.json({
+                      message: false
+                    });
+                  }
+                }
+                result.closeSync();
+              });
+            });
+          });
+      });
+    });
+
     this.express.use('/', router);
   }
 }
