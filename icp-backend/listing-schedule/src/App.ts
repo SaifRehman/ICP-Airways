@@ -30,7 +30,7 @@ class App {
         conn.prepare('SELECT * FROM SAMPLE.FlightsData WHERE Year=? and Month=? and DayofMonth=? and Origin=? and Dest=?'
         , function (err, stmt) {
           if (err) {
-            console.log(err);
+            console.log('errorr',err);
           }
           stmt.execute([req.body.Year,req.body.Month,req.body.DayofMonth,req.body.Origin,req.body.Dest], function (err, result) {
             result.fetch(function (err, data) {
