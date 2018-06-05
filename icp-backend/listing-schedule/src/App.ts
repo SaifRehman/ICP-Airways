@@ -27,11 +27,12 @@ class App {
     let router = express.Router();
     router.post('/listFlights', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare('SELECT * FROM AllUsersTable WHERE Email=?', function (err, stmt) {
+        conn.prepare('SELECT * FROM SAMPLE.FlightsData WHERE Year=? and Month=? and DayofMonth=? and Origin=? and Dest=?'
+        , function (err, stmt) {
           if (err) {
             console.log(err);
           }
-          stmt.execute([req.body.email], function (err, result) {
+          stmt.execute([req.body.Year,req.body.Month,req.body.DayofMonth,req.body.Origin,req.body.Dest], function (err, result) {
             result.fetch(function (err, data) {
               if (err) {
                 console.error(err);
@@ -53,3 +54,4 @@ class App {
   }
 }
 export default new App().express;
+
