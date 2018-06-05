@@ -27,7 +27,26 @@ class App {
     let router = express.Router();
     router.post('/listFlights', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-       
+        conn.prepare('SELECT * FROM AllUsersTable WHERE Email=?', function (err, stmt) {
+          if (err) {
+            console.log(err);
+          }
+          stmt.execute([req.body.email], function (err, result) {
+            result.fetch(function (err, data) {
+              if (err) {
+                console.error(err);
+                res.status(401).json({ message: "Server error" });
+                result.closeSync();
+              }
+              else {
+                res.json({
+                  data
+                });
+              }
+              result.closeSync();
+            });
+          });
+        });
       });
     });
     this.express.use('/', router);
