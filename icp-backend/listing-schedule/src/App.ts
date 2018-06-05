@@ -27,29 +27,82 @@ class App {
     let router = express.Router();
     router.post('/listFlights', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare('SELECT * FROM AllUsersTable WHERE Email=?', function (err, stmt) {
-          if (err) {
-            console.log(err);
-          }
-          stmt.execute([req.body.email], function (err, result) {
-            result.fetch(function (err, data) {
-              if (err) {
-                console.error(err);
-                res.status(401).json({ message: "Server error" });
+        conn.prepare('SELECT * FROM SAMPLE.FlightsData WHERE Year=? and Month=? and DayofMonth=? and Origin=? and Dest=?'
+          , function (err, stmt) {
+            if (err) {
+              console.log('errorr', err);
+            }
+            stmt.execute([req.body.Year, req.body.Month, req.body.DayofMonth, req.body.Origin, req.body.Dest], function (err, result) {
+              result.fetch(function (err, data) {
+                if (err) {
+                  console.error(err);
+                  res.status(401).json({ message: "Server error" });
+                  result.closeSync();
+                }
+                else {
+                  if (data) {
+                    res.json(
+                      {
+                        data,
+                        message: true
+                      }
+                    );
+                    result.closeSync();
+                  }
+                  else {
+                    res.json({
+                      message: false
+                    });
+                  }
+                }
                 result.closeSync();
-              }
-              else {
-                res.json({
-                  data
-                });
-              }
-              result.closeSync();
+              });
             });
           });
-        });
       });
     });
+
+
+
+    router.get('/listFlightsByID/:id', (req, res, next) => {
+      ibmdb.open(this.connectionString, function (err, conn) {
+        conn.prepare('SELECT * FROM SAMPLE.FlightsData WHERE ID=?'
+          , function (err, stmt) {
+            if (err) {
+              console.log('errorr', err);
+            }
+            stmt.execute([req.params.id], function (err, result) {
+              result.fetch(function (err, data) {
+                if (err) {
+                  console.error(err);
+                  res.status(401).json({ message: "Server error" });
+                  result.closeSync();
+                }
+                else {
+                  if (data) {
+                    res.json(
+                      {
+                        data,
+                        message: true
+                      }
+                    );
+                    result.closeSync();
+                  }
+                  else {
+                    res.json({
+                      message: false
+                    });
+                  }
+                }
+                result.closeSync();
+              });
+            });
+          });
+      });
+    });
+
     this.express.use('/', router);
   }
 }
 export default new App().express;
+
