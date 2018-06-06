@@ -56,6 +56,46 @@ class App {
         });
       });
     });
+
+
+    router.get('/listBookingByUser/:id', (req, res, next) => {
+      ibmdb.open(this.connectionString, function (err, conn) {
+        conn.prepare('select * from  SAMPLE.FlightsData f inner join SAMPLE.Booking b on f.ID = b.FlightID where b.UserID=?'
+          , function (err, stmt) {
+            if (err) {
+              console.log('errorr', err);
+            }
+            stmt.execute([req.params.id,], function (err, result) {
+              result.fetchAll(function (err, data) {
+                if (err) {
+                  console.error(err);
+                  res.status(401).json({ message: "Server error" });
+                  result.closeSync();
+                }
+                else {
+                  if (data) {
+                    res.json(
+                      {
+                        data,
+                        message: true
+                      }
+                    );
+                    result.closeSync();
+                  }
+                  else {
+                    res.json({
+                      message: false
+                    });
+                  }
+                }
+                result.closeSync();
+              });
+            });
+          });
+      });
+    });
+
+
     this.express.use('/', router);
   }
 }
