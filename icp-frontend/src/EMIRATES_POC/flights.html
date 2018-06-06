@@ -5,19 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000000" />
   <title>Home</title>
-  <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" type="text/css" href="css/home.css">
   <link rel="stylesheet" type="text/css" href="css/unread.css">
-    <link rel="stylesheet" type="text/css" href="css/scrollbar.css">
 </head>
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>
 
 <header>
   <ul id="slide-out" class="side-nav fixed">
@@ -45,19 +43,6 @@
   <!-- IBM Logo -->
   <a class="brand-logo left hide-on-large-only"><img id="logo1" src="http://mea-moo.mybluemix.net/static/images/ibm.png" style="width:3em;"></a>
 
-  <!-- Notifications dropdown -->
-  <ul id='notifications' class='collection dropdown-content'>
-      <h6 class="red-text text-darken-4  center-align" style="font-size:1.5em;">Notifications</h6>
-      <li><a href="#"  class="collection-item avatar">
-      <img src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png" alt="" class="circle">
-      <span>Name </span>
-      <p>First Line <br>
-         Second Line
-      </p>
-      </a>
-      </li>
-  </ul>
-
   <!-- Logout dropdown -->
   <ul id='logout_dropdown' class='collection dropdown-content z-depth-5' style="min-width:420px">
     <div class="row valign-wrapper hide-on-med-and-down" style="margin-top:1.5em;margin-bottom:-.4em;">
@@ -80,7 +65,6 @@
   </ul>
 
   <ul class="right hide-on-med-and-down valign-wrapper">
-    <li><a href="#" class="waves-effect waves-light dropdown-button badge1" href='#' data-badge="2" data-activates='notifications' alignment='right'><i class="material-icons">notifications </i></a></li>
     <li><a href="#" class=" waves-effect waves-light dropdown-button center" href='login.html' data-activates='logout_dropdown' data-gutter="4" alignment='right'><img src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png"  style="width:2em;position:inherit;margin-bottom:1.25em;margin-top:1em;margin-left:0.1em;" class="circle valign"></a></li>
    </ul>
 
@@ -98,14 +82,43 @@
   <div class="scroll-content" style="padding: 20px;">
     <h3>Browse flight information</h3>
     <hr/>
+    <br/>
+    <!-- START FILTER SEARCH -->
+      <div class="row">
+        <form class="col s12" method="POST">
+          <div class="row">
+            <div class="input-field col s4">
+              <input id="source" name="source" type="text"/>
+              <label for="source">Source</label>
+            </div>
+            <div class="input-field col s4">
+              <input id="destination" name="destination" type="text"/>
+              <label for="destination">Destination</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="Date" id="date" name="date" type="date"/>
+            </div>
+            <div class="col s12" style="text-align: center;">
+              <div class='row'>
+                <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Search Flights</button>
+                &nbsp;
+                <a class="style btn btn-large waves-effect colour-pink" onclick="document.getElementById('my_table').innerHTML='';" >Clear</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    <!-- END FILTER SEARCH -->
+        
     <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
-    <table class="striped responsive-table">
+    <table id="my_table" class="striped responsive-table centered">
       <thead>
         <tr>
             <th>Flight Number</th>
             <th>Tail Number</th>
             <th>Departure Time</th>
             <th>Arrival Time</th>
+            <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -114,18 +127,18 @@
           <td>N712SW</td>
           <td>2003</td>
           <td>2211</td>
+          <td>
+            <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
+          </td>
         </tr>
         <tr>
           <td>3231</td>
           <td>N772SW</td>
           <td>754</td>
           <td>1002</td>
-        </tr>
-        <tr>
-          <td>448</td>
-          <td>N424NW</td>
-          <td>1620</td>
-          <td>1845</td>
+          <td>
+            <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -176,6 +189,7 @@ $('.dropdown-button').dropdown({
      stopPropagation: false 
    }
  );
+       
 </script>
 
 </body>

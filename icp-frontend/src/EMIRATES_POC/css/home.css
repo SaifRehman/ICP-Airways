@@ -2,6 +2,26 @@
   background: #C70C2E;
 }
 
+#btn_sign_up, #btn_make_booking, #btn_search{
+  background: transparent;
+  border: thin solid black;
+  color: black;
+}
+
+.style {
+  background: transparent;
+  border: thin solid black;
+  color: black;
+}
+
+#btn_sign_up:hover {
+  background: transparent;
+}
+
+.style:hover {
+   background: transparent;
+}
+
 #slide-out{
   background-color: black;
 }

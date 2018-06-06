@@ -31,3 +31,10 @@ User Details:-
 	4. Email 
 	5. Password
 	6. Age
+
+Booking:-
+
+	1. Source 
+	2. Destination 
+	3. Travel date
+	4. (Book button)
