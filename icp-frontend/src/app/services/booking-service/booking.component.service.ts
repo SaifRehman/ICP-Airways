@@ -6,7 +6,7 @@ import { error } from 'util';
 import { Provider } from '../../provider/provider';
 
 @Injectable()
-export class LoginService {
+export class BookingService {
     public constructor(public http: Http, public provider:Provider) {
     }
 
@@ -36,7 +36,7 @@ export class LoginService {
                 'Content-Type': 'application/json'
             })
         });
-        const link = this.provider.apiUrl.listBookingByUser
+        const link = this.provider.apiUrl.listBookingByUser + '/' + String(ID)
         return this.http.get(link, options) // ...using post request
             .map((res: Response) => res.json())
             .catch((error: any) => {

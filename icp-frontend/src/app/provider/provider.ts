@@ -9,7 +9,8 @@ constructor() {
         login:"http://localhost:3000/login",
         signup:"http://localhost:3000/createUser",
         book:"http://localhost:3000/book",
-        listBookingByUser:"http://localhost:3000/listBookingByUser"
+        listBookingByUser:"http://localhost:3000/listBookingByUser",
+        checkin:"http://localhost:3000/checkin"
     }
   }
 }
