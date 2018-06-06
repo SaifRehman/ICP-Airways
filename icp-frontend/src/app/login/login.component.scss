@@ -2,6 +2,13 @@ h1 {
 	color: blue;
 }
 
+body {
+	background-image: url("https://images.pexels.com/photos/157058/pexels-photo-157058.jpeg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
 .colour-pink { 
 	background: #C70C2E;
 }
@@ -10,7 +17,7 @@ h1 {
 	background: #C70C2E;
 }
 
-#btn_sign_up, #btn_make_booking{
+#btn_make_booking{
 	background: transparent;
 	border: thin solid black;
 	color: black;
