@@ -8,7 +8,10 @@ CREATE TABLE SAMPLE.FlightsDATA (ID int NOT NULL , Year varchar(255) NULL , Mont
 ```SQL
 CREATE TABLE SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, PRIMARY KEY (UserID));
 ```
-
+# creating booking table
+```SQL
+CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) ,TS TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, UserID INT NOT NULL, FlightID INT NOT NULL, FOREIGN KEY (UserID) REFERENCES SAMPLE.UserData(UserID), FOREIGN KEY (FlightID) REFERENCES SAMPLE.FlightsData(ID), PRIMARY KEY (BookingID))
+```
 # inserting flights data in 
 1. ``` chown db2inst1:db2inst1 flights.csv```
 2. ```db2 connect to SAMPLE```
