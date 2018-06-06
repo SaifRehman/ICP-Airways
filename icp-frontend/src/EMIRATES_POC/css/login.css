@@ -1,0 +1,21 @@
+h1 { 
+	color: blue;
+}
+
+.colour-pink { 
+	background: #C70C2E;
+}
+
+#btn_login:hover {
+	background: #C70C2E;
+}
+
+#btn_sign_up, #btn_make_booking{
+	background: transparent;
+	border: thin solid black;
+	color: black;
+}
+
+#btn_sign_up:hover {
+	background: transparent;
+}

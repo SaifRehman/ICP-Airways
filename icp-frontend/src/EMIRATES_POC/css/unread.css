@@ -1,0 +1,17 @@
+.badge1 {
+   position:relative;
+}
+.badge1[data-badge]:after {
+   content:attr(data-badge);
+   position:absolute;
+   top:10px;
+   right:5px;
+   font-size:.9em;
+   background:black;
+   color:white;
+   width:20px;height:20px;
+   text-align:center;
+   line-height:20px;
+   border-radius:50%;
+   box-shadow:0 0 1px #333;
+}

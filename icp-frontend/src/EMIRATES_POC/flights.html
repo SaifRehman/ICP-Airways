@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000" />
+  <title>Home</title>
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <link rel="stylesheet" type="text/css" href="css/unread.css">
+    <link rel="stylesheet" type="text/css" href="css/scrollbar.css">
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
+<header>
+  <ul id="slide-out" class="side-nav fixed">
+      <div class="center-align"><img id="logo" class="center-align" src="http://mea-moo.mybluemix.net/static/images/ibm.png"></div>
+      <li><a href="index.html" class="waves-effect waves-red white-text"><i class="material-icons white-text">dashboard</i>Dashboard</a></li>
+      <li><a href="flights.html" class="waves-effect waves-red white-text active colour-pink"><i class="material-icons white-text">flight</i>Browse Flights</a></li>
+      <li ><a class="waves-effect waves-red white-text" href="login.html"><i class="material-icons white-text">exit_to_app</i>Logout</a></li>
+  </ul>
+</header>
+
+<div class="navbar-fixed">
+<nav class="colour-pink nav-extended">
+<div class="nav-wrapper">
+  <ul id="dropdown1" class="dropdown-content">
+      <li><a class="black-text waves-effect waves-red" href="#!">Settings</a></li>
+      <li class="divider"></li>
+      <li ><a class="black-text waves-effect waves-red" href="login.html"><i class="right material-icons">exit_to_app</i>Logout</a></li>
+  </ul>
+  <div id="navbar">
+  <ul class="right hide-on-large-only">
+      <li><a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-red" style="margin:0;"><i class="material-icons">menu</i></a></li>
+      <li><a class="dropdown-button waves-effect waves-red" data-gutter="5" data-constrainwidth="false" data-beloworigin="false" data-hover="false" data-activates="dropdown1"><i id="usericon" class="material-icons">more_vert</i></a></li>
+  </ul>
+
+  <!-- IBM Logo -->
+  <a class="brand-logo left hide-on-large-only"><img id="logo1" src="http://mea-moo.mybluemix.net/static/images/ibm.png" style="width:3em;"></a>
+
+  <!-- Notifications dropdown -->
+  <ul id='notifications' class='collection dropdown-content'>
+      <h6 class="red-text text-darken-4  center-align" style="font-size:1.5em;">Notifications</h6>
+      <li><a href="#"  class="collection-item avatar">
+      <img src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png" alt="" class="circle">
+      <span>Name </span>
+      <p>First Line <br>
+         Second Line
+      </p>
+      </a>
+      </li>
+  </ul>
+
+  <!-- Logout dropdown -->
+  <ul id='logout_dropdown' class='collection dropdown-content z-depth-5' style="min-width:420px">
+    <div class="row valign-wrapper hide-on-med-and-down" style="margin-top:1.5em;margin-bottom:-.4em;">
+      <div class="container">
+        <img class="circle" src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png" style="width:8em;margin-left:1em;">
+        <a href="#"><div class="circle overlay">
+          <div class="text center" style="margin-top:-0.2em;"><i class="material-icons" style="font-size:1.5em;">add_a_photo</i><h6 style="margin-top:-1em;">Change Picture</h6></div>
+        </div></a>
+      </div>
+        <div class="col l7  m7 black-text" style="margin-top:-1em;">
+            <h6 style="font-size:1.5em;">Muhammed Fawaz</h6>
+            <h6 class="red-text text-darken-4" style="font-weight:400;font-size:1em;">User</h6>
+            <div class="col l6">
+            <a class="blue-text text-darken-4" style="font-size:0.8em;margin-left:-2em;"><i class="material-icons left tiny" style="margin-right:.2em;">help</i>Help</a>
+            </div>
+            <div class="col l3">
+            <a class="waves-effect waves-light black btn" href="login.html" style="font-size:0.8em;margin-left:-2.5em;">Logout</a>
+            </div>
+      </div>
+  </ul>
+
+  <ul class="right hide-on-med-and-down valign-wrapper">
+    <li><a href="#" class="waves-effect waves-light dropdown-button badge1" href='#' data-badge="2" data-activates='notifications' alignment='right'><i class="material-icons">notifications </i></a></li>
+    <li><a href="#" class=" waves-effect waves-light dropdown-button center" href='login.html' data-activates='logout_dropdown' data-gutter="4" alignment='right'><img src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png"  style="width:2em;position:inherit;margin-bottom:1.25em;margin-top:1em;margin-left:0.1em;" class="circle valign"></a></li>
+   </ul>
+
+  <ul class="tabs tabs-transparent hide-on-large-only" id="mob-tabs">
+    <li class="tab"><a class="active waves-effect waves-red" href="#test-swipe-1"><i class="material-icons">dashboard</i></a></li>
+    <li class="tab"><a class="waves-effect waves-red" href="#test-swipe-2"><i class="material-icons">flight</i></a></li>
+   </ul>
+
+ </div>
+</div>
+</nav>
+</div>
+
+<div class="content scroll">
+  <div class="scroll-content" style="padding: 20px;">
+    <h3>Browse flight information</h3>
+    <hr/>
+    <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+            <th>Flight Number</th>
+            <th>Tail Number</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>335</td>
+          <td>N712SW</td>
+          <td>2003</td>
+          <td>2211</td>
+        </tr>
+        <tr>
+          <td>3231</td>
+          <td>N772SW</td>
+          <td>754</td>
+          <td>1002</td>
+        </tr>
+        <tr>
+          <td>448</td>
+          <td>N424NW</td>
+          <td>1620</td>
+          <td>1845</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<script>
+$(document).ready(function(e){
+    $("#search-icon").click(function(e){
+      $("#navbar").slideUp();
+      $("#navbar").hide();
+      $("#searchbar").fadeIn();
+      $("#search-txt").focus();
+    });
+    $("#close-icon").click(function(e){
+        $("#searchbar").hide();
+        $("#navbar").slideDown();
+    });
+    $(document).on('click', function (e) {
+    if ($(e.target).closest(".nav-wrapper").length === 0) {
+      $("#searchbar").hide();
+      $("#navbar").slideDown();
+    }
+});
+});
+</script>
+
+ <script>
+ $( document ).ready($('.button-collapse').sideNav({
+       menuWidth: 300, 
+       edge: 'left', 
+       closeOnClick: false, 
+       draggable: true 
+     }));
+ </script>
+
+<script>
+$('.dropdown-button').dropdown({
+     inDuration:200,
+     outDuration: 200,
+     constrainWidth: false, 
+     hover: false, 
+     gutter: 0, 
+     belowOrigin: true, 
+     alignment: 'left',
+     stopPropagation: false 
+   }
+ );
+</script>
+
+</body>
+
+</html>
