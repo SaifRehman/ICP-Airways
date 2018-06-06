@@ -8,10 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" type="text/css" href="css/home.css">
-  <link rel="stylesheet" type="text/css" href="css/unread.css">
-  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <!-- <link rel="stylesheet" type="text/css" href="css/scrollbar.css"> -->
 </head>
 <body>
 
@@ -83,11 +81,62 @@
 
 <div class="content scroll">
   <div class="scroll-content" style="padding: 20px;">
-    <h3>Your flight information</h3>
+    <h3>Your booking information</h3>
     <hr/>
     <br/>
-    <p>You currently have no bookings in the system.</p>
-    <button data-target="modal_make_booking" class="btn modal-trigger" id='btn_make_booking' name='btn_make_booking' class='btn btn-large waves-effect colour-pink'>Make a new booking</button>
+    <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
+    <table id="my_table" class="striped responsive-table centered">
+      <thead>
+        <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Flight Number</th>
+            <th>Tail Number</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+            <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dubai</td>
+          <td>Uganda</td>
+          <td>335</td>
+          <td>N712SW</td>
+          <td>2003</td>
+          <td>2211</td>
+          <td>
+            <button type='submit' onclick="Materialize.toast('Checking in...', 4000); this.disabled='disabled'; this.style='background: grey;'" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Dubai</td>
+          <td>Uganda</td>
+          <td>335</td>
+          <td>N712SW</td>
+          <td>2003</td>
+          <td>2211</td>
+          <td>
+            <button type='submit' onclick="Materialize.toast('Checking in...', 4000); this.disabled='disabled'; this.style='background: grey;'" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Dubai</td>
+          <td>Uganda</td>
+          <td>335</td>
+          <td>N712SW</td>
+          <td>2003</td>
+          <td>2211</td>
+          <td>
+            <button type='submit' onclick="Materialize.toast('Checking in...', 4000); this.disabled='disabled'; this.style='background: grey;'" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
+          </td>
+        </tr>
+
+
+      </tbody>
+    </table>
+    <br/>
+    <br/>
   </div>
 </div>
 
