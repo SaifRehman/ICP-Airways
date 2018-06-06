@@ -13,6 +13,12 @@ import { Provider } from './provider/provider';
 import { LoginService } from './login/login.component.service';
 import { SignupService } from './signup/signup.component.service'
 
+import { ListingService } from './services/listing-schedule-service/listing.component.service'
+import { BookingService } from './services/booking-service/booking.component.service'
+import { CheckinService } from './services/checkin-service/checkin.component.service'
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +35,7 @@ import { SignupService } from './signup/signup.component.service'
     ROUTING,
     RouterModule
   ],
-  providers: [Provider,SignupService,LoginService],
+  providers: [Provider,SignupService,LoginService,ListingService,BookingService,CheckinService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
