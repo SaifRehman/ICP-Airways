@@ -17,5 +17,3 @@ CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY
 2. ```db2 connect to SAMPLE```
 3. ```db2  IMPORT FROM "/flights.csv" OF DEL INSERT INTO SAMPLE.FlightsData```
 
-
-

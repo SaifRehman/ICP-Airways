@@ -28,7 +28,7 @@ class App {
     let router = express.Router();
     router.post('/createUser', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare("insert into AllUsersTable (LastName, FirstName, Location, Email, Password, Age) VALUES (?, ?, ?, ?, ?, ?)", function (err, stmt) {
+        conn.prepare("insert into SAMPLE.UserData (LastName, FirstName, Location, Email, Password, Age) VALUES (?, ?, ?, ?, ?, ?)", function (err, stmt) {
           if (err) {
             console.log(err);
             return conn.closeSync();
