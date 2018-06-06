@@ -56,3 +56,49 @@
   <!-- <a href="sign_up.html">Create an account</a> -->
   <button id='btn_sign_up' onclick="location.href='login.html';" name='btn_sign_up' class='btn btn-large waves-effect colour-pink'>Login</button>
 </div>
+
+<script>
+  $(document).ready(function(e){
+      $("#search-icon").click(function(e){
+        $("#navbar").slideUp();
+        $("#navbar").hide();
+        $("#searchbar").fadeIn();
+        $("#search-txt").focus();
+      });
+      $("#close-icon").click(function(e){
+          $("#searchbar").hide();
+          $("#navbar").slideDown();
+      });
+      $(document).on('click', function (e) {
+      if ($(e.target).closest(".nav-wrapper").length === 0) {
+        $("#searchbar").hide();
+        $("#navbar").slideDown();
+      }
+  });
+  });
+  </script>
+  
+   <script>
+   $( document ).ready($('.button-collapse').sideNav({
+         menuWidth: 300, 
+         edge: 'left', 
+         closeOnClick: false, 
+         draggable: true 
+       }));
+   </script>
+  
+  <script>
+  $('.dropdown-button').dropdown({
+       inDuration:200,
+       outDuration: 200,
+       constrainWidth: false, 
+       hover: false, 
+       gutter: 0, 
+       belowOrigin: true, 
+       alignment: 'left',
+       stopPropagation: false 
+     }
+   );
+         
+  </script>
+  
