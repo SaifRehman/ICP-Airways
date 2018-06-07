@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Provider } from '../provider/provider';
 import { BookingService } from '../services/booking-service/booking.component.service'
-
+import { CheckinService } from '../services/checkin-service/checkin.component.service'
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -9,8 +9,23 @@ import { BookingService } from '../services/booking-service/booking.component.se
 })
 export class HistoryComponent implements OnInit {
   public show:any=null;
-  constructor(public provider:Provider, public bookingService:BookingService) {
+  constructor(public provider:Provider, public bookingService:BookingService, public checkinService:CheckinService) {
 
+   }
+   checkin(flightid,userid){
+     console.log(flightid,userid);
+    this.checkinService.checkin(flightid,userid).subscribe((data) => {
+      this.bookingService.listBookingByUser(this.provider.userData.data.USERID).subscribe((data) => {
+        console.log('data', data);
+        this.show = data
+      },
+        (error) => {
+          console.log(error)
+        });
+    },
+      (error) => {
+        console.log(error)
+      });
    }
 
   ngOnInit() {
