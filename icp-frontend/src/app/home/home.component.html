@@ -148,7 +148,7 @@
             <td>{{listshow.DEPTIME}}</td>
             <td>{{listshow.ARRTIME}}</td>
             <td>
-              <button onclick="Materialize.toast('Booking...', 4000); this.disabled='disabled'; this.style='background: grey;'" type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
+              <button onclick="Materialize.toast('Booking...', 4000); this.disabled='disabled'; this.style='background: grey;'" type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink' (click)="book(listshow.ID)">Book</button>
             </td>
           </tr>
         </tbody>
