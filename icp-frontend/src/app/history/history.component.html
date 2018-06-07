@@ -101,6 +101,7 @@
       <br/>
 
       <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
+      <ng-container *ngIf="show">
       <table id="my_table" class="striped responsive-table centered">
         <thead>
           <tr>
@@ -114,41 +115,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Dubai</td>
-            <td>Uganda</td>
-            <td>335</td>
-            <td>N712SW</td>
-            <td>2003</td>
-            <td>2211</td>
+          <tr *ngFor="let listshow of show.data">
+            <td>{{listshow.ORIGIN}}</td>
+            <td>{{listshow.DEST}}</td>
+            <td>{{listshow.FLIGHTNUM}}</td>
+            <td>{{listshow.TAILNUM}}</td>
+            <td>{{listshow.DEPTIME}}</td>
+            <td>{{listshow.ARRTIME}}</td>
             <td>
-              <button type='submit' onclick="Materialize.toast('Checking in...', 4000); this.disabled='disabled'; this.style='background: grey;'" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Dubai</td>
-            <td>Uganda</td>
-            <td>335</td>
-            <td>N712SW</td>
-            <td>2003</td>
-            <td>2211</td>
-            <td>
-              <button type='submit' onclick="Materialize.toast('Checking in...', 4000); this.disabled='disabled'; this.style='background: grey;'" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Dubai</td>
-            <td>Uganda</td>
-            <td>335</td>
-            <td>N712SW</td>
-            <td>2003</td>
-            <td>2211</td>
-            <td>
-              <button type='submit' onclick="Materialize.toast('Checking in...', 4000); this.disabled='disabled'; this.style='background: grey;'" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
+              <button type='submit' (click)="checkin()" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
             </td>
           </tr>
         </tbody>
       </table>
+      </ng-container>
 
       <br/>
       <br/>

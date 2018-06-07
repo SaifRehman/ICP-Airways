@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
   book(id){
     this.bookingService.booking(this.provider.userData.data.USERID,id).subscribe((data) => {
       console.log('data', data);
-      alert('sucesfully booked');
+      this.show = data;
     },
       (error) => {
         console.log(error)
