@@ -10,13 +10,13 @@ export class CheckinService {
     public constructor(public http: Http, public provider:Provider) {
     }
 
-    public checkin(ID): Observable<any> {
+    public checkin(BookingID,UserID): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
         });
-        const link = this.provider.apiUrl.checkin+'/'+String(ID)
+        const link = this.provider.apiUrl.checkin+'/'+String(BookingID)+'/'+String(UserID)
         return this.http.get(link, options) // ...using post request
             .map((res: Response) => res.json())
             .catch((error: any) => {
