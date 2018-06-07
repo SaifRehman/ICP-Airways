@@ -104,28 +104,28 @@
       <br/>
       <!-- START FILTER SEARCH -->
       <div class="row">
-        <form class="col s12" method="POST">
+        <div class="col s12" method="POST">
           <div class="row">
             <div class="input-field col s4">
-              <input id="source" name="source" type="text" />
+              <input id="source" name="source" type="text" [(ngModel)]="origin"/>
               <label for="source">Source</label>
             </div>
             <div class="input-field col s4">
-              <input id="destination" name="destination" type="text" />
+              <input id="destination" name="destination" type="text" [(ngModel)]="dest"/>
               <label for="destination">Destination</label>
             </div>
             <div class="input-field col s4">
-              <input placeholder="Date" id="date" name="date" type="date" />
+              <input placeholder="Date" id="date" name="date" type="date" [(ngModel)]="date" />
             </div>
             <div class="col s12" style="text-align: center;">
               <div class='row'>
-                <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Search Flights</button>
+                <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink' (click)="search()">Search Flights</button>
                 &nbsp;
-                <a class="style btn btn-large waves-effect colour-pink" onclick="document.getElementById('my_table').innerHTML='';">Clear</a>
+                <a class="style btn btn-large waves-effect colour-pink" (click)="clear()">Clear</a>
               </div>
             </div>
           </div>
-        </form>
+        </div>
       </div>
       <!-- END FILTER SEARCH -->
 

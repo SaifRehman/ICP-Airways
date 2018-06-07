@@ -16,11 +16,11 @@ export class ListingService {
                 'Content-Type': 'application/json'
             })
         });
-        const link = this.provider.apiUrl.book
+        const link = this.provider.apiUrl.listFlights
         const bodyObject = {
             Year:Year,
             Month:Month,
-            DayOfMonth:DayOfMonth,
+            DayofMonth:DayOfMonth,
             Origin:Origin,
             Dest:Dest
         }
