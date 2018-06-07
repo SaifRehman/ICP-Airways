@@ -24,12 +24,12 @@ export class SignupService {
         });
         const link = this.provider.apiUrl.signup
         const bodyObject = {
-            firstName:firstName,
-            lastName:lastName,
-            age:age,
-            email:email,
-            password:password,
-            location:location
+            'firstName':firstName,
+            'lastName':lastName,
+            'age':Number(age),
+            'email':email,
+            'password':password,
+            'location':location
         }
         const bodyString = JSON.stringify(bodyObject); // Stringify payload
         return this.http.post(link, bodyObject, options) // ...using post request
