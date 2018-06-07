@@ -32,16 +32,17 @@ class App {
     }
     routes() {
         let router = express.Router();
-        router.get('/checkin/:id', (req, res, next) => {
+        router.get('/checkin/:bookid/:userid', (req, res, next) => {
             ibmdb.open(this.connectionString, function (err, conn) {
-                conn.prepare("UPDATE SAMPLE.Booking SET Checkin = '1' WHERE BookingID = ? ", function (err, stmt) {
+                conn.prepare("UPDATE SAMPLE.Booking SET Checkin = '1' WHERE FlightID = ? AND UserID=? ", function (err, stmt) {
                     if (err) {
                         console.log('errorr', err);
                         res.json({
                             message: true
                         });
                     }
-                    stmt.execute([req.params.id,], function (err, result) {
+                    stmt.execute([req.params.bookid, req.params.userid], function (err, result) {
+                        console.log(req.params.bookid, req.params.userid);
                         if (err) {
                             console.log('error', err);
                             res.json({

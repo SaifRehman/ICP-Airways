@@ -1,9 +1,20 @@
 <header>
   <ul id="slide-out" class="side-nav fixed">
-      <div class="center-align"><img id="logo" class="center-align" src="http://mea-moo.mybluemix.net/static/images/ibm.png"></div>
-      <li><a routerLink="/history" class="waves-effect waves-red white-text active colour-pink"><i class="material-icons white-text">dashboard</i>Dashboard</a></li>
-      <li><a routerLink="/home" class="waves-effect waves-red white-text"><i class="material-icons white-text">flight</i>Browse Flights</a></li>
-      <li ><a class="waves-effect waves-red white-text" routerLink="/login"><i class="material-icons white-text">exit_to_app</i>Logout</a></li>
+    <div class="center-align">
+      <img id="logo" class="center-align" src="http://mea-moo.mybluemix.net/static/images/ibm.png">
+    </div>
+    <li>
+      <a routerLink="/history" class="waves-effect waves-red white-text active colour-pink">
+        <i class="material-icons white-text">dashboard</i>Dashboard</a>
+    </li>
+    <li>
+      <a routerLink="/home" class="waves-effect waves-red white-text">
+        <i class="material-icons white-text">flight</i>Browse Flights</a>
+    </li>
+    <li>
+      <a class="waves-effect waves-red white-text" routerLink="/login">
+        <i class="material-icons white-text">exit_to_app</i>Logout</a>
+    </li>
   </ul>
 </header>
 <div class="navbar-fixed">
@@ -11,7 +22,7 @@
     <div class="nav-wrapper">
       <ul id="dropdown1" class="dropdown-content">
         <li>
-          <a class="black-text waves-effect waves-red" >Settings</a>
+          <a class="black-text waves-effect waves-red">Settings</a>
         </li>
         <li class="divider"></li>
         <li>
@@ -22,13 +33,13 @@
       <div id="navbar">
         <ul class="right hide-on-large-only">
           <li>
-            <a  data-activates="slide-out" class="button-collapse waves-effect waves-red" style="margin:0;">
+            <a data-activates="slide-out" class="button-collapse waves-effect waves-red" style="margin:0;">
               <i class="material-icons">menu</i>
             </a>
           </li>
           <li>
-            <a class="dropdown-button waves-effect waves-red" data-gutter="5" data-constrainwidth="false" data-beloworigin="false"
-              data-hover="false" data-activates="dropdown1">
+            <a class="dropdown-button waves-effect waves-red" data-gutter="5" data-constrainwidth="false" data-beloworigin="false" data-hover="false"
+              data-activates="dropdown1">
               <i id="usericon" class="material-icons">more_vert</i>
             </a>
           </li>
@@ -43,7 +54,7 @@
             <div class="container">
               <img class="circle" src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png"
                 style="width:8em;margin-left:1em;">
-              <a >
+              <a>
                 <div class="circle overlay">
                   <div class="text center" style="margin-top:-0.2em;">
                     <i class="material-icons" style="font-size:1.5em;">add_a_photo</i>
@@ -63,15 +74,14 @@
                 <a class="waves-effect waves-light black btn" routerLink="/login" style="font-size:0.8em;margin-left:-2.5em;">Logout</a>
               </div>
             </div>
-            </div>
+          </div>
         </ul>
 
         <ul class="right hide-on-med-and-down valign-wrapper">
           <li>
-            <a class=" waves-effect waves-light dropdown-button center"  data-activates='logout_dropdown'
-              data-gutter="4" alignment='right'>
-              <img src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png"
-                style="width:2em;position:inherit;margin-bottom:1.25em;margin-top:1em;margin-left:0.1em;" class="circle valign">
+            <a class=" waves-effect waves-light dropdown-button center" data-activates='logout_dropdown' data-gutter="4" alignment='right'>
+              <img src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png" style="width:2em;position:inherit;margin-bottom:1.25em;margin-top:1em;margin-left:0.1em;"
+                class="circle valign">
             </a>
           </li>
         </ul>
@@ -83,35 +93,35 @@
             </a>
           </li>
           <li class="tab">
-            <a class="waves-effect waves-red" routerLink="/home" >
+            <a class="waves-effect waves-red" routerLink="/home">
               <i class="material-icons">flight</i>
             </a>
           </li>
         </ul>
 
-        </div>
       </div>
+    </div>
   </nav>
-  </div>
+</div>
 
-  <div class="content scroll">
-    <div class="scroll-content" style="padding: 20px;">
-      <h3>Browse flight information</h3>
-      <hr/>
-      <br/>
+<div class="content scroll">
+  <div class="scroll-content" style="padding: 20px;">
+    <h3>Browse flight information</h3>
+    <hr/>
+    <br/>
 
-      <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
-      <ng-container *ngIf="show">
+    <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
+    <ng-container *ngIf="show">
       <table id="my_table" class="striped responsive-table centered">
         <thead>
           <tr>
-              <th>Source</th>
-              <th>Destination</th>
-              <th>Flight Number</th>
-              <th>Tail Number</th>
-              <th>Departure Time</th>
-              <th>Arrival Time</th>
-              <th>Action</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Flight Number</th>
+            <th>Tail Number</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -122,15 +132,22 @@
             <td>{{listshow.TAILNUM}}</td>
             <td>{{listshow.DEPTIME}}</td>
             <td>{{listshow.ARRTIME}}</td>
-            <td>
-              <button type='submit' (click)="checkin()" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
-            </td>
+            <ng-container *ngIf="listshow.CHECKIN === '0'">
+              <td>
+                <button type='submit' (click)="checkin(listshow.FLIGHTID,listshow.USERID)" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
+              </td>
+            </ng-container>
+            <ng-container *ngIf="listshow.CHECKIN === '1'">
+              <td>
+                <button type='submit' disabled="disabled" id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Check In</button>
+              </td>
+            </ng-container>
           </tr>
         </tbody>
       </table>
-      </ng-container>
+    </ng-container>
 
-      <br/>
-      <br/>
-    </div>
+    <br/>
+    <br/>
   </div>
+</div>
