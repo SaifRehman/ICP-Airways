@@ -37,7 +37,7 @@ class App {
     let router = express.Router();
     router.post('/login', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare('SELECT * FROM AllUsersTable WHERE Email=?', function (err, stmt) {
+        conn.prepare('SELECT ID,FirstName,Email,Location FROM SAMPLE.UserData WHERE Email=?', function (err, stmt) {
           if (err) {
             console.log(err);
           }
