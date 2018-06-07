@@ -40,7 +40,7 @@ class App {
                             else {
                                 if (data) {
                                     res.json({
-                                        data,
+                                        data: [data],
                                         message: true
                                     });
                                     result.closeSync();

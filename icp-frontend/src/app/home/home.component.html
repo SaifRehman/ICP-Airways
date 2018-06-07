@@ -130,6 +130,7 @@
       <!-- END FILTER SEARCH -->
 
       <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
+      <ng-container *ngIf="show">
       <table id="my_table" class="striped responsive-table centered">
         <thead>
           <tr>
@@ -140,81 +141,19 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let listshow of show.data">
           <tr>
-            <td>335</td>
-            <td>N712SW</td>
-            <td>2003</td>
-            <td>2211</td>
+            <td>{{listshow.FLIGHTNUM}}</td>
+            <td>{{listshow.TAILNUM}}</td>
+            <td>{{listshow.DEPTIME}}</td>
+            <td>{{listshow.ARRTIME}}</td>
             <td>
               <button onclick="Materialize.toast('Booking...', 4000); this.disabled='disabled'; this.style='background: grey;'" type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
-            </td>
-          </tr>
-          <tr>
-            <td>3231</td>
-            <td>N772SW</td>
-            <td>754</td>
-            <td>1002</td>
-            <td>
-              <button onclick="Materialize.toast('Booking...', 4000); this.disabled='disabled'; this.style='background: grey;'" type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
-            </td>
-          </tr>
-          <tr>
-            <td>3231</td>
-            <td>N772SW</td>
-            <td>754</td>
-            <td>1002</td>
-            <td>
-              <button onclick="Materialize.toast('Booking...', 4000); this.disabled='disabled'; this.style='background: grey;'" type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
-            </td>
-          </tr>
-          <tr>
-            <td>3231</td>
-            <td>N772SW</td>
-            <td>754</td>
-            <td>1002</td>
-            <td>
-              <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
-            </td>
-          </tr>
-          <tr>
-            <td>3231</td>
-            <td>N772SW</td>
-            <td>754</td>
-            <td>1002</td>
-            <td>
-              <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
-            </td>
-          </tr>
-          <tr>
-            <td>3231</td>
-            <td>N772SW</td>
-            <td>754</td>
-            <td>1002</td>
-            <td>
-              <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
-            </td>
-          </tr>
-          <tr>
-            <td>3231</td>
-            <td>N772SW</td>
-            <td>754</td>
-            <td>1002</td>
-            <td>
-              <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
-            </td>
-          </tr>
-          <tr>
-            <td>3231</td>
-            <td>N772SW</td>
-            <td>754</td>
-            <td>1023</td>
-            <td>
-              <button type='submit' id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink'>Book</button>
             </td>
           </tr>
         </tbody>
       </table>
+      </ng-container>
       <br/>
       <br/>
     </div>
