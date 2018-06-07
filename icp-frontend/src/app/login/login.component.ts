@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.component.service'
 import { Provider } from '../provider/provider';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
   email:String;
   password:String;
   public read:any;
-  constructor(public loginService:LoginService,  public provider:Provider) {
+  constructor(public loginService:LoginService,  public provider:Provider, public router: Router) {
 
    }
 
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
       console.log('data', data);
       this.read=data;
       this.provider.userData=data;
-      alert('Login Succesfull')
+      this.router.navigateByUrl('/history');
   },
   (error) => {
       alert("Login not Succesfull")
