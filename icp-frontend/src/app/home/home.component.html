@@ -1,9 +1,10 @@
 <header>
   <ul id="slide-out" class="side-nav fixed">
       <div class="center-align"><img id="logo" class="center-align" src="http://mea-moo.mybluemix.net/static/images/ibm.png"></div>
-      <li><a href="index.html" class="waves-effect waves-red white-text"><i class="material-icons white-text">dashboard</i>Dashboard</a></li>
-      <li><a href="flights.html" class="waves-effect waves-red white-text active colour-pink"><i class="material-icons white-text">flight</i>Browse Flights</a></li>
-      <li ><a class="waves-effect waves-red white-text" href="login.html"><i class="material-icons white-text">exit_to_app</i>Logout</a></li>
+
+      <li><a routerLink="/history" class="waves-effect waves-red white-text "><i class="material-icons white-text">dashboard</i>Dashboard</a></li>
+      <li><a routerLink="/home" class="waves-effect waves-red white-text active colour-pink"><i class="material-icons white-text">flight</i>Browse Flights</a></li>
+      <li ><a class="waves-effect waves-red white-text" routerLink="/login"><i class="material-icons white-text">exit_to_app</i>Logout</a></li>
   </ul>
 </header>
 <div class="navbar-fixed">
@@ -11,18 +12,18 @@
     <div class="nav-wrapper">
       <ul id="dropdown1" class="dropdown-content">
         <li>
-          <a class="black-text waves-effect waves-red" href="#!">Settings</a>
+          <a class="black-text waves-effect waves-red" >Settings</a>
         </li>
         <li class="divider"></li>
         <li>
-          <a class="black-text waves-effect waves-red" href="login.html">
+          <a class="black-text waves-effect waves-red" routerLink="/login">
             <i class="right material-icons">exit_to_app</i>Logout</a>
         </li>
       </ul>
       <div id="navbar">
         <ul class="right hide-on-large-only">
           <li>
-            <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-red" style="margin:0;">
+            <a  data-activates="slide-out" class="button-collapse waves-effect waves-red" style="margin:0;">
               <i class="material-icons">menu</i>
             </a>
           </li>
@@ -45,7 +46,7 @@
             <div class="container">
               <img class="circle" src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png"
                 style="width:8em;margin-left:1em;">
-              <a href="#">
+              <a >
                 <div class="circle overlay">
                   <div class="text center" style="margin-top:-0.2em;">
                     <i class="material-icons" style="font-size:1.5em;">add_a_photo</i>
@@ -62,7 +63,7 @@
                   <i class="material-icons left tiny" style="margin-right:.2em;">help</i>Help</a>
               </div>
               <div class="col l3">
-                <a class="waves-effect waves-light black btn" href="login.html" style="font-size:0.8em;margin-left:-2.5em;">Logout</a>
+                <a class="waves-effect waves-light black btn" routerLink="/login" style="font-size:0.8em;margin-left:-2.5em;">Logout</a>
               </div>
             </div>
             </div>
@@ -70,7 +71,7 @@
 
         <ul class="right hide-on-med-and-down valign-wrapper">
           <li>
-            <a href="#" class=" waves-effect waves-light dropdown-button center" href='login.html' data-activates='logout_dropdown'
+            <a class=" waves-effect waves-light dropdown-button center" routerLink="/login" data-activates='logout_dropdown'
               data-gutter="4" alignment='right'>
               <img src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png"
                 style="width:2em;position:inherit;margin-bottom:1.25em;margin-top:1em;margin-left:0.1em;" class="circle valign">
@@ -80,12 +81,12 @@
 
         <ul class="tabs tabs-transparent hide-on-large-only" id="mob-tabs">
           <li class="tab">
-            <a class="active waves-effect waves-red" href="#test-swipe-1">
+            <a class="active waves-effect waves-red" routerLink="/history">
               <i class="material-icons">dashboard</i>
             </a>
           </li>
           <li class="tab">
-            <a class="waves-effect waves-red" href="#test-swipe-2">
+            <a class="waves-effect waves-red" routerLink="/home">
               <i class="material-icons">flight</i>
             </a>
           </li>
