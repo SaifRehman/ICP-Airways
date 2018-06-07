@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Provider } from '../provider/provider';
 import { ListingService } from '../services/listing-schedule-service/listing.component.service'
-
+import { BookingService } from '../services/booking-service/booking.component.service'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   origin:any;
   dest:any;
   date:any;
-  constructor(public provider:Provider, public listingService:ListingService) {
+  constructor(public provider:Provider, public listingService:ListingService, public bookingService:BookingService) {
     this.show=null;
    }
 
@@ -42,6 +42,14 @@ export class HomeComponent implements OnInit {
       (error) => {
         console.log(error)
       });
-
+  }
+  book(id){
+    this.bookingService.booking(this.provider.userData.data.USERID,id).subscribe((data) => {
+      console.log('data', data);
+      alert('sucesfully booked');
+    },
+      (error) => {
+        console.log(error)
+      });
   }
 }
