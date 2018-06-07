@@ -8,6 +8,7 @@ import { ListingService } from '../services/listing-schedule-service/listing.com
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public show:any=null
   public Year:any;
   public Month:any;
   public DayOfMonth:any;
@@ -15,10 +16,13 @@ export class HomeComponent implements OnInit {
   dest:any;
   date:any;
   constructor(public provider:Provider, public listingService:ListingService) {
-
+    this.show=null;
    }
 
   ngOnInit() {
+  }
+  cancel(){
+    this.show=null;
   }
   search(){
     console.log(this.origin,this.dest,this.date)
@@ -33,6 +37,7 @@ export class HomeComponent implements OnInit {
 
     this.listingService.listFlights(this.Year, this.Month, this.DayOfMonth, this.origin, this.dest).subscribe((data) => {
       console.log('data', data);
+      this.show=data;
     },
       (error) => {
         console.log(error)

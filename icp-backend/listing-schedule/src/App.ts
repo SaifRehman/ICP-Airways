@@ -43,7 +43,7 @@ class App {
                   if (data) {
                     res.json(
                       {
-                        data,
+                        data: [data],
                         message: true
                       }
                     );
