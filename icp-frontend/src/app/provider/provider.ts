@@ -3,10 +3,10 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class Provider {
 public apiUrl:any;
-
+public userData:any=null;
 constructor() {
     this.apiUrl={
-        login:"http://localhost:3000/login",
+        login:"http://localhost:3001/login",
         signup:"http://localhost:3000/createUser",
         book:"http://localhost:3000/book",
         listBookingByUser:"http://localhost:3000/listBookingByUser",

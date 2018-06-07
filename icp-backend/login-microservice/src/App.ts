@@ -37,7 +37,7 @@ class App {
     let router = express.Router();
     router.post('/login', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare('SELECT * FROM AllUsersTable WHERE Email=?', function (err, stmt) {
+        conn.prepare('SELECT * FROM SAMPLE.UserData WHERE Email=?', function (err, stmt) {
           if (err) {
             console.log(err);
           }
@@ -57,7 +57,8 @@ class App {
                   console.log(process.env.SECRET)
                   res.json({
                     sucessful: true,
-                    token: jwt.sign(data, process.env.SECRET)
+                    token: jwt.sign(data, process.env.SECRET),
+                    data:data
                   });
                 } else {
                   res.status(401).json({ message: "Password/Email did not match" });
