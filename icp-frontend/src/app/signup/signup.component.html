@@ -21,95 +21,49 @@
         </div>
         <div class='row'>
           <div class='input-field col s12'>
-            <input class='validate' type='text' name='first_name' id='first_name' required="required" />
+            <input class='validate' type='text' name='first_name' id='first_name' required="required" [(ngModel)]="firstName" />
             <label for='first_name'>First Name</label>
           </div>
         </div>
         <div class='row'>
           <div class='input-field col s12'>
-            <input class='validate' type='text' name='last_name' id='last_name' required="required" />
+            <input class='validate' type='text' name='last_name' id='last_name' required="required" [(ngModel)]="lastName"/>
             <label for='last_name'>Last Name</label>
           </div>
         </div>
         <div class='row'>
           <div class='input-field col s12'>
-            <input class='validate' type='text' name='location' id='location' required="required" />
+            <input class='validate' type='text' name='location' id='location' required="required" [(ngModel)]="locationName"/>
             <label for='location'>Location</label>
           </div>
         </div>
         <div class='row'>
           <div class='input-field col s12'>
-            <input type="number" name="age" id="age" required="required" />
+            <input type="number" name="age" id="age" required="required" [(ngModel)]="age"/>
             <label for='age'>Age</label>
           </div>
         </div>
         <div class='row'>
           <div class='input-field col s12'>
-            <input class='validate' type='email' name='email' id='email' required="required" />
+            <input class='validate' type='email' name='email' id='email' required="required" [(ngModel)]="email" />
             <label for='email'>Email</label>
           </div>
         </div>
         <div class='row'>
           <div class='input-field col s12'>
-            <input class='validate' type='password' name='password' id='password' required="required"/>
+            <input class='validate' type='password' name='password' id='password' required="required" [(ngModel)]="password"/>
             <label for='password'>Password</label>
           </div>
         </div>
         <br/>
         <div style="text-align: center;">
           <div class='row'>
-            <button type='submit' id='btn_login' name='btn_login' class='col s12 btn btn-large waves-effect colour-pink'>Sign Up</button>
+            <button type='submit' id='btn_login' name='btn_login' class='col s12 btn btn-large waves-effect colour-pink'(click)="signup()">Sign Up</button>
           </div>
         </div>
       </form>
     </div>
   </div>
   <!-- <a href="sign_up.html">Create an account</a> -->
-  <button id='btn_sign_up' onclick="location.href='login.html';" name='btn_sign_up' class='btn btn-large waves-effect colour-pink'>Login</button>
+  <button id='btn_sign_up' onclick="location.href='login.html';" name='btn_sign_up' class='btn btn-large waves-effect colour-pink' routerLink="/login">Login</button>
 </div>
-
-<script>
-  $(document).ready(function(e){
-      $("#search-icon").click(function(e){
-        $("#navbar").slideUp();
-        $("#navbar").hide();
-        $("#searchbar").fadeIn();
-        $("#search-txt").focus();
-      });
-      $("#close-icon").click(function(e){
-          $("#searchbar").hide();
-          $("#navbar").slideDown();
-      });
-      $(document).on('click', function (e) {
-      if ($(e.target).closest(".nav-wrapper").length === 0) {
-        $("#searchbar").hide();
-        $("#navbar").slideDown();
-      }
-  });
-  });
-  </script>
-  
-   <script>
-   $( document ).ready($('.button-collapse').sideNav({
-         menuWidth: 300, 
-         edge: 'left', 
-         closeOnClick: false, 
-         draggable: true 
-       }));
-   </script>
-  
-  <script>
-  $('.dropdown-button').dropdown({
-       inDuration:200,
-       outDuration: 200,
-       constrainWidth: false, 
-       hover: false, 
-       gutter: 0, 
-       belowOrigin: true, 
-       alignment: 'left',
-       stopPropagation: false 
-     }
-   );
-         
-  </script>
-  
