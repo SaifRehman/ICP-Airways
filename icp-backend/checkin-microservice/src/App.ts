@@ -27,6 +27,17 @@ class App {
     this.middleware();
     this.routes();
   }
+  private ensureToken(req, res, next) {
+    const bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== 'undefined') {
+      const bearer = bearerHeader.split(" ");
+      const bearerToken = bearer[1];
+      req.token = bearerToken;
+      next();
+    } else {
+      res.sendStatus(403);
+    }
+  }
   private middleware(): void {
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
@@ -36,7 +47,7 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-    router.get('/checkin/:bookid/:userid', (req, res, next) => {
+    router.get('/checkin/:bookid/:userid',this.ensureToken, (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
         conn.prepare("UPDATE SAMPLE.Booking SET Checkin = '1' WHERE FlightID = ? AND UserID=? "
           , function (err, stmt) {
