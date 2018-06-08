@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 export class Provider {
 public apiUrl:any;
 public userData:any=null;
+public token:any=null;
 constructor() {
     this.apiUrl={
         login:"http://localhost:3001/login",

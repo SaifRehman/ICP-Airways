@@ -13,7 +13,8 @@ export class BookingService {
     public booking(UserID,FlightID): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': this.provider.token
             })
         });
         const link = this.provider.apiUrl.book
@@ -33,7 +34,8 @@ export class BookingService {
     public listBookingByUser(ID): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': this.provider.token
             })
         });
         const link = this.provider.apiUrl.listBookingByUser + '/' + String(ID)

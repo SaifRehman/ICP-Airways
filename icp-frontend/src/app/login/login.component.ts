@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.component.service'
 import { Provider } from '../provider/provider';
 import { RouterModule, Routes, Router } from '@angular/router';
+import * as jwtDecode from 'jwt-decode'
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,9 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.email,this.password).subscribe((data) => {
       console.log('data', data);
       this.read=data;
-      this.provider.userData=data;
+      this.read = this.read['token']
+      this.provider.token = this.read;
+      this.provider.userData=jwtDecode(this.read);
       this.router.navigateByUrl('/history');
   },
   (error) => {

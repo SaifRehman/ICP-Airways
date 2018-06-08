@@ -13,7 +13,8 @@ export class CheckinService {
     public checkin(BookingID,UserID): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': this.provider.token
             })
         });
         const link = this.provider.apiUrl.checkin+'/'+String(BookingID)+'/'+String(UserID)
