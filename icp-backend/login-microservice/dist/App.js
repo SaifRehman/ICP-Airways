@@ -54,6 +54,7 @@ class App {
                                 }
                                 else if (passwordhash.verify(req.body.password, data.PASSWORD)) {
                                     console.log(process.env.SECRET);
+                                    delete data['PASSWORD'];
                                     res.json({
                                         sucessful: true,
                                         token: jwt.sign(data, process.env.SECRET),
