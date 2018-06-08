@@ -57,8 +57,7 @@ class App {
                                     delete data['PASSWORD'];
                                     res.json({
                                         sucessful: true,
-                                        token: jwt.sign(data, process.env.SECRET),
-                                        data: data
+                                        token: jwt.sign(data, process.env.SECRET)
                                     });
                                 }
                                 else {
