@@ -27,6 +27,17 @@ class App {
     this.middleware();
     this.routes();
   }
+  private ensureToken(req, res, next) {
+    const bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== 'undefined') {
+      const bearer = bearerHeader.split(" ");
+      const bearerToken = bearer[1];
+      req.token = bearerToken;
+      next();
+    } else {
+      res.sendStatus(403);
+    }
+  }
   private middleware(): void {
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
@@ -35,7 +46,7 @@ class App {
   }
   private routes(): void {
     let router = express.Router();
-    router.post('/book', (req, res, next) => {
+    router.post('/book', this.ensureToken, (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
         conn.prepare("insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID) VALUES (CURRENT TIMESTAMP, '0', ?, ?)", function (err, stmt) {
           if (err) {
@@ -58,7 +69,7 @@ class App {
     });
 
 
-    router.get('/listBookingByUser/:id', (req, res, next) => {
+    router.get('/listBookingByUser/:id',this.ensureToken, (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
         conn.prepare('select * from  SAMPLE.FlightsData f inner join SAMPLE.Booking b on f.ID = b.FlightID where b.UserID=?'
           , function (err, stmt) {
