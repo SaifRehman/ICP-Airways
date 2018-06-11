@@ -31,7 +31,7 @@ class App {
                         console.log('errorr', err);
                     }
                     stmt.execute([req.body.Year, req.body.Month, req.body.DayofMonth, req.body.Origin, req.body.Dest], function (err, result) {
-                        result.fetch(function (err, data) {
+                        result.fetchAll(function (err, data) {
                             if (err) {
                                 console.error(err);
                                 res.status(401).json({ message: "Server error" });
@@ -40,7 +40,7 @@ class App {
                             else {
                                 if (data) {
                                     res.json({
-                                        data: [data],
+                                        data: data,
                                         message: true
                                     });
                                     result.closeSync();
