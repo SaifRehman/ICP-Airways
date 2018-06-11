@@ -51,4 +51,4 @@ CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY
 ### Running nodejs app
 1. Install [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 2. Run ``` gulp scripts``` to convert ts to js
-3. npm start
+3. Run ```npm start```
