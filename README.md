@@ -6,7 +6,7 @@ CREATE TABLE SAMPLE.FlightsData (ID int NOT NULL , Year varchar(255) NULL , Mont
 ```
 # creating usertable
 ```SQL
-CREATE TABLE SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, PRIMARY KEY (UserID));
+CREATE TABLE SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, PRIMARY KEY (UserID,Email));
 ```
 # creating booking table
 ```SQL
