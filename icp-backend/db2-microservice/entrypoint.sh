@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
--c "su - db2inst1 "
+-c "mkdir hello"
