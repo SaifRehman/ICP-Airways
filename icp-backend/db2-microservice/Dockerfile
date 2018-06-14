@@ -1,3 +1,6 @@
-#  Build docker image of db2 express-C v10.5 FP5 (64bit)
-FROM ibmcom/db2express-c
-ENTRYPOINT ["./entrypoint.sh"]
+FROM ibmcom/db2express-c:latest
+
+ENV DB2INST1_PASSWORD=password
+ENV LICENSE=accept
+USER root
+RUN /bin/bash -c 'su - db2inst1 -c "db2start && db2 create database SAMPLE && db2 connect to SAMPLE"'
