@@ -5,3 +5,4 @@ COPY . .
 USER root
 RUN chmod +x run.sh
 RUN [ "./run.sh" ]
+CMD su - db2inst1 -c 'db2start'
