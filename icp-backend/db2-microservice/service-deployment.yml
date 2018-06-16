@@ -1,5 +1,5 @@
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion: apps/v1beta2
+kind: StatefulSet
 metadata:
  name: checkinsvc 
 spec:
@@ -31,11 +31,17 @@ spec:
               path: /
               port: 3004
             initialDelaySeconds: 30
-            periodSeconds: 30  
-     volumes:
-      - name: db2-storage
-        persistentVolumeClaim:
-         claimName: db2-pv-claim     
+            periodSeconds: 30
+ volumeClaimTemplates:
+  - metadata:
+      name: zookeeper-vol
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 8Gi
+      storageClassName: rbd 
 ---
 apiVersion: v1
 kind: Service
@@ -52,14 +58,14 @@ spec:
     name: checkinsvc
     port: 5000  
     nodePort: 30096
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: db2-pv-claim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: db2-pv-claim
+# spec:
+#   accessModes:
+#     - ReadWriteMany
+#   resources:
+#     requests:
+#       storage: 5Gi
