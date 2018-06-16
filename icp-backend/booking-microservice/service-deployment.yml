@@ -43,5 +43,5 @@ spec:
  ports:
   - protocol: TCP
     name: bookingsvc
-    port: 30090  
+    port: 3003  
     nodePort: 30090
