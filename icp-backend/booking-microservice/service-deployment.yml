@@ -1,36 +1,47 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
- name: tendermintnodeone # give any name
+ name: bookingsvc 
 spec:
  replicas: 1
  template:
    metadata:
-     name: tendermintnodeone
+     name: bookingsvc
      labels:
-       run: tendermint1
+       app: bookingsvc
    spec:
      containers:
-       - name: saif1cluster
-         image: "registry.eu-de.bluemix.net/<namespace>/node2" # your registery name
-         imagePullPolicy: Always
+       - name: bookscvcluster
+         image: "" 
+         imagePullPolicy: Never
+         ports:
+         - containerPort: 3003
+         livenessProbe:
+            httpGet:
+              path: /
+              port: 3003
+            initialDelaySeconds: 30
+            periodSeconds: 30
+         readinessProbe:
+            httpGet:
+              path: /
+              port: 3003
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: my-service-tendermint-11 # give a service name
+ name: bookingsvcname 
  labels:
-   run: tendermint1
+   app: bookingsvc
 spec:
  type: NodePort
  selector:
-   run: tendermint1
+   app: bookingsvc
  ports:
   - protocol: TCP
-    name: tendermint1
-    port: 30090  # it shall be 8545 and no other port !!!!!
-    nodePort: 30090  # Give a port to access the application publically
-  - protocol: TCP
-    name: port
-    port: 30092  # it shall be 8545 and no other port !!!!!
-    nodePort: 30092  # Give a port to access the application publically
+    name: bookingsvc
+    port: 30090  
+    nodePort: 30090
