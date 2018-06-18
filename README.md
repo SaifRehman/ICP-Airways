@@ -52,3 +52,6 @@ CREATE TABLE SAMPLE.Booking "(BookingID int NOT NULL GENERATED ALWAYS AS IDENTIT
 1. Install [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
 2. Run ``` gulp scripts``` to convert ts to js
 3. Run ```npm start```
+
+### Architecture Diagram
+![1](arch_diagram.png)
