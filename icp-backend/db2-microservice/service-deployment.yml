@@ -1,5 +1,5 @@
-apiVersion: apps/v1beta2
-kind: StatefulSet
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
  name: db2svc 
 spec:
@@ -12,36 +12,30 @@ spec:
    spec:
      containers:
        - name: db2svcluster
-         image: "" 
-         imagePullPolicy: Never
+         image: "ibmcom/db2express-c"
+         command: ["/bin/sh"]
+         args: ["-c", "/home/db2inst1/sqllib/adm/db2start;while true; do echo hello; sleep 10;done"]
+         imagePullPolicy: Always
+         env:
+            - name: DB2INST1_PASSWORD
+              value: db2inst1-pwd
+            - name: LICENSE
+              value: accept
          ports:
-          containerPort: 5000
-          name: db2
-         volumeMounts:
-          - name: db2-storage
-            mounPath: /home/db2inst1/db2inst1
-         livenessProbe:
-            httpGet:
-              path: /
-              port: 3004
-            initialDelaySeconds: 30
-            periodSeconds: 30
-         readinessProbe:
-            httpGet:
-              path: /
-              port: 3004
-            initialDelaySeconds: 30
-            periodSeconds: 30
- volumeClaimTemplates:
-  - metadata:
-      name: db2-vol
-    spec:
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 8Gi
-      storageClassName: rbd 
+         - containerPort: 50000
+        #  livenessProbe:
+        #     httpGet:
+        #       path: /
+        #       port: 3008
+        #     initialDelaySeconds: 30
+        #     periodSeconds: 30
+        #  readinessProbe:
+        #     httpGet:
+        #       path: /
+        #       port: 3008
+        #     initialDelaySeconds: 30
+        #     periodSeconds: 30
+          
 ---
 apiVersion: v1
 kind: Service
@@ -56,16 +50,5 @@ spec:
  ports:
   - protocol: TCP
     name: db2svc
-    port: 5000  
-    targetPort: 5000
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: db2-pv-claim
-# spec:
-#   accessModes:
-#     - ReadWriteMany
-#   resources:
-#     requests:
-#       storage: 5Gi
+    port: 50000  
+    nodePort: 30098
