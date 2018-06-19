@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
  name: bookingsvc 
 spec:
- replicas: 1
+ replicas: 3
  template:
    metadata:
      name: bookingsvc
