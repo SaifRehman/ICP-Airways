@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
  name: listingsvc 
 spec:
- replicas: 1
+ replicas: 3
  template:
    metadata:
      name: listingsvc
@@ -13,26 +13,28 @@ spec:
      containers:
        - name: listingsvcluster
          image: "" 
-         imagePullPolicy: Never
+         imagePullPolicy: Always
          ports:
-         - containerPort: 3002
+         - containerPort: 3000
          livenessProbe:
             httpGet:
-              path: /
-              port: 3002
+              path: /healthz
+              port: 3000
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
          readinessProbe:
             httpGet:
-              path: /
-              port: 3002
+              path: /readiness
+              port: 3000
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: listingsvcname 
+ name: listingsvc
  labels:
    app: listingsvc
 spec:
@@ -42,5 +44,5 @@ spec:
  ports:
   - protocol: TCP
     name: listingsvc
-    port: 3002  
-    nodePort: 30092
+    port: 3000  
+    targetPort: 3000 

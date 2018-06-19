@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
  name: loginsvc 
 spec:
- replicas: 1
+ replicas: 3
  template:
    metadata:
      name: loginsvc
@@ -15,17 +15,19 @@ spec:
          image: "" 
          imagePullPolicy: Never
          ports:
-         - containerPort: 3001
+         - containerPort: 3000
          livenessProbe:
             httpGet:
-              path: /
-              port: 3001
+              path: /healthz
+              port: 3000
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
          readinessProbe:
             httpGet:
-              path: /
-              port: 3001
+              path: /readiness
+              port: 3000
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
           
@@ -33,7 +35,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
- name: loginsvcname 
+ name: loginsvc
  labels:
    app: loginsvc
 spec:
@@ -43,5 +45,5 @@ spec:
  ports:
   - protocol: TCP
     name: loginsvc
-    port: 3001  
-    nodePort: 30093
+    port: 3000  
+    targetPort: 3000

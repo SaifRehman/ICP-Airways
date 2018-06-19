@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
  name: signupsvc 
 spec:
- replicas: 1
+ replicas: 3
  template:
    metadata:
      name: signupsvc
@@ -13,19 +13,21 @@ spec:
      containers:
        - name: signupsvcluster
          image: "" 
-         imagePullPolicy: Never
+         imagePullPolicy: Always
          ports:
          - containerPort: 3000
          livenessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: 3000
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
          readinessProbe:
             httpGet:
-              path: /
+              path: /readiness
               port: 3000
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
           
@@ -33,7 +35,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
- name: signupsvcname 
+ name: signupsvc
  labels:
    app: signupsvc
 spec:
@@ -44,4 +46,4 @@ spec:
   - protocol: TCP
     name: signupsvc
     port: 3000  
-    nodePort: 30094
+    targetPort: 3000 
