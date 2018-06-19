@@ -15,18 +15,18 @@ spec:
          image: "" 
          imagePullPolicy: Always
          ports:
-         - containerPort: 3000
+         - containerPort: 3004
          livenessProbe:
             httpGet:
               path: /healthz
-              port: 3000
+              port: 8080
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
          readinessProbe:
             httpGet:
               path: /readiness
-              port: 3000
+              port: 8080
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
@@ -45,5 +45,5 @@ spec:
  ports:
   - protocol: TCP
     name: signupsvc
-    port: 3000  
-    targetPort: 3000 
+    port: 3004
+    targetPort: 3004
