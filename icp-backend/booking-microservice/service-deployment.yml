@@ -35,7 +35,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
- name: bookingsvcname 
+ name: bookingsvc
  labels:
    app: bookingsvc
 spec:

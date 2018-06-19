@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: icp
+spec:
+  rules:
+  - host: icp.example.com
+    http: 
+      paths:
+      - path: /bookingsvc
+        backend:
+          serviceName: bookingsvc
+          servicePort: 3000
+      - path: /checkinsvc
+        backend:
+          serviceName: checkinsvc
+          servicePort: 3000
+      - path: /listingsvc
+        backend:
+          serviceName: listingsvc
+          servicePort: 3000
+      - path: /loginsvc
+        backend:
+          serviceName: loginsvc
+          servicePort: 3000
+      - path: /signupsvc
+        backend:
+          serviceName: signupsvc
+          servicePort: 3000
