@@ -44,4 +44,4 @@ spec:
   - protocol: TCP
     name: signupsvc
     port: 3000  
-    nodePort: 30094
+    targetPort: 3000 
