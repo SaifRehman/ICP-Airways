@@ -4,4 +4,4 @@ ENV LICENSE=accept
 COPY . .
 USER root
 RUN chmod +x run.sh
-RUN [ "./run.sh" ]
+ENTRYPOINT [ "./run.sh" ]
