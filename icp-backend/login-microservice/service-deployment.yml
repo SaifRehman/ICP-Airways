@@ -18,14 +18,16 @@ spec:
          - containerPort: 3000
          livenessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: 3000
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
          readinessProbe:
             httpGet:
-              path: /
+              path: /readiness
               port: 3000
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
           
