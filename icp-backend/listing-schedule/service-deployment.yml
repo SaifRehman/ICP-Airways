@@ -15,18 +15,18 @@ spec:
          image: "" 
          imagePullPolicy: Always
          ports:
-         - containerPort: 3000
+         - containerPort: 3002
          livenessProbe:
             httpGet:
               path: /healthz
-              port: 3000
+              port: 8080
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
          readinessProbe:
             httpGet:
               path: /readiness
-              port: 3000
+              port: 8080
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 30
@@ -44,5 +44,5 @@ spec:
  ports:
   - protocol: TCP
     name: listingsvc
-    port: 3000  
-    targetPort: 3000 
+    port: 3002  
+    targetPort: 3002 
