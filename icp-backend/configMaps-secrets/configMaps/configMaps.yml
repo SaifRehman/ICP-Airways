@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: env-login
+  name: env-database
   namespace: default
 data:
   NODE_ENV: development
   DATABASE: SAMPLE
   PORT: 50000
-  HOSTNAME: localhost
+  HOSTNAME: db2svc.my-namespace.svc.cluster.local
   PROTOCOL: TCPIP
