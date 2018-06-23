@@ -30,6 +30,31 @@ spec:
               secretKeyRef:
                 name: mysecret
                 key: SECRET
+          - name: NODE_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: env-booking
+                key: NODE_ENV
+          - name: DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: env-booking
+                key: DATABASE
+          - name: PORT
+            valueFrom:
+              secretKeyRef:
+                name: env-booking
+                key: PORT
+          - name: HOSTNAME
+            valueFrom:
+              secretKeyRef:
+                name: env-booking
+                key: HOSTNAME
+          - name: PROTOCOL
+            valueFrom:
+              secretKeyRef:
+                name: env-booking
+                key: PROTOCOL
          ports:
          - containerPort: 3000
          livenessProbe:
