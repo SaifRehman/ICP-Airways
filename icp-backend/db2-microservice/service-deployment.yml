@@ -12,30 +12,22 @@ spec:
    spec:
      containers:
        - name: db2svcluster
-         image: "ibmcom/db2express-c"
-         command: ["/bin/sh"]
-         args: ["-c", "/home/db2inst1/sqllib/adm/db2start;while true; do echo hello; sleep 10;done"]
+         image: "db2:latest"
          imagePullPolicy: Always
          env:
             - name: DB2INST1_PASSWORD
               value: db2inst1-pwd
             - name: LICENSE
               value: accept
+         volumeMounts:
+          - name: db2-storage
+            mountPath: /home/db2inst1
          ports:
          - containerPort: 50000
-        #  livenessProbe:
-        #     httpGet:
-        #       path: /
-        #       port: 3008
-        #     initialDelaySeconds: 30
-        #     periodSeconds: 30
-        #  readinessProbe:
-        #     httpGet:
-        #       path: /
-        #       port: 3008
-        #     initialDelaySeconds: 30
-        #     periodSeconds: 30
-          
+     volumes:
+      - name: db2-storage
+        persistentVolumeClaim:
+          claimName: db2-pv-claim
 ---
 apiVersion: v1
 kind: Service
@@ -50,5 +42,16 @@ spec:
  ports:
   - protocol: TCP
     name: db2svc
-    port: 50000  
-    nodePort: 30098
+    port: 50000
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db2-pv-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
