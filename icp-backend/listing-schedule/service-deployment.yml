@@ -33,27 +33,27 @@ spec:
           - name: NODE_ENV
             valueFrom:
               configMapKeyRef:
-                name: env-listing
+                name: env-database
                 key: NODE_ENV
           - name: DATABASE
             valueFrom:
               secretKeyRef:
-                name: env-listing
+                name: env-database
                 key: DATABASE
           - name: PORT
             valueFrom:
               secretKeyRef:
-                name: env-listing
+                name: env-database
                 key: PORT
           - name: HOSTNAME
             valueFrom:
               secretKeyRef:
-                name: env-listing
+                name: env-database
                 key: HOSTNAME
           - name: PROTOCOL
             valueFrom:
               secretKeyRef:
-                name: env-listing
+                name: env-database
                 key: PROTOCOL
          ports:
          - containerPort: 3002
@@ -79,7 +79,7 @@ metadata:
  labels:
    app: listingsvc
 spec:
- type: NodePort
+ type: ClusterIP
  selector:
    app: listingsvc
  ports:

@@ -1,12 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
-var dotenv = require('dotenv').config({ path: path.join('.env') });
 var ibmdb = require('ibm_db');
 class App {
     constructor() {

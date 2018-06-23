@@ -4,7 +4,7 @@ var http = require("http");
 var debug = require("debug");
 var App_1 = require("./App");
 debug('ts-express:server');
-var port = normalizePort(3000);
+var port = normalizePort(3004);
 App_1.default.set('port', port);
 var server = http.createServer(App_1.default);
 server.listen(port);
