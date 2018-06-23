@@ -2,7 +2,6 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-var dotenv = require('dotenv').config({ path: path.join('.env') })
 var ibmdb = require('ibm_db');
 
 class App {

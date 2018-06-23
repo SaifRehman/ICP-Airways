@@ -1,12 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
-var dotenv = require('dotenv').config({ path: path.join('.env') });
 var ibmdb = require('ibm_db');
 class App {
     constructor() {
@@ -24,6 +22,18 @@ class App {
         this.middleware();
         this.routes();
     }
+    ensureToken(req, res, next) {
+        const bearerHeader = req.headers["authorization"];
+        if (typeof bearerHeader !== 'undefined') {
+            const bearer = bearerHeader.split(" ");
+            const bearerToken = bearer[1];
+            req.token = bearerToken;
+            next();
+        }
+        else {
+            res.sendStatus(403);
+        }
+    }
     middleware() {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
@@ -32,7 +42,7 @@ class App {
     }
     routes() {
         let router = express.Router();
-        router.get('/checkin/:bookid/:userid', (req, res, next) => {
+        router.get('/checkin/:bookid/:userid', this.ensureToken, (req, res, next) => {
             ibmdb.open(this.connectionString, function (err, conn) {
                 conn.prepare("UPDATE SAMPLE.Booking SET Checkin = '1' WHERE FlightID = ? AND UserID=? ", function (err, stmt) {
                     if (err) {

@@ -1,11 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = require("path");
 var express = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
 var passwordhash = require("password-hash");
-var dotenv = require('dotenv').config({ path: path.join('.env') });
 var ibmdb = require('ibm_db');
 var App = /** @class */ (function () {
     function App() {
