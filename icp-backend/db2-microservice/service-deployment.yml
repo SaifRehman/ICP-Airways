@@ -12,7 +12,7 @@ spec:
    spec:
      containers:
        - name: db2svcluster
-         image: "ibmcom/db2express-c"
+         image: "db2:latest"
          imagePullPolicy: Always
          env:
             - name: DB2INST1_PASSWORD
@@ -55,4 +55,3 @@ spec:
   resources:
     requests:
       storage: 5Gi
-
