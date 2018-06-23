@@ -30,6 +30,31 @@ spec:
               secretKeyRef:
                 name: mysecret
                 key: SECRET
+          - name: NODE_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: env-checkin
+                key: NODE_ENV
+          - name: DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: env-checkin
+                key: DATABASE
+          - name: PORT
+            valueFrom:
+              secretKeyRef:
+                name: env-checkin
+                key: PORT
+          - name: HOSTNAME
+            valueFrom:
+              secretKeyRef:
+                name: env-checkin
+                key: HOSTNAME
+          - name: PROTOCOL
+            valueFrom:
+              secretKeyRef:
+                name: env-checkin
+                key: PROTOCOL
          ports:
          - containerPort: 3001
          livenessProbe:
