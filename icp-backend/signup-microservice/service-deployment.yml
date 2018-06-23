@@ -14,6 +14,22 @@ spec:
        - name: signupsvcluster
          image: "" 
          imagePullPolicy: Always
+         env:
+          - name: SECRET_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: UID
+          - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: PASSWORD
+          - name: SECRET_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: SECRET
          ports:
          - containerPort: 3004
          livenessProbe:
