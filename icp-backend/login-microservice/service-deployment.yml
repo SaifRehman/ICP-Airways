@@ -13,7 +13,48 @@ spec:
      containers:
        - name: loginsvcluster
          image: "" 
-         imagePullPolicy: Never
+         imagePullPolicy: Always
+         env:
+          - name: UID
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: UID
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: PASSWORD
+          - name: SECRET
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: SECRET
+          - name: NODE_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: env-login
+                key: NODE_ENV
+          - name: DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: env-login
+                key: DATABASE
+          - name: PORT
+            valueFrom:
+              secretKeyRef:
+                name: env-login
+                key: PORT
+          - name: HOSTNAME
+            valueFrom:
+              secretKeyRef:
+                name: env-login
+                key: HOSTNAME
+          - name: PROTOCOL
+            valueFrom:
+              secretKeyRef:
+                name: env-login
+                key: PROTOCOL
          ports:
          - containerPort: 3003
          livenessProbe:

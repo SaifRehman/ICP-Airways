@@ -14,6 +14,47 @@ spec:
        - name: signupsvcluster
          image: "" 
          imagePullPolicy: Always
+         env:
+          - name: UID
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: UID
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: PASSWORD
+          - name: SECRET
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: SECRET
+          - name: NODE_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: env-signup
+                key: NODE_ENV
+          - name: DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: env-signup
+                key: DATABASE
+          - name: PORT
+            valueFrom:
+              secretKeyRef:
+                name: env-signup
+                key: PORT
+          - name: HOSTNAME
+            valueFrom:
+              secretKeyRef:
+                name: env-signup
+                key: HOSTNAME
+          - name: PROTOCOL
+            valueFrom:
+              secretKeyRef:
+                name: env-signup
+                key: PROTOCOL
          ports:
          - containerPort: 3004
          livenessProbe:

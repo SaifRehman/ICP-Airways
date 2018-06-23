@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-checkin
+  namespace: default
+data:
+  NODE_ENV: development
+  DATABASE: SAMPLE
+  PORT: 50000
+  HOSTNAME: localhost
+  PROTOCOL: TCPIP
