@@ -15,17 +15,17 @@ spec:
          image: "" 
          imagePullPolicy: Always
          env:
-          - name: SECRET_USERNAME
+          - name: UID
             valueFrom:
               secretKeyRef:
                 name: mysecret
                 key: UID
-          - name: SECRET_PASSWORD
+          - name: PASSWORD
             valueFrom:
               secretKeyRef:
                 name: mysecret
                 key: PASSWORD
-          - name: SECRET_SECRET
+          - name: SECRET
             valueFrom:
               secretKeyRef:
                 name: mysecret
