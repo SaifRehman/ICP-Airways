@@ -79,7 +79,7 @@ metadata:
  labels:
    app: listingsvc
 spec:
- type: NodePort
+ type: ClusterIP
  selector:
    app: listingsvc
  ports:

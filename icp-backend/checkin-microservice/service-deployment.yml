@@ -80,7 +80,7 @@ metadata:
  labels:
    app: checkinsvc
 spec:
- type: NodePort
+ type: ClusterIP
  selector:
    app: checkinsvc
  ports:

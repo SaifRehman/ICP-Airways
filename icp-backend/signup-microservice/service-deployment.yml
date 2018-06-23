@@ -80,7 +80,7 @@ metadata:
  labels:
    app: signupsvc
 spec:
- type: NodePort
+ type: ClusterIP
  selector:
    app: signupsvc
  ports:

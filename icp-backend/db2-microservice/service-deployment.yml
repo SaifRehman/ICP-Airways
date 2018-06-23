@@ -36,13 +36,14 @@ metadata:
  labels:
    app: db2svc
 spec:
- type: NodePort
+ type: ClusterIP
  selector:
    app: db2svc
  ports:
   - protocol: TCP
     name: db2svc
     port: 50000
+    targetPort: 50000
 
 ---
 apiVersion: v1
