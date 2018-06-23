@@ -13,7 +13,23 @@ spec:
      containers:
        - name: loginsvcluster
          image: "" 
-         imagePullPolicy: Never
+         imagePullPolicy: Always
+         env:
+          - name: SECRET_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: UID
+          - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: PASSWORD
+          - name: SECRET_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: SECRET
          ports:
          - containerPort: 3003
          livenessProbe:
