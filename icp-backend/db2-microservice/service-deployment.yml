@@ -19,19 +19,17 @@ spec:
               value: db2inst1-pwd
             - name: LICENSE
               value: accept
-         volumeMounts:
-          - name: db2-storage
-            mountPath: /home/db2inst1
-         ports:
-          - containerPort: 50000
-         securityContext:
-            privileged: true
-         args:
-            - "-e DB2INST1_PASSWORD=db2inst1-pwd -e LICENSE=accept"
-     volumes:
-      - name: db2-storage
-        persistentVolumeClaim:
-          claimName: db2-pv-claim
+    #      volumeMounts:
+    #       - name: db2-storage
+    #         mountPath: /home/db2inst1
+    #      ports:
+    #       - containerPort: 50000
+    #      securityContext:
+    #         privileged: true
+    #  volumes:
+    #   - name: db2-storage
+    #     persistentVolumeClaim:
+    #       claimName: db2-pv-claim
 ---
 apiVersion: v1
 kind: Service
