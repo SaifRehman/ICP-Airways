@@ -5,3 +5,4 @@ COPY . .
 USER root
 RUN chmod +x run.sh
 ENTRYPOINT [ "./run.sh" ]
+EXPOSE 50000
