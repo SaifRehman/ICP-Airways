@@ -1,4 +1,4 @@
-FROM node:carbon
+FROM node:9.8.0
 WORKDIR /usr/src/app
 COPY . .
 RUN npm install
