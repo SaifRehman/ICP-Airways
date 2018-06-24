@@ -57,20 +57,20 @@ spec:
                 key: PROTOCOL
          ports:
          - containerPort: 3001
-         livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 30
-            periodSeconds: 30
-         readinessProbe:
-            httpGet:
-              path: /readiness
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 30
-            periodSeconds: 30
+        #  livenessProbe:
+        #     httpGet:
+        #       path: /healthz
+        #       port: 8080
+        #       scheme: HTTP
+        #     initialDelaySeconds: 30
+        #     periodSeconds: 30
+        #  readinessProbe:
+        #     httpGet:
+        #       path: /readiness
+        #       port: 8080
+        #       scheme: HTTP
+        #     initialDelaySeconds: 30
+        #     periodSeconds: 30
           
 ---
 apiVersion: v1
