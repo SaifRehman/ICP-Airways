@@ -37,22 +37,22 @@ spec:
                 key: NODE_ENV
           - name: DATABASE
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: env-database
                 key: DATABASE
           - name: PORT
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: env-database
                 key: PORT
           - name: HOSTNAME
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: env-database
                 key: HOSTNAME
           - name: PROTOCOL
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: env-database
                 key: PROTOCOL
          ports:
