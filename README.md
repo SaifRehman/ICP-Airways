@@ -168,11 +168,3 @@ CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY 
 ```SQL
 CREATE TABLE SAMPLE.Booking "(BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) ,TS TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, UserID INT NOT NULL, FlightID INT NOT NULL, FOREIGN KEY (UserID) REFERENCES SAMPLE.UserData(UserID), FOREIGN KEY (FlightID) REFERENCES SAMPLE.FlightsData(ID), PRIMARY KEY (BookingID))"
 ```
-
-### Running nodejs app
-1. Install [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)
-2. Run ``` gulp scripts``` to convert ts to js
-3. Run ```npm start```
-
-### Architecture Diagram
-![1](arch_diagram.png)
