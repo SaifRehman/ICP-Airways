@@ -126,7 +126,13 @@ $ kubectl create -f deployment.yml
 $ kubectl get scv
 ```
 2. access jenkins ```http://minikubeip:scvport```
+
+
+![1](1.png) 
+
 ![2](2.png)
+
+
 ### Running DB2 Locally
 1. Pull Image and start container
 ```s
