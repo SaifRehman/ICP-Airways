@@ -19,9 +19,9 @@ spec:
               value: db2inst1-pwd
             - name: LICENSE
               value: accept
-         volumeMounts:
-          - name: db2-storage
-            mountPath: /home/db2inst1/
+        #  volumeMounts:
+        #   - name: db2-storage
+        #     mountPath: /home/db2inst1/
          ports:
           - containerPort: 50000
      volumes:
