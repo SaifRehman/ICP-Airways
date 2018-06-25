@@ -1,4 +1,4 @@
-from jenkins/jenkins:2.60.1
+FROM jenkinsci/blueocean
 
 # Distributed Builds plugins
 RUN /usr/local/bin/install-plugins.sh ssh-slaves
@@ -7,6 +7,11 @@ RUN /usr/local/bin/install-plugins.sh ssh-slaves
 RUN /usr/local/bin/install-plugins.sh email-ext
 RUN /usr/local/bin/install-plugins.sh mailer
 RUN /usr/local/bin/install-plugins.sh slack
+RUN /usr/local/bin/install-plugins.sh build-pipeline-plugin
+RUN /usr/local/bin/install-plugins.sh delivery-pipeline-plugin
+RUN /usr/local/bin/install-plugins.sh kubernetes-pipeline-steps
+RUN /usr/local/bin/install-plugins.sh pipeline-github
+
 
 # Artifacts
 RUN /usr/local/bin/install-plugins.sh htmlpublisher
