@@ -12,7 +12,7 @@ spec:
    spec:
      containers:
        - name: loginsvcluster
-         image: "" 
+         image: "login-microservice:latest" 
          imagePullPolicy: Always
          env:
           - name: UID
