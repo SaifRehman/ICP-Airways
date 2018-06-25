@@ -5,7 +5,73 @@
 3. Intall [Docker](https://docs.docker.com/install/)
 4. Install [Angular4Cli](https://cli.angular.io)
 5. Install [DBVisualiser](https://www.dbvis.com/download/)
+6. Install [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
+7. Install [Hypervisor-virtualbox](https://www.virtualbox.org/wiki/Downloads)
+8. Install gulpcli 
+``` s
+$ npm i gulp-cli -g
+```
 
+### Microservices available 
+* [x] Booking-microservice
+* [x] Checkin-microservice
+* [x] Listing-microservice
+* [x] Login-microservice
+* [x] Signup-microservice
+* [x] Db2-microservice
+* [x] Jenkins-microservice
+
+### Point to local docker registery to minikube
+```s
+$ eval $(minikube docker-env)
+```
+### Install all dependencies and create images 
+1. Booking Microservice
+```
+$ cd booking-microservice
+$ npm i
+$ gulp scripts
+$ docker build -t booking-microservice .
+```
+2. Checkin Microservice
+```
+$ cd checkin-microservice
+$ npm i
+$ gulp scripts
+$ docker build -t checkin-microservice .
+```
+3. Listing Microservice
+```
+$ cd listing-microservice
+$ npm i
+$ gulp scripts
+$ docker build -t listing-microservice .
+```
+4. Login Microservice
+```
+$ cd login-microservice
+$ npm i
+$ gulp scripts
+$ docker build -t login-microservice .
+```
+5. Signup Microservice
+```
+$ cd signup-microservice
+$ npm i
+$ gulp scripts
+$ docker build -t signup-microservice .
+```
+6. Db2 Microservice
+```
+$ cd db2-microservice
+$ npm i
+$ gulp scripts
+$ docker build -t db2-microservice .
+```
+7. Jenkins Microservice
+```
+$ docker build -t jenkins-microservice .
+```
 ### Running DB2 Locally
 1. Pull Image and start container
 ```s
