@@ -27,51 +27,106 @@ $ eval $(minikube docker-env)
 ```
 ### Install all dependencies and create images 
 1. Booking Microservice
-```
+```s
 $ cd booking-microservice
 $ npm i
 $ gulp scripts
 $ docker build -t booking-microservice .
 ```
 2. Checkin Microservice
-```
+```s
 $ cd checkin-microservice
 $ npm i
 $ gulp scripts
 $ docker build -t checkin-microservice .
 ```
 3. Listing Microservice
-```
+```s
 $ cd listing-microservice
 $ npm i
 $ gulp scripts
 $ docker build -t listing-microservice .
 ```
 4. Login Microservice
-```
+```s
 $ cd login-microservice
 $ npm i
 $ gulp scripts
 $ docker build -t login-microservice .
 ```
 5. Signup Microservice
-```
+```s
 $ cd signup-microservice
 $ npm i
 $ gulp scripts
 $ docker build -t signup-microservice .
 ```
 6. Db2 Microservice
-```
+```s
 $ cd db2-microservice
 $ npm i
 $ gulp scripts
 $ docker build -t db2-microservice .
 ```
 7. Jenkins Microservice
-```
+```s
 $ docker build -t jenkins .
 ```
+
+### Start minikube
+```s
+$ minikube start
+```
+
+### Some minikube commands
+1. Get minikube master ip
+``` s
+$ minikube get ip
+```
+2. Get minikube dashboard
+```s
+$ minikube dashboard
+```
+![3](3.png)
+3. Get minikube nodes
+```s
+$ minikube get nodes
+```
+4. Minikube enable adons
+```s
+$ minikube addons enable ingress
+```
+5. Get all minikube addons enabled and disabled
+```s
+$ minikube addons enable ingress
+```
+> remeber to use same terminal session
+
+### Running config maps and secrets
+1. Running config maps to load env variable for our microservices
+```s
+$ cd configMaps-secrets/configMaps
+$ kubectl create -f configMaps.yml
+$ kubectl get configmap
+```
+2. Running secrets to load env variable for our microservices to load username and pass safely instead of hardcoding
+```s
+$ cd configMaps-secrets/secrets
+$ kubectl create -f secrets.yml
+$ kubectl get secrets
+```
+### Run jenkins in kubernetes 
+1. Deploy 
+```s
+$ cd jenkins
+$ kubectl create -f deployment.yml
+```
+2. get external svc port is it deployed to
+```
+$ kubectl get scv
+```
+2. access jenkins ```http://minikubeip:scvport```
+![2](2.png)
 ### Running DB2 Locally
 1. Pull Image and start container
 ```s
