@@ -12,7 +12,7 @@ spec:
    spec:
      containers:
        - name: listingsvcluster
-         image: "" 
+         image: "listing-microservice:latest" 
          imagePullPolicy: Always
          env:
           - name: UID
