@@ -70,7 +70,7 @@ $ docker build -t db2-microservice .
 ```
 7. Jenkins Microservice
 ```
-$ docker build -t jenkins-microservice .
+$ docker build -t jenkins .
 ```
 ### Running DB2 Locally
 1. Pull Image and start container
