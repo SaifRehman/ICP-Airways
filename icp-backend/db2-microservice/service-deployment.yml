@@ -19,9 +19,9 @@ spec:
               value: db2inst1-pwd
             - name: LICENSE
               value: accept
-        #  volumeMounts:
-        #   - name: db2-storage
-        #     mountPath: /home/db2inst1/
+         volumeMounts:
+          - name: db2-storage
+            mountPath: /home/db2inst1/
          ports:
           - containerPort: 50000
      volumes:
@@ -56,3 +56,19 @@ spec:
   resources:
     requests:
       storage: 5Gi
+
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: db2-pv-claim
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
