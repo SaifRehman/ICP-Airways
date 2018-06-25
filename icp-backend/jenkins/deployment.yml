@@ -21,11 +21,12 @@ spec:
             - name: jnlp-port
               containerPort: 50000
           volumeMounts:
-            - name: jenkins-home
+            - name: jenkins-pv-volume
               mountPath: /var/jenkins_home
       volumes:
-        - name: jenkins-home
-          emptyDir: {}
+        - name: jenkins-pv-volume
+          persistanceVolumeClaim:
+            claimName: jenkins-pv-volume
 ---
 apiVersion: v1
 kind: Service
@@ -38,3 +39,30 @@ spec:
       targetPort: 8080
   selector:
     app: jenkins
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jenkins-pv-volume
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: jenkins-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/var/jenkins_home"
