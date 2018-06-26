@@ -1,5 +1,22 @@
-# ICP-Airways
-### Pre-req installation 
+#  Kubernitized Proof of Stake Blockchain on ICP
+<h1 align="center">
+  <br>
+  <a href="https://github.com/SaifRehman/ICP-Airways"><img src="https://cdn.trycompose.co/c5aaf54dcc338e4843822288d662ad98.jpg" alt="Lotion" width="IBM"></a>
+  <br>
+      Air-Line ticketing and booking application on IBM Cloud Private 
+  <br>
+  <br>
+</h1>
+
+<h4 align="center">Powered by Nodejs, Kubernetes, Angular, and IBM Cloud Private</h4>
+
+<p align="center">
+  <a>
+    <img src="https://img.shields.io/travis/keppel/lotion/master.svg"
+         alt="Travis Build">
+  </a>
+</p>
+<br>### Pre-req installation 
 1. Install [Nodejs](https://nodejs.org/en/download/)
 2. Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 3. Intall [Docker](https://docs.docker.com/install/)
