@@ -227,6 +227,8 @@ $ kubectl create -f service-deployment.yml
 $ cd signup-microservice 
 $ kubectl create -f service-deployment.yml
 ```
+### High level Architecture Diagram
+![high](high_level_arch.png)
 
-### Architecture Diagram
-![arch](arch_diagram.png)
+### Low level Architecture Diagram
+![low](arch_diagram.png)
