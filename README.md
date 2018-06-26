@@ -133,44 +133,51 @@ $ kubectl get scv
 ![2](2.png)
 
 
-### Running DB2 Locally
-1. Pull Image and start container
+### Deploying DB2
+1. Navigate to db2-microservice folder
 ```s
-$ docker run -it -p 50000:50000 -e DB2INST1_PASSWORD=db2inst1-pwd -e LICENSE=accept ibmcom/db2express-c:latest bash
+$ cd db2-microservice
 ```
-2. Start DB2 and create sample DB
+2. Deploy to minikube
+```s
+$ kubectl create -f service-deployment.yml
+```
+3. Get pods name of db2
+```s
+$ kubectl get pods
+```
+4. ssh to pods container of db2
+```s
+$ kubectl exec -it podname bash
+```
+5. switch user to db2inst1
 ```s
 $ su - db2inst1
-$ db2start
-$ db2sampl
 ```
-3. Download dataset to the container
+6. Create Database and connect to it
 ```s
-$ wget https://raw.githubusercontent.com/SaifRehman/ICP-Airways/master/dataset/flights.csv 
-```
-4. Set permissions
-```s
-$ chown db2inst1:db2inst1 flights.csv
-```
-5. Connect to db
-```s
+$ db2 create database SAMPLE
 $ db2 connect to SAMPLE
 ```
-6. Import csv data to db2 database
+7. Download existing flight data from github and set permissions
 ```s
-$ db2  IMPORT FROM "path/to/file/flights.csv" OF DEL INSERT INTO SAMPLE.FlightsData
+$ wget https://raw.githubusercontent.com/SaifRehman/ICP-Airways/master/dataset/flights.csv
+$ chown db2inst1:db2inst1 /home/db2inst1/flights.csv
 ```
-> Before loading csv data to db2, create flights table below, use dbvisualizer
-
-### creating flights table
+8. Create Database and importing existing data to Flights table
+* Flights Table
 ```SQL
-CREATE TABLE "SAMPLE.FlightsData (ID int NOT NULL , Year varchar(255) NULL , Month varchar(255) NULL, DayofMonth varchar(255) NULL, DepTime varchar(255) NULL,  CRSDepTime varchar(255) NULL, ArrTime varchar(255) NULL, CRSArrTime varchar(255) NULL, FlightNum varchar(255) NULL, TailNum varchar(255) NULL, ActualElapsedTime varchar(255) NULL, CRSElapsedTime varchar(255) NULL, Airtime varchar(255) NULL, ArrDelay varchar(255) NULL, DepDelay varchar(255) NULL,   Origin varchar(255) NULL, Dest varchar(255) NULL, Distance varchar(255) NULL, PRIMARY KEY (ID))"
+db2 CREATE TABLE "SAMPLE.FlightsData (ID int NOT NULL , Year varchar(255) NULL , Month varchar(255) NULL, DayofMonth varchar(255) NULL, DepTime varchar(255) NULL,  CRSDepTime varchar(255) NULL, ArrTime varchar(255) NULL, CRSArrTime varchar(255) NULL, FlightNum varchar(255) NULL, TailNum varchar(255) NULL, ActualElapsedTime varchar(255) NULL, CRSElapsedTime varchar(255) NULL, Airtime varchar(255) NULL, ArrDelay varchar(255) NULL, DepDelay varchar(255) NULL,   Origin varchar(255) NULL, Dest varchar(255) NULL, Distance varchar(255) NULL, PRIMARY KEY (ID))"
+``` 
+* User Table
+```SQL
+db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, PRIMARY KEY (UserID))"
 ```
-### creating usertable
+* Booking Table
 ```SQL
-CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, PRIMARY KEY (UserID))"
+db2 CREATE TABLE SAMPLE.Booking "(BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) ,TS TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, UserID INT NOT NULL, FlightID INT NOT NULL, FOREIGN KEY (UserID) REFERENCES SAMPLE.UserData(UserID), FOREIGN KEY (FlightID) REFERENCES SAMPLE.FlightsData(ID), PRIMARY KEY (BookingID))=
 ```
-### creating booking table
-```SQL
-CREATE TABLE SAMPLE.Booking "(BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) ,TS TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, UserID INT NOT NULL, FlightID INT NOT NULL, FOREIGN KEY (UserID) REFERENCES SAMPLE.UserData(UserID), FOREIGN KEY (FlightID) REFERENCES SAMPLE.FlightsData(ID), PRIMARY KEY (BookingID))"
+* Importing existing data to flights table
+```s
+$ db2 db2  IMPORT FROM "/home/db2inst1/flights.csv" OF DEL INSERT INTO SAMPLE.FlightsData
 ```
