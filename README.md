@@ -20,6 +20,7 @@ $ npm i gulp-cli -g
 * [x] Signup-microservice
 * [x] Db2-microservice
 * [x] Jenkins-microservice
+* [ ] Angular frontend microservice
 
 ### Point to local docker registery to minikube
 ```s
@@ -175,9 +176,38 @@ db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENT
 ```
 * Booking Table
 ```SQL
-db2 CREATE TABLE SAMPLE.Booking "(BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) ,TS TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, UserID INT NOT NULL, FlightID INT NOT NULL, FOREIGN KEY (UserID) REFERENCES SAMPLE.UserData(UserID), FOREIGN KEY (FlightID) REFERENCES SAMPLE.FlightsData(ID), PRIMARY KEY (BookingID))=
+db2 CREATE TABLE "SAMPLE.Booking (BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) ,TS TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, UserID INT NOT NULL, FlightID INT NOT NULL, FOREIGN KEY (UserID) REFERENCES SAMPLE.UserData(UserID), FOREIGN KEY (FlightID) REFERENCES SAMPLE.FlightsData(ID), PRIMARY KEY (BookingID))=
 ```
 * Importing existing data to flights table
 ```s
 $ db2 db2  IMPORT FROM "/home/db2inst1/flights.csv" OF DEL INSERT INTO SAMPLE.FlightsData
 ```
+### Deploying all backend microservices 
+1. booking-microservice
+```s
+$ cd booking-microservice 
+$ kubectl create -f service-deployment.yml
+```
+2. checkin-microservice
+```s
+$ cd checkin-microservice 
+$ kubectl create -f service-deployment.yml
+```
+3. listing-microservice
+```s
+$ cd listing-microservice 
+$ kubectl create -f service-deployment.yml
+```
+4. login-microservice
+```s
+$ cd login-microservice 
+$ kubectl create -f service-deployment.yml
+```
+5. signup-microservice
+```s
+$ cd signup-microservice 
+$ kubectl create -f service-deployment.yml
+```
+
+### Architecture Diagram
+![arch](arch_diagram.png)
