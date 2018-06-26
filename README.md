@@ -1,4 +1,4 @@
-#  Kubernitized Proof of Stake Blockchain on ICP
+#  ICP-Airways
 <h1 align="center">
   <br>
   <a href="https://github.com/SaifRehman/ICP-Airways"><img src="https://cdn.trycompose.co/c5aaf54dcc338e4843822288d662ad98.jpg" alt="Lotion" width="IBM"></a>
@@ -16,7 +16,9 @@
          alt="Travis Build">
   </a>
 </p>
-<br>### Pre-req installation 
+<br>
+
+### Pre-req installation 
 1. Install [Nodejs](https://nodejs.org/en/download/)
 2. Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 3. Intall [Docker](https://docs.docker.com/install/)
