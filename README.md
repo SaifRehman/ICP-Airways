@@ -227,6 +227,19 @@ $ kubectl create -f service-deployment.yml
 $ cd signup-microservice 
 $ kubectl create -f service-deployment.yml
 ```
+### Running Angular Microservice Frontend
+1. Navigate to ```icp-frontend```
+```s
+$ cd icp-frontend
+```
+2. Build Docker image
+```s
+$ docker build -t angular .
+```
+3. Deploy
+```s
+$ kubectl create -f service-deployment.yml
+```
 ### High level Architecture Diagram
 ![high](high_level_arch.png)
 
