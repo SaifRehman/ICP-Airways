@@ -84,8 +84,6 @@ $ docker build -t signup-microservice .
 6. Db2 Microservice
 ```s
 $ cd db2-microservice
-$ npm i
-$ gulp scripts
 $ docker build -t db2-microservice .
 ```
 7. Jenkins Microservice
