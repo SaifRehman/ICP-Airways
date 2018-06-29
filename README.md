@@ -39,7 +39,7 @@ $ npm i gulp-cli -g
 * [x] Signup-microservice
 * [x] Db2-microservice
 * [x] Jenkins-microservice
-* [ ] Angular frontend microservice
+* [x] Angular frontend microservice
 
 ### Point to local docker registery to minikube
 ```s
