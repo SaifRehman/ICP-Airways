@@ -13,7 +13,7 @@ spec:
      containers:
        - name: signupsvcluster
          image: "signup-microservice:latest" 
-         imagePullPolicy: Always
+         imagePullPolicy: Never
          env:
           - name: UID
             valueFrom:
