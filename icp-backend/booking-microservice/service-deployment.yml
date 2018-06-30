@@ -11,7 +11,7 @@ spec:
        app: bookingsvc
    spec:
      containers:
-       - name: bookscvcluster
+       - name: bookingsvc
          image: "booking-microservice:latest" 
          imagePullPolicy: Never
          env:
@@ -79,11 +79,12 @@ metadata:
  labels:
    app: bookingsvc
 spec:
- type: ClusterIP
+ type: NodePort
  selector:
    app: bookingsvc
  ports:
   - protocol: TCP
     name: bookingsvc
     port: 3000
-    targetPort: 3000  
+    targetPort: 3000
+    nodePort: 30099

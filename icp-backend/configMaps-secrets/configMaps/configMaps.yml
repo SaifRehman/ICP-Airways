@@ -6,6 +6,6 @@ metadata:
 data:
   NODE_ENV: development
   DATABASE: SAMPLE
-  PORT: '50000'
-  HOSTNAME: db2svcname.my-namespace.svc.cluster.local
+  PORT: '30086'
+  HOSTNAME: 192.168.99.100
   PROTOCOL: TCPIP

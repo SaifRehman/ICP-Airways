@@ -50,3 +50,7 @@ class App {
   }
 }
 export default new App().express;
+
+
+
+// insert into "SAMPLE.UserData (LastName, FirstName, Location, Email, Password, Age) VALUES ('SAIF', 'rehman', 'ajman', 'a@a.com', '1', '23')"
