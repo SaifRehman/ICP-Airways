@@ -13,7 +13,7 @@ spec:
      containers:
        - name: checkinsvcluster
          image: "checkin-microservice:latest" 
-         imagePullPolicy: Always
+         imagePullPolicy: Never
          env:
           - name: UID
             valueFrom:

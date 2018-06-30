@@ -36,7 +36,7 @@ metadata:
  labels:
    app: db2svc
 spec:
- type: ClusterIP
+ type: NodePort
  selector:
    app: db2svc
  ports:
@@ -44,31 +44,32 @@ spec:
     name: db2svc
     port: 50000
     targetPort: 50000
+    nodePort: 30086
 
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: db2-pv-claim
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: db2-pv-claim
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 5Gi
 
----
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: db2-pv-claim
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
+# ---
+# kind: PersistentVolume
+# apiVersion: v1
+# metadata:
+#   name: db2-pv-claim
+#   labels:
+#     type: local
+# spec:
+#   storageClassName: manual
+#   capacity:
+#     storage: 10Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   hostPath:
+#     path: "/mnt/data"
