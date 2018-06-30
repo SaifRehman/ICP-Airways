@@ -79,7 +79,7 @@ metadata:
  labels:
    app: listingsvc
 spec:
- type: ClusterIP
+ type: NodePort
  selector:
    app: listingsvc
  ports:
@@ -87,3 +87,4 @@ spec:
     name: listingsvc
     port: 3002  
     targetPort: 3002 
+    nodePort: 30097

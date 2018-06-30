@@ -57,6 +57,7 @@ spec:
                 key: PROTOCOL
          ports:
          - containerPort: 3004
+
         #  livenessProbe:
         #     httpGet:
         #       path: /healthz
@@ -80,7 +81,7 @@ metadata:
  labels:
    app: signupsvc
 spec:
- type: ClusterIP
+ type: NodePort
  selector:
    app: signupsvc
  ports:
@@ -88,3 +89,6 @@ spec:
     name: signupsvc
     port: 3004
     targetPort: 3004
+    nodePort: 30095
+
+

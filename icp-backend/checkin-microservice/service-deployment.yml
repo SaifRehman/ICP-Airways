@@ -80,11 +80,12 @@ metadata:
  labels:
    app: checkinsvc
 spec:
- type: ClusterIP
+ type: NodePort
  selector:
    app: checkinsvc
  ports:
   - protocol: TCP
     name: checkinsvc
     port: 3001
-    targetPort: 3001   
+    targetPort: 3001  
+    nodePort: 30098 

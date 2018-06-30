@@ -80,7 +80,7 @@ metadata:
  labels:
    app: loginsvc
 spec:
- type: ClusterIP
+ type: NodePort
  selector:
    app: loginsvc
  ports:
@@ -88,3 +88,4 @@ spec:
     name: loginsvc
     port: 3003  
     targetPort: 3003
+    nodePort: 30096
