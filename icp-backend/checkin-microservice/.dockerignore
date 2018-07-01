@@ -1,5 +1,3 @@
 node_modules
-src
-gulpfile.js
-tsconfig.json
 package-lock.json
+dist

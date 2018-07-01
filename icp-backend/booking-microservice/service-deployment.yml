@@ -79,7 +79,7 @@ metadata:
  labels:
    app: bookingsvc
 spec:
- type: NodePort
+ type: ClusterIP
  selector:
    app: bookingsvc
  ports:
@@ -87,4 +87,3 @@ spec:
     name: bookingsvc
     port: 3000
     targetPort: 3000
-    nodePort: 30099
