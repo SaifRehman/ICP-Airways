@@ -11,44 +11,8 @@ spec:
     spec:
       containers:
         - name: angular
-          image: angular:latest
-          imagePullPolicy: Never
-          env:
-          - name: login
-            valueFrom:
-              configMapKeyRef:
-                name: frontend-configmap
-                key: login
-          - name: signup
-            valueFrom:
-              configMapKeyRef:
-                name: frontend-configmap
-                key: signup
-          - name: book
-            valueFrom:
-              configMapKeyRef:
-                name: frontend-configmap
-                key: book
-          - name: listBookingByUser
-            valueFrom:
-              configMapKeyRef:
-                name: frontend-configmap
-                key: listBookingByUser
-          - name: checkin
-            valueFrom:
-              configMapKeyRef:
-                name: frontend-configmap
-                key: checkin
-          - name: listFlightsByID
-            valueFrom:
-              configMapKeyRef:
-                name: frontend-configmap
-                key: listFlightsByID
-          - name: listFlights
-            valueFrom:
-              configMapKeyRef:
-                name: frontend-configmap
-                key: listFlights
+          image: s4saif/angular:latest
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service

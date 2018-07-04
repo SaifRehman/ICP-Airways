@@ -79,7 +79,7 @@ metadata:
  labels:
    app: bookingsvc
 spec:
- type: ClusterIP
+ type: NodePort
  selector:
    app: bookingsvc
  ports:

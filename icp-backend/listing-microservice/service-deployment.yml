@@ -12,8 +12,8 @@ spec:
    spec:
      containers:
        - name: listingsvcluster
-         image: "listing-microservice:latest" 
-         imagePullPolicy: Never
+         image: "s4saif/listing-microservice" 
+         imagePullPolicy: Always
          env:
           - name: UID
             valueFrom:
@@ -79,7 +79,7 @@ metadata:
  labels:
    app: listingsvc
 spec:
- type: ClusterIP
+ type: NodePort
  selector:
    app: listingsvc
  ports:

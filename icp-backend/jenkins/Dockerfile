@@ -1,4 +1,4 @@
-FROM jenkinsci/blueocean
+FROM jenkinsci/jenkins
 
 # Distributed Builds plugins
 RUN /usr/local/bin/install-plugins.sh ssh-slaves

@@ -7,13 +7,13 @@ public userData:any=null;
 public token:any=null;
 constructor() {
     this.apiUrl={
-        login: process.env.login,
-        signup: process.env.signup,
-        book: process.env.book,
-        listBookingByUser: process.env.listBookingByUser,
-        checkin: process.env.checkin,
-        listFlightsByID: process.env.listFlightsByID,
-        listFlights: process.env.listFlights
+        login: "http://loginsvc.svc.cluster.local/login",
+        signup: "http://signupsvc.default.svc.cluster.local:3004/createUser",
+        book: "http://bookingsvc.svc.cluster.local/book",
+        listBookingByUser: "http://bookingsvc.svc.cluster.local/listBookingByUser",
+        checkin: "http://checkinsvc.svc.cluster.local/checkin",
+        listFlightsByID: "http://listingsvc.svc.cluster.local/listFlightsByID",
+        listFlights: "http://listingsvc.svc.cluster.local/listFlights"
     }
   }
 }
