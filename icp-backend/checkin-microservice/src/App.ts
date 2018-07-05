@@ -38,6 +38,11 @@ class App {
     }
   }
   private middleware(): void {
+    this.express.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "*");
+      next();
+    });
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
     this.express.use(passport.initialize());
