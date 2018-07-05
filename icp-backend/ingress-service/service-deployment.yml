@@ -1,36 +1,15 @@
-# apiVersion: extensions/v1beta1
-# kind: Ingress
-# metadata:
-#   name: icp
-#   annotations:
-#     nginx.ingress.kubernetes.io/rewrite-target: /
-# spec:
-#   rules:
-#   - host: icp.example.com
-#     http:
-#       paths:
-#       - path: /signupsvc
-#         backend:
-#           serviceName: signupsvc
-#           servicePort: 3004
-
-apiVersion: voyager.appscode.com/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: test-ingress-voyager
-  namespace: vdimov-dev
+  name: icp
   annotations:
-     ingress.appscode.com/type: HostPort
-     ingress.appscode.com/annotations-pod: |
-         {
-           "external-dns.alpha.kubernetes.io/hostname" : "voyager.example.com,voyager-1.example.com,voyager-2.example.com"
-         }
-     ingress.appscode.com/replicas: '2'
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: voyager.example.com
+  - host: icp.example.com
     http:
       paths:
-       - backend:
-          serviceName: signupsvc
-          servicePort: '80'
+      - path: /listingsvc
+        backend:
+          serviceName: listingsvc
+          servicePort: 3002

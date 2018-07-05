@@ -12,8 +12,8 @@ spec:
    spec:
      containers:
        - name: checkinsvcluster
-         image: "checkin-microservice:latest" 
-         imagePullPolicy: Never
+         image: "icpdevcluster.icp:8500/default/checkin-microservice:latest" 
+         imagePullPolicy: Always
          env:
           - name: UID
             valueFrom:
@@ -88,3 +88,4 @@ spec:
     name: checkinsvc
     port: 3001
     targetPort: 3001  
+    nodePort: 30091

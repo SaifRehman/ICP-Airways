@@ -12,7 +12,7 @@ spec:
    spec:
      containers:
        - name: signupsvcluster
-         image: "registry.eu-gb.bluemix.net/icpairways/signup-microservice:latest" 
+         image: "icpdevcluster.icp:8500/default/signup-microservice:latest" 
          imagePullPolicy: Always
          env:
           - name: UID
@@ -88,6 +88,7 @@ spec:
     name: signupsvc
     port: 3004
     targetPort: 3004
+    nodePort: 30094
     
 
 

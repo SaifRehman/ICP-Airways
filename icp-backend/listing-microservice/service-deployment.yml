@@ -12,7 +12,7 @@ spec:
    spec:
      containers:
        - name: listingsvcluster
-         image: "s4saif/listing-microservice" 
+         image: "icpdevcluster.icp:8500/default/listing-microservice:latest" 
          imagePullPolicy: Always
          env:
           - name: UID
@@ -87,3 +87,4 @@ spec:
     name: listingsvc
     port: 3002  
     targetPort: 3002 
+    nodePort: 30092

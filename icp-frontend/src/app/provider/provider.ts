@@ -7,13 +7,15 @@ public userData:any=null;
 public token:any=null;
 constructor() {
     this.apiUrl={
-        login: "http://loginsvc.svc.cluster.local/login",
-        signup: "http://10.144.180.213:3004/createUser",
-        book: "http://bookingsvc.svc.cluster.local/book",
-        listBookingByUser: "http://bookingsvc.svc.cluster.local/listBookingByUser",
-        checkin: "http://checkinsvc.svc.cluster.local/checkin",
-        listFlightsByID: "http://listingsvc.svc.cluster.local/listFlightsByID",
-        listFlights: "http://listingsvc.svc.cluster.local/listFlights"
+        login: "http://9.30.245.52:30093/login",
+        signup: "http://9.30.245.52:30094/createUser",
+        book: "http://9.30.245.52:30090/book",
+        listBookingByUser: "http://9.30.245.52:30090/listBookingByUser",
+        checkin: "http://9.30.245.52:30091/checkin",
+        listFlightsByID: "http://9.30.245.52:30092/listFlightsByID",
+        listFlights: "http://9.30.245.52:30092/listFlights"
     }
+    console.log(this.apiUrl);
   }
+  
 }
