@@ -13,7 +13,9 @@ constructor() {
         listBookingByUser: "http://9.30.245.52:30090/listBookingByUser",
         checkin: "http://9.30.245.52:30091/checkin",
         listFlightsByID: "http://9.30.245.52:30092/listFlightsByID",
-        listFlights: "http://9.30.245.52:300:30092/listFlights"
+        listFlights: "http://9.30.245.52:30092/listFlights"
     }
+    console.log(this.apiUrl);
   }
+  
 }
