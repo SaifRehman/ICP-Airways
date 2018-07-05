@@ -12,8 +12,8 @@ spec:
    spec:
      containers:
        - name: bookingsvc
-         image: "booking-microservice:latest" 
-         imagePullPolicy: Never
+         image: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
+         imagePullPolicy: Always
          env:
           - name: UID
             valueFrom:
@@ -87,3 +87,4 @@ spec:
     name: bookingsvc
     port: 3000
     targetPort: 3000
+    nodePort: 30090

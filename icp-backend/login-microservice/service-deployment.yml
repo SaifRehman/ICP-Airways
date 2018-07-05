@@ -12,8 +12,8 @@ spec:
    spec:
      containers:
        - name: loginsvcluster
-         image: "login-microservice:latest" 
-         imagePullPolicy: Never
+         image: "icpdevcluster.icp:8500/default/login-microservice:latest" 
+         imagePullPolicy: Always
          env:
           - name: UID
             valueFrom:
@@ -88,3 +88,4 @@ spec:
     name: loginsvc
     port: 3003  
     targetPort: 3003
+    nodePort: 30093
