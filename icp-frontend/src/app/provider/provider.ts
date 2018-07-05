@@ -8,7 +8,7 @@ public token:any=null;
 constructor() {
     this.apiUrl={
         login: "http://loginsvc.svc.cluster.local/login",
-        signup: "http://signupsvc.default.svc.cluster.local:3004/createUser",
+        signup: "http://10.144.180.213:3004/createUser",
         book: "http://bookingsvc.svc.cluster.local/book",
         listBookingByUser: "http://bookingsvc.svc.cluster.local/listBookingByUser",
         checkin: "http://checkinsvc.svc.cluster.local/checkin",
