@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       this.read=data;
       this.read = this.read['token']
       this.provider.token = this.read;
+      localStorage.setItem('token',this.provider.token);
       this.provider.userData=jwtDecode(this.read);
       this.router.navigateByUrl('/history');
   },
