@@ -1,51 +1,59 @@
-apiVersion: apps/v1beta2
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "mychart.fullname" . }}
-  labels:
-    app: {{ template "mychart.name" . }}
-    chart: {{ template "mychart.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+ name: bookingsvc 
 spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app: {{ template "mychart.name" . }}
-      release: {{ .Release.Name }}
-  template:
-    metadata:
-      labels:
-        app: {{ template "mychart.name" . }}
-        release: {{ .Release.Name }}
-    spec:
-      containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-{{ toYaml .Values.resources | indent 12 }}
-    {{- with .Values.nodeSelector }}
-      nodeSelector:
-{{ toYaml . | indent 8 }}
-    {{- end }}
-    {{- with .Values.affinity }}
-      affinity:
-{{ toYaml . | indent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
-      tolerations:
-{{ toYaml . | indent 8 }}
-    {{- end }}
+ replicas: 3
+ template:
+   metadata:
+     name: bookingsvc
+     labels:
+       app: bookingsvc
+   spec:
+     containers:
+       - name: bookingsvc
+         image: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
+         imagePullPolicy: Always
+         env:
+          - name: UID
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: UID
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: PASSWORD
+          - name: SECRET
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: SECRET
+          - name: NODE_ENV
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: NODE_ENV
+          - name: DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: DATABASE
+          - name: PORT
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: PORT
+          - name: HOSTNAME
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: HOSTNAME
+          - name: PROTOCOL
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: PROTOCOL
+         ports:
+         - containerPort: 3000

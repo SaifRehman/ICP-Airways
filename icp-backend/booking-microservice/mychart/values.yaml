@@ -2,44 +2,75 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+replicaCount: 3
+
+metadata:
+ name: bookingsvc 
+ label: bookingsvc
 
 image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
+  name: bookingsvc
+  image: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
+  imagePullPolicy: IfNotPresent
+  ports:
+    containerPort: 3000
+
+envOfSecrets:
+  envUID:
+    name: UID
+    secretKeyRef:
+      name: mysecret
+      key: UID
+  envPASSWORD:
+    name: PASSWORD
+    secretKeyRef:
+      name: mysecret
+      key: PASSWORD
+  envSECRET:
+    name: SECRET
+    secretKeyRef:
+      name: mysecret
+      key: SECRET
+
+envOfConfigmaps:
+  envNODE_ENV:
+    name: NODE_ENV
+    configMapKeyRef:
+      name: env-database
+      key: NODE_ENV
+  envDATABASE:
+    name: DATABASE
+    configMapKeyRef:
+      name: env-database
+      key: DATABASE
+  envPORT:
+    name: PORT
+    configMapKeyRef:
+      name: env-database
+      key: PORT
+  envHOSTNAME:
+    name: HOSTNAME
+    configMapKeyRef:
+      name: env-database
+      key: HOSTNAME
+  envPROTOCOL:
+    name: PROTOCOL
+    configMapKeyRef:
+      name: env-database
+      key: PROTOCOL
+
 
 service:
-  type: ClusterIP
-  port: 80
-
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - chart-example.local
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
+  serviceMetadata:
+    name: bookingsvc
+    labels:
+    app: bookingsvc
+  selector:
+    selectorName: bookingsvc
+  servicePortConfiguration:
+    protocol: TCP
+    name: bookingsvc
+    type: NodePort
+    port: 3000
+    targetPort: 3000
+    nodePort: 30090

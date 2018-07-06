@@ -1,19 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "mychart.fullname" . }}
-  labels:
-    app: {{ template "mychart.name" . }}
-    chart: {{ template "mychart.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+ name: bookingsvc
+ labels:
+   app: bookingsvc
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    app: {{ template "mychart.name" . }}
-    release: {{ .Release.Name }}
+ type: NodePort
+ selector:
+   app: bookingsvc
+ ports:
+  - protocol: TCP
+    name: bookingsvc
+    port: 3000
+    targetPort: 3000
+    nodePort: 30090
