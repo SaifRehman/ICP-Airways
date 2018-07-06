@@ -16,7 +16,10 @@ import { SignupService } from './signup/signup.component.service'
 import { ListingService } from './services/listing-schedule-service/listing.component.service'
 import { BookingService } from './services/booking-service/booking.component.service'
 import { CheckinService } from './services/checkin-service/checkin.component.service'
-
+import { AuthGuardService } from './guards/login-guard.service';
+import { AuthService } from './services/auth/auth-service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { JWT_OPTIONS } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -35,7 +38,8 @@ import { CheckinService } from './services/checkin-service/checkin.component.ser
     ROUTING,
     RouterModule
   ],
-  providers: [Provider,SignupService,LoginService,ListingService,BookingService,CheckinService],
+  providers: [Provider,SignupService,LoginService,ListingService,BookingService,CheckinService,
+    AuthGuardService,AuthService,JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

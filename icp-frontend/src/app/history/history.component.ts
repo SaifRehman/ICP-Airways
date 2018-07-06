@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Provider } from '../provider/provider';
 import { BookingService } from '../services/booking-service/booking.component.service'
 import { CheckinService } from '../services/checkin-service/checkin.component.service'
+import * as jwtDecode from 'jwt-decode'
+
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
@@ -29,6 +31,9 @@ export class HistoryComponent implements OnInit {
    }
 
   ngOnInit() {
+    if(!this.provider.userData){
+      this.provider.userData = jwtDecode(localStorage.getItem('token'))
+    }
     this.bookingService.listBookingByUser(this.provider.userData.data.USERID).subscribe((data) => {
       console.log('data', data);
       this.show = data
