@@ -15,7 +15,6 @@ constructor() {
         listFlightsByID: "http://9.30.245.52:30092/listFlightsByID",
         listFlights: "http://9.30.245.52:30092/listFlights"
     }
-    console.log(this.apiUrl);
   }
   
 }

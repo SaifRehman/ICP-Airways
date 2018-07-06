@@ -24,6 +24,7 @@
     "webpack": "^4.10.1"
   },
   "dependencies": {
+    "@auth0/angular-jwt": "^2.0.0",
     "@types/base-64": "^0.1.2",
     "@types/utf8": "^2.1.6",
     "body-parser": "^1.15.2",

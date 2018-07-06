@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Provider } from '../provider/provider';
 import { ListingService } from '../services/listing-schedule-service/listing.component.service'
 import { BookingService } from '../services/booking-service/booking.component.service'
+import * as jwtDecode from 'jwt-decode'
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,6 +22,9 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit() {
+    if(!this.provider.userData){
+      this.provider.userData = jwtDecode(localStorage.getItem('token'))
+    }
   }
   clear(){
     this.show=null;
