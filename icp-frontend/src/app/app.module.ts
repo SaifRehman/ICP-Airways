@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -18,8 +19,7 @@ import { BookingService } from './services/booking-service/booking.component.ser
 import { CheckinService } from './services/checkin-service/checkin.component.service'
 import { AuthGuardService } from './guards/login-guard.service';
 import { AuthService } from './services/auth/auth-service';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { JWT_OPTIONS } from '@auth0/angular-jwt';
+
 
 
 @NgModule({
@@ -28,18 +28,18 @@ import { JWT_OPTIONS } from '@auth0/angular-jwt';
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    HistoryComponent,
-    
-  ],
+    HistoryComponent
+    ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ROUTING,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   providers: [Provider,SignupService,LoginService,ListingService,BookingService,CheckinService,
-    AuthGuardService,AuthService,JwtHelperService],
+    AuthGuardService,AuthService  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
