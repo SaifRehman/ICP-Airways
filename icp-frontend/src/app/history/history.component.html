@@ -127,8 +127,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let listshow of show.data">
-            <td>{{listshow.ORIGIN}}</td>
-            <td>{{listshow.DEST}}</td>
+            <td>{{listshow.ORIGIN | isoToCountryName}}</td>
+            <td>{{listshow.DEST | isoToCountryName}}</td>
             <td>{{listshow.FLIGHTNUM}}</td>
             <td>{{listshow.TAILNUM}}</td>
             <td>{{listshow.DEPTIME | timeRefactor }}</td>
