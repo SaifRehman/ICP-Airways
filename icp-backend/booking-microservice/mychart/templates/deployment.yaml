@@ -1,59 +1,59 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
- name: bookingsvc 
+ name: {{ .Values.metadata.name }} 
 spec:
- replicas: 3
+ replicas: {{ .Values.replicaCount }}
  template:
    metadata:
-     name: bookingsvc
+     name: {{ .Values.metadata.name }} 
      labels:
-       app: bookingsvc
+       app: {{ .Values.metadata.label }} 
    spec:
      containers:
-       - name: bookingsvc
-         image: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
-         imagePullPolicy: Always
+       - name: {{ .Values.image.name }} 
+         image: {{ .Values.image.imageName }} 
+         imagePullPolicy: {{ .Values.image.imagePullPolicy }} 
          env:
-          - name: UID
+          - name: {{ .Values.envOfSecrets.envUID.name }} 
             valueFrom:
               secretKeyRef:
-                name: mysecret
-                key: UID
-          - name: PASSWORD
+                name: {{ .Values.envOfSecrets.envUID.secretKeyRef.name }} 
+                key: {{ .Values.envOfSecrets.envUID.secretKeyRef.key }} 
+          - name: {{ .Values.envOfSecrets.envPASSWORD.name }} 
             valueFrom:
               secretKeyRef:
-                name: mysecret
-                key: PASSWORD
-          - name: SECRET
+                name: {{ .Values.envOfSecrets.envPASSWORD.secretKeyRef.name }} 
+                key: {{ .Values.envOfSecrets.envPASSWORD.secretKeyRef.key }} 
+          - name: {{ .Values.envOfSecrets.envSECRET.name }} 
             valueFrom:
               secretKeyRef:
-                name: mysecret
-                key: SECRET
-          - name: NODE_ENV
+                name: {{ .Values.envOfSecrets.envSECRET.secretKeyRef.name }}
+                key: {{ .Values.envOfSecrets.envSECRET.secretKeyRef.name }}
+          - name: {{ .Values.envOfConfigmaps.envNODE_ENV.name }} 
             valueFrom:
               configMapKeyRef:
-                name: env-database
-                key: NODE_ENV
-          - name: DATABASE
+                name: {{ .Values.envOfConfigmaps.envNODE_ENV.configMapKeyRef.name }}
+                key: {{ .Values.envOfConfigmaps.envNODE_ENV.configMapKeyRef.key }}
+          - name: {{ .Values.envOfConfigmaps.envDATABASE.name }}
             valueFrom:
               configMapKeyRef:
-                name: env-database
-                key: DATABASE
-          - name: PORT
+                name: {{ .Values.envOfConfigmaps.envDATABASE.configMapKeyRef.name }}
+                key: {{ .Values.envOfConfigmaps.envDATABASE.configMapKeyRef.key }}
+          - name: {{ .Values.envOfConfigmaps.envPORT.name }}
             valueFrom:
               configMapKeyRef:
-                name: env-database
-                key: PORT
-          - name: HOSTNAME
+                name: {{ .Values.envOfConfigmaps.envPORT.configMapKeyRef.name }}
+                key: {{ .Values.envOfConfigmaps.envPORT.configMapKeyRef.key }}
+          - name: {{ .Values.envOfConfigmaps.envHOSTNAME.name }}
             valueFrom:
               configMapKeyRef:
-                name: env-database
-                key: HOSTNAME
-          - name: PROTOCOL
+                name: {{ .Values.envOfConfigmaps.envHOSTNAME.configMapKeyRef.name }}
+                key: {{ .Values.envOfConfigmaps.envHOSTNAME.configMapKeyRef.key }}
+          - name: {{ .Values.envOfConfigmaps.envPROTOCOL.name }}
             valueFrom:
               configMapKeyRef:
-                name: env-database
-                key: PROTOCOL
+                name: {{ .Values.envOfConfigmaps.envPROTOCOL.configMapKeyRef.name }}
+                key: {{ .Values.envOfConfigmaps.envPROTOCOL.configMapKeyRef.key }}
          ports:
-         - containerPort: 3000
+         - containerPort: {{ .Values.image.ports.containerPort }} 
