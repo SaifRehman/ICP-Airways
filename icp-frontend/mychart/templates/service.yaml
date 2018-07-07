@@ -1,19 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ template "mychart.fullname" . }}
-  labels:
-    app: {{ template "mychart.name" . }}
-    chart: {{ template "mychart.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+  name: {{ .Values.service.serviceMetadata.name }}
 spec:
-  type: {{ .Values.service.type }}
+  type:  {{ .Values.service.servicePortConfiguration.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+    - port: {{ .Values.service.servicePortConfiguration.port }}
+      targetPort: {{ .Values.service.servicePortConfiguration.targetPort }}
+      nodePort: {{ .Values.service.servicePortConfiguration.nodePort }}
   selector:
-    app: {{ template "mychart.name" . }}
-    release: {{ .Release.Name }}
+    app: {{ .Values.service.selector.selectorName }}
