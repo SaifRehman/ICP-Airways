@@ -1,14 +1,14 @@
-import { flightTrigger } from "./../animations";
-import { Component, OnInit } from "@angular/core";
-import { Provider } from "../provider/provider";
-import { ListingService } from "../services/listing-schedule-service/listing.component.service";
-import { BookingService } from "../services/booking-service/booking.component.service";
-import * as jwtDecode from "jwt-decode";
+import { flightTrigger } from './../animations';
+import { Component, OnInit } from '@angular/core';
+import { Provider } from '../provider/provider';
+import { ListingService } from '../services/listing-schedule-service/listing.component.service';
+import { BookingService } from '../services/booking-service/booking.component.service';
+import * as jwtDecode from 'jwt-decode';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.scss"],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
   animations: [flightTrigger]
 })
 export class HomeComponent implements OnInit {
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (!this.provider.userData) {
-      this.provider.userData = jwtDecode(localStorage.getItem("token"));
+      this.provider.userData = jwtDecode(localStorage.getItem('token'));
     }
   }
   clear() {
@@ -37,13 +37,13 @@ export class HomeComponent implements OnInit {
   }
   search() {
     console.log(this.origin, this.dest, this.date);
-    this.Year = Number(this.date.split("-")[0]);
+    this.Year = Number(this.date.split('-')[0]);
     this.Year = String(this.Year);
 
-    this.Month = Number(this.date.split("-")[1]);
+    this.Month = Number(this.date.split('-')[1]);
     this.Month = String(this.Month);
 
-    this.DayOfMonth = Number(this.date.split("-")[2]);
+    this.DayOfMonth = Number(this.date.split('-')[2]);
     this.DayOfMonth = String(this.DayOfMonth);
 
     this.listingService
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
       )
       .subscribe(
         data => {
-          console.log("data", data);
+          console.log('data', data);
           this.show = data;
         },
         error => {
@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
       .booking(this.provider.userData.data.USERID, id)
       .subscribe(
         data => {
-          console.log("data", data);
+          console.log('data', data);
           this.show = data;
         },
         error => {
