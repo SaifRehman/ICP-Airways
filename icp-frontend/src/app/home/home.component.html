@@ -119,10 +119,6 @@
 
     <div class="content scroll">
       <div class="scroll-content" style="padding:10px 20px;">
-        <!-- <h3>Browse flight information</h3> -->
-        <!-- <hr/> -->
-        <!-- <br/> -->
-        <!-- START FILTER SEARCH -->
         <div class="row" method="POST">
           <div class="input-field col s4">
             <input id="source" name="source" type="text" [(ngModel)]="origin" placeholder="Source" />
@@ -148,24 +144,6 @@
         <!-- *ngIf="show" -->
         <ng-container>
           <div id="my_table" [@flightsList]="show.data.length">
-            <!-- <div class="row header-container">
-              <div class="col s2">Flight Number</div>
-              <div class="col s2">Tail Number</div>
-              <div class="col s3">Departure Time</div>
-              <div class="col s3">Arrival Time</div>
-              <div class="col s2">Action</div>
-            </div> -->
-            <!-- *ngFor="let listshow of show.data" -->
-            <!-- <tr>
-            <td>{{listshow.FLIGHTNUM}}</td>
-            <td>{{listshow.TAILNUM}}</td>
-            <td>{{listshow.DEPTIME}}</td>
-            <td>{{listshow.ARRTIME}}</td>
-            <td>
-              <button onclick="Materialize.toast('Booking...', 4000); this.disabled='disabled'; this.style='background: grey;'" type='submit'
-                id='btn_search' name='btn_login' class='btn btn-large waves-effect colour-pink' (click)="book(listshow.ID)">Book</button>
-            </td>
-          </tr> -->
             <table>
               <thead>
                 <tr>
@@ -186,10 +164,10 @@
                   <p>{{listshow.TAILNUM}}</p>
                 </div>
                 <div class="col s3">
-                  <p>{{listshow.DEPTIME}}</p>
+                  <p>{{listshow.DEPTIME | timeRefactor}}</p>
                 </div>
                 <div class="col s3">
-                  <p>{{listshow.ARRTIME}}</p>
+                  <p>{{listshow.ARRTIME | timeRefactor}}</p>
                 </div>
                 <div class="col s3">
                   <button onclick="Materialize.toast('Booking...', 4000); this.disabled='disabled'; this.style='background: grey;'" type='submit'
