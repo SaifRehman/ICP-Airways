@@ -279,7 +279,7 @@
         <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
         <!-- *ngIf="show" -->
         <ng-container *ngIf="show">
-          <div id="my_table" [@flightsList]="show.data.length">
+          <div id="my_table">
             <table>
               <thead>
                 <tr>
@@ -316,7 +316,7 @@
                 <ng-container *ngIf="listshow.CHECKIN === '0'">
                 <div class="col s3">
                   <button type='submit'
-                    id='btn_book' name='btn_login' class='btn waves-effect colour-pink'(click)="checkin(istshow.FLIGHTID,listshow.USERID)">CHECKIN</button>
+                    id='btn_book' name='btn_login' class='btn waves-effect colour-pink'(click)="checkin(listshow.FLIGHTID,listshow.USERID)">CHECKIN</button>
                 </div>
                 </ng-container>
 

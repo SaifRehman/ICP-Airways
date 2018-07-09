@@ -143,7 +143,7 @@
         <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
         <!-- *ngIf="show" -->
         <ng-container *ngIf="show">
-          <div id="my_table" [@flightsList]="show.data.length">
+          <div id="my_table">
             <table>
               <thead>
                 <tr>
@@ -170,8 +170,8 @@
                   <p>{{listshow.ARRTIME | timeRefactor}}</p>
                 </div>
                 <div class="col s3">
-                  <button onclick="Materialize.toast('Booking...', 4000); this.disabled='disabled'; this.style='background: grey;'" type='submit'
-                    id='btn_book' name='btn_login' class='btn waves-effect colour-pink'>Book</button>
+                  <button onclick="Materialize.toast('Booking...', 5000); this.disabled='disabled'; this.style='background: grey;'" type='submit'
+                    id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="book(listshow.ID)">Book</button>
                 </div>
               </div>
             </ng-container>
