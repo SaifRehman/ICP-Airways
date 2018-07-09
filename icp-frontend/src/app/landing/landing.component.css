@@ -1,0 +1,154 @@
+.lp-container {
+  height: 100%;
+}
+.lp-container > .row,
+.lp-container > .row div.col {
+  height: 100%;
+  margin: 0;
+}
+
+.content-container {
+  opacity: 0;
+  transition: all 0.3s ease-in;
+  /* animation: displayHeading 0.5s ease-in 1s; */
+}
+
+.img-container {
+  background: url('../../assets/images/lp-bg.svg') no-repeat bottom left;
+}
+
+.img-container > div {
+  position: relative;
+  top: 10rem;
+  left: 5rem;
+}
+
+.heading-container {
+  margin-bottom: 5rem;
+}
+
+.heading-container h2 {
+  font-family: 'Montserrat';
+  color: white;
+  letter-spacing: 1px;
+  margin-top: 0;
+}
+
+.heading-container p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(185, 185, 185);
+  font-size: 1.15rem;
+}
+
+.gs-btn {
+  width: 12.5rem;
+  height: 3.5rem;
+  border: 0;
+  border-radius: 99999px;
+  font-size: 0.9rem;
+}
+
+.gs-btn:focus {
+  background-color: rgb(236, 236, 236);
+}
+
+.lp-container .row .col:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lr-container {
+  position: relative;
+  /* top: 10rem; */
+  width: 80%;
+  margin: 0 auto;
+  height: 70%;
+  box-shadow: 0 1px 40px rgba(120, 120, 120, 0.2);
+}
+
+.action-container {
+  height: 100%;
+  width: 100%;
+  padding: 3rem;
+}
+
+/* .action-container:nth-child(2) {
+  transform: translateX(100%);
+} */
+
+.action-title {
+  height: 10%;
+  font-weight: 200;
+  font-size: 1.5rem;
+}
+
+.form-container {
+  position: relative;
+  /* top: 7.5rem; */
+  height: 90%;
+}
+
+.form-container form {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.form-container form input + label {
+  font-weight: lighter;
+}
+
+.form-container form input:focus,
+.form-container form input:active {
+  border-bottom-color: #2c3e50;
+  box-shadow: 0 1px 0 0 #2c3e50;
+}
+
+.form-container form input:focus + label,
+.form-container form input:active + label {
+  color: #2c3e50;
+}
+
+.lr-container
+  .action-container.left-pane
+  .form-container
+  .col.s12
+  .row:nth-child(3),
+.lr-container
+  .action-container.right-pane
+  .form-container
+  .col.s12
+  .row:nth-child(5) {
+  height: 3rem;
+}
+
+.action-btn {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  background-color: #3498db;
+  color: white;
+}
+
+.nav-controls-container {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-controls-container span {
+  opacity: 0;
+}
+
+.navigate-btn {
+  border: 0;
+  background-color: white;
+  color: #3498db;
+  position: relative;
+  width: 6rem;
+}
+
+.navigate-btn i {
+  position: absolute;
+  left: 0;
+}

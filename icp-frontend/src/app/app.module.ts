@@ -1,9 +1,10 @@
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { ROUTING } from './app.routing'
+import { ROUTING } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -12,15 +13,15 @@ import { HistoryComponent } from './history/history.component';
 import { RouterModule } from '@angular/router';
 import { Provider } from './provider/provider';
 import { LoginService } from './login/login.component.service';
-import { SignupService } from './signup/signup.component.service'
+import { SignupService } from './signup/signup.component.service';
 
-import { ListingService } from './services/listing-schedule-service/listing.component.service'
-import { BookingService } from './services/booking-service/booking.component.service'
-import { CheckinService } from './services/checkin-service/checkin.component.service'
+import { ListingService } from './services/listing-schedule-service/listing.component.service';
+import { BookingService } from './services/booking-service/booking.component.service';
+import { CheckinService } from './services/checkin-service/checkin.component.service';
 import { AuthGuardService } from './guards/login-guard.service';
 import { AuthService } from './services/auth/auth-service';
-
-
+import { LandingComponent } from './landing/landing.component';
+import { SlideAuthComponent } from './slide-auth/slide-auth.component';
 
 @NgModule({
   declarations: [
@@ -28,18 +29,29 @@ import { AuthService } from './services/auth/auth-service';
     LoginComponent,
     SignupComponent,
     HomeComponent,
-    HistoryComponent
-    ],
+    HistoryComponent,
+    LandingComponent,
+    SlideAuthComponent
+  ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     ROUTING,
     RouterModule,
     SharedModule
   ],
-  providers: [Provider,SignupService,LoginService,ListingService,BookingService,CheckinService,
-    AuthGuardService,AuthService  ],
+  providers: [
+    Provider,
+    SignupService,
+    LoginService,
+    ListingService,
+    BookingService,
+    CheckinService,
+    AuthGuardService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
