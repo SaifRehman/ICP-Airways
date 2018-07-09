@@ -278,7 +278,7 @@
 
         <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
         <!-- *ngIf="show" -->
-        <ng-container>
+        <ng-container *ngIf="show">
           <div id="my_table" [@flightsList]="show.data.length">
             <table>
               <thead>
