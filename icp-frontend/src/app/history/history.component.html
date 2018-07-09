@@ -278,8 +278,8 @@
 
         <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
         <!-- *ngIf="show" -->
-        <ng-container *ngIf="show">
-          <div id="my_table">
+        <ng-container *ngIf="show && provider.rawData">
+          <div id="my_table" >
             <table>
               <thead>
                 <tr>

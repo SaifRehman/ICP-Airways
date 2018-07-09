@@ -5,6 +5,7 @@ export class Provider {
 public apiUrl:any;
 public userData:any=null;
 public token:any=null;
+public rawData:any=null;
 constructor() {
     this.apiUrl={
         login: "http://9.30.245.52:30093/login",
