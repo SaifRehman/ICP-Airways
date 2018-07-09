@@ -81,18 +81,21 @@
                     <label for="register-password">Password</label>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col s12">
-                    <button type="submit" class="waves-effect action-btn" (click)="signup()">Register</button>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
         </app-slide-auth>
         <div class="navigate-btn-container">
+          
           <div class="nav-controls-container">
+            
             <span *ngIf="!isLeftVisible" [style.opacity]="!isLeftVisible ? 1 : 0">
+                <div class="row">
+                    <div class="col s12">
+                      <button type="submit" class="waves-effect action-btn" (click)="signup()">Register</button>
+                    </div>
+                  </div>
               <button class="navigate-btn" (click)="isLeftVisible = !isLeftVisible">
                 <i class="material-icons">keyboard_arrow_left</i>Login</button>
             </span>
