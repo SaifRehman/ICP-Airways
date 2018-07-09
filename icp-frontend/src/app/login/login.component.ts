@@ -3,6 +3,7 @@ import { LoginService } from './login.component.service'
 import { Provider } from '../provider/provider';
 import { RouterModule, Routes, Router } from '@angular/router';
 import * as jwtDecode from 'jwt-decode'
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app-login',

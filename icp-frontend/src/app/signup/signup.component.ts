@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupService } from './signup.component.service'
+import 'rxjs/Rx';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

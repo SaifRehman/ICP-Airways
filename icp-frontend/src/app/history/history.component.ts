@@ -3,6 +3,7 @@ import { Provider } from '../provider/provider';
 import { BookingService } from '../services/booking-service/booking.component.service'
 import { CheckinService } from '../services/checkin-service/checkin.component.service'
 import * as jwtDecode from 'jwt-decode'
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app-history',

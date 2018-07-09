@@ -4,6 +4,7 @@ import { Provider } from '../provider/provider';
 import { ListingService } from '../services/listing-schedule-service/listing.component.service';
 import { BookingService } from '../services/booking-service/booking.component.service';
 import * as jwtDecode from 'jwt-decode';
+import 'rxjs/Rx';
 
 @Component({
   selector: 'app-home',
