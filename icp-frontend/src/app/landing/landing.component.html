@@ -63,8 +63,24 @@
                     <label for="register-location">Location</label>
                   </div>
                 </div>
-
-
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="number" class="lname-ip" id="register-location" [(ngModel)]="age">
+                    <label for="register-age">Age</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="email" class="lname-ip" id="register-email" [(ngModel)]="emailSignup">
+                    <label for="register-email">Email</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="password" class="lname-ip" id="register-password" [(ngModel)]="emailPassword">
+                    <label for="register-password">Password</label>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col s12">
                     <button type="submit" class="waves-effect action-btn" (click)="signup()">Register</button>
