@@ -9,8 +9,8 @@ import { LandingComponent } from './landing/landing.component';
 export const AppRoutes: Routes = [
   {
     path: 'history',
-    component: HistoryComponent
-    // canActivate: [AuthGuard]
+    component: HistoryComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'home',
@@ -19,11 +19,11 @@ export const AppRoutes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LandingComponent
   },
   {
     path: 'signup',
-    component: SignupComponent
+    component: LandingComponent
   },
   {
     path: '',

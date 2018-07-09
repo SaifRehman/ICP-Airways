@@ -118,12 +118,12 @@
   .action-container.left-pane
   .form-container
   .col.s12
-  .row:nth-child(3),
+  .row:last-child,
 .lr-container
   .action-container.right-pane
   .form-container
   .col.s12
-  .row:nth-child(7) {
+  .row:last-child {
   height: 3rem;
 }
 

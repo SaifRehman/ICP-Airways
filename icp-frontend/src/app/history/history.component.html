@@ -314,18 +314,16 @@
                   <p>{{listshow.ARRTIME | timeRefactor}}</p>
                 </div>
                 <ng-container *ngIf="listshow.CHECKIN === '0'">
-                <div class="col s3">
-                  <button type='submit'
-                    id='btn_book' name='btn_login' class='btn waves-effect colour-pink'(click)="checkin(listshow.FLIGHTID,listshow.USERID)">CHECKIN</button>
-                </div>
+                  <div class="col s3">
+                    <button type='submit' id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="checkin(listshow.FLIGHTID,listshow.USERID)">CHECKIN</button>
+                  </div>
                 </ng-container>
 
                 <ng-container *ngIf="listshow.CHECKIN === '1'">
-                    <div class="col s3">
-                      <button type='submit'
-                        id='btn_book' name='btn_login' class='btn waves-effect colour-pink' disabled="disabled">CHECKIN</button>
-                    </div>
-                    </ng-container>
+                  <div class="col s3">
+                    <button type='submit' id='btn_book' name='btn_login' class='btn waves-effect colour-pink' disabled="disabled">CHECKIN</button>
+                  </div>
+                </ng-container>
               </div>
             </ng-container>
           </div>
