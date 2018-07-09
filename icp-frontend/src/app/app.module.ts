@@ -22,7 +22,6 @@ import { AuthGuardService } from './guards/login-guard.service';
 import { AuthService } from './services/auth/auth-service';
 import { LandingComponent } from './landing/landing.component';
 import { SlideAuthComponent } from './slide-auth/slide-auth.component';
-
 @NgModule({
   declarations: [
     AppComponent,
