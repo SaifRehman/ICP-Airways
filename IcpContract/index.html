@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Shares</title>
+    <!-- 1 -->
+    <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script>
+      // 2)
+      var web3 = new Web3(new Web3.providers.HttpProvider("http://169.61.62.89:30001"));
+      // 3)
+      var abi = [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_value",
+          "type": "string"
+        }
+      ],
+      "name": "set",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "get",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ]
+      var SharesContract = web3.eth.contract(abi);
+      // 4)
+      var contractAddress = '0x03a8cad9c7a5969b7382459c6f5fb2808fe3f178'
+      var instance = SharesContract.at(contractAddress);
+      // address in your geth
+      // 5) execute smart contract function `getShares`
+      instance.set.call( 'hello',function (err, res) {
+        console.log(res.toString())
+      })
+      instance.get.call( function (err, res) {
+        console.log(res.toString())
+      })
+    //   function buy() {
+    //     // 5) execute smart contract function updateShares
+    //     instance.set(1, { from: buyerAddress }, function (err, res) {
+
+    //     })
+    //   }
+    </script>
+  </head>
+
+  <body>
+    <p id="numShares"></p>
+    <button onclick='buy()'>Buy</button>
+  </body>
+</html>
