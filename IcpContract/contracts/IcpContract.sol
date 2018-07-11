@@ -9,5 +9,5 @@ contract IcpContract {
     function get() public constant returns (string) {
         return value;
     }
-    string value;
+    string public value;
 }
