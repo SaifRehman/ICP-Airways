@@ -15,9 +15,16 @@
 module.exports = {
   networks: {
     development: {
+      host: "localhost",
+      port: 8545,
+      network_id: "*" // Match any network id
+    },
+    external: {
       host: "169.61.62.89",
       port: 30001,
-      network_id: "*" // Match any network id
+      from: "0xd5335aee753f741c35a4ea5eb59dd4937827d8a9",
+      network_id: "1",
+      gas: 500000,
     }
   }
 };
