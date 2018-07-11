@@ -12,7 +12,7 @@ spec:
    spec:
      containers:
        - name: listingsvcluster
-         image: "icpdevcluster.icp:8500/default/listing-microservice:latest" 
+         image: "mycluster.icp:8500/default/listing-microservice:latest" 
          imagePullPolicy: Always
          env:
           - name: UID

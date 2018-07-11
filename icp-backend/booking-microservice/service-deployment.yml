@@ -12,7 +12,7 @@ spec:
    spec:
      containers:
        - name: bookingsvc
-         image: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
+         image: "mycluster.icp:8500/default/booking-microservice:latest" 
          imagePullPolicy: Always
          env:
           - name: UID

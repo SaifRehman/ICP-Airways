@@ -12,7 +12,7 @@ spec:
    spec:
      containers:
        - name: loginsvcluster
-         image: "icpdevcluster.icp:8500/default/login-microservice:latest" 
+         image: "mycluster.icp:8500/default/login-microservice:latest" 
          imagePullPolicy: Always
          env:
           - name: UID
