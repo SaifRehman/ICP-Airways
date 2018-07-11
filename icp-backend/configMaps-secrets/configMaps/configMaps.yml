@@ -6,6 +6,6 @@ metadata:
 data:
   NODE_ENV: development
   DATABASE: SAMPLE
-  PORT: '31161'
-  HOSTNAME: '9.30.245.52'
+  PORT: '30662'
+  HOSTNAME: '169.61.62.89'
   PROTOCOL: TCPIP
