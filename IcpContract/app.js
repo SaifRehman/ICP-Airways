@@ -52,13 +52,13 @@ let provider = new Web3.providers.HttpProvider("http://169.61.62.89:30001");
 const web3 = new Web3(provider);
 const contract = new web3.eth.Contract(abi,"0x03a8cad9c7a5969b7382459c6f5fb2808fe3f178");
 
-contract.methods.set("[]").send({
-    from: '0xd5335aee753f741c35a4ea5eb59dd4937827d8a9',
-    gas: '1000000'
-});
-
-// contract.methods.get().call().then(function(res){
-//     console.log(res);
-// }).catch(function(err) {
-//     console.log(err);
+// contract.methods.set("[]").send({
+//     from: '0xd5335aee753f741c35a4ea5eb59dd4937827d8a9',
+//     gas: '1000000'
 // });
+
+contract.methods.get().call().then(function(res){
+    console.log(res);
+}).catch(function(err) {
+    console.log(err);
+});
