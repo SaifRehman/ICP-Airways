@@ -101,6 +101,9 @@ export class HomeComponent implements OnInit {
             alert("Login not Succesfull")
           });
       }
+      else{
+        console.log("you have booked this flight aready")
+      }
 
     },
       (error) => {

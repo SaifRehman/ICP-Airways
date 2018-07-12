@@ -12,7 +12,6 @@ export class EthereumService {
     }
 
     public getBlockchain(): Observable<any> {
-        console.log(this.provider.token);
         const options = new RequestOptions({
             headers: new Headers({
                 'Content-Type': 'application/json'
