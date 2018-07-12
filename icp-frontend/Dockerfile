@@ -1,7 +1,8 @@
 
-FROM node:8.11.2-alpine as node
+FROM node:8.11.2 as node
 WORKDIR /usr/src/app
 COPY package.json ./
+RUN npm install --no-cache git
 RUN npm install
 COPY . .
 RUN npm run build
