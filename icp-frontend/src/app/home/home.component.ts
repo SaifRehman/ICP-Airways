@@ -5,6 +5,7 @@ import { ListingService } from '../services/listing-schedule-service/listing.com
 import { BookingService } from '../services/booking-service/booking.component.service';
 import * as jwtDecode from 'jwt-decode';
 import 'rxjs/Rx';
+import { EthereumService } from '../services/ethereum-service/ethereum.component.service';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
   dest: any;
   date: any;
   constructor(
+    public ethereumService: EthereumService,
     public provider: Provider,
     public listingService: ListingService,
     public bookingService: BookingService
@@ -66,16 +68,45 @@ export class HomeComponent implements OnInit {
       );
   }
   book(id) {
-    this.bookingService
-      .booking(this.provider.userData.data.USERID, id)
-      .subscribe(
-        data => {
-          console.log('data', data);
-          this.show = data;
-        },
-        error => {
-          console.log(error);
+
+    this.ethereumService.getBlockchain().subscribe((data) => {
+      var temp = true;
+      for (var i = 0; i < data.length; i++) {
+        var obj = data[i];
+        if (obj.USERID === this.provider.userData.data.USERID && obj.FLIGHTID === id) {
+          temp = false
+          break;
         }
-      );
+        console.log(obj.id);
+      }
+      if (temp) {
+        data.push({ USERID: this.provider.userData.data.USERID, FLIGHTID: id })
+        var dataPush = JSON.stringify(data)
+        console.log(data)
+        this.ethereumService.setBlockchain(dataPush).subscribe((data) => {
+          console.log('message', data);
+          this.bookingService
+            .booking(this.provider.userData.data.USERID, id)
+            .subscribe(
+              data => {
+                console.log('booked flight', data);
+                this.show = data;
+              },
+              error => {
+                console.log(error);
+              }
+            );
+        },
+          (error) => {
+            alert("Login not Succesfull")
+          });
+      }
+
+    },
+      (error) => {
+        alert("cant get data from blockchain")
+      });
+
+
   }
 }

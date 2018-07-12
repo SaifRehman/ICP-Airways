@@ -61,7 +61,9 @@ export class Provider {
             listBookingByUser: "http://" + this.url + ":30090/listBookingByUser",
             checkin: "http://" + this.url + ":30091/checkin",
             listFlightsByID: "http://" + this.url + ":30092/listFlightsByID",
-            listFlights: "http://" + this.url + ":30092/listFlights"
+            listFlights: "http://" + this.url + ":30092/listFlights",
+            getBlockchain: "http://" + this.url + ":30089/getBlockchain",
+            setBlockchain: "http://" + this.url + ":30089/setBlockchain"
         }
         console.log(this.apiUrl)
     }

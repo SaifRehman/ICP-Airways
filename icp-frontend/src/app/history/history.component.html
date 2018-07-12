@@ -18,8 +18,8 @@
             <i class="material-icons white-text">flight</i>Browse Flights</a>
         </li>
         <li>
-          <a class="waves-effect waves-red white-text" routerLink="/login">
-            <i class="material-icons white-text">exit_to_app</i>Logout</a>
+          <a class="waves-effect waves-red white-text" >
+            <i class="material-icons white-text" (click)="test()">exit_to_app</i>Logout</a>
         </li>
       </ul>
     </div>
@@ -89,9 +89,9 @@
               </div>
             </ul>
 
-            <ul class="right hide-on-med-and-down valign-wrapper">
+            <ul class="right hide-on-med-and-down valign-wrapper" >
               <li>
-                <a class=" waves-effect waves-light dropdown-button center" routerLink="/login" data-activates='logout_dropdown' data-gutter="4"
+                <a class=" waves-effect waves-light dropdown-button center" data-activates='logout_dropdown' data-gutter="4"
                   alignment='right'>
                   <img src="https://raw.githubusercontent.com/arjuntherajeev/arjuntherajeev.github.io/master/src/user-icon.png" style="width:2em;position:inherit;margin-bottom:1.25em;margin-top:1em;margin-left:0.1em;"
                     class="circle valign">

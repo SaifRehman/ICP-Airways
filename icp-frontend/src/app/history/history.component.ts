@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Provider } from '../provider/provider';
 import { BookingService } from '../services/booking-service/booking.component.service';
 import { CheckinService } from '../services/checkin-service/checkin.component.service';
+import { EthereumService } from '../services/ethereum-service/ethereum.component.service';
+
 import * as jwtDecode from 'jwt-decode';
 import 'rxjs/Rx';
 
@@ -13,10 +15,21 @@ import 'rxjs/Rx';
 export class HistoryComponent implements OnInit {
   public show: any = null;
   constructor(
+    public ethereumService:EthereumService,
     public provider: Provider,
     public bookingService: BookingService,
     public checkinService: CheckinService
-  ) {}
+  ) {
+  }
+  test(){
+    
+    this.ethereumService.getBlockchain().subscribe((data) => {
+      console.log('data', data);
+  },
+  (error) => {
+      alert("Login not Succesfull")
+  });
+  }
   checkin(flightid, userid) {
     console.log(flightid, userid);
     this.checkinService.checkin(flightid, userid).subscribe(
