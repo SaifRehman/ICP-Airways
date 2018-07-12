@@ -1,3 +1,4 @@
+import { error } from 'util';
 import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
@@ -96,20 +97,24 @@ class App {
   }
   private routes(): void {
     let router = express.Router();
-    router.post('/setBlockchain', this.ensureToken, (req, res, next) => {
+    router.post('/setBlockchain', (req, res, next) => {
       this.contract.methods.set(req.body.data).send({
         from: '0xd5335aee753f741c35a4ea5eb59dd4937827d8a9',
         gas: '1000000'
-      });
-      res.json({
-        message: "sucessful"
-      });
-    });
-    router.get('/getBlockchain', this.ensureToken, (req, res, next) => {
-      this.contract.methods.get().call().then(function (res) {
+      }).then(function(){
         res.json({
-          data: JSON.parse(res)
-        });
+          message: "sucessful"
+        })
+    }).catch((err) => {
+      console.log (err)
+    });
+     
+    });
+    router.get('/getBlockchain', (req, res, next) => {
+      this.contract.methods.get().call().then(function (response) {
+        console.log(response)
+        res.json(JSON.parse(response));
+
       }).catch(function (err) {
         console.log(err);
       });
