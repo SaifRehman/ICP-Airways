@@ -13,6 +13,7 @@ import 'rxjs/Rx';
   styleUrls: ['./history.component.scss']
 })
 export class HistoryComponent implements OnInit {
+  public loading:any=false;
   public show: any = null;
   constructor(
     public ethereumService:EthereumService,
@@ -31,6 +32,7 @@ export class HistoryComponent implements OnInit {
   });
   }
   checkin(flightid, userid) {
+    this.loading = true;
     console.log(flightid, userid);
     this.checkinService.checkin(flightid, userid).subscribe(
       data => {
@@ -38,21 +40,25 @@ export class HistoryComponent implements OnInit {
           .listBookingByUser(this.provider.userData.data.USERID)
           .subscribe(
             data => {
+              this.loading = false
               console.log('data', data);
               this.show = data;
             },
             error => {
+              this.loading = false
               console.log(error);
             }
           );
       },
       error => {
+        this.loading = false
         console.log(error);
       }
     );
   }
 
   ngOnInit() {
+    this.loading = true;
     if (!this.provider.userData) {
       this.provider.userData = jwtDecode(localStorage.getItem('token'));
     }
@@ -60,10 +66,12 @@ export class HistoryComponent implements OnInit {
       .listBookingByUser(this.provider.userData.data.USERID)
       .subscribe(
         data => {
+          this.loading = false
           console.log('data', data);
           this.show = data;
         },
         error => {
+          this.loading = false
           console.log(error);
         }
       );

@@ -14,6 +14,7 @@ import { EthereumService } from '../services/ethereum-service/ethereum.component
   animations: [flightTrigger]
 })
 export class HomeComponent implements OnInit {
+  public loading:any=false;
   public show: any = null;
   public Year: any;
   public Month: any;
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
     this.show = null;
   }
   search() {
+    this.loading = true;
     console.log(this.origin, this.dest, this.date);
     this.Year = Number(this.date.split('-')[0]);
     this.Year = String(this.Year);
@@ -59,16 +61,18 @@ export class HomeComponent implements OnInit {
       )
       .subscribe(
         data => {
+          this.loading = false;
           console.log('data', data);
           this.show = data;
         },
         error => {
+          this.loading = false;
           console.log(error);
         }
       );
   }
   book(id) {
-
+    this.loading = true
     this.ethereumService.getBlockchain().subscribe((data) => {
       var temp = true;
       for (var i = 0; i < data.length; i++) {
@@ -89,6 +93,7 @@ export class HomeComponent implements OnInit {
             .booking(this.provider.userData.data.USERID, id)
             .subscribe(
               data => {
+                this.loading = false
                 console.log('booked flight', data);
                 this.show = data;
               },
@@ -98,18 +103,20 @@ export class HomeComponent implements OnInit {
             );
         },
           (error) => {
+            this.loading = false
+
             alert("Login not Succesfull")
           });
       }
       else{
+        this.loading = false
+
         console.log("you have booked this flight aready")
       }
-
     },
-      (error) => {
+      (error) => {      this.loading = false
+
         alert("cant get data from blockchain")
       });
-
-
   }
 }

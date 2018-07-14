@@ -18,6 +18,7 @@ declare let window: any;
   animations: [translateTrigger]
 })
 export class LandingComponent implements OnInit {
+  public loading:any=false;
   email: String;
   password: String;
   public read: any;
@@ -55,6 +56,7 @@ export class LandingComponent implements OnInit {
   });
   }
   login() {
+    this.loading = true;
     this.loginService.login(this.email, this.password).subscribe(
       data => {
         console.log('data', data);
@@ -63,16 +65,20 @@ export class LandingComponent implements OnInit {
         this.provider.token = this.read;
         localStorage.setItem('token', this.provider.token);
         this.provider.userData = jwtDecode(this.read);
+        this.loading = false;
         this.router.navigateByUrl('/history');
       },
       error => {
-        alert('Login not Succesfull');
+        this.loading = false;
         this.provider.userData = null;
+        alert('Login not Succesfull');
+
       }
     );
   }
 
   signup() {
+    this.loading = true;
     this.signupService
       .signup(
         this.firstName,
@@ -84,11 +90,13 @@ export class LandingComponent implements OnInit {
       )
       .subscribe(
         data => {
+          this.loading = false;
           console.log('data', data);
           this.read = data;
           alert('Signup sucessfull');
         },
         error => {
+          this.loading = false;
           console.log(error);
           alert('signup not sucessfull');
         }
