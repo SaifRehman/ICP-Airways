@@ -6,6 +6,7 @@ import { BookingService } from '../services/booking-service/booking.component.se
 import * as jwtDecode from 'jwt-decode';
 import 'rxjs/Rx';
 import { EthereumService } from '../services/ethereum-service/ethereum.component.service';
+import { Headers, Http, RequestOptions, Response } from "@angular/http";
 
 @Component({
   selector: 'app-home',
@@ -22,19 +23,33 @@ export class HomeComponent implements OnInit {
   origin: any;
   dest: any;
   date: any;
+  public _url: any = "./assets/airports.json";
   constructor(
     public ethereumService: EthereumService,
     public provider: Provider,
     public listingService: ListingService,
-    public bookingService: BookingService
+    public bookingService: BookingService,
+    public http: Http
   ) {
     this.show = null;
   }
 
   ngOnInit() {
+    this.loading = true;
+    if(!this.provider.rawData){
+      this.getJSON().subscribe(data => {
+        this.loading = false
+        this.provider.rawData = data;
+      });
+    }
     if (!this.provider.userData) {
       this.provider.userData = jwtDecode(localStorage.getItem('token'));
     }
+  }
+  public getJSON() {
+    return this.http
+      .get(this._url)
+      .map((response: Response) => response.json());
   }
   clear() {
     this.show = null;
