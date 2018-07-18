@@ -239,7 +239,4 @@ $ docker build -t angular .
 $ kubectl create -f service-deployment.yml
 ```
 ### High level Architecture Diagram
-![high](high_level_arch.png)
-
-### Low level Architecture Diagram
-![low](arch_diagram.png)
+![high](final.png)
