@@ -1,9 +1,9 @@
 FROM golang:1.9.2 as builder
+RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get clean
-RUN  rm -r /var/lib/apt/lists/* -vf
-RUN apt-get clean
-RUN apt-get update 
-RUN apt-get install  libltdl-dev 
+RUN apt clean
+RUN apt update
+RUN apt-get install -y libltdl-dev 
 ARG SOURCE_LOCATION=/
 COPY . /go/
 WORKDIR ${SOURCE_LOCATION}
