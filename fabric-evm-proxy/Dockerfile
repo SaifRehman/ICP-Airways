@@ -3,7 +3,7 @@ RUN apt-get clean
 RUN  rm -r /var/lib/apt/lists/* -vf
 RUN apt-get clean
 RUN apt-get update 
-RUN install  libltdl-dev 
+RUN apt-get install  libltdl-dev 
 ARG SOURCE_LOCATION=/
 COPY . /go/
 WORKDIR ${SOURCE_LOCATION}
