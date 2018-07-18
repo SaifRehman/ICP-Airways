@@ -1,0 +1,41 @@
+1. Download and install web3 `npm install web3`
+1. Connect to the ethserver created previously
+  ```
+  > Web3 = require('web3')
+  > web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:5000"))
+  ```
+1. Create a contract object by using the abiDefinition, available at remix.ethereum.org.
+```
+> SimpleStorageABI = [
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "x",
+				"type": "uint256"
+			}
+		],
+		"name": "set",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "get",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+> SimpleStorage = web3.eth.contract(SimpleStorageABI)
+```
+1.
