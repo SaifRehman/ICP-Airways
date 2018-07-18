@@ -1,6 +1,6 @@
 FROM golang:1.9.2 as builder
+RUN apt clean
 RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get clean
 RUN apt clean
 RUN apt update
 RUN apt-get install -y libltdl-dev 
