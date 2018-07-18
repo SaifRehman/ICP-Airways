@@ -10,5 +10,5 @@ WORKDIR ${SOURCE_LOCATION}
 RUN mkdir go/src/github.com
 RUN mkdir go/src/github.com/hyperledger
 RUN ls go/src/github.com
-RUN cd /go/src/github.com/hyperledger; git clone https://github.com/SaifRehman/fabric-chaincode-evm.git ; cd fabric-chaincode-evm; ETHSERVER_CONFIG=/go/fabric-cluster.yml go run main.go
+ENTRYPOINT cd /go/src/github.com/hyperledger; git clone https://github.com/SaifRehman/fabric-chaincode-evm.git ; cd fabric-chaincode-evm; ETHSERVER_CONFIG=/go/fabric-cluster.yml go run main.go
 EXPOSE 5000
