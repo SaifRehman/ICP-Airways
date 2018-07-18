@@ -3,7 +3,7 @@ ARG SOURCE_LOCATION=/
 COPY . /go/
 WORKDIR ${SOURCE_LOCATION}
 RUN apt-get update -y
-RUN install libltdl-dev -y 
+RUN install libltdl-dev 
 RUN mkdir go/src/github.com
 RUN mkdir go/src/github.com/hyperledger
 RUN ls go/src/github.com
