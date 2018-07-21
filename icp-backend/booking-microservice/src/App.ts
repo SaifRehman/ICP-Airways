@@ -52,7 +52,7 @@ class App {
     let router = express.Router();
     router.post('/book', this.ensureToken, (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare("insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostUpgrade) VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)", function (err, stmt) {
+        conn.prepare("insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)", function (err, stmt) {
           if (err) {
             console.log(err);
             return conn.closeSync();

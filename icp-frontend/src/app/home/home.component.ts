@@ -26,12 +26,20 @@ export class HomeComponent implements OnInit {
   public Year: any;
   public Month: any;
   public DayOfMonth: any;
+  public offerNamePricing:any;
+  public offerTypePricing:any;
+  public costPricing:any;
+  public offerNameUpgrade:any;
+  public offerTypeUpgrade:any;
+  public costUpgrade:any;
   origin: any;
   dest: any;
   date: any;
   radioSelected:any;
+  radioSelected2:any;
   public checked = "checked";
   public _url: any = "./assets/airports.json";
+  public bookingID:any;
   constructor(
     public ethereumService: EthereumService,
     public provider: Provider,
@@ -65,6 +73,32 @@ export class HomeComponent implements OnInit {
   }
   clear() {
     this.show = null;
+  }
+  bookFlight(){
+    console.log(this.radioSelected,this.radioSelected2)
+    if(!this.radioSelected2){
+      this.offerNameUpgrade = "None"
+      this.offerTypeUpgrade = "None"
+      this.costUpgrade = "None"
+    }
+    else{
+      this.offerNameUpgrade = this.radioSelected2.split(',')[0]
+      this.offerTypeUpgrade = this.radioSelected2.split(',')[1]
+      this.costUpgrade = this.radioSelected2.split(',')[2]
+      this.costUpgrade = this.costUpgrade.toString()
+    }
+    console.log(this.offerNameUpgrade,this.offerTypeUpgrade,this.costUpgrade)
+    if(this.radioSelected){
+      this.offerNamePricing = this.radioSelected.split(',')[0]
+      this.offerTypePricing = this.radioSelected.split(',')[1]
+      this.costPricing = this.radioSelected.split(',')[2]
+      this.costPricing = this.costPricing.toString()
+    }
+    console.log(this.offerNamePricing ,this.offerTypePricing ,this.costPricing )
+    if(this.radioSelected){
+      this.book(this.bookingID);
+    }
+    
   }
   search() {
     this.loading = true;
@@ -103,7 +137,8 @@ export class HomeComponent implements OnInit {
       this.loading = false
     }
   }
-  ask(origin,dest,firstname) {
+  ask(origin,dest,firstname,id) {
+    this.bookingID=id;
     this.band = prompt("Please enter your band (GOLD or SILVER)")
     this.band = this.band.toUpperCase();
     if (!(this.band === 'GOLD' || this.band === 'SILVER')) {
@@ -131,50 +166,64 @@ export class HomeComponent implements OnInit {
   }
   book(id) {
     this.loading = true
-    this.ethereumService.getBlockchain().subscribe((data) => {
-      var temp = true;
-      for (var i = 0; i < data.length; i++) {
-        var obj = data[i];
-        if (obj.USERID === this.provider.userData.data.USERID && obj.FLIGHTID === id) {
-          temp = false
-          break;
-        }
-        console.log(obj.id);
-      }
-      if (temp) {
-        data.push({ USERID: this.provider.userData.data.USERID, FLIGHTID: id })
-        var dataPush = JSON.stringify(data)
-        console.log(data)
-        this.ethereumService.setBlockchain(dataPush).subscribe((data) => {
-          console.log('message', data);
-          this.bookingService
-            .booking(this.provider.userData.data.USERID, id)
-            .subscribe(
-              data => {
-                this.loading = false
-                console.log('booked flight', data);
-                this.show = data;
-              },
-              error => {
-                console.log(error);
-              }
-            );
-        },
-          (error) => {
-            this.loading = false
-
-            alert("Login not Succesfull")
-          });
-      }
-      else {
+    this.bookingService
+    .booking(this.provider.userData.data.USERID, id,this.offerNamePricing,this.offerTypePricing,this.costPricing,this.offerNameUpgrade,this.offerTypeUpgrade,this.costUpgrade)
+    .subscribe(
+      data => {
         this.loading = false
+        console.log('booked flight', data);
+        this.modalActions.emit({action:"modal",params:['close']});
+        this.show = data;
+      },
+      error => {
+        this.loading = false
+        this.modalActions.emit({action:"modal",params:['close']});
+        console.log(error);
+      })
+    // this.ethereumService.getBlockchain().subscribe((data) => {
+    //   var temp = true;
+    //   for (var i = 0; i < data.length; i++) {
+    //     var obj = data[i];
+    //     if (obj.USERID === this.provider.userData.data.USERID && obj.FLIGHTID === id) {
+    //       temp = false
+    //       break;
+    //     }
+    //     console.log(obj.id);
+    //   }
+    //   if (temp) {
+    //     data.push({ USERID: this.provider.userData.data.USERID, FLIGHTID: id })
+    //     var dataPush = JSON.stringify(data)
+    //     console.log(data)
+    //     this.ethereumService.setBlockchain(dataPush).subscribe((data) => {
+    //       console.log('message', data);
+    //       this.bookingService
+    //         .booking(this.provider.userData.data.USERID, id)
+    //         .subscribe(
+    //           data => {
+    //             this.loading = false
+    //             console.log('booked flight', data);
+    //             this.show = data;
+    //           },
+    //           error => {
+    //             console.log(error);
+    //           }
+    //         );
+    //     },
+    //       (error) => {
+    //         this.loading = false
 
-        console.log("you have booked this flight aready")
-      }
-    },
-      (error) => {
-      this.loading = false
-        alert("cant get data from blockchain")
-      });
-  }
+    //         alert("Login not Succesfull")
+    //       });
+    //   }
+    //   else {
+    //     this.loading = false
+
+    //     console.log("you have booked this flight aready")
+    //   }
+    // },
+    //   (error) => {
+    //   this.loading = false
+    //     alert("cant get data from blockchain")
+    //   });
+    }   
 }
