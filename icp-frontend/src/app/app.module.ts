@@ -14,7 +14,6 @@ import { RouterModule } from '@angular/router';
 import { Provider } from './provider/provider';
 import { LoginService } from './login/login.component.service';
 import { SignupService } from './signup/signup.component.service';
-
 import { ListingService } from './services/listing-schedule-service/listing.component.service';
 import { BookingService } from './services/booking-service/booking.component.service';
 import { CheckinService } from './services/checkin-service/checkin.component.service';
@@ -23,6 +22,7 @@ import { AuthService } from './services/auth/auth-service';
 import { LandingComponent } from './landing/landing.component';
 import { SlideAuthComponent } from './slide-auth/slide-auth.component';
 import { EthereumService } from './services/ethereum-service/ethereum.component.service';
+import { OdmService } from './services/odm-service/odm.component.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +52,7 @@ import { EthereumService } from './services/ethereum-service/ethereum.component.
     CheckinService,
     AuthGuardService,
     EthereumService,
+    OdmService,
     AuthService
   ],
   bootstrap: [AppComponent]
