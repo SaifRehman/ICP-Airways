@@ -139,13 +139,16 @@ export class HomeComponent implements OnInit {
   }
   ask(origin,dest,firstname,id) {
     this.bookingID=id;
-    this.band = prompt("Please enter your band (GOLD or SILVER)")
-    this.band = this.band.toUpperCase();
-    if (!(this.band === 'GOLD' || this.band === 'SILVER')) {
-      alert("Enter only GOLD or SILVER")
+    this.band = this.provider.userData.data.TIER
+    this.band = this.band.toString()
+    if(this.band === 'GOLD'){
+      this.milestone = 30000;
     }
-    else {
-      this.milestone = prompt("Please enter your milestone")
+    if(this.band === 'SILVER'){
+      this.milestone = 20000;
+    }
+    if(this.band === 'BRONZE'){
+      this.milestone = 10000;
     }
     if (this.band && this.milestone) {
       this.odmService
