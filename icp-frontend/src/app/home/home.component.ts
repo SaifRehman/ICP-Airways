@@ -1,11 +1,13 @@
+import { OdmService } from './../services/odm-service/odm.component.service';
 import { flightTrigger } from './../animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Provider } from '../provider/provider';
 import { ListingService } from '../services/listing-schedule-service/listing.component.service';
 import { BookingService } from '../services/booking-service/booking.component.service';
 import * as jwtDecode from 'jwt-decode';
 import 'rxjs/Rx';
 import { EthereumService } from '../services/ethereum-service/ethereum.component.service';
+import {MaterializeAction} from 'angular2-materialize';
 import { Headers, Http, RequestOptions, Response } from "@angular/http";
 
 @Component({
@@ -15,7 +17,11 @@ import { Headers, Http, RequestOptions, Response } from "@angular/http";
   animations: [flightTrigger]
 })
 export class HomeComponent implements OnInit {
-  public loading:any=false;
+  modalActions = new EventEmitter<string|MaterializeAction>();
+  public modalData:any;
+  public milestone: any;
+  public band: any;
+  public loading: any = false;
   public show: any = null;
   public Year: any;
   public Month: any;
@@ -23,24 +29,30 @@ export class HomeComponent implements OnInit {
   origin: any;
   dest: any;
   date: any;
+  radioSelected:any;
+  public checked = "checked";
   public _url: any = "./assets/airports.json";
   constructor(
     public ethereumService: EthereumService,
     public provider: Provider,
     public listingService: ListingService,
     public bookingService: BookingService,
-    public http: Http
+    public http: Http,
+    public odmService: OdmService
   ) {
     this.show = null;
   }
 
   ngOnInit() {
     this.loading = true;
-    if(!this.provider.rawData){
+    if (!this.provider.rawData) {
       this.getJSON().subscribe(data => {
         this.loading = false
         this.provider.rawData = data;
       });
+    }
+    else{
+      this.loading = false;
     }
     if (!this.provider.userData) {
       this.provider.userData = jwtDecode(localStorage.getItem('token'));
@@ -57,6 +69,7 @@ export class HomeComponent implements OnInit {
   search() {
     this.loading = true;
     console.log(this.origin, this.dest, this.date);
+    if(this.origin,this.dest,this.date){
     this.Year = Number(this.date.split('-')[0]);
     this.Year = String(this.Year);
 
@@ -85,6 +98,36 @@ export class HomeComponent implements OnInit {
           console.log(error);
         }
       );
+    }
+    else{
+      this.loading = false
+    }
+  }
+  ask(origin,dest,firstname) {
+    this.band = prompt("Please enter your band (GOLD or SILVER)")
+    this.band = this.band.toUpperCase();
+    if (!(this.band === 'GOLD' || this.band === 'SILVER')) {
+      alert("Enter only GOLD or SILVER")
+    }
+    else {
+      this.milestone = prompt("Please enter your milestone")
+    }
+    if (this.band && this.milestone) {
+      this.odmService
+      .getODM(origin,dest,firstname,this.band,this.milestone)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.modalData = data;
+          this.modalActions.emit({action:"modal",params:['open']});
+        },
+        error => {
+          console.log(error);
+        })
+    }
+  }
+  closeModal() {
+    this.modalActions.emit({action:"modal",params:['close']});
   }
   book(id) {
     this.loading = true
@@ -123,14 +166,14 @@ export class HomeComponent implements OnInit {
             alert("Login not Succesfull")
           });
       }
-      else{
+      else {
         this.loading = false
 
         console.log("you have booked this flight aready")
       }
     },
-      (error) => {      this.loading = false
-
+      (error) => {
+      this.loading = false
         alert("cant get data from blockchain")
       });
   }

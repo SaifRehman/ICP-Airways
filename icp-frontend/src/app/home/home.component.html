@@ -1,13 +1,13 @@
 <div class="content-container row">
-    <div *ngIf = "loading" class = "main">
-        <div class="spinner">
-          <div class="rect1"></div>
-          <div class="rect2"></div>
-          <div class="rect3"></div>
-          <div class="rect4"></div>
-          <div class="rect5"></div>
-        </div>
-      </div>
+  <div *ngIf="loading" class="main">
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+  </div>
   <header class="col s2">
     <div class="side-nav-container">
       <ul>
@@ -85,7 +85,7 @@
                   </a>
                 </div>
                 <div class="col l7  m7 black-text" style="margin-top:-1em;">
-                  <h6 style="font-size:1.5em;">Muhammed Fawaz</h6>
+                  <h6 style="font-size:1.5em;"></h6>
                   <h6 class="red-text text-darken-4" style="font-weight:400;font-size:1em;">User</h6>
                   <div class="col l6">
                     <a class="blue-text text-darken-4" style="font-size:0.8em;margin-left:-2em;">
@@ -184,8 +184,9 @@
                   <p>{{listshow.ARRTIME | timeRefactor}}</p>
                 </div>
                 <div class="col s3">
-                  <button  type='submit'
-                    id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="book(listshow.ID)">Book</button>
+                  <!-- <button  type='submit'
+                    id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="book(listshow.ID)">Book</button> -->
+                  <button type='submit' id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="ask(listshow.ORIGIN,listshow.DEST,provider.userData.data.FIRSTNAME)">Book</button>
                 </div>
               </div>
             </ng-container>
@@ -195,5 +196,34 @@
         <br/>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+  <div class="modal-content">
+    <h4>Select Pricing</h4>
+    <ng-container *ngIf="modalData">
+      <div *ngFor="let data of modalData.flightBooking.offers; let i = index">
+        <div *ngIf = "data.offerType === 'Pricing'">
+        <input  name={{i}} [value]='data.offerName' type="radio" [(ngModel)]="radioSelected"/>        
+
+        <label> {{data.offerName}}({{data.cost}}) </label>
+        </div>
+      </div>
+    </ng-container>
+    <h4>Select Upgrades</h4>
+    <ng-container *ngIf="modalData">
+      <div *ngFor="let data of modalData.flightBooking.offers; let i = index">
+        <div *ngIf = "data.offerType === 'Upgrade'">
+        <input  name={{i}} [value]='data.offerName' type="radio" [(ngModel)]="radioSelected"/>        
+
+        <label> {{data.offerName}}({{data.cost}}) </label>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
   </div>
 </div>

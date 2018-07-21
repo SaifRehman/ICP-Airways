@@ -35,6 +35,11 @@ class App {
         }
     }
     middleware() {
+        this.express.use(function (req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "*");
+            next();
+        });
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(passport.initialize());
@@ -44,13 +49,13 @@ class App {
         let router = express.Router();
         router.post('/book', this.ensureToken, (req, res, next) => {
             ibmdb.open(this.connectionString, function (err, conn) {
-                conn.prepare("insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID) VALUES (CURRENT TIMESTAMP, '0', ?, ?)", function (err, stmt) {
+                conn.prepare("insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostUpgrade) VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)", function (err, stmt) {
                     if (err) {
                         console.log(err);
                         return conn.closeSync();
                     }
                     console.log(req.body.lastName);
-                    stmt.execute([req.body.UserID, req.body.FlightID], function (err, result) {
+                    stmt.execute([req.body.UserID, req.body.FlightID, req.body.OfferNamePricing, req.body.OfferTypePricing, req.body.CostPricing, req.body.OfferNameUpgrade, req.body.OfferTypeUpgrade, req.body.CostUpgrade], function (err, result) {
                         if (err)
                             console.log(err);
                         else {
