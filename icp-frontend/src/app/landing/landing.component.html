@@ -1,13 +1,13 @@
 <div class="lp-container">
-    <div *ngIf = "loading" class = "main">
-        <div class="spinner">
-          <div class="rect1"></div>
-          <div class="rect2"></div>
-          <div class="rect3"></div>
-          <div class="rect4"></div>
-          <div class="rect5"></div>
-        </div>
-      </div>
+  <div *ngIf="loading" class="main">
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+  </div>
   <div class="row">
     <div class="col s7 img-container">
       <div>
@@ -78,6 +78,16 @@
                     <label for="register-age">Age</label>
                   </div>
                 </div>
+                <ng-container *ngIf="modalData">
+                    <div *ngFor="let data of modalData; let i = index">
+                        <div class="row">
+                      <div *ngIf = "data">
+                      <input  name = {{i}} [value]='data' type="radio" [(ngModel)]="tier" id = {{i}} >        
+                      <label for = {{i}}> {{data}} </label>
+                      </div>
+                      </div>
+                    </div>
+                  </ng-container>
                 <div class="row">
                   <div class="input-field col s12">
                     <input type="email" class="lname-ip" id="register-email" [(ngModel)]="emailSignup" name="r-email">
@@ -116,3 +126,4 @@
     </div>
   </div>
 </div>
+

@@ -206,7 +206,6 @@
       <div *ngFor="let data of modalData.flightBooking.offers; let i = index">
         <div *ngIf = "data.offerType === 'Pricing'">
         <input  name = {{i}} [value]='data.offerName + "," + data.offerType + "," + data.cost.toString()' type="radio" [(ngModel)]="radioSelected" id = {{i}} >        
-
         <label for = {{i}}> {{data.offerName}}({{data.cost}}) </label>
         </div>
       </div>
