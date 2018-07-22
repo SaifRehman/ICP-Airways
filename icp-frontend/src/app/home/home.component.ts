@@ -96,6 +96,7 @@ export class HomeComponent implements OnInit {
     }
     console.log(this.offerNamePricing ,this.offerTypePricing ,this.costPricing )
     if(this.radioSelected){
+      console.log(this.bookingID)
       this.book(this.bookingID);
     }
     
@@ -139,8 +140,10 @@ export class HomeComponent implements OnInit {
   }
   ask(origin,dest,firstname,id) {
     this.bookingID=id;
+    console.log('booking id',this.bookingID)
     this.band = this.provider.userData.data.TIER
-    this.band = this.band.toString()
+    console.log( this.provider.userData.data)
+
     if(this.band === 'GOLD'){
       this.milestone = 30000;
     }
@@ -150,6 +153,7 @@ export class HomeComponent implements OnInit {
     if(this.band === 'BRONZE'){
       this.milestone = 10000;
     }
+    console.log(this.band,this.milestone)
     if (this.band && this.milestone) {
       this.odmService
       .getODM(origin,dest,firstname,this.band,this.milestone)

@@ -37,8 +37,7 @@ class App {
             console.log(err);
             return conn.closeSync();
           }
-          console.log(req.body.lastName)
-          stmt.execute([req.body.lastName, req.body.firstName, req.body.location, req.body.email, passwordhash.generate(req.body.password), req.body.age, req.body.Tier], function (err, result) {
+          stmt.execute([req.body.lastName, req.body.firstName, req.body.location, req.body.email, passwordhash.generate(req.body.password), req.body.age, req.body.tier], function (err, result) {
             if (err) console.log(err);
             else{
               res.json({

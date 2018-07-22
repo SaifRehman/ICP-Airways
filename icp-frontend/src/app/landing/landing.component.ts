@@ -81,14 +81,15 @@ export class LandingComponent implements OnInit {
   }
 
   signup() {
+    console.log(this.tier)
     this.loading = true;
     this.signupService
       .signup(
         this.firstName,
         this.lastName,
         this.age,
-        this.email,
-        this.password,
+        this.emailSignup,
+        this.passwordSignup,
         this.location,
         this.tier
       )

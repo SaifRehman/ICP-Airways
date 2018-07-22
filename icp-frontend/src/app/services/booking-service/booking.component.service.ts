@@ -12,6 +12,7 @@ export class BookingService {
     }
 
     public booking(UserID,FlightID,OfferNamePricing,OfferTypePricing,CostPricing,OfferNameUpgrade,OfferTypeUpgrade,CostUpgrade): Observable<any> {
+        console.log('dataaaa',UserID,FlightID,OfferNamePricing,OfferTypePricing,CostPricing,OfferNameUpgrade,OfferTypeUpgrade,CostUpgrade)
         const options = new RequestOptions({
             headers: new Headers({
                 'Content-Type': 'application/json',
