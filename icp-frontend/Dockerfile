@@ -1,5 +1,5 @@
 
-FROM node:8.11.2 as node
+FROM node as node
 WORKDIR /usr/src/app
 COPY package.json ./
 RUN npm install --no-cache git

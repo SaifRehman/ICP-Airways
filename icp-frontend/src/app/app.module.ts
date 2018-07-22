@@ -23,6 +23,7 @@ import { LandingComponent } from './landing/landing.component';
 import { SlideAuthComponent } from './slide-auth/slide-auth.component';
 import { EthereumService } from './services/ethereum-service/ethereum.component.service';
 import { OdmService } from './services/odm-service/odm.component.service';
+import { MaterializeModule } from "angular2-materialize";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { OdmService } from './services/odm-service/odm.component.service';
     SlideAuthComponent
   ],
   imports: [
+    MaterializeModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

@@ -11,7 +11,7 @@ export class OdmService {
     public constructor(public http: Http, public provider:Provider) {
     }
 
-    public getODM(srcAirport,dstAirport,date,customerTier,customerName,milesBalance): Observable<any> {
+    public getODM(srcAirport,dstAirport,customerTier,customerName,milesBalance): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -22,7 +22,6 @@ export class OdmService {
             flightBooking:{
                 srcAirport,
                 dstAirport,
-                date,
                 customerTier,
                 customerName,
                 milesBalance,

@@ -32,13 +32,12 @@ class App {
     let router = express.Router();
     router.post('/createUser', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
-        conn.prepare("insert into SAMPLE.UserData (LastName, FirstName, Location, Email, Password, Age) VALUES (?, ?, ?, ?, ?, ?)", function (err, stmt) {
+        conn.prepare("insert into SAMPLE.UserData (LastName, FirstName, Location, Email, Password, Age, Tier) VALUES (?, ?, ?, ?, ?, ?, ?)", function (err, stmt) {
           if (err) {
             console.log(err);
             return conn.closeSync();
           }
-          console.log(req.body.lastName)
-          stmt.execute([req.body.lastName, req.body.firstName, req.body.location, req.body.email, passwordhash.generate(req.body.password), req.body.age], function (err, result) {
+          stmt.execute([req.body.lastName, req.body.firstName, req.body.location, req.body.email, passwordhash.generate(req.body.password), req.body.age, req.body.tier], function (err, result) {
             if (err) console.log(err);
             else{
               res.json({
@@ -55,7 +54,3 @@ class App {
   }
 }
 export default new App().express;
-
-
-
-// insert into "SAMPLE.UserData (LastName, FirstName, Location, Email, Password, Age) VALUES ('SAIF', 'rehman', 'ajman', 'a@a.com', '1', '23')"

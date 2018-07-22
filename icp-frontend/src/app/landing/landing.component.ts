@@ -5,6 +5,7 @@ import { SignupService } from '../signup/signup.component.service';
 import { Provider } from '../provider/provider';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { EthereumService } from '../services/ethereum-service/ethereum.component.service'
+import {MaterializeAction} from 'angular2-materialize';
 
 import * as jwtDecode from 'jwt-decode';
 var Web3 = require('web3')
@@ -20,6 +21,7 @@ declare let window: any;
 export class LandingComponent implements OnInit {
   public loading:any=false;
   email: String;
+  tier: String
   password: String;
   public read: any;
   public displayHeading = false;
@@ -30,6 +32,7 @@ export class LandingComponent implements OnInit {
   location: String;
   age: Number;
   passwordSignup: String;
+  public modalData = ['GOLD','SILVER','BRONZE']
   private web3Provider;
   constructor(
     public ethereumService:EthereumService,
@@ -78,15 +81,17 @@ export class LandingComponent implements OnInit {
   }
 
   signup() {
+    console.log(this.tier)
     this.loading = true;
     this.signupService
       .signup(
         this.firstName,
         this.lastName,
         this.age,
-        this.email,
-        this.password,
-        this.location
+        this.emailSignup,
+        this.passwordSignup,
+        this.location,
+        this.tier
       )
       .subscribe(
         data => {

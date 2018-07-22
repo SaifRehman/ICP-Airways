@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    this.signupService.signup(this.firstName, this.lastName, this.age, this.email, this.password, this.location).subscribe((data) => {
+    this.signupService.signup(this.firstName, this.lastName, this.age, this.email, this.password, this.location,'a').subscribe((data) => {
       console.log('data', data);
       this.read = data;
       alert('Signup sucessfull')
