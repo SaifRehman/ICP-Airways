@@ -28,8 +28,8 @@ export const AppRoutes: Routes = [
   },
   {
     path: 'odm-detail',
-    component: OdmDetailComponent,
-    canActivate: [AuthGuard]
+    component: OdmDetailComponent
+    // canActivate: [AuthGuard]
   },
   {
     path: '',
