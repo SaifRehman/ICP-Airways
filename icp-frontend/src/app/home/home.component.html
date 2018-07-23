@@ -199,7 +199,38 @@
   </div>
 </div>
 
-<div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+
+<div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+    <div class="modal-content">
+        <h4>Select Pricing</h4>
+        <ng-container *ngIf="modalData">
+          <div *ngFor="let data of modalData.flightBooking.offers; let i = index">
+            <div *ngIf = "data.offerType === 'Pricing'">
+            <input  name = {{i}} [value]='data.offerName + "," + data.offerType + "," + data.cost.toString()' type="radio" [(ngModel)]="radioSelected" id = {{i}} >        
+    
+            <label for = {{i}}> {{data.offerName}}({{data.cost}}) </label>
+            </div>
+          </div>
+        </ng-container>
+        <h4>Select Upgrades</h4>
+        <ng-container *ngIf="modalData">
+          <div *ngFor="let data of modalData.flightBooking.offers; let i = index">
+            <div *ngIf = "data.offerType === 'Upgrade'">
+            <input  name={{i}} [value]='data.offerName + "," + data.offerType + "," + data.cost.toString()' type="radio" [(ngModel)]="radioSelected2" id = {{i}}/>        
+    
+            <label for = {{i}}> {{data.offerName}}({{data.cost}}) </label>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="modal-footer">
+        <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
+        <a class="waves-effect waves-green btn-flat" (click)="bookFlight()">Book</a>
+      </div>
+  </div>
+
+
+<!-- <div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
   <div class="modal-content">
     <h4>Select Pricing</h4>
     <ng-container *ngIf="modalData">
@@ -226,4 +257,4 @@
     <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
     <a class="waves-effect waves-green btn-flat" (click)="bookFlight()">Book</a>
   </div>
-</div>
+</div> -->

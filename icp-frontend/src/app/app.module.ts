@@ -24,6 +24,7 @@ import { SlideAuthComponent } from './slide-auth/slide-auth.component';
 import { EthereumService } from './services/ethereum-service/ethereum.component.service';
 import { OdmService } from './services/odm-service/odm.component.service';
 import { MaterializeModule } from "angular2-materialize";
+import { OdmDetailComponent } from './odm-detail/odm-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MaterializeModule } from "angular2-materialize";
     HomeComponent,
     HistoryComponent,
     LandingComponent,
-    SlideAuthComponent
+    SlideAuthComponent,
+    OdmDetailComponent
   ],
   imports: [
     MaterializeModule,
