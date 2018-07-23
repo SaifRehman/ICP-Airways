@@ -1,3 +1,4 @@
+import { OdmDetailComponent } from './odm-detail/odm-detail.component';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core/src/metadata/ng_module';
 import { HistoryComponent } from './history/history.component';
@@ -24,6 +25,11 @@ export const AppRoutes: Routes = [
   {
     path: 'signup',
     component: LandingComponent
+  },
+  {
+    path: 'odm-detail',
+    component: OdmDetailComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
