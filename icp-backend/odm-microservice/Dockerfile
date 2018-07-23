@@ -4,7 +4,7 @@ COPY . .
 RUN npm install
 RUN npm i -g gulp-cli
 RUN gulp scripts
-EXPOSE 3000
+EXPOSE 3005
 RUN groupadd -g 999 appuser && \
     useradd -r -u 999 -g appuser appuser
 USER appuser

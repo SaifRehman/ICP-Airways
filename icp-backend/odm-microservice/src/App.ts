@@ -6,7 +6,6 @@ import * as passwordhash from 'password-hash'
 import * as passport from 'passport'
 import * as jwt from 'jsonwebtoken'
 import * as passportJWT from 'passport-jwt'
-var ibmdb = require('ibm_db');
 import * as Request from 'request'
 
 class App {

@@ -63,7 +63,7 @@ export class Provider {
             listFlights: "http://" + this.url + ":30092/listFlights",
             getBlockchain: "http://" + this.url + ":30089/getBlockchain",
             setBlockchain: "http://" + this.url + ":30089/setBlockchain",
-            setODM: "http://" + this.url + ":32473/DecisionService/rest/FlightBooking/FlightPricing"
+            setODM: "http://" + this.url + ":30095/odm"
         }
         console.log(this.apiUrl)
     }

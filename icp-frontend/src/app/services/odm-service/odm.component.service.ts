@@ -19,15 +19,13 @@ export class OdmService {
         });
         const link = this.provider.apiUrl.setODM
         const bodyObject = {
-            flightBooking:{
                 srcAirport,
                 dstAirport,
                 customerTier,
                 customerName,
                 milesBalance,
                 offers:[],
-                messages:[]
-            }
+                messages:[]   
         }
         const bodyString = JSON.stringify(bodyObject); // Stringify payload
         return this.http.post(link, bodyObject, options) // ...using post request
