@@ -25,6 +25,7 @@ import { EthereumService } from './services/ethereum-service/ethereum.component.
 import { OdmService } from './services/odm-service/odm.component.service';
 import { MaterializeModule } from "angular2-materialize";
 import { OdmDetailComponent } from './odm-detail/odm-detail.component';
+import { EmailService } from './services/email-service/email.component.service';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { OdmDetailComponent } from './odm-detail/odm-detail.component';
     CheckinService,
     AuthGuardService,
     EthereumService,
+    EmailService,
     OdmService,
     AuthService
   ],

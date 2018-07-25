@@ -8,6 +8,7 @@ from celery import shared_task
 import requests
 from flask import request
 from flask import abort
+from flask import json
 
 app = Flask(__name__)    
 broker_url = 'amqp://admin:admin@169.61.62.89:31290'          # Broker URL for RabbitMQ task queue
@@ -34,8 +35,11 @@ def email(id=None):
     a = email_task.delay(toEmail,src,dest)
     b = a.task_id
     res = celery.AsyncResult(b)
+    data = {'result':'success'}
+    js = json.dumps(data)
 
     return Response(
+        js,
         mimetype='application/json',
         status=200
     )

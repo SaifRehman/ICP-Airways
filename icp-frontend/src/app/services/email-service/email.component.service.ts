@@ -7,26 +7,21 @@ import { Provider } from '../../provider/provider';
 import 'rxjs/Rx';
 
 @Injectable()
-export class OdmService {
+export class EmailService {
     public constructor(public http: Http, public provider:Provider) {
     }
 
-    public getODM(srcAirport,dstAirport,customerTier,customerName,milesBalance): Observable<any> {
+    public postEmail(toemail,src,dest): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': this.provider.token
+                'Content-Type': 'application/json'
             })
         });
-        const link = this.provider.apiUrl.setODM
+        const link = this.provider.apiUrl.postEmail
         const bodyObject = {
-                srcAirport,
-                dstAirport,
-                customerTier,
-                customerName,
-                milesBalance,
-                offers:[],
-                messages:[]   
+                toemail,
+                src,
+                dest,  
         }
         const bodyString = JSON.stringify(bodyObject); // Stringify payload
         return this.http.post(link, bodyObject, options) // ...using post request

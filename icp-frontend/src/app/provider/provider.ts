@@ -55,7 +55,7 @@ export class Provider {
         ]
         this.apiUrl = {
             login: "http://" + this.url + ":30093/login",
-            signup: "http://" + this.url + ":30094/createUser",
+            signup: "http://" + this.url + ":30094 /createUser",
             book: "http://" + this.url + ":30090/book",
             listBookingByUser: "http://" + this.url + ":30090/listBookingByUser",
             checkin: "http://" + this.url + ":30091/checkin",
@@ -63,7 +63,8 @@ export class Provider {
             listFlights: "http://" + this.url + ":30092/listFlights",
             getBlockchain: "http://" + this.url + ":30089/getBlockchain",
             setBlockchain: "http://" + this.url + ":30089/setBlockchain",
-            setODM: "http://" + this.url + ":30095/odm"
+            setODM: "http://" + this.url + ":30095/odm",
+            postEmail: "http://" + this.url + ":30989/postEmail"
         }
         console.log(this.apiUrl)
     }
