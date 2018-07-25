@@ -32,9 +32,7 @@
     "express": "^4.14.0",
     "jsonwebtoken": "^8.2.2",
     "morgan": "^1.7.0",
-    "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
-    "password-hash": "^1.2.2",
+    "nodemailer": "^4.6.7",
     "request": "^2.87.0"
   }
 }
