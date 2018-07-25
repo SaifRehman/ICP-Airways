@@ -3,6 +3,8 @@ import { Provider } from '../provider/provider';
 import { BookingService } from '../services/booking-service/booking.component.service';
 import { CheckinService } from '../services/checkin-service/checkin.component.service';
 import { EthereumService } from '../services/ethereum-service/ethereum.component.service';
+import { EmailService } from '../services/email-service/email.component.service';
+import * as iso from "iso-3166-1";
 
 import * as jwtDecode from 'jwt-decode';
 import 'rxjs/Rx';
@@ -19,7 +21,8 @@ export class HistoryComponent implements OnInit {
     public ethereumService:EthereumService,
     public provider: Provider,
     public bookingService: BookingService,
-    public checkinService: CheckinService
+    public checkinService: CheckinService,
+    public emailService: EmailService
   ) {
   }
   test(){
@@ -31,7 +34,19 @@ export class HistoryComponent implements OnInit {
       alert("Login not Succesfull")
   });
   }
-  checkin(flightid, userid) {
+  convert(val){
+    var get = 'not found'
+  for (var i = 0; i < this.provider.rawData.length; i++) {
+    var obj = this.provider.rawData[i];
+    if (obj.iata === val) {
+      get = obj.name;
+      break;
+    }
+  }
+  return get;
+
+}
+  checkin(flightid, userid,src,dest) {
     this.loading = true;
     console.log(flightid, userid);
     this.checkinService.checkin(flightid, userid).subscribe(
@@ -43,6 +58,22 @@ export class HistoryComponent implements OnInit {
               this.loading = false
               console.log('data', data);
               this.show = data;
+              var newsrc = this.convert(src);
+              var newdest = this.convert(dest);
+              console.log('srcccccccc',newsrc,newdest)
+              this.emailService
+              .postEmail(this.provider.userData.data.EMAIL,newsrc,newdest)
+              .subscribe(
+                data => {
+
+        
+                },
+                error => {
+                  this.loading = false
+                  console.log(error);
+                }
+              );
+    
             },
             error => {
               this.loading = false

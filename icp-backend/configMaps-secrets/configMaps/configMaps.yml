@@ -6,7 +6,7 @@ metadata:
 data:
   NODE_ENV: development
   DATABASE: SAMPLE
-  PORT: '30662'
+  PORT: '31627'
   HOSTNAME: '169.61.62.89'
   PROTOCOL: TCPIP
   ODM: 'http://169.61.62.89:32473/DecisionService/rest/FlightBooking/FlightPricing'
