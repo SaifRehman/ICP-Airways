@@ -1,5 +1,4 @@
 FROM golang:1.9.2 as builder
-RUN rm -rf /var/lib/apt/lists/*
 RUN apt clean && apt update
 RUN apt install -y libltdl-dev 
 ARG SOURCE_LOCATION=/

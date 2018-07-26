@@ -230,7 +230,7 @@ organizations:
 #
 orderers:
   orderer.example.com:
-    url: grpcs://159.122.183.30:31010
+    url: grpcs://169.61.62.89:31010
 
     # these are standard properties defined by the gRPC library
     # they will be passed in as-is to gRPC client constructor
@@ -249,10 +249,10 @@ orderers:
 peers:
   blockchain-org1peer0.org1.example.com:
     # this URL is used to send endorsement and query requests
-    url: grpcs://159.122.183.30:30110
+    url: grpcs://169.61.62.89:30110
 
     # this URL is used to connect the EventHub and registering event listeners
-    eventUrl: grpcs://159.122.183.30:30111
+    eventUrl: grpcs://169.61.62.89:30111
 
     grpcOptions:
       ssl-target-name-override: blockchain-org1peer0
@@ -263,8 +263,8 @@ peers:
       path: /root/go/fabric-evm-ibm-container-service/cs-offerings/crypto-config/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
 
   blockchain-org2peer0.org2.example.com:
-    url: grpcs://159.122.183.30:30210
-    eventUrl: grpcs://159.122.183.30:30211
+    url: grpcs://169.61.62.89:30210
+    eventUrl: grpcs://169.61.62.89:30211
     grpcOptions:
       ssl-target-name-override: blockchain-org2peer0
     tlsCACerts:
