@@ -19,7 +19,6 @@ class App {
   public provider: any;
   public web3: any;
   public contract: any
-  public myContract:any;
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
@@ -67,10 +66,9 @@ class App {
         "type": "function"
       }
     ]
-    this.web3 = new Web3(new Web3.providers.HttpProvider('http://169.61.62.89:30081'))
-    this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
-    this.contract = this.web3.eth.contract(this.abi)
-    this.myContract = this.contract.at("0xcf48d4d2fb89087e17b79ab52c6695369e877003")
+    this.provider = new Web3.providers.HttpProvider("http://169.61.62.89:30081");
+    this.web3 = new Web3(this.provider);
+    this.contract = new this.web3.eth.Contract(this.abi, "0xcf48d4d2fb89087e17b79ab52c6695369e877003");
     this.express = express();
     this.middleware();
     this.routes();
@@ -100,13 +98,27 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.post('/setBlockchain', (req, res, next) => {
-      this.myContract.set(req.body.data);
-      res.json({
-        message: "sucessful"
-      })
+      this.contract.methods.set(req.body.data).send({
+        from: '0x3a7ce8ce79f4f9b6b96cd4fcf558ad197a0c28a3',
+        gas: '1000000'
+      }).then(function(){
+        res.json({
+          message: "sucessful"
+        })
+    }).catch((err) => {
+      console.log (err)
+      return err
+    });
+     
     });
     router.get('/getBlockchain', (req, res, next) => {
-      res.json({data:this.myContract.get()}); 
+      this.contract.methods.get().call().then(function (response) {
+        console.log(response)
+        res.json({data:response});
+
+      }).catch(function (err) {
+        console.log(err);
+      });
     });
     this.express.use('/', router);
   }
