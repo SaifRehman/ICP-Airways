@@ -106,7 +106,7 @@ class App {
       })
     });
     router.get('/getBlockchain', (req, res, next) => {
-      res.json(JSON.parse(this.myContract.get())); 
+      res.json({data:this.myContract.get()}); 
     });
     this.express.use('/', router);
   }
