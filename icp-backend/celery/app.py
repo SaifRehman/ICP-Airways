@@ -9,9 +9,11 @@ import requests
 from flask import request
 from flask import abort
 from flask import json
+from flask_cors import CORS
 
-app = Flask(__name__)    
-broker_url = 'amqp://admin:admin@169.61.62.89:31290'          # Broker URL for RabbitMQ task queue
+app = Flask(__name__)  
+CORS(app)
+  
 app.config['CELERY_RESULT_BACKEND'] = 'amqp://admin:admin@169.61.62.89:31290'
 app.config['CELERY_BROKER_URL'] = 'amqp://admin:admin@169.61.62.89:31290'
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'],backend = app.config['CELERY_RESULT_BACKEND'])

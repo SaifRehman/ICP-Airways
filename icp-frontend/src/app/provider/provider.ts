@@ -55,7 +55,7 @@ export class Provider {
         ]
         this.apiUrl = {
             login: "http://" + this.url + ":30093/login",
-            signup: "http://" + this.url + ":30094 /createUser",
+            signup: "http://" + this.url + ":30094/createUser",
             book: "http://" + this.url + ":30090/book",
             listBookingByUser: "http://" + this.url + ":30090/listBookingByUser",
             checkin: "http://" + this.url + ":30091/checkin",
