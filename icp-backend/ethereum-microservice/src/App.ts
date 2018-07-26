@@ -19,24 +19,11 @@ class App {
   public provider: any;
   public web3: any;
   public contract: any
+  public myContract:any;
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
-    this.abi = [
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "value",
-        "outputs": [
-          {
-            "name": "",
-            "type": "string"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
+    this.abi =[
       {
         "constant": false,
         "inputs": [
@@ -64,11 +51,26 @@ class App {
         "payable": false,
         "stateMutability": "view",
         "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "value",
+        "outputs": [
+          {
+            "name": "",
+            "type": "string"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
       }
     ]
-    this.provider = new Web3.providers.HttpProvider("http://169.61.62.89:30001");
-    this.web3 = new Web3(this.provider);
-    this.contract = new this.web3.eth.Contract(this.abi, "0x03a8cad9c7a5969b7382459c6f5fb2808fe3f178");
+    this.web3 = new Web3(new Web3.providers.HttpProvider('http://169.61.62.89:30081'))
+    this.web3.eth.defaultAccount = this.web3.eth.accounts[0]
+    this.contract = this.web3.eth.contract(this.abi)
+    this.myContract = this.contract.at("0xcf48d4d2fb89087e17b79ab52c6695369e877003")
     this.express = express();
     this.middleware();
     this.routes();
@@ -98,26 +100,13 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.post('/setBlockchain', (req, res, next) => {
-      this.contract.methods.set(req.body.data).send({
-        from: '0xd5335aee753f741c35a4ea5eb59dd4937827d8a9',
-        gas: '1000000'
-      }).then(function(){
-        res.json({
-          message: "sucessful"
-        })
-    }).catch((err) => {
-      console.log (err)
-    });
-     
+      this.myContract.set(req.body.data);
+      res.json({
+        message: "sucessful"
+      })
     });
     router.get('/getBlockchain', (req, res, next) => {
-      this.contract.methods.get().call().then(function (response) {
-        console.log(response)
-        res.json(JSON.parse(response));
-
-      }).catch(function (err) {
-        console.log(err);
-      });
+      res.json({data:this.myContract.get()}); 
     });
     this.express.use('/', router);
   }

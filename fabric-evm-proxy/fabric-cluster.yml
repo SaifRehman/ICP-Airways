@@ -62,7 +62,7 @@ client:
 
   # Needed to load users crypto keys and certs.
   cryptoconfig:
-    path: /root/go/fabric-evm-ibm-container-service/cs-offerings/crypto-config
+    path: /go/fabric-evm-deployment/cs-offerings/crypto-config
 
   # Some SDKs support pluggable KV stores, the properties under "credentialStore"
   # are implementation specific
@@ -240,7 +240,7 @@ orderers:
 
     tlsCACerts:
       # Certificate location absolute path
-      path: /root/go/fabric-evm-ibm-container-service/cs-offerings/crypto-config/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem
+      path: /go/fabric-evm-deployment/cs-offerings/crypto-config/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem
 
 #
 # List of peers to send various requests to, including endorsement, query
@@ -260,7 +260,7 @@ peers:
 
     tlsCACerts:
       # Certificate location absolute path
-      path: /root/go/fabric-evm-ibm-container-service/cs-offerings/crypto-config/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
+      path: /go/fabric-evm-deployment/cs-offerings/crypto-config/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
 
   blockchain-org2peer0.org2.example.com:
     url: grpcs://169.61.62.89:30210
@@ -268,4 +268,4 @@ peers:
     grpcOptions:
       ssl-target-name-override: blockchain-org2peer0
     tlsCACerts:
-      path: /root/go/fabric-evm-ibm-container-service/cs-offerings/crypto-config/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem
+      path: /go/fabric-evm-deployment/cs-offerings/crypto-config/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem
