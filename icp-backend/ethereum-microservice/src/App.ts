@@ -84,6 +84,17 @@ class App {
       res.sendStatus(403);
     }
   }
+   foo() {
+    return new Promise(function(resolve, reject) {
+      // Do some async stuff
+      console.log('foo is about to resolve');
+      resolve();
+    });
+  }
+      
+ 
+  
+ 
   private middleware(): void {
     this.express.use(function (req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
@@ -100,15 +111,11 @@ class App {
     router.post('/setBlockchain', (req, res, next) => {
       this.contract.methods.set(req.body.data).send({
         from: '0x3a7ce8ce79f4f9b6b96cd4fcf558ad197a0c28a3',
-        gas: '1000000'
-      }).then(function(){
-        res.json({
-          message: "sucessful"
-        })
-    }).catch((err) => {
-      console.log (err)
-      return err
-    });
+        gas: '10000000'
+      })
+      res.json({
+        message: "sucessful"
+      })
      
     });
     router.get('/getBlockchain', (req, res, next) => {
