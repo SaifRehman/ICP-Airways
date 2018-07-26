@@ -84,13 +84,7 @@ class App {
       res.sendStatus(403);
     }
   }
-   foo() {
-    return new Promise(function(resolve, reject) {
-      // Do some async stuff
-      console.log('foo is about to resolve');
-      resolve();
-    });
-  }
+
       
  
   
