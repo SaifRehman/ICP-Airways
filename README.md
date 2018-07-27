@@ -8,7 +8,7 @@
   <br>
 </h1>
 
-<h4 align="center">Powered by  Kubernetes, Docker, ODM, DB2, RabbitMQ, Celery, Hyperledger Burrow, and  IBM Cloud Private</h4>
+<h4 align="center">Powered by  Kubernetes, ODM, DB2, Hyperledger Burrow, and IBM Cloud Private</h4>
 
 <p align="center">
   <a>
