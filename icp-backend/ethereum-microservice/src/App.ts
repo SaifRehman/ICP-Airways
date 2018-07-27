@@ -66,9 +66,9 @@ class App {
         "type": "function"
       }
     ]
-    this.provider = new Web3.providers.HttpProvider("http://169.61.62.89:30081");
+    this.provider = new Web3.providers.HttpProvider(process.env.HttpProvider);
     this.web3 = new Web3(this.provider);
-    this.contract = new this.web3.eth.Contract(this.abi, "0xcf48d4d2fb89087e17b79ab52c6695369e877003");
+    this.contract = new this.web3.eth.Contract(this.abi, process.env.CONTRACTADRESS);
     this.express = express();
     this.middleware();
     this.routes();
@@ -105,7 +105,7 @@ class App {
     router.post('/setBlockchain', (req, res, next) => {
       
       this.contract.methods.set(req.body.data).send({
-        from: '0x3a7ce8ce79f4f9b6b96cd4fcf558ad197a0c28a3',
+        from: process.env.ETHEREUMACCOUNT,
         gas: '10000000'
       })
       res.json({

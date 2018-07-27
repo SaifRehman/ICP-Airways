@@ -15,6 +15,21 @@ spec:
          image: "mycluster.icp:8500/default/ethereum-microservice:latest" 
          imagePullPolicy: Always
          env:
+          - name: HttpProvider
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: HttpProvider
+          - name: CONTRACTADRESS
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: CONTRACTADRESS
+          - name: ETHEREUMACCOUNT
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: ETHEREUMACCOUNT
           - name: SECRET
             valueFrom:
               secretKeyRef:

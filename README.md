@@ -89,15 +89,14 @@ When you've completed this Code Pattern, you will understand how to:
 needs to be recorded
 
 ## Deploy to IBM Cloud Private
-<!-- ### Pre-req installation 
+
+### Pre-req installation 
 1. Install [Nodejs](https://nodejs.org/en/download/)
 2. Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 3. Intall [Docker](https://docs.docker.com/install/)
 4. Install [Angular4Cli](https://cli.angular.io)
 5. Install [DBVisualiser](https://www.dbvis.com/download/)
-6. Install [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
-7. Install [Hypervisor-virtualbox](https://www.virtualbox.org/wiki/Downloads)
-8. Install gulpcli 
+6. Install gulpcli 
 ``` s
 $ npm i gulp-cli -g
 ```
@@ -109,13 +108,11 @@ $ npm i gulp-cli -g
 * [x] Login-microservice
 * [x] Signup-microservice
 * [x] Db2-microservice
-* [x] Jenkins-microservice
+* [x] ODM-microservice
+* [x] Email-microservice
+* [x] Blockchain-microservice
 * [x] Angular frontend microservice
 
-### Point to local docker registery to minikube
-```s
-$ eval $(minikube docker-env)
-```
 ### Install all dependencies and create images 
 1. Booking Microservice
 ```s
@@ -152,7 +149,7 @@ $ npm i
 $ gulp scripts
 $ docker build -t signup-microservice .
 ```
-
+<!--
 ### Start minikube
 ```s
 $ minikube start
