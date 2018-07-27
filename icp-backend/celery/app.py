@@ -36,6 +36,8 @@ def email(id=None):
     src = request.json['src']
     dest = request.json['dest']
     a = email_task.delay(toEmail,src,dest)
+    b = a.task_id
+    res = celery.AsyncResult(b)
     data = {'result':'success'}
     js = json.dumps(data)
 
