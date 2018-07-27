@@ -30,6 +30,7 @@ In this Code Pattern, we will build a cloud native application based on microser
 * Angular
 * Hypereledger Fabric
 * Hyperledger Burrow
+* Solidity
 * Docker
 * Kubernetes 
 
