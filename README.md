@@ -33,8 +33,9 @@ In this Code Pattern, we will build a cloud native application based on microser
 * Solidity
 * Docker
 * Kubernetes 
+* IBM Cloud Private
 
-Development of cloud native apps that are broken down into a set of microservices has been praised and commended as best-practice in software development methodologies. Software stacks like Kubernetes, which enable cloud native computing, have therefore picked up quite a bit of popularity.
+Cloud native application is a buzzword these days. Technologies like Kubernetes and Docker are picking up reputation and popularity in Cloud native world. This Pattern will show an end to end process of building highly available Cloud Native Application on IBM Cloud Private.
 
 
 <!-- ### Pre-req installation 
