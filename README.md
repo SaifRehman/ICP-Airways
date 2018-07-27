@@ -87,6 +87,8 @@ When you've completed this Code Pattern, you will understand how to:
 
 ## Watch the Demo
 needs to be recorded
+
+## Deploy to IBM Cloud Private
 <!-- ### Pre-req installation 
 1. Install [Nodejs](https://nodejs.org/en/download/)
 2. Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
@@ -149,15 +151,6 @@ $ cd signup-microservice
 $ npm i
 $ gulp scripts
 $ docker build -t signup-microservice .
-```
-6. Db2 Microservice
-```s
-$ cd db2-microservice
-$ docker build -t db2 .
-```
-7. Jenkins Microservice
-```s
-$ docker build -t jenkins .
 ```
 
 ### Start minikube
