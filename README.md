@@ -47,6 +47,16 @@ When you've completed this Code Pattern, you will understand how to:
 * Create distributed task ques using RabbitMQ and Celery
 * Leveraging DB2 as backend data storage
 * Deploying Ethereum smart contract on Hyperledger fabric by leveraging Hyperledger Burrow
+
+#### Flow
+
+1. *USER*:- End user who will acces the application
+2. *APPUI*:- The user interface is built using Angular4. It leverages restful endpoints by backend microservices
+3. *Login Microservice*:- This Microservice allows the user to login to the application 
+4. *Signup Microservice*:- This Microservice allows the user to signup to the application
+5. *Checkin Microservice*:- This Microservice allows the user checkin to a given booked flight
+6. *Listing Microservice*:- This Microservice allows the user to list and browse the available flights
+7. *Booking Microservice*:- This Microservice allows the user 
 <!-- ### Pre-req installation 
 1. Install [Nodejs](https://nodejs.org/en/download/)
 2. Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
