@@ -220,6 +220,10 @@ $ docker build -t frontend --no-cache .
 $ docker tag frontend <icpdns>:8500/default/frontend:latest
 $ docker push <icpdns>:8500/default/frontend:latest
 ```
+> Find all your images in ```https://icpip:8443/console/manage/images``` 
+
+![images](images.png)
+
 <!--
 ### Start minikube
 ```s
