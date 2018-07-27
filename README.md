@@ -194,16 +194,7 @@ $ docker tag email-microservice <icpdns>:8500/default/email-microservice:latest
 $ docker push <icpdns>:8500/default/email-microservice:latest
 ```
 
-8. Email Microservice
-```s
-$ cd email-microservice
-$ npm i
-$ docker build -t email-microservice --no-cache .
-$ docker tag email-microservice <icpdns>:8500/default/email-microservice:latest
-$ docker push <icpdns>:8500/default/email-microservice:latest
-```
-
-9. Ethereum Microservice
+8. Ethereum Microservice
 ```s
 $ cd ethereum-microservice
 $ npm i
@@ -212,13 +203,22 @@ $ docker tag ethereum-microservice <icpdns>:8500/default/ethereum-microservice:l
 $ docker push <icpdns>:8500/default/ethereum-microservice:latest
 ```
 
-10. Odm Microservice
+9. Odm Microservice
 ```s
 $ cd odm-microservice
 $ npm i
 $ docker build -t odm-microservice --no-cache .
 $ docker tag odm-microservice <icpdns>:8500/default/odm-microservice:latest
 $ docker push <icpdns>:8500/default/odm-microservice:latest
+```
+
+10. Frontend
+```s
+$ cd icp-frontend
+$ npm i
+$ docker build -t frontend --no-cache .
+$ docker tag frontend <icpdns>:8500/default/frontend:latest
+$ docker push <icpdns>:8500/default/frontend:latest
 ```
 <!--
 ### Start minikube
