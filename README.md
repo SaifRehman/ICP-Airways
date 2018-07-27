@@ -47,6 +47,7 @@ When you've completed this Code Pattern, you will understand how to:
 * Create distributed task ques using RabbitMQ and Celery
 * Leveraging DB2 as backend data storage
 * Deploying Ethereum smart contract on Hyperledger fabric by leveraging Hyperledger Burrow
+* Learn how to use IBM Cloud Private, Docker, and Kubernetes
 
 #### Flow
 
@@ -56,7 +57,19 @@ When you've completed this Code Pattern, you will understand how to:
 4. *Signup Microservice*:- This Microservice allows the user to signup to the application
 5. *Checkin Microservice*:- This Microservice allows the user checkin to a given booked flight
 6. *Listing Microservice*:- This Microservice allows the user to list and browse the available flights
-7. *Booking Microservice*:- This Microservice allows the user 
+7. *Booking Microservice*:- This Microservice allows the user to to book an available flight
+8. *Blockchain Microservice*:- This Microservice helps to communicate with the Blockchain
+9. *IBM DB2*:- SQL Database for storing data
+10. *ODM Microservice*:- This Microservice helps to communicate with the ODM Service
+11. *ODM*:- IBM Operational Decision Manager is an advanced business rules management system that helps you capture, automate and govern frequent, repeatable business decisions and adds real-time decision making to your day-to-day operations
+12. *Email Microservice*:- Email Microservice communicates with RabbitMQ and Celery to send email in asynchronous ques
+13. *RabbitMQ*:- RabbitMQ is a messaging broker - an intermediary for messaging. It gives your applications a common platform to send and receive messages, and your messages a safe place to live until received.
+14. *Celery*:- Celery is an asynchronous task queue/job queue based on distributed message passing
+15. *Ethereum Proxy*:- Allows to communicate with Ethereum Virtual Machine
+16. *Hyperledger Burrow EVM Chaincode Plugin*:- Allows Ethereum Capabilities on top of Hyperledger Fabric by leveraging Hyperledger Burrow
+17. *Hyperledger Fabric*:- Hyperledger Fabric is a blockchain framework implementation and one of the Hyperledger projects hosted by The Linux Foundation. Intended as a foundation for developing applications or solutions with a modular architecture, Hyperledger Fabric allows components, such as consensus and membership services, to be plug-and-play
+
+ ![high](high_level_arch.png)
 <!-- ### Pre-req installation 
 1. Install [Nodejs](https://nodejs.org/en/download/)
 2. Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
