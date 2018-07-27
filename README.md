@@ -115,6 +115,26 @@ $ npm i gulp-cli -g
 * [x] Ethereum Proxy microservice
 * [x] Celery microservice
 
+### Connect Docker (Private registery) with IBM Cloud Private
+1. From your terminal type
+```
+$ sudo nano /etc/hosts
+```
+![icp-docker](icp-docker.png)
+
+2. Type in your ICP ip and provide a dns name, quit and save the file
+3. Go to Docker prefernces
+
+![pref](pref.png)
+
+4. Navigate to Daemon tab, click on + button and add an entry “icpdns:85000”, click Apply & Restart button to restart Docker service. 
+
+![dock-pi](dock-pi.png)
+
+5. In your terminal type
+```
+$ docker login icpdns:85000
+```
 ### Install all dependencies and create images 
 1. Booking Microservice
 ```s
