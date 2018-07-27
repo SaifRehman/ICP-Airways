@@ -135,27 +135,33 @@ $ sudo nano /etc/hosts
 ```
 $ docker login icpdns:85000
 ```
-### Install all dependencies and create images 
+### Install all dependencies, create images and upload it to Private registery of IBM Cloud Private
 1. Booking Microservice
 ```s
 $ cd booking-microservice
 $ npm i
 $ gulp scripts
-$ docker build -t booking-microservice .
+$ docker build -t booking-microservice --no-cache .
+$ docker tag booking-microservice <icpdns>:8500/default/booking-microservice:latest
+$ docker push <icpdns>:8500/default/booking-microservice:latest
 ```
 2. Checkin Microservice
 ```s
 $ cd checkin-microservice
 $ npm i
 $ gulp scripts
-$ docker build -t checkin-microservice .
+$ docker build -t checkin-microservice --no-cache .
+$ docker tag checkin-microservice <icpdns>:8500/default/checkin-microservice:latest
+$ docker push <icpdns>:8500/default/checkin-microservice:latest
 ```
 3. Listing Microservice
 ```s
 $ cd listing-microservice
 $ npm i
 $ gulp scripts
-$ docker build -t listing-microservice .
+$ docker build -t listing-microservice --no-cache .
+$ docker tag listing-microservice <icpdns>:8500/default/listing-microservice:latest
+$ docker push <icpdns>:8500/default/listing-microservice:latest
 ```
 4. Login Microservice
 ```s
@@ -163,13 +169,17 @@ $ cd login-microservice
 $ npm i
 $ gulp scripts
 $ docker build -t login-microservice .
+$ docker tag login-microservice <icpdns>:8500/default/login-microservice:latest
+$ docker push <icpdns>:8500/default/login-microservice:latest
 ```
 5. Signup Microservice
 ```s
 $ cd signup-microservice
 $ npm i
 $ gulp scripts
-$ docker build -t signup-microservice .
+$ docker build -t signup-microservice --no-cache .
+$ docker tag signup-microservice <icpdns>:8500/default/signup-microservice:latest
+$ docker push <icpdns>:8500/default/signup-microservice:latest
 ```
 <!--
 ### Start minikube
