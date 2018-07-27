@@ -16,6 +16,23 @@ spec:
          imagePullPolicy: Always
          ports:
          - containerPort: 4000
+         env:
+          - name: CELERY_RESULT_BACKEND
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: CELERY_RESULT_BACKEND
+          - name: CELERY_BROKER_URL
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: CELERY_BROKER_URL
+          - name: EMAILAPI
+            valueFrom:
+              configMapKeyRef:
+                name: env-database
+                key: EMAILAPI
+
 ---
 apiVersion: v1
 kind: Service
