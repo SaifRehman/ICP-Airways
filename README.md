@@ -140,7 +140,6 @@ $ docker login icpdns:8500
 ```s
 $ cd booking-microservice
 $ npm i
-$ gulp scripts
 $ docker build -t booking-microservice --no-cache .
 $ docker tag booking-microservice <icpdns>:8500/default/booking-microservice:latest
 $ docker push <icpdns>:8500/default/booking-microservice:latest
@@ -149,7 +148,6 @@ $ docker push <icpdns>:8500/default/booking-microservice:latest
 ```s
 $ cd checkin-microservice
 $ npm i
-$ gulp scripts
 $ docker build -t checkin-microservice --no-cache .
 $ docker tag checkin-microservice <icpdns>:8500/default/checkin-microservice:latest
 $ docker push <icpdns>:8500/default/checkin-microservice:latest
@@ -158,7 +156,6 @@ $ docker push <icpdns>:8500/default/checkin-microservice:latest
 ```s
 $ cd listing-microservice
 $ npm i
-$ gulp scripts
 $ docker build -t listing-microservice --no-cache .
 $ docker tag listing-microservice <icpdns>:8500/default/listing-microservice:latest
 $ docker push <icpdns>:8500/default/listing-microservice:latest
@@ -167,8 +164,7 @@ $ docker push <icpdns>:8500/default/listing-microservice:latest
 ```s
 $ cd login-microservice
 $ npm i
-$ gulp scripts
-$ docker build -t login-microservice .
+$ docker build -t login-microservice --no-cache .
 $ docker tag login-microservice <icpdns>:8500/default/login-microservice:latest
 $ docker push <icpdns>:8500/default/login-microservice:latest
 ```
@@ -176,10 +172,35 @@ $ docker push <icpdns>:8500/default/login-microservice:latest
 ```s
 $ cd signup-microservice
 $ npm i
-$ gulp scripts
 $ docker build -t signup-microservice --no-cache .
 $ docker tag signup-microservice <icpdns>:8500/default/signup-microservice:latest
 $ docker push <icpdns>:8500/default/signup-microservice:latest
+```
+
+6. Celery Microservice
+```s
+$ cd celery
+$ docker build -t celery --no-cache .
+$ docker tag celery <icpdns>:8500/default/celery:latest
+$ docker push <icpdns>:8500/default/celery:latest
+```
+
+7. Email Microservice
+```s
+$ cd email-microservice
+$ npm i
+$ docker build -t email-microservice --no-cache .
+$ docker tag email-microservice <icpdns>:8500/default/email-microservice:latest
+$ docker push <icpdns>:8500/default/email-microservice:latest
+```
+
+8. Email Microservice
+```s
+$ cd email-microservice
+$ npm i
+$ docker build -t email-microservice --no-cache .
+$ docker tag email-microservice <icpdns>:8500/default/email-microservice:latest
+$ docker push <icpdns>:8500/default/email-microservice:latest
 ```
 <!--
 ### Start minikube
