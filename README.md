@@ -301,7 +301,7 @@ $ ./create_all.sh
 9. Navigate to ```fabric-evm-proxy```
 10. Deploy Ethereum Proxy image to ICP Private registery
 ```s
-$ docker build -tethereumproxy --no-cache .
+$ docker build -ethereumproxy --no-cache .
 $ docker tag ethereumproxy <icpdns>:8500/default/ethereumproxy:latest
 $ docker push <icpdns>:8500/default/ethereumproxy:latest
 ```
