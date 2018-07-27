@@ -248,7 +248,12 @@ path: your folder path you created in your icp proxy
 > This screenshot is an example
 ![icp3](icp3.png)
 8. Click ```Create```
-
+9. Click on ``` Persistance Volume Claim ``` tab
+10. Click on ``` Create Persistance Volume Claim ```
+11. Give the name ```shared-pvc```
+12. Provide storage request ```30GB```
+13. Provide access mode ``` Read Write Many ```
+14. Click on Create
 <!--
 ### Start minikube
 ```s
