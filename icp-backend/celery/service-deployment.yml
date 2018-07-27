@@ -32,7 +32,6 @@ spec:
               configMapKeyRef:
                 name: env-database
                 key: EMAILAPI
-
 ---
 apiVersion: v1
 kind: Service
