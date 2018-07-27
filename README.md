@@ -18,7 +18,24 @@
 </p>
 <br>
 
-## Building an Airline Booking Application based on Microservices Architecture on IBM Cloud Private
+# Building an Airline Booking Application based on Microservices Architecture on IBM Cloud Private
+### Introduction
+
+In this Code Pattern, we will build a cloud native application based on microservice architecture, IBM Middlewares and following 12 factor practices. This application is an Airline Booking app, and the technologies behind this app are:- 
+* Nodejs (Typescript)
+* IBM DB2
+* IBM ODM
+* RabbitMQ,
+* Celery
+* Angular
+* Hypereledger Fabric
+* Hyperledger Burrow
+* Docker
+* Kubernetes 
+
+Development of cloud native apps that are broken down into a set of microservices has been praised and commended as best-practice in software development methodologies. Software stacks like Kubernetes, which enable cloud native computing, have therefore picked up quite a bit of popularity.
+
+
 <!-- ### Pre-req installation 
 1. Install [Nodejs](https://nodejs.org/en/download/)
 2. Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
