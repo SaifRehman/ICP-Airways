@@ -212,7 +212,7 @@ $ docker tag odm-microservice <icpdns>:8500/default/odm-microservice:latest
 $ docker push <icpdns>:8500/default/odm-microservice:latest
 ```
 
-10. Frontend
+10. Angular Frontend
 ```s
 $ cd icp-frontend
 $ npm i
