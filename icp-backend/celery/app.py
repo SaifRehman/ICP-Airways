@@ -10,18 +10,19 @@ from flask import request
 from flask import abort
 from flask import json
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)  
 CORS(app)
   
-app.config['CELERY_RESULT_BACKEND'] = 'amqp://admin:admin@169.61.62.89:31290'
-app.config['CELERY_BROKER_URL'] = 'amqp://admin:admin@169.61.62.89:31290'
+app.config['CELERY_RESULT_BACKEND'] = os.environ['CELERY_RESULT_BACKEND']
+app.config['CELERY_BROKER_URL'] = os.environ['CELERY_BROKER_URL']
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'],backend = app.config['CELERY_RESULT_BACKEND'])
 celery.conf.update(app.config)
 
 @celery.task(bind=True)
 def email_task(self,toEmail,src,dest):
-    requests.post('http://169.61.62.89:30199/email', data = {'toemail':toEmail,'src':src,'dest':dest})
+    requests.post(os.environ['EMAILAPI'], data = {'toemail':toEmail,'src':src,'dest':dest})
     return "succuss"
 @app.route('/postEmail', methods=['POST'])
 def email(id=None):
