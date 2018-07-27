@@ -112,6 +112,8 @@ $ npm i gulp-cli -g
 * [x] Email-microservice
 * [x] Blockchain-microservice
 * [x] Angular frontend microservice
+* [x] Ethereum Proxy microservice
+* [x] Celery microservice
 
 ### Install all dependencies and create images 
 1. Booking Microservice
