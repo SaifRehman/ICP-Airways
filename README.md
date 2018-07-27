@@ -133,7 +133,7 @@ $ sudo nano /etc/hosts
 
 5. In your terminal type
 ```
-$ docker login icpdns:85000
+$ docker login icpdns:8500
 ```
 ### Install all dependencies, create images and upload it to Private registery of IBM Cloud Private
 1. Booking Microservice
