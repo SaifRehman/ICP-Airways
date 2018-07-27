@@ -224,6 +224,31 @@ $ docker push <icpdns>:8500/default/frontend:latest
 
 ![images](images.png)
 
+### Configuring Persistance storage in IBM Cloud Private
+1. ssh to your icp proxy and create a folder in a specific directory
+```
+$ ssh icpproxyip
+```
+1. Login to IBM Cloud Private by going to this link ``` https://icplink:8443 ```
+
+![icp1](icp1.png)
+
+2. Click on ```Platform``` and choose ```Storage```, then click on ``` Create PersistentVolume```
+![icp2](icp2.png)
+
+3. Provide the name ```shared``` for persistance volume
+4. Provide storage capacity for around ```30GB```
+5. Access mode change to ``` Read Write Many ```
+6. Storage type to ``` NFS ```
+7. Click on parameters tab and add the follow parameters
+```
+server : youricpip
+path: your folder path you created in your icp proxy
+```
+> This screenshot is an example
+![icp3](icp3.png)
+8. Click ```Create```
+
 <!--
 ### Start minikube
 ```s
