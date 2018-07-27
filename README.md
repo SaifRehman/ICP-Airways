@@ -224,6 +224,12 @@ $ docker push <icpdns>:8500/default/frontend:latest
 
 ![images](images.png)
 
+### Connect kubesctl with IBM Cloud Private Kubernetes
+1. Login to your icp instance by going to ```https://icpip:8443```
+2. Click on configure, click on copy, and paste all these commands in your terminal
+![icp5](icp5.png)
+
+
 ### Configuring Persistance storage in IBM Cloud Private
 1. ssh to your icp proxy and create a folder in a specific directory
 ```
@@ -254,6 +260,52 @@ path: your folder path you created in your icp proxy
 12. Provide storage request ```30GB```
 13. Provide access mode ``` Read Write Many ```
 14. Click on Create
+
+### Deploying DB2
+1. Go to ```Catalog``` and filter ```db2```
+
+![icp4](icp4.png)
+
+2. Click on configure, fil up the required field and deploy
+3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
+> Note: when asked for persistance volume claim give shared-pvc while filling the form tio deploy DB2
+
+### Deplying RabbitMQ 
+1. Go to ```Catalog``` and filter ```rabbitmq```
+2. Select ```RabbitMQ```, Click ``` Configure```, fill the form and click on deploy
+
+### Deploying ODM
+1. Go to ```Catalog``` and filter ```odm```
+2. Select ```odm```, Click ``` Configure```, fill the form and click on deploy
+
+### Deploying Blockchain
+1. Navigate to ```fabric-deploy/cs-offerings/scripts```
+```
+$ cd fabric-deploy/cs-offerings/scripts
+```
+2. Run the create all script
+```
+$ ./create_all.sh
+```
+3. Give it sometime to load and finish
+
+### Deploying Ethereum Proxy
+1. Navigate to ```fabric-evm-proxy/fabric-evm-deployment/cs-offerings```
+2. run ```kubesctl get pods```
+3. copy any of blockchain pod name which is deployed by ```create_all.sh``` script
+4. Delete the ```crypto-config``` folder
+5. run ``` kubectl cp <pod name>:/shared/crypto-config crypto-config ```
+6. Open ```fabric-cluster.yml``` in ```fabric-evm-proxy``` folder 
+7. Find and replace ```<path-to-crypto-config-directory>``` in the file with ```crypto-config directory```
+8. Find and replace ```<cluster-ip>``` in the file with ```cluster ip of your cluster```
+9. Navigate to ```fabric-evm-proxy```
+10. Deploy Ethereum Proxy image to ICP Private registery
+```s
+$ docker build -tethereumproxy --no-cache .
+$ docker tag ethereumproxy <icpdns>:8500/default/ethereumproxy:latest
+$ docker push <icpdns>:8500/default/ethereumproxy:latest
+```
+
 <!--
 ### Start minikube
 ```s
