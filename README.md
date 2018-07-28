@@ -347,6 +347,15 @@ $ docker push <icpdns>:8500/default/ethereumproxy:latest
 3. *SECRET* is your unique secret you give for your app for jwt authentication
 4. *EMAILUSERNAME* is your gmail email username from which email would be sent
 5. *EMAILPASSWORD* is your email password of your gmail email
+6. Navigate to ```secrets``` folder in ```configMaps-secrets/secrets```
+7. Deploy secrets to kubernetes 
+```
+$ kubectl create -f secrets.yml
+```
+8. If you need to redeploy with certain changes
+```
+$ kubectl apply -f secrets.yml
+```
 > NOTE:- all these are base64 represenation encoding. 
 ```
 $ echo -n 'admin' | base64
