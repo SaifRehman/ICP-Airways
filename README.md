@@ -269,7 +269,7 @@ path: your folder path you created in your icp proxy
 2. Click on configure, fil up the required field and deploy
 3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
 > Note: when asked for persistance volume claim give shared-pvc while filling the form tio deploy DB2
-### Database creation and congiguration of DB2
+### Database creation and configuration of DB2
 1. ssh to db2 pod
 ```
 $ kubectl exec -it <podname> bash
@@ -338,6 +338,7 @@ $ docker build -t ethereumproxy --no-cache .
 $ docker tag ethereumproxy <icpdns>:8500/default/ethereumproxy:latest
 $ docker push <icpdns>:8500/default/ethereumproxy:latest
 ```
+
 
 <!--
 ### Start minikube
