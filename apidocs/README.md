@@ -67,4 +67,79 @@ Description: *Checkin Microservice* Checkin to a flight
 
 Method: GET
 
+
+##### :30092/listFlights [3002:30092]
+
+Description: *Listing Microservice* Search flights by queries
+
+Method: POST
+
+Example input:
+
+```JSON
+{
+  Year: Integer,
+  Month: Integer,
+  DayofMonth: String,
+  Origin: String,
+  Dest: String
+}
 ```
+
+##### :30092/listFlightsByID/:id [3002:30092]
+
+Description: *Listing Microservice* Get Booked flights by Id
+
+Method: Get
+
+##### :30989/postEmail [4000:30989]
+
+Description: *Celery Microservice* Post Emails
+
+Method: POST
+
+Example input:
+
+```JSON
+{
+  toemail: Integer,
+  src: Integer,
+  dest: String
+```
+
+##### :30989/setBlockchain [3008:30089]
+
+Description: *Ethereum Microservice* Post data on blockchain
+
+Method: POST
+
+Example input:
+
+```JSON
+{
+  data: String
+```
+
+##### :30989/getBlockchain [3008:30089]
+
+Description: *Ethereum Microservice* Get data on blockchain
+
+Method: GET
+
+##### :30989/odm [3005:30095]
+
+Description: *ODM Microservice* Queries ODM
+
+Method: POST
+
+Example input:
+
+```JSON
+{
+  srcAirport: String,
+  dstAirport: String,
+  customerTier: String,
+  customerName: String,
+  milesBalance: String
+```
+
