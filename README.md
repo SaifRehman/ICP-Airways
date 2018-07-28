@@ -306,6 +306,10 @@ $ db2  IMPORT FROM "path-where-flights.cvs-is-saved/flights.csv" OF DEL INSERT I
 ### Deplying RabbitMQ 
 1. Go to ```Catalog``` and filter ```rabbitmq```
 2. Select ```RabbitMQ```, Click ``` Configure```, fill the form and click on deploy
+3. Expose ampq port of rabbitmq
+```
+$ kubectl expose deployment <rabbitmq deployment name> --name=mq-amqp --type=NodePort --port=5671
+```
 
 ### Deploying ODM
 1. Go to ```Catalog``` and filter ```odm```
@@ -361,6 +365,20 @@ $ kubectl apply -f secrets.yml
 $ echo -n 'admin' | base64
 YWRtaW4=
 ```
+### Configuring and deploying config-maps
+![icp7](icp7.png)
+1. *DATABASE*:- is your database name, which should be SAMPLE
+2. *PORT*:- is your exposed db2 port from port 5000, get this port by running and finding db2 service ``` kubectl get service ```
+3. *HOSTNAME*:- is your icpip
+4. *ODM*:- is your ODM buisness api you have created, get odm port number by running and finding the exposed port ``` kubectl get service ```
+5. *HttpProvider*:- replace the ip with your icp ip. This is provider to connect with ethereum proxy
+6. *CONTRACTADRESS* and *ETHEREUMACCOUNT*:- get your contract address and ethereum account by running app.js in ```contracts``` folder
+```
+$ npm i
+$ node app.js
+```
+7. *CELERY_RESULT_BACKEND* and *CELERY_BROKER_URL*:- replace with your icp ip, and replace it with amqp port. get amqp port by running ```kubesctl get service mq-amqp```
+8. *EMAILAPI*:- replace ip with your icpip
 <!--
 ### Start minikube
 ```s
