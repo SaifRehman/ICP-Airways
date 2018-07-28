@@ -372,13 +372,79 @@ YWRtaW4=
 3. *HOSTNAME*:- is your icpip
 4. *ODM*:- is your ODM buisness api you have created, get odm port number by running and finding the exposed port ``` kubectl get service ```
 5. *HttpProvider*:- replace the ip with your icp ip. This is provider to connect with ethereum proxy
-6. *CONTRACTADRESS* and *ETHEREUMACCOUNT*:- get your contract address and ethereum account by running app.js in ```contracts``` folder
+6. *CONTRACTADRESS* and *ETHEREUMACCOUNT*:- get your contract address and ethereum account by running app.js in ```contracts``` folder. also, replace ip with your icp ip
 ```
 $ npm i
 $ node app.js
 ```
 7. *CELERY_RESULT_BACKEND* and *CELERY_BROKER_URL*:- replace with your icp ip, and replace it with amqp port. get amqp port by running ```kubesctl get service mq-amqp```
 8. *EMAILAPI*:- replace ip with your icpip
+
+### Deploying all services and deployents 
+1. Booking Microservice
+```s
+$ cd booking-microservice
+$ kubectl create -f service-deployment.yml
+```
+2. Checkin Microservice
+```s
+$ cd checkin-microservice
+$ kubectl create -f service-deployment.yml
+
+```
+3. Listing Microservice
+```s
+$ cd listing-microservice
+$ kubectl create -f service-deployment.yml
+```
+4. Login Microservice
+```s
+$ cd login-microservice
+$ npm i
+$ kubectl create -f service-deployment.yml
+```
+5. Signup Microservice
+```s
+$ cd signup-microservice
+$ kubectl create -f service-deployment.yml
+```
+
+6. Celery Microservice
+```s
+$ cd celery
+$ kubectl create -f service-deployment.yml
+```
+
+7. Email Microservice
+```s
+$ cd email-microservice
+$ kubectl create -f service-deployment.yml
+```
+
+8. Ethereum Microservice
+```s
+$ cd ethereum-microservice
+$ kubectl create -f service-deployment.yml
+```
+
+9. Ethereum Proxy
+```s
+$ cd fabric-evm-proxy
+$ kubectl create -f service-deployment.yml
+```
+
+10. Odm Microservice
+```s
+$ cd odm-microservice
+$ kubectl create -f service-deployment.yml
+```
+
+11. Angular Frontend
+```s
+$ cd icp-frontend
+$ kubectl create -f service-deployment.yml
+```
+
 <!--
 ### Start minikube
 ```s
