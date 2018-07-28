@@ -14,7 +14,7 @@ Description: *Login Microservice* Logs in to the app
 
 Method: GET
 
-#### :30093/signup [3004:30094]
+#### :30094/signup [3004:30094]
 
 Description: *Sign Microservice* Signsup in to the api
 
