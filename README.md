@@ -269,7 +269,40 @@ path: your folder path you created in your icp proxy
 2. Click on configure, fil up the required field and deploy
 3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
 > Note: when asked for persistance volume claim give shared-pvc while filling the form tio deploy DB2
-
+### Database creation and congiguration of DB2
+1. ssh to db2 pod
+```
+$ kubectl exec -it <podname> bash
+```
+2. switch the user you have created
+```
+$ su - <username>
+```
+6. Connect to SAMPLE db
+```s
+$ db2 connect to SAMPLE
+```
+7. Download existing flight data from github and set permissions
+```s
+$ wget https://raw.githubusercontent.com/SaifRehman/ICP-Airways/master/dataset/flights.csv
+```
+8. Create Database and importing existing data to Flights table
+* Flights Table
+```SQL
+db2 CREATE TABLE "SAMPLE.FlightsData (ID int NOT NULL , Year varchar(255) NULL , Month varchar(255) NULL, DayofMonth varchar(255) NULL, DepTime varchar(255) NULL,  CRSDepTime varchar(255) NULL, ArrTime varchar(255) NULL, CRSArrTime varchar(255) NULL, FlightNum varchar(255) NULL, TailNum varchar(255) NULL, ActualElapsedTime varchar(255) NULL, CRSElapsedTime varchar(255) NULL, Airtime varchar(255) NULL, ArrDelay varchar(255) NULL, DepDelay varchar(255) NULL,   Origin varchar(255) NULL, Dest varchar(255) NULL, Distance varchar(255) NULL, PRIMARY KEY (ID))"
+``` 
+* User Table
+```SQL
+db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, Tier varchar(255) NULL, PRIMARY KEY (UserID))"
+```
+* Booking Table
+```SQL
+db2 CREATE TABLE "SAMPLE.Booking (BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) ,TS TIMESTAMP NOT NULL , Checkin varchar(2555) NOT NULL, OfferNamePricing varchar(2555) NOT NULL, OfferTypePricing varchar(2555) NOT NULL , CostPricing varchar(2555) NOT NULL, OfferNameUpgrade varchar(2555) NOT NULL, OfferTypeUpgrade varchar(2555) NOT NULL , CostNameUpgrade varchar(2555) NOT NULL,  UserID INT NOT NULL, FlightID INT NOT NULL, FOREIGN KEY (UserID) REFERENCES SAMPLE.UserData(UserID), FOREIGN KEY (FlightID) REFERENCES SAMPLE.FlightsData(ID), PRIMARY KEY (BookingID))"
+```
+* Importing existing data to flights table
+```s
+$ db2  IMPORT FROM "path-where-flights.cvs-is-saved/flights.csv" OF DEL INSERT INTO SAMPLE.FlightsData
+```
 ### Deplying RabbitMQ 
 1. Go to ```Catalog``` and filter ```rabbitmq```
 2. Select ```RabbitMQ```, Click ``` Configure```, fill the form and click on deploy
