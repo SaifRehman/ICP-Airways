@@ -67,6 +67,4 @@ Description: *Checkin Microservice* Checkin to a flight
 
 Method: GET
 
-Example input:
-
 ```
