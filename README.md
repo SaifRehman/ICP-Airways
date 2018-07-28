@@ -101,20 +101,6 @@ needs to be recorded
 $ npm i gulp-cli -g
 ```
 
-### Microservices available 
-* [x] Booking-microservice
-* [x] Checkin-microservice
-* [x] Listing-microservice
-* [x] Login-microservice
-* [x] Signup-microservice
-* [x] Db2-microservice
-* [x] ODM-microservice
-* [x] Email-microservice
-* [x] Blockchain-microservice
-* [x] Angular frontend microservice
-* [x] Ethereum Proxy microservice
-* [x] Celery microservice
-
 ### Connect Docker (Private registery) with IBM Cloud Private
 1. From your terminal type
 ```
@@ -445,3 +431,15 @@ $ cd icp-frontend
 $ kubectl create -f service-deployment.yml
 ```
 
+### Microservices available 
+* [x] Booking-microservice [3000:30090]
+* [x] Checkin-microservice [3001:30091]
+* [x] Listing-microservice [3002:30092]
+* [x] Login-microservice [3003:30093]
+* [x] Signup-microservice [3004:30094]
+* [x] Email-microservice [3006:30199]
+* [x] Blockchain-microservice [3006:30199]
+* [x] Angular frontend microservice [80:30080]
+* [x] Ethereum Proxy microservice [5000:30081]
+* [x] Celery microservice [4000:30989]
+* [x] Odm Microservice [3005:30095]
