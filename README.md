@@ -339,7 +339,19 @@ $ docker tag ethereumproxy <icpdns>:8500/default/ethereumproxy:latest
 $ docker push <icpdns>:8500/default/ethereumproxy:latest
 ```
 
+### Configuring and deploying secrets
+![icp6](icp6.png)
 
+1. *UID* is ur database username
+2. *PASSWORD* is your database password
+3. *SECRET* is your unique secret you give for your app for jwt authentication
+4. *EMAILUSERNAME* is your gmail email username from which email would be sent
+5. *EMAILPASSWORD* is your email password of your gmail email
+> NOTE:- all these are base64 represenation encoding. 
+```
+$ echo -n 'admin' | base64
+YWRtaW4=
+```
 <!--
 ### Start minikube
 ```s
