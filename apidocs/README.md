@@ -22,7 +22,7 @@ Method: POST
 
 Example input:
 
-```JSON
+```JavaScript
 {
   lastName: String,
   firstName: String,
@@ -42,7 +42,7 @@ Method: POST
 
 Example input:
 
-```JSON
+```JavaScript
 {
   UserID: Integer,
   FlightID: Integer,
@@ -76,7 +76,7 @@ Method: POST
 
 Example input:
 
-```JSON
+```JavaScript
 {
   Year: Integer,
   Month: Integer,
@@ -100,7 +100,7 @@ Method: POST
 
 Example input:
 
-```JSON
+```JavaScript
 {
   toemail: Integer,
   src: Integer,
@@ -115,7 +115,7 @@ Method: POST
 
 Example input:
 
-```JSON
+```JavaScript
 {
   data: String
 ```
@@ -134,12 +134,13 @@ Method: POST
 
 Example input:
 
-```JSON
+```JavaScript
 {
   srcAirport: String,
   dstAirport: String,
   customerTier: String,
   customerName: String,
   milesBalance: String
+}
 ```
 
