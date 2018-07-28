@@ -437,9 +437,12 @@ $ kubectl create -f service-deployment.yml
 * [x] Listing-microservice [3002:30092]
 * [x] Login-microservice [3003:30093]
 * [x] Signup-microservice [3004:30094]
-* [x] Email-microservice [3006:30199]
 * [x] Blockchain-microservice [3006:30199]
-* [x] Angular frontend microservice [80:30080]
+* [x] Angular frontend [80:30080]
 * [x] Ethereum Proxy microservice [5000:30081]
 * [x] Celery microservice [4000:30989]
 * [x] Odm Microservice [3005:30095]
+
+
+# Docs
+Documentation of all the backend endpoints is available [here](apidocs/README.md)
