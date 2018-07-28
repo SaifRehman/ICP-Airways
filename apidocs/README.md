@@ -18,7 +18,7 @@ Method: GET
 
 Description: *Sign Microservice* Signsup in to the api
 
-Method: GET
+Method: POST
 
 Example input:
 
@@ -30,6 +30,43 @@ Example input:
   email: String,
   password: String,
   age: String,
-  tier: String,
+  tier: String
 }
+```
+
+##### :30090/book [3000:30090]
+
+Description: *Booking Microservice* Book for a flight
+
+Method: POST
+
+Example input:
+
+```JSON
+{
+  UserID: Integer,
+  FlightID: Integer,
+  OfferNamePricing: String,
+  OfferTypePricing: String,
+  CostPricing: String,
+  OfferNameUpgrade: String,
+  OfferTypeUpgrade: String,
+  CostUpgrade: String,
+}
+```
+
+##### :30090/listBookingByUser/:id [3000:30090]
+
+Description: *Booking Microservice* Search all flights by its ID
+
+Method: GET
+
+##### :30091/checkin/:bookid/:userid [3001:30091]
+
+Description: *Checkin Microservice* Checkin to a flight
+
+Method: GET
+
+Example input:
+
 ```
