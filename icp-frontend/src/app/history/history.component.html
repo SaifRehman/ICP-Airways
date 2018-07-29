@@ -139,8 +139,7 @@
                 <tr>
                   <th>Source</th>
                   <th>Destination</th>
-                  <th>Flight Number</th>
-                  <th>Tail Number</th>
+                  <!-- <th>Tail Number</th> -->
                   <th>Departure Time</th>
                   <th>Arrival Time</th>
                   <th>Action</th>
@@ -155,12 +154,9 @@
                 <div class="col s3">
                   <p>{{listshow.DEST | isoToCountryName }}</p>
                 </div>
-                <div class="col s3">
-                  <p>{{listshow.FLIGHTNUM}}</p>
-                </div>
-                <div class="col s3">
+                <!-- <div class="col s3">
                   <p>{{listshow.TAILNUM}}</p>
-                </div>
+                </div> -->
                 <div class="col s3">
                   <p>{{listshow.DEPTIME | timeRefactor}}</p>
                 </div>
