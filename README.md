@@ -35,7 +35,7 @@ In this Code Pattern, we will build a cloud native application based on microser
 * Kubernetes 
 * IBM Cloud Private
 
-Cloud native application is a buzzword these days. Technologies like Kubernetes and Docker are picking up reputation and popularity in Cloud native world. This Pattern will show an end to end process of building highly available Cloud Native Application on IBM Cloud Private. The Application backend is based on Nodejs and DB2 as a Database. The frontend is built using Angular4. Distributed Asynchronous task que is based on RabbitMQ and Celery. Container orchestration is managed by Kubernetes. Finally, the Blockchain is based on Hyperledger Fabric, Hyperledger Burrow and Ethereum Smart Contract. 
+Cloud native application is a buzzword these days. Technologies like Kubernetes and Docker are picking up reputation and popularity in Cloud native world. This Pattern will show an end to end process of building highly available Cloud Native Application on IBM Cloud Private. The Application backend is based on Nodejs and DB2 as a Database. The frontend is built using Angular4. Distributed Asynchronous task queue is based on RabbitMQ and Celery. Container orchestration is managed by Kubernetes. Finally, the Blockchain is based on Hyperledger Fabric, Hyperledger Burrow and Ethereum Smart Contract. 
 
 ### Learning objectives
 When you've completed this Code Pattern, you will understand how to:
@@ -43,7 +43,7 @@ When you've completed this Code Pattern, you will understand how to:
 * Break the application into different microservices
 * Deploying microservices based application on IBM Cloud Private
 * Leveraging IBM Middlewares such as ODM and DB2 on Kubernetes
-* Designing buisness rules and decision by IBM ODM
+* Designing business rules and decision by IBM ODM
 * Create distributed task ques using RabbitMQ and Celery
 * Leveraging DB2 as backend data storage
 * Deploying Ethereum smart contract on Hyperledger fabric by leveraging Hyperledger Burrow
@@ -51,11 +51,11 @@ When you've completed this Code Pattern, you will understand how to:
 
 #### Flow
 
-1. *USER*:- End user who will acces the application
+1. *USER*:- End user who will access the application
 2. *APPUI*:- The user interface is built using Angular4. It leverages restful endpoints by backend microservices
 3. *Login Microservice*:- This Microservice allows the user to login to the application 
 4. *Signup Microservice*:- This Microservice allows the user to signup to the application
-5. *Checkin Microservice*:- This Microservice allows the user checkin to a given booked flight
+5. *Checkin Microservice*:- This Microservice allows the user to checkin to a given booked flight
 6. *Listing Microservice*:- This Microservice allows the user to list and browse the available flights
 7. *Booking Microservice*:- This Microservice allows the user to to book an available flight
 8. *Blockchain Microservice*:- This Microservice helps to communicate with the Blockchain
