@@ -85,8 +85,9 @@ When you've completed this Code Pattern, you will understand how to:
 11. [Hyperledger Burrow](https://www.hyperledger.org/projects/hyperledger-burrow):- Hyperledger Burrow is one of the Hyperledger projects hosted by The Linux Foundation. Hyperledger Burrow was originally contributed by Monax and co-sponsored by Intel. Hyperledger Burrow provides a modular blockchain client with a permissioned smart contract interpreter partially developed to the specification of the Ethereum Virtual Machine (EVM
 12. [Solidity](http://solidity.readthedocs.io/en/v0.4.24/):- Solidity is a contract-oriented, high-level language for implementing smart contracts. It was influenced by C++, Python and JavaScript and is designed to target the Ethereum Virtual Machine (EVM)
 
-## Watch the Demo
-needs to be recorded
+# Watch the Video
+
+If you want a quick walkthrough of the end result, a video is available [here](https://ibm.box.com/s/0qe3jrduqthqyeadaa4jlu6qwfysbtn6)
 
 ## Deploy to IBM Cloud Private
 
