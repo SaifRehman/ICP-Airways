@@ -311,6 +311,20 @@ $ kubectl expose deployment <rabbitmq deployment name> --name=mq-amqp --type=Nod
 1. Go to ```Catalog``` and filter ```odm```
 2. Select ```odm```, Click ``` Configure```, fill the form and click on deploy
 
+### Configuring ODM and loading buisness rules
+1. Go to ``` http://icpip:odmport/teamserver/faces/login.jsp```, and login with *username*:- ```rtsAdmin```, and pass ```rtsAdmin```
+![icp11](icp11.png)
+
+2. Click on ```Configure``` tab, then click on ```import project```. Select the zip file under ```odm-microservice``` folder
+![icp12](icp12.png)
+
+3. Go to ``` http://icpip:odmport/decisioncenter/t/library```, and login with *username*:- ```rtsAdmin```, and pass ```rtsAdmin```
+4. Select ```New Release``` from ```ICPAirlines-Rules```, then select ```ICPAirlinesDeployment``` and click ```deploy```
+
+![icp12](icp13.png)
+
+![icp12](icp14.png)
+
 ### Deploying Blockchain
 1. Navigate to ```fabric-deploy/cs-offerings/scripts```
 ```
