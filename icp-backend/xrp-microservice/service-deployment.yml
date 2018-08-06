@@ -34,7 +34,7 @@ spec:
     targetPort: 3066
     nodePort: 30999
   - protocol: TCP
-    name: xrpsvc
+    name: xrpsvc1
     port: 7770
     targetPort: 7770
     nodePort: 30990

@@ -19,7 +19,7 @@
         </div>
 
         <li>
-          <a routerLink="/history" class="waves-effect waves-red white-text active colour-pink">
+          <a routerLink="/history" class="waves-effect waves-red white-text ">
             <i class="material-icons white-text">dashboard</i>Dashboard</a>
         </li>
         <li>
@@ -27,7 +27,7 @@
             <i class="material-icons white-text">flight</i>Browse Flights</a>
         </li>
         <li>
-          <a routerLink="/shop" class="waves-effect waves-red white-text">
+          <a routerLink="/shop" class="waves-effect waves-red white-text active colour-pink">
             <i class="material-icons white-text">shopping_cart</i>shop</a>
         </li>
         <li>
@@ -130,61 +130,19 @@
       </nav>
     </div>
 
-    <div class="content scroll">
-      <div class="scroll-content" style="padding:10px 20px;">
-        <!-- END FILTER SEARCH -->
 
-        <!-- TABLE TO POPULATE WITH FLIGHT DATA :) -->
-        <!-- *ngIf="show" -->
-        <ng-container *ngIf="show && provider.rawData">
-          <div id="my_table" >
-            <table>
-              <thead>
-                <tr>
-                  <th>Source</th>
-                  <th>Destination</th>
-                  <!-- <th>Tail Number</th> -->
-                  <th>Departure Time</th>
-                  <th>Arrival Time</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-            </table>
-            <ng-container *ngFor="let listshow of show.data">
-              <div class="card row flight-info">
-                <div class="col s3">
-                  <p>{{listshow.ORIGIN | isoToCountryName }}</p>
-                </div>
-                <div class="col s3">
-                  <p>{{listshow.DEST | isoToCountryName }}</p>
-                </div>
-                <!-- <div class="col s3">
-                  <p>{{listshow.TAILNUM}}</p>
-                </div> -->
-                <div class="col s3">
-                  <p>{{listshow.DEPTIME | timeRefactor}}</p>
-                </div>
-                <div class="col s3">
-                  <p>{{listshow.ARRTIME | timeRefactor}}</p>
-                </div>
-                <ng-container *ngIf="listshow.CHECKIN === '0'">
-                  <div class="col s3">
-                    <button type='submit' id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="checkin(listshow.FLIGHTID,listshow.USERID,listshow.ORIGIN ,listshow.DEST )">CHECKIN</button>
-                  </div>
-                </ng-container>
-
-                <ng-container *ngIf="listshow.CHECKIN === '1'">
-                  <div class="col s3">
-                    <button type='submit' id='btn_book' name='btn_login' class='btn waves-effect colour-pink' disabled="disabled">CHECKIN</button>
-                  </div>
-                </ng-container>
               </div>
-            </ng-container>
-          </div>
-        </ng-container>
-        <br/>
-        <br/>
-      </div>
-    </div>
-  </div>
+              <div class="row">
+                <div class="col s12 m2">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="https://gazef.s3.amazonaws.com/QahwetMasr/media/paragraphs/nabulsi_-_image_from_selmassweets.com.jpg" height="500" width="10">
+                      <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons" (click)="buy()">add</i></a>
+                    </div>
+                    <div class="card-content">
+                      <p>A tasty cheezy knufah (23XRP)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 </div>

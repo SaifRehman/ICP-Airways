@@ -5,6 +5,8 @@ import { HistoryComponent } from './history/history.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
+import { ShopComponent } from './shop/shop.component';
+
 import { AuthGuardService as AuthGuard } from './guards/login-guard.service';
 import { LandingComponent } from './landing/landing.component';
 export const AppRoutes: Routes = [
@@ -25,6 +27,11 @@ export const AppRoutes: Routes = [
   {
     path: 'signup',
     component: LandingComponent
+  },
+  {
+    path: 'shop',
+    component: ShopComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'odm-detail',

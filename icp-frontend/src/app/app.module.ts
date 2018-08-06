@@ -8,6 +8,8 @@ import { ROUTING } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { ShopComponent } from './shop/shop.component';
+
 import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
 import { RouterModule } from '@angular/router';
@@ -26,6 +28,7 @@ import { OdmService } from './services/odm-service/odm.component.service';
 import { MaterializeModule } from "angular2-materialize";
 import { OdmDetailComponent } from './odm-detail/odm-detail.component';
 import { EmailService } from './services/email-service/email.component.service';
+import { XrpService } from './services/xrp-service/xrp.component.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { EmailService } from './services/email-service/email.component.service';
     HistoryComponent,
     LandingComponent,
     SlideAuthComponent,
-    OdmDetailComponent
+    OdmDetailComponent,
+    ShopComponent
   ],
   imports: [
     MaterializeModule,
@@ -59,7 +63,8 @@ import { EmailService } from './services/email-service/email.component.service';
     EthereumService,
     EmailService,
     OdmService,
-    AuthService
+    AuthService,
+    XrpService
   ],
   bootstrap: [AppComponent]
 })

@@ -64,8 +64,8 @@ export class Provider {
             getBlockchain: "http://" + this.url + ":30089/getBlockchain",
             setBlockchain: "http://" + this.url + ":30089/setBlockchain",
             setODM: "http://" + this.url + ":30095/odm",
-            postEmail: "http://" + this.url + ":30989/postEmail"
+            postEmail: "http://" + this.url + ":30989/postEmail",
+            xrp: "http://localhost:3066/xrp"
         }
-        console.log(this.apiUrl)
     }
 }
