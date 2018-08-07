@@ -20,10 +20,10 @@ export class ShopComponent implements OnInit {
   }
 
 
-buy(){
+buy(data){
   this.loading = true;
 
-  this.xrpService.xrp("23").subscribe((data) => {
+  this.xrpService.xrp(data).subscribe((data) => {
     this.loading = false;
     console.log('data', data);
 },
