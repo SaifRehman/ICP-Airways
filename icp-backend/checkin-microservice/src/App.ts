@@ -6,7 +6,6 @@ import * as passwordhash from 'password-hash'
 import * as passport from 'passport'
 import * as jwt from 'jsonwebtoken'
 import * as passportJWT from 'passport-jwt'
-var dotenv = require('dotenv').config({ path: path.join('.env') })
 var ibmdb = require('ibm_db');
 
 class App {
@@ -39,6 +38,11 @@ class App {
     }
   }
   private middleware(): void {
+    this.express.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "*");
+      next();
+    });
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
     this.express.use(passport.initialize());
@@ -47,7 +51,7 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-    router.get('/checkin/:bookid/:userid',this.ensureToken, (req, res, next) => {
+    router.get('/checkin/:bookid/:userid', this.ensureToken, (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {
         conn.prepare("UPDATE SAMPLE.Booking SET Checkin = '1' WHERE FlightID = ? AND UserID=? "
           , function (err, stmt) {
@@ -57,8 +61,8 @@ class App {
                 message: true
               });
             }
-            stmt.execute([req.params.bookid,req.params.userid], function (err, result) {
-              console.log(req.params.bookid,req.params.userid)
+            stmt.execute([req.params.bookid, req.params.userid], function (err, result) {
+              console.log(req.params.bookid, req.params.userid)
               if (err) {
                 console.log('error', err)
                 res.json({

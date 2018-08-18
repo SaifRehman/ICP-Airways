@@ -4,13 +4,15 @@ import { Observable } from 'rxjs';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { error } from 'util';
 import { Provider } from '../../provider/provider';
+import 'rxjs/Rx';
 
 @Injectable()
 export class BookingService {
     public constructor(public http: Http, public provider:Provider) {
     }
 
-    public booking(UserID,FlightID): Observable<any> {
+    public booking(UserID,FlightID,OfferNamePricing,OfferTypePricing,CostPricing,OfferNameUpgrade,OfferTypeUpgrade,CostUpgrade): Observable<any> {
+        console.log('dataaaa',UserID,FlightID,OfferNamePricing,OfferTypePricing,CostPricing,OfferNameUpgrade,OfferTypeUpgrade,CostUpgrade)
         const options = new RequestOptions({
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -19,8 +21,14 @@ export class BookingService {
         });
         const link = this.provider.apiUrl.book
         const bodyObject = {
-            UserID:UserID,
-            FlightID:FlightID
+            UserID,
+            FlightID,
+            OfferNamePricing,
+            OfferTypePricing,
+            CostPricing,
+            OfferNameUpgrade,
+            OfferTypeUpgrade,
+            CostUpgrade
         }
         const bodyString = JSON.stringify(bodyObject); // Stringify payload
         return this.http.post(link, bodyObject, options) // ...using post request

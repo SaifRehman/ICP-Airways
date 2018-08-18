@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+ name: xrpsvc 
+spec:
+ replicas: 1
+ template:
+   metadata:
+     name: xrpsvc
+     labels:
+       app: xrpsvc
+   spec:
+     containers:
+       - name: xrpsvc
+         image: "mycluster.icp:8500/default/xrp-microservice:latest" 
+         imagePullPolicy: Always
+         ports:
+         - containerPort: 3066
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: xrpsvc
+ labels:
+   app: xrpsvc
+spec:
+ type: NodePort
+ selector:
+   app: xrpsvc
+ ports:
+  - protocol: TCP
+    name: xrpsvc
+    port: 3066
+    targetPort: 3066
+    nodePort: 30999
+  - protocol: TCP
+    name: xrpsvc1
+    port: 7770
+    targetPort: 7770
+    nodePort: 30990

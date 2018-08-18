@@ -6,7 +6,7 @@ import * as passwordhash from 'password-hash'
 import * as passport from 'passport'
 import * as jwt from 'jsonwebtoken'
 import * as passportJWT from 'passport-jwt'
-var dotenv = require('dotenv').config({ path: path.join('.env') })
+import * as cors from 'cors'
 var ibmdb = require('ibm_db');
 
 class App {
@@ -28,6 +28,11 @@ class App {
     this.routes();
   }
   private middleware(): void {
+    this.express.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "*");
+      next();
+    });
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
     this.express.use(passport.initialize());

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { error } from 'util';
 import { Provider } from '../provider/provider';
+import 'rxjs/Rx';
 
 @Injectable()
 export class SignupService {
@@ -16,7 +17,7 @@ export class SignupService {
         this.params = {};
     }
 
-    public signup(firstName,lastName,age,email,password,location): Observable<any> {
+    public signup(firstName,lastName,age,email,password,location,tier): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -29,7 +30,8 @@ export class SignupService {
             'age':Number(age),
             'email':email,
             'password':password,
-            'location':location
+            'location':location,
+            'tier':tier
         }
         const bodyString = JSON.stringify(bodyObject); // Stringify payload
         return this.http.post(link, bodyObject, options) // ...using post request

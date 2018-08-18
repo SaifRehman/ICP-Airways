@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupService } from './signup.component.service'
+import 'rxjs/Rx';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -22,7 +24,7 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    this.signupService.signup(this.firstName, this.lastName, this.age, this.email, this.password, this.location).subscribe((data) => {
+    this.signupService.signup(this.firstName, this.lastName, this.age, this.email, this.password, this.location,'a').subscribe((data) => {
       console.log('data', data);
       this.read = data;
       alert('Signup sucessfull')

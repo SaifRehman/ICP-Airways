@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { error } from 'util';
 import { Provider } from '../../provider/provider';
+import 'rxjs/Rx';
 
 @Injectable()
 export class ListingService {
