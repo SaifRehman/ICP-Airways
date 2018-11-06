@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
  name: signupsvc 
 spec:
- replicas: 3
+ replicas: 1
  template:
    metadata:
      name: signupsvc
