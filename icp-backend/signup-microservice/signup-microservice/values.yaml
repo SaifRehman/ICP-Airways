@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 1
 
 metadata:
  name: signupsvc 
@@ -10,6 +10,7 @@ image:
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3004
+  
 
 envOfSecrets:
   envUID:
