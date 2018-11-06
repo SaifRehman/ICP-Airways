@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
  name: signupsvc 
 spec:
- replicas: 3
+ replicas: 1
  template:
    metadata:
      name: signupsvc
@@ -14,6 +14,13 @@ spec:
        - name: signupsvcluster
          image: "mycluster.icp:8500/default/signup-microservice:latest" 
          imagePullPolicy: Always
+         resources:
+          requests:
+            cpu: "250m"
+            memory: "64Mi"
+          limits:
+            cpu: "1"
+            memory: "128Mi"
          env:
           - name: UID
             valueFrom:
@@ -56,22 +63,7 @@ spec:
                 name: env-database
                 key: PROTOCOL
          ports:
-         - containerPort: 3004
-
-        #  livenessProbe:
-        #     httpGet:
-        #       path: /healthz
-        #       port: 8080
-        #       scheme: HTTP
-        #     initialDelaySeconds: 30
-        #     periodSeconds: 30
-        #  readinessProbe:
-        #     httpGet:
-        #       path: /readiness
-        #       port: 8080
-        #       scheme: HTTP
-        #     initialDelaySeconds: 30
-        #     periodSeconds: 30     
+         - containerPort: 3004   
 ---
 apiVersion: v1
 kind: Service
