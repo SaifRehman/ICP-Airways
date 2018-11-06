@@ -89,6 +89,3 @@ spec:
     port: 3004
     targetPort: 3004
     nodePort: 30094
-    
-
-
