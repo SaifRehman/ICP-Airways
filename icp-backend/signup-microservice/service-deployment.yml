@@ -14,6 +14,9 @@ spec:
        - name: signupsvcluster
          image: "mycluster.icp:8500/default/signup-microservice:latest" 
          imagePullPolicy: Always
+         resources:
+          requests:
+            cpu: 100m
          env:
           - name: UID
             valueFrom:
