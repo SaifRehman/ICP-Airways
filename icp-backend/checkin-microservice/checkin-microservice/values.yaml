@@ -4,6 +4,21 @@ metadata:
  name: checkinsvc 
  label: checkinsvc
 
+hpa:
+  metadata:
+    name: checkin-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: checkinsvc
+
 image:
   name: checkinsvc
   imageName: "icpdevcluster.icp:8500/default/checkin-microservice:latest" 
