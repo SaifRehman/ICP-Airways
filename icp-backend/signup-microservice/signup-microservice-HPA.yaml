@@ -1,0 +1,23 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: signup-microservice-HPA
+spec:
+  maxReplicas: 10
+  minReplicas: 2                       
+  metrics:    
+  - type: Object
+    object:
+      target:
+        kind: Service
+        name: signupsvc
+      metricName: net.http.request.count
+      targetValue: 100                             
+  - type: Resource
+    resource:                              
+      name: cpu                            
+      targetAverageUtilization: 80        
+  scaleTargetRef:                          
+    apiVersion: extensions/v1beta1         
+    kind: Deployment                       
+    name: kubia
