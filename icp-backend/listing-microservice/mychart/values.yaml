@@ -10,7 +10,12 @@ image:
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3002
-
+  requests:
+    cpu: "250m"
+    memory: "64Mi"
+  limit:
+    cpu: "1"
+    memory: "128Mi"
 envOfSecrets:
   envUID:
     name: UID

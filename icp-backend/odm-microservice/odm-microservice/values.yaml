@@ -11,6 +11,13 @@ image:
   ports:
     containerPort: 3000
 
+  requests:
+    cpu: "250m"
+    memory: "64Mi"
+  limit:
+    cpu: "1"
+    memory: "128Mi"
+
 envOfSecrets:
   envUID:
     name: UID
