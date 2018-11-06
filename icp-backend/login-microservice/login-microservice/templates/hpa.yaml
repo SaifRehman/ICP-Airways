@@ -1,0 +1,20 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{}}
+spec:
+  maxReplicas: {{}}
+  minReplicas: {{}}                       
+  metrics:    
+  - type: Pods
+    pods:
+      metricName: http_requests
+      targetAverageValue: {{}}                          
+  - type: Resource
+    resource:                              
+      name: cpu                            
+      targetAverageUtilization: {{}}        
+  scaleTargetRef:                          
+    apiVersion: extensions/v1beta1         
+    kind: Deployment                       
+    name: {{}}
