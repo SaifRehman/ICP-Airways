@@ -14,6 +14,13 @@ spec:
        - name: ethereumsvc
          image: "mycluster.icp:8500/default/ethereum-microservice:latest" 
          imagePullPolicy: Always
+         resources:
+          requests:
+            cpu: "250m"
+            memory: "64Mi"
+          limits:
+            cpu: "1"
+            memory: "128Mi"
          env:
           - name: HttpProvider
             valueFrom:
