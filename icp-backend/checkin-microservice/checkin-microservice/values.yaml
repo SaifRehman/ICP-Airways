@@ -1,8 +1,23 @@
-replicaCount: 3
+replicaCount: 1
 
 metadata:
  name: checkinsvc 
  label: checkinsvc
+
+hpa:
+  metadata:
+    name: checkin-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: checkinsvc
 
 image:
   name: checkinsvc
@@ -10,7 +25,12 @@ image:
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3001
-
+  requests:
+    cpu: "250m"
+    memory: "64Mi"
+  limit:
+    cpu: "1"
+    memory: "128Mi"
 envOfSecrets:
   envUID:
     name: UID

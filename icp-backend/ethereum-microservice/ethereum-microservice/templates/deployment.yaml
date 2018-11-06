@@ -14,6 +14,13 @@ spec:
        - name: {{ .Values.image.name }} 
          image: {{ .Values.image.imageName }} 
          imagePullPolicy: {{ .Values.image.imagePullPolicy }} 
+         resources:
+          requests:
+            cpu: {{ .Values.image.requests.cpu }} 
+            memory: {{ .Values.image.requests.memory }} 
+          limits:
+            cpu: {{ .Values.image.limits.cpu }} 
+            memory: {{ .Values.image.limits.memory }} 
          env:
           - name: {{ .Values.envOfSecrets.envUID.name }} 
             valueFrom:

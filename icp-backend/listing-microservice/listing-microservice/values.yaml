@@ -1,16 +1,21 @@
 replicaCount: 3
 
 metadata:
- name: loginsvc 
- label: loginsvc
+ name: listingsvc 
+ label: listingsvc
 
 image:
-  name: loginsvc
-  imageName: "icpdevcluster.icp:8500/default/login-microservice:latest" 
+  name: listingsvc
+  imageName: "icpdevcluster.icp:8500/default/listing-microservice:latest" 
   imagePullPolicy: IfNotPresent
   ports:
-    containerPort: 3003
-
+    containerPort: 3002
+  requests:
+    cpu: "250m"
+    memory: "64Mi"
+  limit:
+    cpu: "1"
+    memory: "128Mi"
 envOfSecrets:
   envUID:
     name: UID
@@ -58,15 +63,15 @@ envOfConfigmaps:
 
 service:
   serviceMetadata:
-    name: loginsvc
+    name: listingsvc
     labels:
-      app: loginsvc
+      app: listingsvc
   selector:
-    selectorName: loginsvc
+    selectorName: listingsvc
   servicePortConfiguration:
     protocol: TCP
-    name: loginsvc
+    name: listingsvc
     type: NodePort
-    port: 3003
-    targetPort: 3003
-    nodePort: 30093
+    port: 3002
+    targetPort: 3002
+    nodePort: 30092

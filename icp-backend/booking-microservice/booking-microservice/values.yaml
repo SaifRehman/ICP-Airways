@@ -1,8 +1,24 @@
-replicaCount: 3
+replicaCount: 1
 
 metadata:
  name: bookingsvc 
  label: bookingsvc
+
+hpa:
+  metadata:
+    name: booking-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: bookingsvc
+
 
 image:
   name: bookingsvc
@@ -10,7 +26,13 @@ image:
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3000
-
+  requests:
+    cpu: "250m"
+    memory: "64Mi"
+  limit:
+    cpu: "1"
+    memory: "128Mi"
+    
 envOfSecrets:
   envUID:
     name: UID

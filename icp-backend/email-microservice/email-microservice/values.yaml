@@ -1,72 +1,63 @@
 replicaCount: 3
 
 metadata:
- name: bookingsvc 
- label: bookingsvc
+ name: emailsvc 
+ label: emailsvc
+
+
+hpa:
+  metadata:
+    name: email-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: emailsvc
 
 image:
-  name: bookingsvc
-  imageName: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
-  imagePullPolicy: IfNotPresent
+  name: emailsvc
+  imageName: "icpdevcluster.icp:8500/default/email-microservice:latest" 
+  imagePullPolicy: Always
   ports:
-    containerPort: 3000
-
+    containerPort: 3006
+  requests:
+    cpu: "250m"
+    memory: "64Mi"
+  limit:
+    cpu: "1"
+    memory: "128Mi"
+    
 envOfSecrets:
-  envUID:
-    name: UID
+  envEMAILPASSWORD:
+    name: EMAILPASSWORD
     secretKeyRef:
       name: mysecret
-      key: UID
-  envPASSWORD:
-    name: PASSWORD
-    secretKeyRef:
-      name: mysecret
-      key: PASSWORD
-  envSECRET:
-    name: SECRET
-    secretKeyRef:
-      name: mysecret
-      key: SECRET
+      key: EMAILPASSWORD
 
 envOfConfigmaps:
-  envNODE_ENV:
-    name: NODE_ENV
+  envEMAILUSERNAME:
+    name: EMAILUSERNAME
     configMapKeyRef:
       name: env-database
-      key: NODE_ENV
-  envDATABASE:
-    name: DATABASE
-    configMapKeyRef:
-      name: env-database
-      key: DATABASE
-  envPORT:
-    name: PORT
-    configMapKeyRef:
-      name: env-database
-      key: PORT
-  envHOSTNAME:
-    name: HOSTNAME
-    configMapKeyRef:
-      name: env-database
-      key: HOSTNAME
-  envPROTOCOL:
-    name: PROTOCOL
-    configMapKeyRef:
-      name: env-database
-      key: PROTOCOL
-
+      key: EMAILUSERNAME
 
 service:
   serviceMetadata:
-    name: bookingsvc
+    name: emailsvc
     labels:
-      app: bookingsvc
+      app: emailsvc
   selector:
-    selectorName: bookingsvc
+    selectorName: emailsvc
   servicePortConfiguration:
     protocol: TCP
-    name: bookingsvc
+    name: emailsvc
     type: NodePort
-    port: 3000
-    targetPort: 3000
-    nodePort: 30090
+    port: 3006
+    targetPort: 3006
+    nodePort: 30199
