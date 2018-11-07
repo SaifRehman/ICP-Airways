@@ -9,7 +9,7 @@ image:
   imageName: "icpdevcluster.icp:8500/default/odm-microservice:latest" 
   imagePullPolicy: IfNotPresent
   ports:
-    containerPort: 3000
+    containerPort: 3005
 
   requests:
     cpu: "250m"
@@ -44,6 +44,6 @@ service:
     protocol: TCP
     name: odmsvc
     type: NodePort
-    port: 3000
-    targetPort: 3000
-    nodePort: 30090
+    port: 3005
+    targetPort: 3005
+    nodePort: 30095
