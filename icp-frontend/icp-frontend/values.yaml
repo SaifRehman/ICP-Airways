@@ -22,7 +22,7 @@ hpa:
 image:
   name: angular
   imageName: "icpdevcluster.icp:8500/default/angular:latest" 
-  imagePullPolicy: IfNotPresent
+  imagePullPolicy: Always
 
 service:
   serviceMetadata:
