@@ -32,6 +32,5 @@ spec:
               configMapKeyRef:
                 name: {{ .Values.envOfConfigmaps.envODM.configMapKeyRef.name }}
                 key: {{ .Values.envOfConfigmaps.envODM.configMapKeyRef.key }}
-
          ports:
          - containerPort: {{ .Values.image.ports.containerPort }} 
