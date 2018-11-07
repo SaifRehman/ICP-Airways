@@ -12,4 +12,11 @@ spec:
       containers:
         - name: {{ .Values.metadata.name }} 
           image: {{ .Values.image.imageName }} 
-          imagePullPolicy: {{ .Values.image.imagePullPolicy }} 
+          imagePullPolicy: {{ .Values.image.imagePullPolicy }}
+         resources:
+          requests:
+            cpu: {{ .Values.image.requests.cpu }} 
+            memory: {{ .Values.image.requests.memory }} 
+          limits:
+            cpu: {{ .Values.image.limits.cpu }} 
+            memory: {{ .Values.image.limits.memory }} 
