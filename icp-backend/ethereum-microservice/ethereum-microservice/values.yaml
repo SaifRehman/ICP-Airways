@@ -1,12 +1,12 @@
-replicaCount: 3
+replicaCount: 1
 
 metadata:
- name: bookingsvc 
- label: bookingsvc
+ name: ethereumsvc 
+ label: ethereumsvc
 
 image:
-  name: bookingsvc
-  imageName: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
+  name: ethereumsvc
+  imageName: "icpdevcluster.icp:8500/default/ethereum-microservice:latest" 
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3000
@@ -18,16 +18,6 @@ image:
     memory: "128Mi"
     
 envOfSecrets:
-  envUID:
-    name: UID
-    secretKeyRef:
-      name: mysecret
-      key: UID
-  envPASSWORD:
-    name: PASSWORD
-    secretKeyRef:
-      name: mysecret
-      key: PASSWORD
   envSECRET:
     name: SECRET
     secretKeyRef:
@@ -35,44 +25,33 @@ envOfSecrets:
       key: SECRET
 
 envOfConfigmaps:
-  envNODE_ENV:
-    name: NODE_ENV
+  envHttpProvider:
+    name: HttpProvider
     configMapKeyRef:
       name: env-database
-      key: NODE_ENV
-  envDATABASE:
-    name: DATABASE
+      key: HttpProvider
+  envCONTRACTADRESS:
+    name: CONTRACTADRESS
     configMapKeyRef:
       name: env-database
-      key: DATABASE
-  envPORT:
-    name: PORT
+      key: CONTRACTADRESS
+  envETHEREUMACCOUNT:
+    name: ETHEREUMACCOUNT
     configMapKeyRef:
       name: env-database
-      key: PORT
-  envHOSTNAME:
-    name: HOSTNAME
-    configMapKeyRef:
-      name: env-database
-      key: HOSTNAME
-  envPROTOCOL:
-    name: PROTOCOL
-    configMapKeyRef:
-      name: env-database
-      key: PROTOCOL
-
+      key: ETHEREUMACCOUNT
 
 service:
   serviceMetadata:
-    name: bookingsvc
+    name: ethereumsvc
     labels:
-      app: bookingsvc
+      app: ethereumsvc
   selector:
-    selectorName: bookingsvc
+    selectorName: ethereumsvc
   servicePortConfiguration:
     protocol: TCP
-    name: bookingsvc
+    name: ethereumsvc
     type: NodePort
-    port: 3000
-    targetPort: 3000
-    nodePort: 30090
+    port: 3008
+    targetPort: 3008
+    nodePort: 30089

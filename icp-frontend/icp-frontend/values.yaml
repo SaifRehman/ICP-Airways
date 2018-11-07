@@ -1,13 +1,28 @@
-replicaCount: 3
+replicaCount: 1
 
 metadata:
  name: angular 
  label: angular
 
+hpa:
+  metadata:
+    name: frontend-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 50
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: angular
+
 image:
   name: angular
   imageName: "icpdevcluster.icp:8500/default/angular:latest" 
-  imagePullPolicy: IfNotPresent
+  imagePullPolicy: Always
 
 service:
   serviceMetadata:
@@ -19,4 +34,4 @@ service:
     type: NodePort
     port: 80
     targetPort: 80
-    nodePort: 30090
+    nodePort: 30080

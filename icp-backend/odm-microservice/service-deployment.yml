@@ -27,6 +27,11 @@ spec:
               configMapKeyRef:
                 name: env-database
                 key: ODM
+          - name: SECRET
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: SECRET
          ports:
          - containerPort: 3005
 ---
