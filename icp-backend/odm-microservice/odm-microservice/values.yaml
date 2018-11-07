@@ -1,12 +1,12 @@
 replicaCount: 3
 
 metadata:
- name: bookingsvc 
- label: bookingsvc
+ name: odmsvc 
+ label: odmsvc
 
 image:
-  name: bookingsvc
-  imageName: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
+  name: odmsvc
+  imageName: "icpdevcluster.icp:8500/default/odm-microservice:latest" 
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3000
@@ -19,16 +19,6 @@ image:
     memory: "128Mi"
 
 envOfSecrets:
-  envUID:
-    name: UID
-    secretKeyRef:
-      name: mysecret
-      key: UID
-  envPASSWORD:
-    name: PASSWORD
-    secretKeyRef:
-      name: mysecret
-      key: PASSWORD
   envSECRET:
     name: SECRET
     secretKeyRef:
@@ -36,43 +26,23 @@ envOfSecrets:
       key: SECRET
 
 envOfConfigmaps:
-  envNODE_ENV:
-    name: NODE_ENV
+  envODM:
+    name: ODM
     configMapKeyRef:
       name: env-database
-      key: NODE_ENV
-  envDATABASE:
-    name: DATABASE
-    configMapKeyRef:
-      name: env-database
-      key: DATABASE
-  envPORT:
-    name: PORT
-    configMapKeyRef:
-      name: env-database
-      key: PORT
-  envHOSTNAME:
-    name: HOSTNAME
-    configMapKeyRef:
-      name: env-database
-      key: HOSTNAME
-  envPROTOCOL:
-    name: PROTOCOL
-    configMapKeyRef:
-      name: env-database
-      key: PROTOCOL
+      key: ODM
 
 
 service:
   serviceMetadata:
-    name: bookingsvc
+    name: odmsvc
     labels:
-      app: bookingsvc
+      app: odmsvc
   selector:
-    selectorName: bookingsvc
+    selectorName: odmsvc
   servicePortConfiguration:
     protocol: TCP
-    name: bookingsvc
+    name: odmsvc
     type: NodePort
     port: 3000
     targetPort: 3000
