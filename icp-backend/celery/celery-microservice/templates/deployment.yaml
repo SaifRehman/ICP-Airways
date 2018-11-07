@@ -1,0 +1,41 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+ name: {{ .Values.metadata.name }} 
+spec:
+ replicas: {{ .Values.replicaCount }}
+ template:
+   metadata:
+     name: {{ .Values.metadata.name }} 
+     labels:
+       app: {{ .Values.metadata.label }} 
+   spec:
+     containers:
+       - name: {{ .Values.image.name }} 
+         image: {{ .Values.image.imageName }} 
+         imagePullPolicy: {{ .Values.image.imagePullPolicy }} 
+         resources:
+          requests:
+            cpu: {{ .Values.image.requests.cpu }} 
+            memory: {{ .Values.image.requests.memory }} 
+          limits:
+            cpu: {{ .Values.image.limits.cpu }} 
+            memory: {{ .Values.image.limits.memory }} 
+         env:
+          - name: {{ .Values.envOfConfigmaps.envCELERY_RESULT_BACKEND.name }} 
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Values.envOfConfigmaps.envCELERY_RESULT_BACKEND.configMapKeyRef.name }}
+                key: {{ .Values.envOfConfigmaps.envCELERY_RESULT_BACKEND.configMapKeyRef.key }}
+          - name: {{ .Values.envOfConfigmaps.envCELERY_BROKER_URL.name }}
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Values.envOfConfigmaps.envCELERY_BROKER_URL.configMapKeyRef.name }}
+                key: {{ .Values.envOfConfigmaps.envCELERY_BROKER_URL.configMapKeyRef.key }}
+          - name: {{ .Values.envOfConfigmaps.envEMAILAPI.name }}
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Values.envOfConfigmaps.envEMAILAPI.configMapKeyRef.name }}
+                key: {{ .Values.envOfConfigmaps.envEMAILAPI.configMapKeyRef.key }}
+         ports:
+         - containerPort: {{ .Values.image.ports.containerPort }} 

@@ -1,0 +1,66 @@
+replicaCount: 1
+
+metadata:
+ name: celerysvc 
+ label: celerysvc
+
+hpa:
+  metadata:
+    name: celery-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: celerysvc
+
+image:
+  name: celerysvc
+  imageName: "icpdevcluster.icp:8500/default/celery-microservice:latest" 
+  imagePullPolicy: IfNotPresent
+  ports:
+    containerPort: 4000
+  requests:
+    cpu: "250m"
+    memory: "64Mi"
+  limit:
+    cpu: "1"
+    memory: "128Mi"
+
+
+envOfConfigmaps:
+  envCELERY_RESULT_BACKEND:
+    name: CELERY_RESULT_BACKEND
+    configMapKeyRef:
+      name: env-database
+      key: CELERY_RESULT_BACKEND
+  envCELERY_BROKER_URL:
+    name: CELERY_BROKER_URL
+    configMapKeyRef:
+      name: env-database
+      key: CELERY_BROKER_URL
+  envEMAILAPI:
+    name: EMAILAPI
+    configMapKeyRef:
+      name: env-database
+      key: EMAILAPI
+
+service:
+  serviceMetadata:
+    name: celerysvc
+    labels:
+      app: celerysvc
+  selector:
+    selectorName: celerysvc
+  servicePortConfiguration:
+    protocol: TCP
+    name: celerysvc
+    type: NodePort
+    port: 4000
+    targetPort: 4000
+    nodePort: 30989
