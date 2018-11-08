@@ -24,6 +24,13 @@ image:
   imageName: "icpdevcluster.icp:8500/default/angular:latest" 
   imagePullPolicy: Always
 
+ingress:
+  metadeta:
+    name: angular
+  path: /
+  serviceName: angular
+  servicePort: 80
+
 service:
   serviceMetadata:
     name: angular
@@ -34,4 +41,3 @@ service:
     type: NodePort
     port: 80
     targetPort: 80
-    nodePort: 30080

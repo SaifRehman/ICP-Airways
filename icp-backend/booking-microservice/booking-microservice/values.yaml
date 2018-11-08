@@ -77,6 +77,12 @@ envOfConfigmaps:
       name: env-database
       key: PROTOCOL
 
+ingress:
+  metadeta:
+    name: bookingsvc
+  path: /bookingsvc
+  serviceName: bookingsvc
+  servicePort: 3000
 
 service:
   serviceMetadata:
@@ -91,4 +97,3 @@ service:
     type: NodePort
     port: 3000
     targetPort: 3000
-    nodePort: 30090

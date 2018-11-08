@@ -17,6 +17,12 @@ image:
     cpu: "1"
     memory: "128Mi"
 
+ingress:
+  metadeta:
+    name: signupsvc
+  path: /signupsvc
+  serviceName: signupsvc
+  servicePort: 3004
 
 envOfSecrets:
   envUID:
@@ -76,4 +82,3 @@ service:
     type: NodePort
     port: 3004
     targetPort: 3004
-    nodePort: 30094

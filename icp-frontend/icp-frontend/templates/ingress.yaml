@@ -4,7 +4,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
- name: test-ingress
+ name: {{.Values.ingress.metadata.name}}
  annotations:
   ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -12,7 +12,7 @@ spec:
   - 
   http:
     paths:
-    - path: /banking
+    - path: {{.Values.ingress.path}}
       backend:
-        serviceName: foo
-        servicePort: 80
+        serviceName: {{.Values.ingress.serviceName}}
+        servicePort: {{.Values.ingress.servicePort}}

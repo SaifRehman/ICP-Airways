@@ -60,6 +60,12 @@ envOfConfigmaps:
       name: env-database
       key: PROTOCOL
 
+ingress:
+  metadeta:
+    name: loginsvc
+  path: /loginsvc
+  serviceName: loginsvc
+  servicePort: 3003
 
 service:
   serviceMetadata:
@@ -74,4 +80,3 @@ service:
     type: NodePort
     port: 3003
     targetPort: 3003
-    nodePort: 30093

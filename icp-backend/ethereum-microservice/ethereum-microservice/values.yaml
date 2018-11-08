@@ -24,6 +24,13 @@ envOfSecrets:
       name: mysecret
       key: SECRET
 
+ingress:
+  metadeta:
+    name: ethereumsvc
+  path: /ethereumsvc
+  serviceName: ethereumsvc
+  servicePort: 3008
+
 envOfConfigmaps:
   envHttpProvider:
     name: HttpProvider
@@ -54,4 +61,3 @@ service:
     type: NodePort
     port: 3008
     targetPort: 3008
-    nodePort: 30089
