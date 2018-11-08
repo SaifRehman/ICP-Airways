@@ -33,6 +33,13 @@ envOfSecrets:
       name: mysecret
       key: SECRET
 
+ingress:
+  metadeta:
+    name: listingsvc
+  path: /listingsvc
+  serviceName: listingsvc
+  servicePort: 3002
+
 envOfConfigmaps:
   envNODE_ENV:
     name: NODE_ENV
@@ -74,4 +81,3 @@ service:
     type: NodePort
     port: 3002
     targetPort: 3002
-    nodePort: 30092

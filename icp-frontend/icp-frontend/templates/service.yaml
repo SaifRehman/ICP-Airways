@@ -7,6 +7,5 @@ spec:
   ports:
     - port: {{ .Values.service.servicePortConfiguration.port }}
       targetPort: {{ .Values.service.servicePortConfiguration.targetPort }}
-      nodePort: {{ .Values.service.servicePortConfiguration.nodePort }}
   selector:
     app: {{ .Values.service.selector.selectorName }}

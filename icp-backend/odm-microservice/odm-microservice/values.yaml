@@ -32,6 +32,12 @@ envOfConfigmaps:
       name: env-database
       key: ODM
 
+ingress:
+  metadeta:
+    name: odmsvc
+  path: /odmsvc
+  serviceName: odmsvc
+  servicePort: 3005
 
 service:
   serviceMetadata:
@@ -46,4 +52,3 @@ service:
     type: NodePort
     port: 3005
     targetPort: 3005
-    nodePort: 30095

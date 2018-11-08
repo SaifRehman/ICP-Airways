@@ -13,4 +13,3 @@ spec:
     name: {{ .Values.service.servicePortConfiguration.name}}
     port: {{ .Values.service.servicePortConfiguration.port}}
     targetPort: {{ .Values.service.servicePortConfiguration.targetPort}}
-    nodePort: {{ .Values.service.servicePortConfiguration.nodePort}}

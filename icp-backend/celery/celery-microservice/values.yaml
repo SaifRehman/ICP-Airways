@@ -60,7 +60,6 @@ service:
   servicePortConfiguration:
     protocol: TCP
     name: celerysvc
-    type: NodePort
+    type: ClusterIP
     port: 4000
     targetPort: 4000
-    nodePort: 30989
