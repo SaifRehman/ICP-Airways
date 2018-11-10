@@ -4,6 +4,20 @@ metadata:
  name: checkinsvc 
  label: checkinsvc
 
+
+readinessProbe:
+  path: /healthz
+  port: 3001
+  initialDelaySeconds: 5
+  timeoutSeconds: 1
+  periodSeconds: 15
+
+livenessProbe:
+  path: /healthz
+  port: 3001
+  initialDelaySeconds: 5
+  timeoutSeconds: 1 
+  periodSeconds: 15
 hpa:
   metadata:
     name: checkin-microservice-HPA

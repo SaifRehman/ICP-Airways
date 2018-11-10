@@ -4,6 +4,20 @@ metadata:
  name: bookingsvc 
  label: bookingsvc
 
+readinessProbe:
+  path: /healthz
+  port: 3000
+  initialDelaySeconds: 5
+  timeoutSeconds: 1
+  periodSeconds: 15
+
+livenessProbe:
+  path: /healthz
+  port: 3000
+  initialDelaySeconds: 5
+  timeoutSeconds: 1 
+  periodSeconds: 15
+
 hpa:
   metadata:
     name: booking-microservice-HPA

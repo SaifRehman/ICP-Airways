@@ -3,7 +3,19 @@ replicaCount: 1
 metadata:
  name: loginsvc 
  label: loginsvc
+readinessProbe:
+  path: /healthz
+  port: 3003
+  initialDelaySeconds: 5
+  timeoutSeconds: 1
+  periodSeconds: 15
 
+livenessProbe:
+  path: /healthz
+  port: 3003
+  initialDelaySeconds: 5
+  timeoutSeconds: 1 
+  periodSeconds: 15
 image:
   name: loginsvc
   imageName: "icpdevcluster.icp:8500/default/login-microservice:latest" 

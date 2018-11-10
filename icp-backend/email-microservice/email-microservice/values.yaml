@@ -3,7 +3,19 @@ replicaCount: 3
 metadata:
  name: emailsvc 
  label: emailsvc
+readinessProbe:
+  path: /healthz
+  port: 3006
+  initialDelaySeconds: 5
+  timeoutSeconds: 1
+  periodSeconds: 15
 
+livenessProbe:
+  path: /healthz
+  port: 3006
+  initialDelaySeconds: 5
+  timeoutSeconds: 1 
+  periodSeconds: 15
 
 hpa:
   metadata:
