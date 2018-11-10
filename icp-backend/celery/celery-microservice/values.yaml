@@ -16,6 +16,8 @@ hpa:
     resource:
       name: cpu
       targetAverageUtilization: 80 
+    memory:
+      targetAverageUtilization: 80 
   scaleTargetRef:  
     name: celerysvc
 
