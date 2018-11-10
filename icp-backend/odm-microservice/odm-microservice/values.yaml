@@ -10,7 +10,8 @@ image:
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3005
-
+  maxSurge: 2
+  maxUnavailable: 0
   requests:
     cpu: "250m"
     memory: "64Mi"

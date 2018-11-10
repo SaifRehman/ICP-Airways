@@ -16,6 +16,8 @@ image:
   limit:
     cpu: "1"
     memory: "128Mi"
+  maxSurge: 2
+  maxUnavailable: 0
 envOfSecrets:
   envUID:
     name: UID
