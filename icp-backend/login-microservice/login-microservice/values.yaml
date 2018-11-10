@@ -100,3 +100,14 @@ service:
     type: NodePort
     port: 3003
     targetPort: 3003
+
+serviceMonitor:
+  metadata:
+    name: serviceMonitorLoginsvc
+    labels:
+      app: serviceMonitorLoginsvc
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorLoginsvc
+    port: loginsvc

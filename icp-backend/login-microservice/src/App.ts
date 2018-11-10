@@ -6,8 +6,8 @@ import * as passwordhash from 'password-hash'
 import * as passport from 'passport'
 import * as jwt from 'jsonwebtoken'
 import * as passportJWT from 'passport-jwt'
-import * as cors from 'cors'
 var ibmdb = require('ibm_db');
+import * as epimetheus from 'epimetheus'
 
 class App {
   public jwtOptions: any = {};
@@ -24,6 +24,7 @@ class App {
       'PROTOCOL=' + process.env.PROTOCOL + ';'
     console.log(this.connectionString);
     this.express = express();
+    epimetheus.instrument(this.express)
     this.middleware();
     this.routes();
   }

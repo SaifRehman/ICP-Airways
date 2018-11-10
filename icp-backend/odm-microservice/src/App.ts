@@ -7,6 +7,7 @@ import * as passport from 'passport'
 import * as jwt from 'jsonwebtoken'
 import * as passportJWT from 'passport-jwt'
 import * as Request from 'request'
+import * as epimetheus from 'epimetheus'
 
 class App {
   public jwtOptions: any = {};
@@ -17,6 +18,7 @@ class App {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
     this.express = express();
+    epimetheus.instrument(this.express)
     this.middleware();
     this.routes();
   }

@@ -4,12 +4,14 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as Request from 'request'
 import * as nodemailer from 'nodemailer'
+import * as epimetheus from 'epimetheus'
 
 class App {
 
   public express: express.Application;
   constructor() {
     this.express = express();
+    epimetheus.instrument(this.express)
     this.middleware();
     this.routes();
   }

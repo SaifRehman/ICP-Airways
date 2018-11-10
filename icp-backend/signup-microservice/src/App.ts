@@ -4,6 +4,7 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as passwordhash from 'password-hash'
 var ibmdb = require('ibm_db');
+import * as epimetheus from 'epimetheus'
 
 class App {
   public express: express.Application;
@@ -14,8 +15,8 @@ class App {
       'PWD=' + process.env.PASSWORD + ';' + 'PORT=' + process.env.PORT + ';' +
       'PROTOCOL=' + process.env.PROTOCOL + ';'
     console.log(this.connectionString);
-    console.trace('hi');
     this.express = express();
+    epimetheus.instrument(this.express)
     this.middleware();
     this.routes();
   }

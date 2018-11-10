@@ -101,3 +101,14 @@ service:
     type: NodePort
     port: 3000
     targetPort: 3000
+
+serviceMonitor:
+  metadata:
+    name: serviceMonitorBookingsvc
+    labels:
+      app: serviceMonitorBookingsvc
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorBookingsvc
+    port: bookingsvc

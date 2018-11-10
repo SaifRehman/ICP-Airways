@@ -1,7 +1,8 @@
-import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as epimetheus from 'epimetheus'
+
 var ibmdb = require('ibm_db');
 
 class App {
@@ -14,6 +15,7 @@ class App {
       'PROTOCOL=' + process.env.PROTOCOL + ';'
     console.log(this.connectionString);
     this.express = express();
+    epimetheus.instrument(this.express)
     this.middleware();
     this.routes();
   }
