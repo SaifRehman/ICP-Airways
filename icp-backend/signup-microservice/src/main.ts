@@ -5,40 +5,49 @@ import App from './App';
 
 debug('ts-express:server');
 
-const port = normalizePort(3004);
-App.set('port', port);
+class InitServer {
+  private port: number | boolean | string;
+  private server: any;
 
-const server = http.createServer(App);
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-function normalizePort(val: number|string): number|string|boolean {
-  let port: number = (typeof val === 'string') ? parseInt(val, 10) : val;
-  if (isNaN(port)) return val;
-  else if (port >= 0) return port;
-  else return false;
-}
-
-function onError(error: NodeJS.ErrnoException): void {
-  if (error.syscall !== 'listen') throw error;
-  let bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
-  switch(error.code) {
-    case 'EACCES':
-      console.error(`${bind} requires elevated privileges`);
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(`${bind} is already in use`);
-      process.exit(1);
-      break;
-    default:
-      throw error;
+  constructor() {
+    this.port = this.normalizePort(process.env.port || 7000);
+    App.set('port', this.port);
+    this.server = http.createServer(App);
+    this.server.listen(this.port);
+    this.server.on('error', this.onError);
+    this.server.on('listening', this.onListening);
   }
+
+  private normalizePort = (val: number | string): number | string | boolean => {
+    let port: number = typeof val === 'string' ? parseInt(val, 10) : val;
+    if (isNaN(port)) return val;
+    else if (port >= 0) return port;
+    else return false;
+  };
+
+  private onError = (error: NodeJS.ErrnoException): void => {
+    if (error.syscall !== 'listen') throw error;
+    let bind =
+      typeof this.port === 'string' ? 'Pipe ' + this.port : 'Port ' + this.port;
+    switch (error.code) {
+      case 'EACCES':
+        console.error(`${bind} requires elevated privileges`);
+        process.exit(1);
+        break;
+      case 'EADDRINUSE':
+        console.error(`${bind} is already in use`);
+        process.exit(1);
+        break;
+      default:
+        throw error;
+    }
+  };
+
+  private onListening = (): void => {
+    let addr = this.server.address();
+    let bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+    debug(`Listening on ${bind}`);
+  };
 }
 
-function onListening(): void {
-  let addr = server.address();
-  let bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
-  debug(`Listening on ${bind}`);
-}
+new InitServer();

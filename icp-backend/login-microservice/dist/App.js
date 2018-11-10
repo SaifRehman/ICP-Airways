@@ -7,7 +7,6 @@ const passwordhash = require("password-hash");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const passportJWT = require("passport-jwt");
-const cors = require("cors");
 var ibmdb = require('ibm_db');
 class App {
     constructor() {
@@ -26,6 +25,11 @@ class App {
         this.routes();
     }
     middleware() {
+        this.express.use(function (req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "*");
+            next();
+        });
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(passport.initialize());
@@ -33,7 +37,7 @@ class App {
     }
     routes() {
         let router = express.Router();
-        router.post('/login', cors(), (req, res, next) => {
+        router.post('/login', (req, res, next) => {
             ibmdb.open(this.connectionString, function (err, conn) {
                 conn.prepare('SELECT * FROM SAMPLE.UserData WHERE Email=?', function (err, stmt) {
                     if (err) {

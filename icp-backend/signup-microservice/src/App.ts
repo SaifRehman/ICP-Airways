@@ -14,6 +14,7 @@ class App {
       'PWD=' + process.env.PASSWORD + ';' + 'PORT=' + process.env.PORT + ';' +
       'PROTOCOL=' + process.env.PROTOCOL + ';'
     console.log(this.connectionString);
+    console.trace('hi');
     this.express = express();
     this.middleware();
     this.routes();
