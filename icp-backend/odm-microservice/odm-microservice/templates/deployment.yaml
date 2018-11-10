@@ -18,6 +18,20 @@ spec:
      containers:
        - name: {{ .Values.image.name }} 
          image: {{ .Values.image.imageName }} 
+         readinessProbe:
+          httpGet: 
+            path: {{ .Values.readinessProbe.path }} 
+            port: {{ .Values.readinessProbe.port }} 
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }} 
+          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }} 
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }} 
+         livenessProbe:
+          httpGet:
+            path: {{ .Values.livenessProbe.path }} 
+            port: {{ .Values.livenessProbe.port }} 
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }} 
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }} 
+          periodSeconds: {{ .Values.livenessProbe.timeoutSeconds }} 
          imagePullPolicy: {{ .Values.image.imagePullPolicy }} 
          resources:
           requests:
