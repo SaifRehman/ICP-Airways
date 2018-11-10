@@ -3,8 +3,8 @@ WORKDIR /usr/src/app
 COPY . .
 RUN npm install
 EXPOSE 3003
-RUN npm i -g gulp-cli
-RUN gulp scripts
+RUN npm i -g webpack webpack-cli
+RUN webpack-cli
 RUN groupadd -g 999 appuser && \
     useradd -r -u 999 -g appuser appuser
 USER appuser

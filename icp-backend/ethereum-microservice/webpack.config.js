@@ -25,6 +25,5 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js'
     },
-    plugins: [new CleanWebpack(['./dist/main.js'])],
-    watch: true
+    plugins: [new CleanWebpack(['./dist/main.js'])]
 };
