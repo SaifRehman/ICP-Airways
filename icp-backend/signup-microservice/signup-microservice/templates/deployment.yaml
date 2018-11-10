@@ -18,6 +18,20 @@ spec:
      containers:
        - name: {{ .Values.image.name }} 
          image: {{ .Values.image.imageName }} 
+         
+         readinessProbe:
+          httpGet:
+          port:
+         initialDelaySeconds:
+         timeoutSeconds:
+         periodSeconds: 
+         
+         readinessProbe:
+          httpGet:
+          port:
+         initialDelaySeconds:
+         timeoutSeconds:
+         periodSeconds: 
          imagePullPolicy: {{ .Values.image.imagePullPolicy }}
          resources:
           requests:
