@@ -6,6 +6,8 @@ import * as passwordhash from 'password-hash'
 import * as passport from 'passport'
 import * as jwt from 'jsonwebtoken'
 import * as passportJWT from 'passport-jwt'
+import * as epimetheus from 'epimetheus'
+
 var ibmdb = require('ibm_db');
 
 class App {
@@ -23,6 +25,7 @@ class App {
       'PROTOCOL=' + process.env.PROTOCOL + ';'
     console.log(this.connectionString);
     this.express = express();
+    epimetheus.instrument(this.express)
     this.middleware();
     this.routes();
   }
