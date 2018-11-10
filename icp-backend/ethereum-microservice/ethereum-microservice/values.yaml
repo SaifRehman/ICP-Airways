@@ -1,5 +1,17 @@
 replicaCount: 1
+readinessProbe:
+  path: /healthz
+  port: 3008
+  initialDelaySeconds: 5
+  timeoutSeconds: 1
+  periodSeconds: 15
 
+livenessProbe:
+  path: /healthz
+  port: 3008
+  initialDelaySeconds: 5
+  timeoutSeconds: 1 
+  periodSeconds: 15
 metadata:
  name: ethereumsvc 
  label: ethereumsvc
@@ -9,7 +21,7 @@ image:
   imageName: "icpdevcluster.icp:8500/default/ethereum-microservice:latest" 
   imagePullPolicy: IfNotPresent
   ports:
-    containerPort: 3000
+    containerPort: 3008
   requests:
     cpu: "250m"
     memory: "64Mi"

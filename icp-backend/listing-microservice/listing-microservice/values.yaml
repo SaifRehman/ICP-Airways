@@ -3,7 +3,19 @@ replicaCount: 1
 metadata:
  name: listingsvc 
  label: listingsvc
+readinessProbe:
+  path: /healthz
+  port: 3002
+  initialDelaySeconds: 5
+  timeoutSeconds: 1
+  periodSeconds: 15
 
+livenessProbe:
+  path: /healthz
+  port: 3002
+  initialDelaySeconds: 5
+  timeoutSeconds: 1 
+  periodSeconds: 15
 image:
   name: listingsvc
   imageName: "icpdevcluster.icp:8500/default/listing-microservice:latest" 

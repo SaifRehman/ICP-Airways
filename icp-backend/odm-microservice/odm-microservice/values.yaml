@@ -4,6 +4,19 @@ metadata:
  name: odmsvc 
  label: odmsvc
 
+readinessProbe:
+  path: /healthz
+  port: 3005
+  initialDelaySeconds: 5
+  timeoutSeconds: 1
+  periodSeconds: 15
+
+livenessProbe:
+  path: /healthz
+  port: 3005
+  initialDelaySeconds: 5
+  timeoutSeconds: 1 
+  periodSeconds: 15
 image:
   name: odmsvc
   imageName: "icpdevcluster.icp:8500/default/odm-microservice:latest" 
