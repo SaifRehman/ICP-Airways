@@ -3,7 +3,12 @@ kind: Deployment
 metadata:
   name: {{ .Values.metadata.name }} 
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }} 
+  strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: {{ .Values.image.maxSurge }} 
+    maxUnavailable: {{ .Values.image.maxUnavailable }} 
   template:
     metadata:
       labels:
