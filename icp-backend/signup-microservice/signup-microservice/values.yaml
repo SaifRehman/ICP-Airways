@@ -100,3 +100,15 @@ service:
     type: NodePort
     port: 3004
     targetPort: 3004
+
+
+serviceMonitor:
+  metadata:
+    name: serviceMonitorSignupsvc
+    labels:
+      app: serviceMonitorSignupsvc
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorSignupsvc
+    port: signupsvc

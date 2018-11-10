@@ -70,3 +70,14 @@ service:
     type: NodePort
     port: 3006
     targetPort: 3006
+
+serviceMonitor:
+  metadata:
+    name: serviceMonitorEmailsvc
+    labels:
+      app: serviceMonitorEmailsvc
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorEmailsvc
+    port: emailsvc

@@ -100,3 +100,15 @@ service:
     type: NodePort
     port: 3001
     targetPort: 3001
+
+
+serviceMonitor:
+  metadata:
+    name: serviceMonitorCheckinsvc
+    labels:
+      app: serviceMonitorCheckinsvc
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorCheckinsvc
+    port: checkinsvc

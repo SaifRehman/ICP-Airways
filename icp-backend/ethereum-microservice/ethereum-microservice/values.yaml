@@ -80,3 +80,15 @@ service:
     type: NodePort
     port: 3008
     targetPort: 3008
+
+
+serviceMonitor:
+  metadata:
+    name: serviceMonitorEthereumsvc
+    labels:
+      app: serviceMonitorEthereumsvc
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorEthereumsvc
+    port: ethereumsvc

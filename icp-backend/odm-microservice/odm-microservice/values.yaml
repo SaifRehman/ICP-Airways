@@ -70,3 +70,15 @@ service:
     type: NodePort
     port: 3005
     targetPort: 3005
+
+  
+serviceMonitor:
+  metadata:
+    name: serviceMonitorOdmsvc
+    labels:
+      app: serviceMonitorOdmsvc
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorOdmsvc
+    port: odmsvc

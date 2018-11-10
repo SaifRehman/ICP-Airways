@@ -99,3 +99,16 @@ service:
     type: NodePort
     port: 3002
     targetPort: 3002
+
+
+
+serviceMonitor:
+  metadata:
+    name: serviceMonitorListingsvc
+    labels:
+      app: serviceMonitorListingsvc
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorListingsvc
+    port: listingsvc
