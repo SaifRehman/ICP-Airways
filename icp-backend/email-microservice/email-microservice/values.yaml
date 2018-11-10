@@ -47,6 +47,13 @@ envOfConfigmaps:
       name: env-database
       key: EMAILUSERNAME
 
+ingress:
+  metadeta:
+    name: emailsvc
+  path: /emailsvc
+  serviceName: emailsvc
+  servicePort: 3006
+
 service:
   serviceMetadata:
     name: emailsvc
@@ -60,4 +67,3 @@ service:
     type: NodePort
     port: 3006
     targetPort: 3006
-    nodePort: 30199

@@ -75,6 +75,12 @@ envOfConfigmaps:
       name: env-database
       key: PROTOCOL
 
+ingress:
+  metadeta:
+    name: checkinsvc
+  path: /checkinsvc
+  serviceName: checkinsvc
+  servicePort: 3006
 
 service:
   serviceMetadata:
@@ -89,4 +95,3 @@ service:
     type: NodePort
     port: 3001
     targetPort: 3001
-    nodePort: 30091
