@@ -16,6 +16,8 @@ hpa:
     resource:
       name: cpu
       targetAverageUtilization: 80 
+    memory:
+      targetAverageUtilization: 80 
   scaleTargetRef:  
     name: angular
 
@@ -23,6 +25,8 @@ image:
   name: angular
   imageName: "icpdevcluster.icp:8500/default/angular:latest" 
   imagePullPolicy: Always
+  maxSurge: 2
+  maxUnavailable: 0
 
 ingress:
   metadeta:

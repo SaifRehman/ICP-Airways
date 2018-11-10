@@ -16,6 +16,8 @@ image:
   limit:
     cpu: "1"
     memory: "128Mi"
+  maxSurge: 2
+  maxUnavailable: 0
 envOfSecrets:
   envUID:
     name: UID
@@ -67,6 +69,22 @@ envOfConfigmaps:
       name: env-database
       key: PROTOCOL
 
+hpa:
+  metadata:
+    name: listingsvc-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+    memory:
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: listingsvc
 
 service:
   serviceMetadata:

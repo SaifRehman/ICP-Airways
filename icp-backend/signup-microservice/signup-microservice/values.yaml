@@ -16,7 +16,9 @@ image:
   limit:
     cpu: "1"
     memory: "128Mi"
-
+  maxSurge: 2
+  maxUnavailable: 0
+  
 ingress:
   metadeta:
     name: signupsvc
@@ -68,6 +70,22 @@ envOfConfigmaps:
       name: env-database
       key: PROTOCOL
 
+hpa:
+  metadata:
+    name: signupsvc-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+    memory:
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: signupsvc
 
 service:
   serviceMetadata:

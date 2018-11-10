@@ -4,6 +4,11 @@ metadata:
  name: {{ .Values.metadata.name }} 
 spec:
  replicas: {{ .Values.replicaCount }}
+ strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: {{ .Values.image.maxSurge }} 
+    maxUnavailable: {{ .Values.image.maxUnavailable }} 
  template:
    metadata:
      name: {{ .Values.metadata.name }} 

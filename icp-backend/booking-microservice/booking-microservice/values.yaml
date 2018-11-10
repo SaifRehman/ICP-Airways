@@ -16,6 +16,8 @@ hpa:
     resource:
       name: cpu
       targetAverageUtilization: 80 
+    memory:
+      targetAverageUtilization: 80 
   scaleTargetRef:  
     name: bookingsvc
 
@@ -32,6 +34,8 @@ image:
   limit:
     cpu: "1"
     memory: "128Mi"
+  maxSurge: 2
+  maxUnavailable: 0
     
 envOfSecrets:
   envUID:
