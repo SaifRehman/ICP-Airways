@@ -45,3 +45,15 @@ service:
     type: NodePort
     port: 80
     targetPort: 80
+
+
+serviceMonitor:
+  metadata:
+    name: serviceMonitorAngular
+    labels:
+      app: serviceMonitorAngular
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorAngular
+    port: angular
