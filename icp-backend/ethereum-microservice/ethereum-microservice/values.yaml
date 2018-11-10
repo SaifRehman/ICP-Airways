@@ -18,6 +18,21 @@ image:
     memory: "128Mi"
   maxSurge: 2
   maxUnavailable: 0
+
+hpa:
+  metadata:
+    name: ethereum-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: ethereumsvc
     
 envOfSecrets:
   envSECRET:

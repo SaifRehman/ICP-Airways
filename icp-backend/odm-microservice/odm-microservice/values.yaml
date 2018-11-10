@@ -19,6 +19,21 @@ image:
     cpu: "1"
     memory: "128Mi"
 
+hpa:
+  metadata:
+    name: odmsvc-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 80 
+  scaleTargetRef:  
+    name: odmsvc
+
 envOfSecrets:
   envSECRET:
     name: SECRET
