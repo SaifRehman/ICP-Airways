@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 
 metadata:
  name: signupsvc 
@@ -21,7 +21,7 @@ livenessProbe:
 image:
   name: signupsvc
   
-  imageName: "icpdevcluster.icp:8500/default/signup-microservice:latest" 
+  imageName: "mycluster.icp:8500/default/signup-microservice:latest" 
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3004
