@@ -16,9 +16,9 @@ spec:
       targetAverageUtilization: {{.Values.hpa.metrics.resource.targetAverageUtilization}}   
   - type: Resource
     resource:                              
-      name: memory                            
+      name: memory  
       targetAverageUtilization: {{.Values.hpa.metrics.memory.targetAverageUtilization}}        
   scaleTargetRef:                          
-    apiVersion: extensions/v1beta1         
-    kind: Deployment                       
+    apiVersion: extensions/v1beta1
+    kind: Deployment
     name: {{.Values.hpa.scaleTargetRef.name}}

@@ -28,15 +28,14 @@ image:
   requests:
     cpu: "250m"
     memory: "64Mi"
-  limit:
+  limits:
     cpu: "1"
     memory: "128Mi"
-  maxSurge: 2
+  maxSurge: 1
   maxUnavailable: 0
   
 ingress:
-  metadeta:
-    name: signupsvc
+  name: signupsvc
   path: /signupsvc
   serviceName: signupsvc
   servicePort: 3004
@@ -87,7 +86,7 @@ envOfConfigmaps:
 
 hpa:
   metadata:
-    name: signupsvc-microservice-HPA
+    name: signupsvcmicroservicehpa
   spec:
     maxReplicas: 10
     minReplicas: 2
@@ -119,11 +118,11 @@ service:
 
 serviceMonitor:
   metadata:
-    name: serviceMonitorSignupsvc
+    name: servicemonitorsignupsvc
     labels:
-      app: serviceMonitorSignupsvc
+      app: servicemonitorsignupsvc
   specs: 
     selector:
       matchLabels:
-        app: serviceMonitorSignupsvc
+        app: servicemonitorsignupsvc
     port: signupsvc
