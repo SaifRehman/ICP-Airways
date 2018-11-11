@@ -13,6 +13,18 @@ spec:
      containers:
        - name: signupsvcluster
          image: "mycluster.icp:8500/default/signup-microservice:latest" 
+        #  readinessProbe:
+        #   httpGet: 
+        #     path: /healthz
+        #     port: 30041
+        #   initialDelaySeconds: 20
+          # periodSeconds: 1000
+         livenessProbe:
+          httpGet:
+            path: /health
+            port: 3004
+          initialDelaySeconds: 200
+          periodSeconds: 3
          imagePullPolicy: Always
          resources:
           requests:
@@ -80,4 +92,4 @@ spec:
     name: signupsvc
     port: 3004
     targetPort: 3004
-    nodePort: 30094
+    # nodePort: 30094

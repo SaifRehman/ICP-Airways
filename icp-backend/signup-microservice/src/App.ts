@@ -52,6 +52,9 @@ class App {
         });
       });
     });
+    router.get('/healthz', (req, res, next) => {
+      res.send('success');
+    });
     this.express.use('/', router);
   }
 }

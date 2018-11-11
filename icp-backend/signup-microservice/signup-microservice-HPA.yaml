@@ -1,10 +1,10 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: signup-microservice-HPA
+  name: signupmicroservicehpa
 spec:
   maxReplicas: 10
-  minReplicas: 2                       
+  minReplicas: 1                      
   metrics:    
   - type: Pods
     pods:
