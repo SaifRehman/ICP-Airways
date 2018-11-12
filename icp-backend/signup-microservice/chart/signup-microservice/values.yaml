@@ -9,26 +9,26 @@ readinessProbe:
   port: 3004
   initialDelaySeconds: 45
   timeoutSeconds: 20
-  # periodSeconds: 15
+  periodSeconds: 15
 
 livenessProbe:
   path: /healthz
   port: 3004
-  initialDelaySeconds: 5
-  timeoutSeconds: 1 
+  initialDelaySeconds: 10
+  timeoutSeconds: 2 
   periodSeconds: 15
 
 image:
   name: signupsvc
-  imageName: "mycluster.icp:8500/default/signup-microservice:latest" 
+  imageName: "mycluster.icp:8500/default/signup-microservice:0.0.1" 
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3004
   requests:
-    cpu: "250m"
+    cpu: "100m"
     memory: "64Mi"
   limits:
-    cpu: "1"
+    cpu: "150m"
     memory: "128Mi"
   maxSurge: 1
   maxUnavailable: 0
@@ -88,7 +88,7 @@ hpa:
     name: signupsvcmicroservicehpa
   spec:
     maxReplicas: 10
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     pods:
       targetAverageValue: 20

@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
  name: {{ .Values.metadata.name }} 
 spec:
+ hostNetwork: true
  replicas: {{ .Values.replicaCount }}
  strategy:
   type: RollingUpdate
@@ -18,20 +19,22 @@ spec:
      containers:
        - name: {{ .Values.image.name }} 
          image: {{ .Values.image.imageName }} 
-        #  readinessProbe:
-        #   httpGet: 
-        #     path: {{ .Values.readinessProbe.path }} 
-        #     port: {{ .Values.readinessProbe.port }} 
-        #   initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }} 
-        #   timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }} 
-        #   periodSeconds: {{ .Values.readinessProbe.periodSeconds }} 
+         readinessProbe:
+          httpGet: 
+            path: {{ .Values.readinessProbe.path }} 
+            port: {{ .Values.readinessProbe.port }} 
+            scheme: HTTP
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }} 
+          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }} 
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }} 
          livenessProbe:
           httpGet:
             path: {{ .Values.livenessProbe.path }} 
             port: {{ .Values.livenessProbe.port }} 
+            scheme: HTTP
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }} 
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }} 
-          periodSeconds: {{ .Values.livenessProbe.timeoutSeconds }} 
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }} 
          imagePullPolicy: Always
          resources:
           requests:
