@@ -7,9 +7,9 @@ metadata:
 readinessProbe:
   path: /healthz
   port: 3004
-  initialDelaySeconds: 5
-  timeoutSeconds: 1
-  periodSeconds: 15
+  initialDelaySeconds: 45
+  timeoutSeconds: 20
+  # periodSeconds: 15
 
 livenessProbe:
   path: /healthz

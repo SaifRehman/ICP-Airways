@@ -113,6 +113,9 @@ class App {
       })
      
     });
+    router.get('/healthz', (req, res, next) => {
+      res.send('success');
+    });
     router.get('/getBlockchain', (req, res, next) => {
       this.contract.methods.get().call().then(function (response) {
         console.log(response)

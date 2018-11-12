@@ -69,6 +69,9 @@ class App {
         res.json(JSON.parse(body));
       });
     });
+    router.get('/healthz', (req, res, next) => {
+      res.send('success');
+    });
     this.express.use('/', router);
   }
 }

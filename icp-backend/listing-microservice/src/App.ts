@@ -69,6 +69,9 @@ class App {
     });
 
 
+    router.get('/healthz', (req, res, next) => {
+      res.send('success');
+    });
 
     router.get('/listFlightsByID/:id', (req, res, next) => {
       ibmdb.open(this.connectionString, function (err, conn) {

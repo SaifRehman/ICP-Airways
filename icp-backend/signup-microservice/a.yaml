@@ -1,0 +1,27 @@
+# apiVersion: monitoring.coreos.com/v1alpha1
+# kind: ServiceMonitor
+# metadata:
+#   name: frontend
+#   labels:
+#     tier: frontend
+# spec:
+#   selector:
+#     matchLabels:
+#       tier: frontend
+#   endpoints:
+#   - port: 80            # works for different port numbers as long as the name matches
+#     interval: 10s        # scrape the endpoint every 10 seconds
+
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: bookingsvc
+  labels:
+    app: bookingsvc
+spec:
+  selector:
+    matchLabels:
+      app: bookingsvc
+  endpoints:
+  - port: bookingsvc
