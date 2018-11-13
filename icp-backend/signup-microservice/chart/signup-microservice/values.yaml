@@ -21,15 +21,15 @@ livenessProbe:
 image:
   name: signupsvc
   imageName: "mycluster.icp:8500/default/signup-microservice:0.0.1" 
-  imagePullPolicy: IfNotPresent
+  imagePullPolicy: Always
   ports:
     containerPort: 3004
   requests:
     cpu: "100m"
-    memory: "64Mi"
+    memory: "30Mi"
   limits:
-    cpu: "150m"
-    memory: "128Mi"
+    cpu: "110m"
+    memory: "361Mi"
   maxSurge: 1
   maxUnavailable: 0
   
@@ -91,12 +91,12 @@ hpa:
     minReplicas: 1
   metrics:
     pods:
-      targetAverageValue: 20
+      targetAverageValue: 2
     resource:
       name: cpu
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 70
     memory:
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 1
   scaleTargetRef:  
     name: signupsvc
 
