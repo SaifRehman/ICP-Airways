@@ -20,25 +20,25 @@ livenessProbe:
   periodSeconds: 15
 hpa:
   metadata:
-    name: checkin-microservice-HPA
+    name: checkinmicroservicehpa
   spec:
     maxReplicas: 10
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     pods:
-      targetAverageValue: 20
+      targetAverageValue: 30
     resource:
       name: cpu
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 70
     memory:
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 70
   scaleTargetRef:  
     name: checkinsvc
 
 image:
   name: checkinsvc
   imageName: "icpdevcluster.icp:8500/default/checkin-microservice:0.0.1" 
-  imagePullPolicy: IfNotPresent
+  imagePullPolicy: Always
   ports:
     containerPort: 3001
   requests:
@@ -102,7 +102,7 @@ ingress:
     name: checkinsvc
   path: /checkinsvc
   serviceName: checkinsvc
-  servicePort: 3006
+  servicePort: 3001
 
 service:
   serviceMetadata:

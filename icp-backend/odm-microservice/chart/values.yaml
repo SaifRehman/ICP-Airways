@@ -36,7 +36,7 @@ image:
       command: ["/bin/bash", "-c", "sleep 20"]
 hpa:
   metadata:
-    name: odmsvc-microservice-HPA
+    name: odmsvcmicroservicehpa
   spec:
     maxReplicas: 10
     minReplicas: 1

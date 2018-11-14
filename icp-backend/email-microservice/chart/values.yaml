@@ -22,15 +22,15 @@ hpa:
     name: email-microservice-HPA
   spec:
     maxReplicas: 10
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     pods:
-      targetAverageValue: 20
+      targetAverageValue: 30
     resource:
       name: cpu
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 70
     memory:
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 70
   scaleTargetRef:  
     name: emailsvc
 
