@@ -19,7 +19,7 @@ livenessProbe:
   periodSeconds: 15
 image:
   name: odmsvc
-  imageName: "icpdevcluster.icp:8500/default/odm-microservice:latest" 
+  imageName: "icpdevcluster.icp:8500/default/odm-microservice:0.0.1" 
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3005
@@ -39,15 +39,15 @@ hpa:
     name: odmsvc-microservice-HPA
   spec:
     maxReplicas: 10
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     pods:
-      targetAverageValue: 20
+      targetAverageValue: 30
     resource:
       name: cpu
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 70
     memory:
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 70
   scaleTargetRef:  
     name: odmsvc
 

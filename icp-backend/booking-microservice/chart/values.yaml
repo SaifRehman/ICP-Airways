@@ -38,7 +38,7 @@ hpa:
 
 image:
   name: bookingsvc
-  imageName: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
+  imageName: "icpdevcluster.icp:8500/default/booking-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 3000

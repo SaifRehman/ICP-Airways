@@ -37,7 +37,7 @@ hpa:
 
 image:
   name: checkinsvc
-  imageName: "icpdevcluster.icp:8500/default/checkin-microservice:latest" 
+  imageName: "icpdevcluster.icp:8500/default/checkin-microservice:0.0.1" 
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3001

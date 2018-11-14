@@ -36,7 +36,7 @@ hpa:
 
 image:
   name: emailsvc
-  imageName: "icpdevcluster.icp:8500/default/email-microservice:latest" 
+  imageName: "icpdevcluster.icp:8500/default/email-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 3006

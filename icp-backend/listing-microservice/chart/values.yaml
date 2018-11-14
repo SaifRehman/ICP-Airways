@@ -18,7 +18,7 @@ livenessProbe:
   periodSeconds: 15
 image:
   name: listingsvc
-  imageName: "icpdevcluster.icp:8500/default/listing-microservice:latest" 
+  imageName: "icpdevcluster.icp:8500/default/listing-microservice:0.0.1" 
   imagePullPolicy: IfNotPresent
   ports:
     containerPort: 3002

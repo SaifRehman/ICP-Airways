@@ -18,7 +18,7 @@ livenessProbe:
   periodSeconds: 15
 image:
   name: loginsvc
-  imageName: "icpdevcluster.icp:8500/default/login-microservice:latest" 
+  imageName: "icpdevcluster.icp:8500/default/login-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 3003
