@@ -7,16 +7,16 @@ metadata:
 readinessProbe:
   path: /healthz
   port: 3004
-  initialDelaySeconds: 45
-  timeoutSeconds: 20
-  periodSeconds: 15
+  initialDelaySeconds: 10
+  timeoutSeconds: 2
+  periodSeconds: 10
 
 livenessProbe:
   path: /healthz
   port: 3004
   initialDelaySeconds: 10
   timeoutSeconds: 2 
-  periodSeconds: 15
+  periodSeconds: 10
 
 image:
   name: signupsvc
@@ -25,13 +25,16 @@ image:
   ports:
     containerPort: 3004
   requests:
-    cpu: "100m"
+    cpu: "50m"
     memory: "30Mi"
   limits:
-    cpu: "110m"
-    memory: "361Mi"
+    cpu: "100m"
+    memory: "35Mi"
   maxSurge: 1
   maxUnavailable: 0
+  lifecycle:
+    preStop:
+      command: ["/bin/bash", "-c", "sleep 20"]
   
 ingress:
   name: signupsvc
@@ -91,12 +94,12 @@ hpa:
     minReplicas: 1
   metrics:
     pods:
-      targetAverageValue: 2
+      targetAverageValue: 30
     resource:
       name: cpu
       targetAverageUtilization: 70
     memory:
-      targetAverageUtilization: 1
+      targetAverageUtilization: 70
   scaleTargetRef:  
     name: signupsvc
 

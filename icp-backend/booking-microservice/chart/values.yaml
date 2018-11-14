@@ -20,36 +20,39 @@ livenessProbe:
 
 hpa:
   metadata:
-    name: booking-microservice-HPA
+    name: bookingmicroservicehpa
   spec:
     maxReplicas: 10
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     pods:
-      targetAverageValue: 20
+      targetAverageValue: 30
     resource:
       name: cpu
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 70
     memory:
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 70
   scaleTargetRef:  
     name: bookingsvc
 
 
 image:
   name: bookingsvc
-  imageName: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
-  imagePullPolicy: IfNotPresent
+  imageName: "icpdevcluster.icp:8500/default/booking-microservice:0.0.1" 
+  imagePullPolicy: Always
   ports:
     containerPort: 3000
   requests:
-    cpu: "250m"
-    memory: "64Mi"
-  limit:
-    cpu: "1"
-    memory: "128Mi"
-  maxSurge: 2
+    cpu: "50m"
+    memory: "30Mi"
+  limits:
+    cpu: "100m"
+    memory: "35Mi"
+  maxSurge: 1
   maxUnavailable: 0
+  lifecycle:
+    preStop:
+      command: ["/bin/bash", "-c", "sleep 20"]
     
 envOfSecrets:
   envUID:
