@@ -39,15 +39,15 @@ hpa:
 image:
   name: bookingsvc
   imageName: "icpdevcluster.icp:8500/default/booking-microservice:latest" 
-  imagePullPolicy: IfNotPresent
+  imagePullPolicy: Always
   ports:
     containerPort: 3000
   requests:
-    cpu: "100m"
+    cpu: "50m"
     memory: "30Mi"
   limits:
-    cpu: "110m"
-    memory: "361Mi"
+    cpu: "100m"
+    memory: "35Mi"
   maxSurge: 1
   maxUnavailable: 0
   lifecycle:
