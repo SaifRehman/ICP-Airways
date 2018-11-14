@@ -23,13 +23,18 @@ image:
   ports:
     containerPort: 3002
   requests:
-    cpu: "250m"
-    memory: "64Mi"
-  limit:
-    cpu: "1"
-    memory: "128Mi"
-  maxSurge: 2
+    cpu: "100m"
+    memory: "30Mi"
+  limits:
+    cpu: "110m"
+    memory: "361Mi"
+  maxSurge: 1
   maxUnavailable: 0
+  lifecycle:
+    preStop:
+      command: ["/bin/bash", "-c", "sleep 20"]
+
+
 envOfSecrets:
   envUID:
     name: UID
