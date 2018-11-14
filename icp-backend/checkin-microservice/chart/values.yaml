@@ -4,7 +4,6 @@ metadata:
  name: checkinsvc 
  label: checkinsvc
 
-
 readinessProbe:
   path: /healthz
   port: 3001
