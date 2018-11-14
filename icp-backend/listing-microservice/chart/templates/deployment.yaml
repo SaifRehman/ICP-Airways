@@ -16,12 +16,14 @@ spec:
        app: {{ .Values.metadata.label }} 
    spec:
      containers:
+     containers:
        - name: {{ .Values.image.name }} 
          image: {{ .Values.image.imageName }} 
          readinessProbe:
           httpGet: 
             path: {{ .Values.readinessProbe.path }} 
             port: {{ .Values.readinessProbe.port }} 
+            scheme: HTTP
           initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }} 
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }} 
           periodSeconds: {{ .Values.readinessProbe.periodSeconds }} 
@@ -29,10 +31,15 @@ spec:
           httpGet:
             path: {{ .Values.livenessProbe.path }} 
             port: {{ .Values.livenessProbe.port }} 
+            scheme: HTTP
           initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }} 
           timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }} 
-          periodSeconds: {{ .Values.livenessProbe.timeoutSeconds }} 
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }} 
          imagePullPolicy: {{ .Values.image.imagePullPolicy }} 
+         lifecycle:
+          preStop:
+            exec:
+              command: {{ .Values.image.lifecycle.preStop.command }} 
          resources:
           requests:
             cpu: {{ .Values.image.requests.cpu }} 
