@@ -42,10 +42,10 @@ image:
     containerPort: 3006
   requests:
     cpu: "50m"
-    memory: "30Mi"
+    memory: "300Mi"
   limits:
     cpu: "100m"
-    memory: "35Mi"
+    memory: "400Mi"
   maxSurge: 1
   maxUnavailable: 0
   lifecycle:
