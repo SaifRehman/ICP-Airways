@@ -3,17 +3,17 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: signupsvcmicroservicehpa
 spec:
-  maxReplicas: 10
+  maxReplicas: 5
   minReplicas: 1                      
   metrics:    
   # - type: Pods
   #   pods:
-  #     metricName: http_requests
-  #     targetAverageValue: 20                          
+  #     metricName: memory_usage_bytes
+  #     targetAverageValue: 10485760                        
   - type: Resource
     resource:                              
       name: cpu                          
-      targetAverageUtilization: 3      
+      targetAverageUtilization: 3     
   scaleTargetRef:                          
     apiVersion: extensions/v1beta1         
     kind: Deployment                       

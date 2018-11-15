@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
  name: {{ .Values.metadata.name }} 
 spec:
- hostNetwork: true
  replicas: {{ .Values.replicaCount }}
  strategy:
   type: RollingUpdate

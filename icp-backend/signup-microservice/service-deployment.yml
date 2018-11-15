@@ -6,33 +6,35 @@ spec:
  replicas: 1
  template:
    metadata:
+     annotations:
+       prometheus.io/scrape: 'true'
      name: signupsvc
      labels:
        app: signupsvc
    spec:
      containers:
        - name: signupsvcluster
-         image: "mycluster.icp:8500/default/signup-microservice:latest" 
-        #  readinessProbe:
-        #   httpGet: 
-        #     path: /healthz
-        #     port: 30041
-        #   initialDelaySeconds: 20
-          # periodSeconds: 1000
+         image: "mycluster.icp:8500/default/signup-microservice:0.0.1" 
+         readinessProbe:
+          httpGet: 
+            path: /healthz
+            port: 3004
+          initialDelaySeconds: 20
+          periodSeconds: 3
          livenessProbe:
           httpGet:
-            path: /health
+            path: /healthz
             port: 3004
-          initialDelaySeconds: 200
+          initialDelaySeconds: 20
           periodSeconds: 3
          imagePullPolicy: Always
          resources:
           requests:
-            cpu: "250m"
-            memory: "64Mi"
+            cpu: "150m"
+            memory: "60Mi"
           limits:
-            cpu: "1"
-            memory: "128Mi"
+            cpu: "160m"
+            memory: "70Mi"
          env:
           - name: UID
             valueFrom:
@@ -83,6 +85,8 @@ metadata:
  name: signupsvc
  labels:
    app: signupsvc
+ annotations:
+   prometheus.io/scrape: "true"
 spec:
  type: NodePort
  selector:
