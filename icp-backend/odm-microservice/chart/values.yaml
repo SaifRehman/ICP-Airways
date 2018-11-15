@@ -1,4 +1,4 @@
-replicaCount: 3
+replicaCount: 2
 
 metadata:
  name: odmsvc 
@@ -7,16 +7,16 @@ metadata:
 readinessProbe:
   path: /healthz
   port: 3005
-  initialDelaySeconds: 5
-  timeoutSeconds: 1
-  periodSeconds: 15
+  initialDelaySeconds: 10
+  timeoutSeconds: 2
+  periodSeconds: 10
 
 livenessProbe:
   path: /healthz
   port: 3005
-  initialDelaySeconds: 5
-  timeoutSeconds: 1 
-  periodSeconds: 15
+  initialDelaySeconds: 10
+  timeoutSeconds: 2
+  periodSeconds: 10
 image:
   name: odmsvc
   imageName: "icpdevcluster.icp:8500/default/odm-microservice:0.0.1" 
@@ -25,10 +25,10 @@ image:
     containerPort: 3005
   requests:
     cpu: "50m"
-    memory: "30Mi"
+    memory: "300Mi"
   limits:
     cpu: "100m"
-    memory: "35Mi"
+    memory: "400Mi"
   maxSurge: 1
   maxUnavailable: 0
   lifecycle:
@@ -39,7 +39,7 @@ hpa:
     name: odmsvcmicroservicehpa
   spec:
     maxReplicas: 10
-    minReplicas: 1
+    minReplicas: 2
   metrics:
     pods:
       targetAverageValue: 30
