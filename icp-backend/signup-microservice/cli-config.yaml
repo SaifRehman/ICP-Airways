@@ -11,16 +11,16 @@ host-path-run : .
 host-path-tools : .
 
 # The project root in the run container to mount to host-path-run
-container-path-run : "/usr/src/app"
+# container-path-run : "/usr/src/app"
 # The project root in the tools container that will be mounted to host-path-tools
-container-path-tools : "/usr/src/app"
+# container-path-tools : "/usr/src/app"
 
 # The list of additional mounts between the host and the run container in the form [host_path:container_path]
-container-mounts-run:
-   - "./node_modules_linux": "/usr/src/app/node_modules"
+# container-mounts-run:
+#    - "./node_modules_linux": "/usr/src/app/node_modules"
 # The list of additional mounts between the host and the tools container in the form [host_path:container_path]
-container-mounts-tools:
-   - "./node_modules_linux": "/usr/src/app/node_modules"
+# container-mounts-tools:
+#    - "./node_modules_linux": "/usr/src/app/node_modules"
 
 # The port mappings between the host and the container in the form [host:container]
 container-port-map : "3400:3400"
@@ -38,18 +38,18 @@ image-name-run : "signup-microservice-run"
 # image-name-tools : "innovate-accounts-tools"
 
 # The command to build the code and docker image for RUN
-build-cmd-run : "npm install"
+# build-cmd-run : "npm install"
 # The command to execute tests for the code in the tools container
 # test-cmd : "npm run test"
 # The command to build the code and docker image for DEBUG
-build-cmd-debug : "npm install"
+# build-cmd-debug : "npm install"
 
 # The command to run the code in the run container
-run-cmd : ""
+# run-cmd : ""
 # The command to execute debug of the code in the tools container
-debug-cmd : "npm run debug"
+# debug-cmd : "npm run debug"
 # The command to stop the code
-stop-cmd : "npm stop"
+# stop-cmd : "npm stop"
 
 # The relative path to the helm chart used for Kubernetes deployment
 chart-path: "chart/signup-microservice"
