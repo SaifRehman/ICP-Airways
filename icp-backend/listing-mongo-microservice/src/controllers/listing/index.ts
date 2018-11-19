@@ -36,8 +36,7 @@ class ListingMongoController {
     this.router.delete("/listFlights", (_, res: Response) => {
       res.send("listFlights delete");
     });
-  }
-  
+  } 
 }
 
 export default new ListingMongoController().router;
