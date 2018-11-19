@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { Request, Response, NextFunction } from "express";
-import { FlightController } from '../listing/lib/controllers/crmController';
+import { FlightController } from "../listing/lib/controllers/crmController";
 
 import "reflect-metadata";
 import { runInNewContext } from "vm";
 class ListingMongoController {
-  public flightController: FlightController = new FlightController() 
+  public flightController: FlightController = new FlightController();
   public router: Router;
 
   constructor() {
@@ -14,34 +14,50 @@ class ListingMongoController {
   }
 
   private routes() {
-
     this.router.get("/healthz", (_, res) => {
       res.status(200).send("healthz");
     });
 
-    this.router.get("/listFlights", (req: Request, res: Response, next: NextFunction) => {
-        next()
-    }, this.flightController.getFlights);
+    this.router.get(
+      "/listFlights",
+      (req: Request, res: Response, next: NextFunction) => {
+        next();
+      },
+      this.flightController.getFlights
+    );
 
-    this.router.post("/listFlights", (req: Request, res: Response, next: NextFunction) => {
-      next()
-    },this.flightController.addNewFlight);
+    this.router.post(
+      "/listFlights",
+      (req: Request, res: Response, next: NextFunction) => {
+        next();
+      },
+      this.flightController.addNewFlight
+    );
 
-    this.router.get("/listFlights/:ID", (_, res: Response, next: NextFunction) => {
-      next()
-    },this.flightController.getFlightById);
+    this.router.get(
+      "/listFlights/:ID",
+      (_, res: Response, next: NextFunction) => {
+        next();
+      },
+      this.flightController.getFlightById
+    );
 
-    this.router.put("/listFlights", (_, res: Response, next: NextFunction) => {
-      next()
-    },this.flightController.updateFlight);
+    this.router.put(
+      "/listFlights",
+      (_, res: Response, next: NextFunction) => {
+        next();
+      },
+      this.flightController.updateFlight
+    );
 
-    this.router.delete("/listFlights/:ID", (_, res: Response, next: NextFunction) => {
-      // res.send("listFlights delete");
-      next()
-    },this.flightController.deleteFlight);
-
-  } 
-
+    this.router.delete(
+      "/listFlights/:ID",
+      (_, res: Response, next: NextFunction) => {
+        next();
+      },
+      this.flightController.deleteFlight
+    );
+  }
 }
 
 export default new ListingMongoController().router;
