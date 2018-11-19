@@ -3,6 +3,9 @@ import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const FlightSchema = new Schema({
+    ID: {
+        type: Number
+    },
     Year: {
         type: String
     },
