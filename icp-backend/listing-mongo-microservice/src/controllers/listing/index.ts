@@ -43,7 +43,7 @@ class ListingMongoController {
     );
 
     this.router.put(
-      "/listFlights",
+      "/listFlights/:ID",
       (_, res: Response, next: NextFunction) => {
         next();
       },
