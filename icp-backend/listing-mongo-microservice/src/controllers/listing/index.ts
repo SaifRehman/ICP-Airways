@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { Request, Response } from "express";
+import { FlightController } from '../listing/lib/controllers/crmController';
+
 import "reflect-metadata";
 class ListingMongoController {
+  public flightController: FlightController = new FlightController() 
   public router: Router;
 
   constructor() {
@@ -14,9 +17,9 @@ class ListingMongoController {
       res.status(200).send("healthz");
     });
 
-    this.router.get("/listFlights", (_, res: Response) => {
+    this.router.get("/listFlights", (req: Request, res: Response) => {
       res.send("listFlights get");
-    });
+    },this.flightController.getFlights);
 
     this.router.post("/listFlights", (req: Request, res: Response) => {
       res.send("listFlights post");
