@@ -24,19 +24,20 @@ class ListingMongoController {
     }, this.flightController.getFlights);
 
     this.router.post("/listFlights", (req: Request, res: Response, next: NextFunction) => {
-      
+      next()
     },this.flightController.addNewFlight);
 
-    this.router.get("/listFlights/:id", (_, res: Response, next: NextFunction) => {
-      
+    this.router.get("/listFlights/:ID", (_, res: Response, next: NextFunction) => {
+      next()
     },this.flightController.getFlightById);
 
     this.router.put("/listFlights", (_, res: Response, next: NextFunction) => {
-      
+      next()
     },this.flightController.updateFlight);
 
-    this.router.delete("/listFlights", (_, res: Response, next: NextFunction) => {
+    this.router.delete("/listFlights/:ID", (_, res: Response, next: NextFunction) => {
       // res.send("listFlights delete");
+      next()
     },this.flightController.deleteFlight);
 
   } 

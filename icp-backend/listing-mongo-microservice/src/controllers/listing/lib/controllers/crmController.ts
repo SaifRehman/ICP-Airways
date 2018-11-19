@@ -24,6 +24,7 @@ export class FlightController {
   }
   public getFlightById(req: Request, res: Response) {
     Flight.findById(req.params.ID, (err, flight) => {
+        console.log(req.params.ID)
       if (err) {
         res.status(400).send(err);
       } else {
