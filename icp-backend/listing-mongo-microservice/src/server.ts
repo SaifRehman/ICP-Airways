@@ -21,7 +21,6 @@ class App {
     this.express.use(bodyParser.urlencoded({ extended: false }));
     this.express.use(session({secret: 'test123', saveUninitialized: false, resave: true}))
   }
-
   private routes(): void {
     this.express.get('/', function(_, res) {
       res.send('hi');
