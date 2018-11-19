@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import session from 'express-session';
-import LoginController from './controllers/login';
+import ListingMongoController from './controllers/listing';
 
 class App {
   public express: express.Application;
@@ -26,7 +26,7 @@ class App {
     this.express.get('/', function(_, res) {
       res.send('hi');
     });
-    this.express.use('/api', LoginController);
+    this.express.use('/api', ListingMongoController);
   }
 }
 export default new App().express;

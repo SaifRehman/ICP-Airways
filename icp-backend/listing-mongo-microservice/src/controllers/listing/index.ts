@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import 'reflect-metadata';
-class LoginController {
+class ListingMongoController {
   public router: Router;
 
 
@@ -15,4 +15,4 @@ class LoginController {
   }
 }
 
-export default new LoginController().router;
+export default new ListingMongoController().router;
