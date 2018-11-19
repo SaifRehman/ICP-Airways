@@ -5,7 +5,6 @@ import ListingMongoController from './controllers/listing';
 
 class App {
   public express: express.Application;
-
   constructor() {
     this.express = express();
     this.middleware();
@@ -25,7 +24,7 @@ class App {
     this.express.get('/', function(_, res) {
       res.send('hi');
     });
-    this.express.use('/api', ListingMongoController);
+    this.express.use('/', ListingMongoController);
   }
 }
 export default new App().express;
