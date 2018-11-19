@@ -47,6 +47,7 @@
     "@angular/platform-browser": "^7.0.4",
     "@babel/polyfill": "^7.0.0",
     "@types/express-session": "^1.15.11",
+    "@types/mongoose": "^5.3.1",
     "cors": "^2.8.5",
     "debug": "^4.1.0",
     "dotenv": "^6.1.0",

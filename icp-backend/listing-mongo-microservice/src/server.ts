@@ -1,15 +1,22 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import session from 'express-session';
-import ListingMongoController from './controllers/listing';
-
+import ListingMongoController from './controllers/listing/index';
+var mongoose = require('mongoose');
+mongoose.Promise = Promise;
 class App {
   public express: express.Application;
+  public mongoUrl: string = 'mongodb://localhost:27017/flight';
   constructor() {
     this.express = express();
     this.middleware();
     this.routes();
+    this.mongoSetup();
   }
+  private mongoSetup(): void{
+    mongoose.Promise = global.Promise;
+    mongoose.connect(this.mongoUrl);        
+}
   private middleware(): void {
     this.express.use(function(req, res, next) {
       res.header('Access-Control-Allow-Origin', '*');

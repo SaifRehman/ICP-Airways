@@ -42,12 +42,12 @@ export class FlightController {
     );
   }
 
-  public deleteFlight(req: Request, res: Response) {
-    Flight.remove({ _id: req.params.ID }, (err, flight) => {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ message: "Successfully deleted flight!" });
+  public deleteFlight (req: Request, res: Response) {           
+    Flight.remove({ _id: req.params.ID }, (err) => {
+        if(err){
+            res.send(err);
+        }
+        res.json({ message: "success"});
     });
-  }
+}
 }
