@@ -36,12 +36,12 @@ image:
 
 
 envOfSecrets:
-  envUID:
+  envMONGOUSERNAME:
     name: MONGOUSERNAME
     secretKeyRef:
       name: mysecret
       key: MONGOUSERNAME
-  envPASSWORD:
+  envMONGOPASSWORD:
     name: MONGOPASSWORD
     secretKeyRef:
       name: mysecret
