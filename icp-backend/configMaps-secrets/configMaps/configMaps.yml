@@ -16,3 +16,4 @@ data:
   CELERY_RESULT_BACKEND: 'amqp://admin:admin@169.61.62.89:31290'
   CELERY_BROKER_URL: 'amqp://admin:admin@169.61.62.89:31290'
   EMAILAPI: 'http://169.61.62.89:30199/email'
+  MONGOPORT: '27017'
