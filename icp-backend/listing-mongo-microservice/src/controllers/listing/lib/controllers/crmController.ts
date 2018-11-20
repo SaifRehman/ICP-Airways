@@ -38,7 +38,6 @@ export class FlightController {
   }
   public updateFlight(req: Request, res: Response) {
     res.setHeader('Content-Type', 'application/json');
-
     Flight.findOneAndUpdate(
       { _id: req.params.ID }, req.body, { new: true },(err, flight) => {
         if (err) {
