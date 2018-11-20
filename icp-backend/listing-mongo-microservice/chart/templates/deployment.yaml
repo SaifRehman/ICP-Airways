@@ -73,20 +73,5 @@ spec:
               configMapKeyRef:
                 name: {{ .Values.envOfConfigmaps.envDATABASE.configMapKeyRef.name }}
                 key: {{ .Values.envOfConfigmaps.envDATABASE.configMapKeyRef.key }}
-          - name: {{ .Values.envOfConfigmaps.envPORT.name }}
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.envOfConfigmaps.envPORT.configMapKeyRef.name }}
-                key: {{ .Values.envOfConfigmaps.envPORT.configMapKeyRef.key }}
-          - name: {{ .Values.envOfConfigmaps.envHOSTNAME.name }}
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.envOfConfigmaps.envHOSTNAME.configMapKeyRef.name }}
-                key: {{ .Values.envOfConfigmaps.envHOSTNAME.configMapKeyRef.key }}
-          - name: {{ .Values.envOfConfigmaps.envPROTOCOL.name }}
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.envOfConfigmaps.envPROTOCOL.configMapKeyRef.name }}
-                key: {{ .Values.envOfConfigmaps.envPROTOCOL.configMapKeyRef.key }}
          ports:
          - containerPort: {{ .Values.image.ports.containerPort }} 
