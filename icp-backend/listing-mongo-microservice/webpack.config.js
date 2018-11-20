@@ -44,5 +44,5 @@ module.exports = {
   ],
   externals: [nodeExternals()],
   mode: 'production',
-  // devtool: 'inline-source-map'
+  devtool: 'inline-source-map'
 };
