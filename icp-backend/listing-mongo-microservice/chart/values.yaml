@@ -37,20 +37,14 @@ image:
 
 envOfSecrets:
   envUID:
-    name: UID
+    name: MONGOUSERNAME
     secretKeyRef:
       name: mysecret
-      key: UID
+      key: MONGOUSERNAME
   envPASSWORD:
-    name: PASSWORD
+    name: MONGOPASSWORD
     secretKeyRef:
       name: mysecret
-      key: PASSWORD
-  envSECRET:
-    name: SECRET
-    secretKeyRef:
-      name: mysecret
-      key: SECRET
 
 ingress:
   metadeta:
@@ -60,31 +54,12 @@ ingress:
   servicePort: 7000
 
 envOfConfigmaps:
-  envNODE_ENV:
-    name: NODE_ENV
+  envMONGOPORT:
+    name: envMONGOPORT
     configMapKeyRef:
       name: env-database
-      key: NODE_ENV
-  envDATABASE:
-    name: DATABASE
-    configMapKeyRef:
-      name: env-database
-      key: DATABASE
-  envPORT:
-    name: PORT
-    configMapKeyRef:
-      name: env-database
-      key: PORT
-  envHOSTNAME:
-    name: HOSTNAME
-    configMapKeyRef:
-      name: env-database
-      key: HOSTNAME
-  envPROTOCOL:
-    name: PROTOCOL
-    configMapKeyRef:
-      name: env-database
-      key: PROTOCOL
+      key: envMONGOPORT
+
 
 hpa:
   metadata:
