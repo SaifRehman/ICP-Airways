@@ -55,10 +55,10 @@ ingress:
 
 envOfConfigmaps:
   envMONGOPORT:
-    name: envMONGOPORT
+    name: MONGOPORT
     configMapKeyRef:
       name: env-database
-      key: envMONGOPORT
+      key: MONGOPORT
 
 
 hpa:
