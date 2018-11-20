@@ -44,7 +44,7 @@ export class FlightController {
   }
 
   public deleteFlight (req: Request, res: Response) {           
-    Flight.remove({ _id: req.params.ID }, (err) => {
+    Flight.deleteOne({ _id: req.params.ID }, (err) => {
         if(err){
             res.send(err);
         }
