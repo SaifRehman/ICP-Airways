@@ -5,14 +5,14 @@ metadata:
  label: listingsvc
 readinessProbe:
   path: /healthz
-  port: 3002
+  port: 7000
   initialDelaySeconds: 10
   timeoutSeconds: 2
   periodSeconds: 10
 
 livenessProbe:
   path: /healthz
-  port: 3002
+  port: 7000
   initialDelaySeconds: 10
   timeoutSeconds: 2
   periodSeconds: 10
@@ -21,7 +21,7 @@ image:
   imageName: "icpdevcluster.icp:8500/default/listing-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
-    containerPort: 3002
+    containerPort: 7000
   requests:
     cpu: "50m"
     memory: "300Mi"
@@ -57,7 +57,7 @@ ingress:
     name: listingsvc
   path: /listingsvc
   serviceName: listingsvc
-  servicePort: 3002
+  servicePort: 7000
 
 envOfConfigmaps:
   envNODE_ENV:
@@ -114,8 +114,8 @@ service:
     protocol: TCP
     name: listingsvc
     type: NodePort
-    port: 3002
-    targetPort: 3002
+    port: 7000
+    targetPort: 7000
 
 
 
