@@ -36,7 +36,7 @@ export class FlightController {
     Flight.findOneAndUpdate(
       { _id: req.params.ID }, req.body, { new: true },(err, flight) => {
         if (err) {
-          res.send(err);
+          res.status(400).send(err);
         }
         res.json(flight);
       }
@@ -46,7 +46,7 @@ export class FlightController {
   public deleteFlight (req: Request, res: Response) {           
     Flight.deleteOne({ _id: req.params.ID }, (err) => {
         if(err){
-            res.send(err);
+            res.status(400).send(err);
         }
         res.json({ message: "success"});
     });
