@@ -42,8 +42,7 @@ module.exports = {
     new CleanWebpack([path.resolve('dist', 'bundle-be.js')]),
     new webpack.HotModuleReplacementPlugin()
   ],
-  watch: true,
-  externals: [nodeExternals()]
-  // mode: 'development',
+  externals: [nodeExternals()],
+  mode: 'production',
   // devtool: 'inline-source-map'
 };

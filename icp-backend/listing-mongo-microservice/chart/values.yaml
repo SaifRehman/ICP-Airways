@@ -1,0 +1,131 @@
+replicaCount: 2
+
+metadata:
+ name: listingsvc 
+ label: listingsvc
+readinessProbe:
+  path: /healthz
+  port: 3002
+  initialDelaySeconds: 10
+  timeoutSeconds: 2
+  periodSeconds: 10
+
+livenessProbe:
+  path: /healthz
+  port: 3002
+  initialDelaySeconds: 10
+  timeoutSeconds: 2
+  periodSeconds: 10
+image:
+  name: listingsvc
+  imageName: "icpdevcluster.icp:8500/default/listing-microservice:0.0.1" 
+  imagePullPolicy: Always
+  ports:
+    containerPort: 3002
+  requests:
+    cpu: "50m"
+    memory: "300Mi"
+  limits:
+    cpu: "100m"
+    memory: "400Mi"
+  maxSurge: 1
+  maxUnavailable: 0
+  lifecycle:
+    preStop:
+      command: ["/bin/bash", "-c", "sleep 20"]
+
+
+envOfSecrets:
+  envUID:
+    name: UID
+    secretKeyRef:
+      name: mysecret
+      key: UID
+  envPASSWORD:
+    name: PASSWORD
+    secretKeyRef:
+      name: mysecret
+      key: PASSWORD
+  envSECRET:
+    name: SECRET
+    secretKeyRef:
+      name: mysecret
+      key: SECRET
+
+ingress:
+  metadeta:
+    name: listingsvc
+  path: /listingsvc
+  serviceName: listingsvc
+  servicePort: 3002
+
+envOfConfigmaps:
+  envNODE_ENV:
+    name: NODE_ENV
+    configMapKeyRef:
+      name: env-database
+      key: NODE_ENV
+  envDATABASE:
+    name: DATABASE
+    configMapKeyRef:
+      name: env-database
+      key: DATABASE
+  envPORT:
+    name: PORT
+    configMapKeyRef:
+      name: env-database
+      key: PORT
+  envHOSTNAME:
+    name: HOSTNAME
+    configMapKeyRef:
+      name: env-database
+      key: HOSTNAME
+  envPROTOCOL:
+    name: PROTOCOL
+    configMapKeyRef:
+      name: env-database
+      key: PROTOCOL
+
+hpa:
+  metadata:
+    name: listingsvc-microservice-HPA
+  spec:
+    maxReplicas: 10
+    minReplicas: 2
+  metrics:
+    pods:
+      targetAverageValue: 20
+    resource:
+      name: cpu
+      targetAverageUtilization: 70 
+    memory:
+      targetAverageUtilization: 70 
+  scaleTargetRef:  
+    name: listingsvc
+
+service:
+  serviceMetadata:
+    name: listingsvc
+    labels:
+      app: listingsvc
+  selector:
+    selectorName: listingsvc
+  servicePortConfiguration:
+    protocol: TCP
+    name: listingsvc
+    type: NodePort
+    port: 3002
+    targetPort: 3002
+
+
+
+serviceMonitor:
+  metadata:
+    name: serviceMonitorListingsvc
+    labels:
+      app: serviceMonitorListingsvc
+  specs: 
+    selector:
+      matchLabels:
+        app: serviceMonitorListingsvc
+    port: listingsvc
