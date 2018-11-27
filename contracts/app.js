@@ -1,5 +1,5 @@
 var Web3 = require('web3')
-var web3 = new Web3(new Web3.providers.HttpProvider('http://169.61.62.89:30081'))
+var web3 = new Web3(new Web3.providers.HttpProvider('http://ip:30081'))
 web3.eth.defaultAccount = web3.eth.accounts[0]
 console.log('my account is ',web3.eth.accounts[0])
 var ABI = [
