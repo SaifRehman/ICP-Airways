@@ -15,7 +15,7 @@ class ListingMongoController {
 
   private routes() {
     this.router.get("/healthz", (_, res) => {
-      res.status(200).send("healthz");
+      res.status(200).send("ok");
     });
 
     this.router.get(

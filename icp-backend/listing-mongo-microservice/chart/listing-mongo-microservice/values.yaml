@@ -18,7 +18,7 @@ livenessProbe:
   periodSeconds: 10
 image:
   name: listingsvc
-  imageName: "icpdevcluster.icp:8500/default/listing-mongo-microservice:0.0.1" 
+  imageName: "mycluster.icp:8500/default/listing-mongo-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 7000
@@ -45,6 +45,7 @@ envOfSecrets:
     name: MONGOPASSWORD
     secretKeyRef:
       name: mysecret
+      key: MONGOPASSWORD
 
 ingress:
   metadeta:
@@ -63,7 +64,7 @@ envOfConfigmaps:
 
 hpa:
   metadata:
-    name: listingsvc-microservice-HPA
+    name: listingsvcmicroservicehpa
   spec:
     maxReplicas: 10
     minReplicas: 1
@@ -88,6 +89,6 @@ service:
   servicePortConfiguration:
     protocol: TCP
     name: listingsvc
-    type: NodePort
+    type: ClusterIP
     port: 7000
     targetPort: 7000

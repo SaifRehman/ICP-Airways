@@ -1,5 +1,7 @@
 FROM node:9.8.0
-COPY . .
+WORKDIR /app
+COPY . /app
+RUN cd /app; npm install; npm prune --production
 EXPOSE 7000 
 RUN  npm i 
 RUN npm i -g webpack webpack-cli

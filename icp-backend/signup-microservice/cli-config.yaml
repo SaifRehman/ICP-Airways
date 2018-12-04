@@ -13,4 +13,4 @@ image-name-run : "signup-microservice-run"
 
 chart-path: "chart/signup-microservice"
 deploy-target: "container"
-deploy-image-target: "mycluster.icp:8500/default/signup-microservice:0.0.1"
+deploy-image-target: "mycluster.icp:8500/default/signup-microservice"
