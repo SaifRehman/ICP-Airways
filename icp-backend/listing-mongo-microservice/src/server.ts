@@ -11,7 +11,6 @@ class App {
     this.express = express();
     this.middleware();
     this.routes();
-    console.log(this.mongoUrl)
     this.mongoSetup();
   }
   private mongoSetup(): void{
