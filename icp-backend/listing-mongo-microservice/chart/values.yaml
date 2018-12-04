@@ -1,4 +1,4 @@
-replicaCount: 2
+replicaCount: 1
 
 metadata:
  name: listingsvc 
@@ -23,11 +23,11 @@ image:
   ports:
     containerPort: 7000
   requests:
-    cpu: "50m"
-    memory: "300Mi"
+    cpu: "30m"
+    memory: "200Mi"
   limits:
-    cpu: "100m"
-    memory: "400Mi"
+    cpu: "45m"
+    memory: "210Mi"
   maxSurge: 1
   maxUnavailable: 0
   lifecycle:
@@ -66,15 +66,15 @@ hpa:
     name: listingsvc-microservice-HPA
   spec:
     maxReplicas: 10
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     pods:
       targetAverageValue: 20
     resource:
       name: cpu
-      targetAverageUtilization: 70 
+      targetAverageUtilization: 50
     memory:
-      targetAverageUtilization: 70 
+      targetAverageUtilization: 70
   scaleTargetRef:  
     name: listingsvc
 
@@ -91,16 +91,3 @@ service:
     type: NodePort
     port: 7000
     targetPort: 7000
-
-
-
-serviceMonitor:
-  metadata:
-    name: serviceMonitorListingsvc
-    labels:
-      app: serviceMonitorListingsvc
-  specs: 
-    selector:
-      matchLabels:
-        app: serviceMonitorListingsvc
-    port: listingsvc
