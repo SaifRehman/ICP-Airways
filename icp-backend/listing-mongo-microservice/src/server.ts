@@ -6,11 +6,12 @@ var mongoose = require('mongoose');
 mongoose.Promise = Promise;
 class App {
   public express: express.Application;
-  public mongoUrl: string = 'mongodb://'+process.env.MONGOUSERNAME+':'+process.env.MONGOPASSWORD+'@'+'saqrairwaymongo-ibm-mongodb-dev.default.svc.cluster.local:'+process.env.MONGOPORT+'/flight';
+  public mongoUrl: string = 'mongodb://'+process.env.MONGOUSERNAME+':'+process.env.MONGOPASSWORD+'@'+'saqrairwaymongo-ibm-mongodb-dev:'+process.env.MONGOPORT+'/admin';
   constructor() {
     this.express = express();
     this.middleware();
     this.routes();
+    console.log(this.mongoUrl)
     this.mongoSetup();
   }
   private mongoSetup(): void{
