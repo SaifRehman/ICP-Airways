@@ -1,7 +1,7 @@
 # The IBM version of this configuration
 version : 0.0.3
 
-container-name-run : "listing-microservice-run"
+container-name-run : "listing-mongo-microservice-run"
 
 
 host-path-run : .
@@ -9,8 +9,8 @@ host-path-tools : .
 
 dockerfile-run : "Dockerfile"
 
-image-name-run : "listing-microservice-run"
+image-name-run : "listing-mongo-microservice-run"
 
-chart-path: "chart/listing-microservice"
+chart-path: "chart/listing-mongo-microservice"
 deploy-target: "container"
-deploy-image-target: "mycluster.icp:8500/default/listing-microservice:0.0.1"
+deploy-image-target: "mycluster.icp:8500/default/listing-mongo-microservice"

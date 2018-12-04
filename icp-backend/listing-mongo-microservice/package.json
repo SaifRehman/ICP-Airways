@@ -1,16 +1,15 @@
 {
   "name": "express-react-typescript",
   "version": "1.0.0",
-  "description": "Boilerplate for a express-react app with backend in typescript",
-  "main": "src/index.js",
-  "author": "Amaan Kulshreshtha",
+  "description": "mongo listing microservice",
+  "main": "dist/bundle-be.js",
+  "author": "Saif ur Rehman",
   "license": "MIT",
   "scripts": {
     "bundle": "webpack --hot",
     "serve": "node dist/bundle-be.js",
     "serve-fe": "webpack-dev-server --config webpack-fe.config.js"
   },
-  "private": true,
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-transform-async-to-generator": "^7.1.0",

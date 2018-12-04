@@ -1,8 +1,7 @@
-FROM node:alpine
-WORKDIR /usr/src/app
+FROM node:argon
 COPY . .
-RUN npm install
 EXPOSE 7000 
+RUN  npm i 
 RUN npm i -g webpack webpack-cli
 RUN webpack-cli
 RUN groupadd -g 999 appuser && \
