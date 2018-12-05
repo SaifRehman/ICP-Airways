@@ -14,3 +14,7 @@ spec:
         backend:
           serviceName: listingsvc
           servicePort: 7000
+      - path: /rabbitmq
+        backend:
+          serviceName: rabbitmq-ibm-rabbitmq-dev
+          servicePort: 5672

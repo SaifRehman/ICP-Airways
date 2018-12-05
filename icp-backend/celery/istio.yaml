@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: test
+spec:
+  hosts:
+  - 10.150.20.151
+  ports:
+  - number: 30554
+    name: http
+    protocol: HTTPS
+  location: MESH_EXTERNAL
