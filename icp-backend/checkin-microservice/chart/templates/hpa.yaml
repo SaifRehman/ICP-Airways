@@ -5,19 +5,7 @@ metadata:
 spec:
   maxReplicas: {{.Values.hpa.spec.maxReplicas}}
   minReplicas: {{.Values.hpa.spec.minReplicas}}                       
-  metrics:    
-  # - type: Pods
-  #   pods:
-  #     metricName: http_requests
-  #     targetAverageValue: {{.Values.hpa.metrics.pods.targetAverageValue}}                          
-  - type: Resource
-    resource:                              
-      name: cpu                            
-      targetAverageUtilization: {{.Values.hpa.metrics.resource.targetAverageUtilization}}  
-  - type: Resource
-    resource:                              
-      name: memory                            
-      targetAverageUtilization: {{.Values.hpa.metrics.memory.targetAverageUtilization}}         
+  targetCPUUtilizationPercentage: {{.Values.hpa.metrics.resource.targetAverageUtilization}}    
   scaleTargetRef:                          
     apiVersion: extensions/v1beta1         
     kind: Deployment                       
