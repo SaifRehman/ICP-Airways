@@ -12,15 +12,15 @@ spec:
    spec:
      containers:
        - name: celerysvc
-         image: "mycluster.icp:8500/default/celery:latest" 
+         image: "mycluster.icp:8500/default/celery:0.0.1" 
          imagePullPolicy: Always
          resources:
           requests:
             cpu: "250m"
-            memory: "64Mi"
+            memory: "200Mi"
           limits:
-            cpu: "1"
-            memory: "128Mi"
+            cpu: "300"
+            memory: "300Mi"
          ports:
          - containerPort: 4000
          env:
@@ -47,7 +47,7 @@ metadata:
  labels:
    app: celerysvc
 spec:
- type: NodePort
+ type: ClusterIP
  selector:
    app: celerysvc
  ports:
@@ -55,4 +55,3 @@ spec:
     name: celerysvc
     port: 4000
     targetPort: 4000
-    nodePort: 30989
