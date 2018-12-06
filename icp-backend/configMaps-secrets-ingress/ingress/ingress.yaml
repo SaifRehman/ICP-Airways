@@ -18,3 +18,11 @@ spec:
         backend:
           serviceName: celerysvc
           servicePort: 4000
+      - path: /signupsvc
+        backend:
+          serviceName: signupsvc
+          servicePort: 3004
+      - path: /loginsvc
+        backend:
+          serviceName: loginsvc
+          servicePort: 3003
