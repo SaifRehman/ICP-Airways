@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import * as Request from 'request'
 import * as nodemailer from 'nodemailer'
 import * as epimetheus from 'epimetheus'
 
@@ -43,6 +42,8 @@ class App {
         html: '<p>Congratualtion you have booked flight from ' + req.body.src + ' to ' + req.body.dest + '</p>'
       };
       console.log('<p>Congratualtion you have booked flight from ' + req.body.src + ' to ' + req.body.dest + '</p>')
+      console.log(process.env.EMAILUSERNAME)
+      console.log(process.env.EMAILPASSWORD)
       transporter.sendMail(mailOptions, function (err, info) {
         if(err)
           return console.log(err)

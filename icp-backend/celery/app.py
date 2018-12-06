@@ -40,7 +40,6 @@ def email(id=None):
     res = celery.AsyncResult(b)
     data = {'result':'success'}
     js = json.dumps(data)
-
     return Response(
         js,
         mimetype='application/json',
@@ -48,7 +47,7 @@ def email(id=None):
     )
 
 @app.route('/healthz', methods=['GET'])
-def email(id=None):
+def healthz(id=None):
     return Response(
         mimetype='application/json',
         status=200
