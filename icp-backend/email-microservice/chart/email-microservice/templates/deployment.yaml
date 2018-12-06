@@ -52,10 +52,10 @@ spec:
               secretKeyRef:
                 name: {{ .Values.envOfSecrets.envEMAILPASSWORD.secretKeyRef.name }} 
                 key: {{ .Values.envOfSecrets.envEMAILPASSWORD.secretKeyRef.key }} 
-          - name: {{ .Values.envOfConfigmaps.envEMAILUSERNAME.name }} 
+          - name: {{ .Values.envOfSecrets.envEMAILUSERNAME.name }} 
             valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.envOfConfigmaps.envEMAILUSERNAME.configMapKeyRef.name }}
-                key: {{ .Values.envOfConfigmaps.envEMAILUSERNAME.configMapKeyRef.key }}
+              secretKeyRef:
+                name: {{ .Values.envOfSecrets.envEMAILUSERNAME.secretKeyRef.name }}
+                key: {{ .Values.envOfSecrets.envEMAILUSERNAME.secretKeyRef.key }}
          ports:
          - containerPort: {{ .Values.image.ports.containerPort }} 
