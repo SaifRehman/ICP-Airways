@@ -60,7 +60,7 @@ envOfSecrets:
       key: EMAILPASSWORD
   envEMAILUSERNAME:
     name: EMAILUSERNAME
-    configMapKeyRef:
+    secretKeyRef:
       name: mysecret
       key: EMAILUSERNAME
 
