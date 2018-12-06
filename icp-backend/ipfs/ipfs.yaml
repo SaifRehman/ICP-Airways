@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ipfs
+spec:
+  type: NodePort
+  ports:
+  - name: ipfs
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    app: ipfs
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ipfs
+  labels:
+    name: ipfs
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: ipfs
+        app: ipfs
+    spec:
+      containers:
+      - name: ipfs
+        image: "ipfs/go-ipfs:master"
+        command: ["/usr/local/bin/start_ipfs"]
+        ports:
+        - containerPort: 4001
+          name: "swarm"
+          protocol: "TCP"
+        - containerPort: 5001
+          name: "api"
+          protocol: "TCP"
+        - containerPort: 8080
+          name: "gateway"
+          protocol: "TCP"
