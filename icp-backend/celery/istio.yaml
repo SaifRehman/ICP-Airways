@@ -5,8 +5,20 @@ metadata:
 spec:
   hosts:
   - 10.150.20.151
+  - smtp.gmail.com
   ports:
   - number: 30554
     name: http
     protocol: HTTPS
+  - number: 465
+    name:  smtp
+    protocol: SMTPS
+  - number: 587
+    name:  tls
+  - number: 443
+    name:  ssl
+  - number: 8080
+    name:  ssl1
+  - number: 25
+    name:  s
   location: MESH_EXTERNAL

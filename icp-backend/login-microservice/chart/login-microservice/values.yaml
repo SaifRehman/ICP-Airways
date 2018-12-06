@@ -1,4 +1,4 @@
-replicaCount: 2
+replicaCount: 1
 
 metadata:
  name: loginsvc 
@@ -18,16 +18,16 @@ livenessProbe:
   periodSeconds: 10
 image:
   name: loginsvc
-  imageName: "icpdevcluster.icp:8500/default/login-microservice:0.0.1" 
+  imageName: "mycluster.icp:8500/default/login-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 3003
   requests:
     cpu: "50m"
-    memory: "300Mi"
+    memory: "15Mi"
   limits:
-    cpu: "100m"
-    memory: "400Mi"
+    cpu: "80m"
+    memory: "200Mi"
   maxSurge: 1
   maxUnavailable: 0
   lifecycle:
@@ -39,15 +39,15 @@ hpa:
     name: loginsvcmicroservicehpa
   spec:
     maxReplicas: 10
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     pods:
       targetAverageValue: 30
     resource:
       name: cpu
-      targetAverageUtilization: 70
+      targetAverageUtilization: 50
     memory:
-      targetAverageUtilization: 70
+      targetAverageUtilization: 50
   scaleTargetRef:  
     name: loginsvc
 

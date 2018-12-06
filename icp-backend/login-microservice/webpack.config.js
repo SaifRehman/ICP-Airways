@@ -8,7 +8,7 @@ const BACKENDSRC = path.resolve(__dirname, 'src');
 module.exports = {
   target: 'node',
   // @babel/polyfill is needed to use modern js functionalities in old browsers.
-  entry: ['@babel/polyfill', path.resolve(BACKENDSRC, 'index.ts')],
+  entry: ['@babel/polyfill', path.resolve(BACKENDSRC, 'main.ts')],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle-be.js',

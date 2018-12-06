@@ -6,13 +6,10 @@ metadata:
 data:
   NODE_ENV: development
   DATABASE: SAMPLE
-  PORT: '31627'
-  HOSTNAME: '169.61.62.89'
+  PORT: '50000'
+  HOSTNAME: 'saqrairway-ibm-db2oltp-dev-db2.default'
   PROTOCOL: TCPIP
   ODM: 'http://169.61.62.89:32473/DecisionService/rest/FlightBooking/FlightPricing'
-  HttpProvider: 'http://169.61.62.89:30081'
-  CONTRACTADRESS: '0xcf48d4d2fb89087e17b79ab52c6695369e877003'
-  ETHEREUMACCOUNT: '0x3a7ce8ce79f4f9b6b96cd4fcf558ad197a0c28a3'
   CELERY_RESULT_BACKEND: 'amqp://admin:admin@10.150.20.151:30554'
   CELERY_BROKER_URL: 'amqp://admin:admin@10.150.20.151:30554'
   EMAILAPI: 'http://emailsvc.default:3006/email'
