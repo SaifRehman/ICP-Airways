@@ -14,7 +14,7 @@ spec:
         backend:
           serviceName: listingsvc
           servicePort: 7000
-      - path: /rabbitmq
+      - path: /emailsvc
         backend:
-          serviceName: rabbitmq-ibm-rabbitmq-dev
-          servicePort: 5672
+          serviceName: celerysvc
+          servicePort: 4000

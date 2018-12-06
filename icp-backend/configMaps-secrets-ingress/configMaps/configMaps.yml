@@ -15,5 +15,5 @@ data:
   ETHEREUMACCOUNT: '0x3a7ce8ce79f4f9b6b96cd4fcf558ad197a0c28a3'
   CELERY_RESULT_BACKEND: 'amqp://admin:admin@10.150.20.151:30554'
   CELERY_BROKER_URL: 'amqp://admin:admin@10.150.20.151:30554'
-  EMAILAPI: 'http://169.61.62.89:30199/email'
+  EMAILAPI: 'http://emailsvc.default:3006/email'
   MONGOPORT: '27017'

@@ -46,5 +46,12 @@ def email(id=None):
         mimetype='application/json',
         status=200
     )
+
+@app.route('/healthz', methods=['GET'])
+def email(id=None):
+    return Response(
+        mimetype='application/json',
+        status=200
+    )
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=4000)
