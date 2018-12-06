@@ -173,24 +173,24 @@
                 </tr>
               </thead>
             </table>
-            <ng-container *ngFor="let listshow of show.data">
+            <ng-container >
               <div class="card row flight-info">
                 <div class="col s3">
-                  <p>{{listshow.FLIGHTNUM}}</p>
+                  <p>{{show._id}}</p>
                 </div>
                 <div class="col s3">
-                  <p>{{listshow.TAILNUM}}</p>
+                  <p>{{show.TailNum}}</p>
                 </div>
                 <div class="col s3">
-                  <p>{{listshow.DEPTIME | timeRefactor}}</p>
+                  <p>{{show.ArrTime | timeRefactor}}</p>
                 </div>
                 <div class="col s3">
-                  <p>{{listshow.ARRTIME | timeRefactor}}</p>
+                  <p>{{show.ArrTime | timeRefactor}}</p>
                 </div>
                 <div class="col s3">
                   <!-- <button  type='submit'
                     id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="book(listshow.ID)">Book</button> -->
-                  <button type='submit' id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="ask(listshow.ORIGIN,listshow.DEST,provider.userData.data.FIRSTNAME,listshow.ID)">Book</button>
+                  <button type='submit' id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="ask(listshow.Origin,listshow.Dest,provider.userData.data.FIRSTNAME,listshow._id)">Book</button>
                 </div>
               </div>
             </ng-container>
