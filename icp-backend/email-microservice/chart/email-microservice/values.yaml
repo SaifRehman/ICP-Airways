@@ -58,13 +58,12 @@ envOfSecrets:
     secretKeyRef:
       name: mysecret
       key: EMAILPASSWORD
-
-envOfConfigmaps:
   envEMAILUSERNAME:
     name: EMAILUSERNAME
     configMapKeyRef:
-      name: env-database
+      name: mysecret
       key: EMAILUSERNAME
+
 
 ingress:
   metadeta:
