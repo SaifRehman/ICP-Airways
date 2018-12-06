@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "bundle": "webpack --hot",
-    "serve": "node dist/bundle-be.js",
-    "serve-fe": "webpack-dev-server --config webpack-fe.config.js"
+    "serve": "node dist/bundle-be.js"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
