@@ -29,13 +29,15 @@ export class FlightController {
   public searchFlights(req: Request, res: Response) {
     res.setHeader("Content-Type", "application/json");
     let query = {
-      Year: req.body.Year,
-      Month: req.body.Month,
-      DayOfMonth: req.body.DayOfMonth,
-      origin: req.body.origin,
-      dest: req.body.dest
+      $and:[{
+        'Year': req.body.Year,
+        'Month': req.body.Month,
+        'DayofMonth': req.body.DayOfMonth,
+        'Origin': req.body.origin,
+        'Dest': req.body.dest
+      }]
     };
-    Flight.find({ query }, (err, flight) => {
+    Flight.find( query , (err, flight) => {
       if (err) {
         res.status(404).json({ err });
         return;
