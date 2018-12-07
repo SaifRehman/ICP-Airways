@@ -9,6 +9,9 @@ export const FlightSchema = new Schema({
     Month: {
         type: String
     },
+    DepTime:{
+        type: String
+    },
     DayofMonth: {
         type: String
     },
