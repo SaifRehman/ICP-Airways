@@ -1,9 +1,7 @@
 import { Router } from "express";
 import { Request, Response, NextFunction } from "express";
 import { FlightController } from "../listing/lib/controllers/crmController";
-
 import "reflect-metadata";
-import { runInNewContext } from "vm";
 class ListingMongoController {
   public flightController: FlightController = new FlightController();
   public router: Router;
@@ -32,6 +30,14 @@ class ListingMongoController {
         next();
       },
       this.flightController.addNewFlight
+    );
+
+    this.router.post(
+      "/searchFlights",
+      (req: Request, res: Response, next: NextFunction) => {
+        next();
+      },
+      this.flightController.searchFlights
     );
 
     this.router.get(
