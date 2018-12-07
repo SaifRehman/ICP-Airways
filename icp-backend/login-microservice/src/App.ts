@@ -63,6 +63,7 @@ class App {
           stmt
         ) {
           if (err) {
+            res.status(404).json({ err });
             console.log(err);
           }
           stmt.execute([req.body.email], function(err, result) {
@@ -119,8 +120,10 @@ class App {
                 req.body.tier
               ],
               function(err, result) {
-                if (err) console.log(err);
-                else {
+                if (err) {
+                  res.status(404).json({ err });
+                  console.log(err);
+                } else {
                   res.json({
                     message: "sucessful"
                   });
