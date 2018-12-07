@@ -23,7 +23,7 @@ app.config['CELERY_BROKER_URL'] = 'amqp://admin:admin@10.150.20.151:30554'
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'],backend = app.config['CELERY_RESULT_BACKEND'])
 celery.conf.update(app.config)
 
-@celery.task(bind=True)
+@celery.task(bind=True, default_retry_delay=1, max_retries=120, acks_late=True)
 def email_task(self,toEmail,src,dest):
     gmail_user = 'icpairways@gmail.com'  
     gmail_password = '.icpairways'
