@@ -61,9 +61,10 @@ class App {
           messages: []
         }
         })
-      }, (error, response, body) => {
-        if (error) {
-          return console.dir(error);
+      }, (err, response, body) => {
+        if (err) {
+          res.status(404).json({ err });
+          console.log(err);
         }
         var a = JSON
         res.json(JSON.parse(body));
