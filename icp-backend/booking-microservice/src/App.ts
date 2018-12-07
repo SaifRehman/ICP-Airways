@@ -89,7 +89,10 @@ class App {
                 req.body.CostUpgrade
               ],
               function(err, result) {
-                if (err) console.log(err);
+                if (err) {
+                  res.status(404).json({ err });
+                  console.log(err);
+                }
                 else {
                   res.json({
                     message: "sucessful"
@@ -166,9 +169,6 @@ class App {
                   result.fetch(function(err, data) {
                     if (err) {
                       console.error("errorrrr", err);
-                      res.json({
-                        message: true
-                      });
                       res.status(401).json({ message: "Server error" });
                       result.closeSync();
                     } else {
