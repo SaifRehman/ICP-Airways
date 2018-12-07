@@ -49,8 +49,10 @@ class App {
       // console.log(process.env.EMAILUSERNAME)
       // console.log(process.env.EMAILPASSWORD)
       transporter.sendMail(mailOptions, function (err, info) {
-        if(err)
-          return console.log(err)
+        if (err) {
+          res.status(404).json({ err });
+          console.log(err);
+        }
         else{
           res.json({
             message: "sucessful"
