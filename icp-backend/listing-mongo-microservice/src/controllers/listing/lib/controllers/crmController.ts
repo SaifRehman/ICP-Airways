@@ -5,57 +5,80 @@ import { Request, Response } from "express";
 const Flight = mongoose.model("Flight", FlightSchema);
 export class FlightController {
   public addNewFlight(req: Request, res: Response) {
-    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Content-Type", "application/json");
     let newFlight = new Flight(req.body);
     newFlight.save((err, flight) => {
       if (err) {
         res.status(404).json({ err });
         return;
-    }
+      }
       res.json(flight);
     });
   }
   public getFlights(req: Request, res: Response) {
-    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Content-Type", "application/json");
     Flight.find({}, (err, flight) => {
       if (err) {
         res.status(404).json({ err });
         return;
-    } else {
+      } else {
+        res.status(200).send(flight);
+      }
+    });
+  }
+  public searchFlights(req: Request, res: Response) {
+    res.setHeader("Content-Type", "application/json");
+    let query = {
+      Year: req.body.Year,
+      Month: req.body.Month,
+      DayOfMonth: req.body.DayOfMonth,
+      origin: req.body.origin,
+      dest: req.body.dest
+    };
+    Flight.find({ query }, (err, flight) => {
+      if (err) {
+        res.status(404).json({ err });
+        return;
+      } else {
         res.status(200).send(flight);
       }
     });
   }
   public getFlightById(req: Request, res: Response) {
-    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Content-Type", "application/json");
     Flight.findById(req.params.ID, (err, flight) => {
       if (err) {
         res.status(404).json({ err });
-        return;      } else {
+        return;
+      } else {
         res.status(200).send(flight);
       }
     });
   }
   public updateFlight(req: Request, res: Response) {
-    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Content-Type", "application/json");
     Flight.findOneAndUpdate(
-      { _id: req.params.ID }, req.body, { new: true },(err, flight) => {
+      { _id: req.params.ID },
+      req.body,
+      { new: true },
+      (err, flight) => {
         if (err) {
-            res.status(404).json({ err });
-            return;        }
+          res.status(404).json({ err });
+          return;
+        }
         res.json(flight);
       }
     );
   }
 
-  public deleteFlight (req: Request, res: Response) {   
-    res.setHeader('Content-Type', 'application/json');        
-    Flight.deleteOne({ _id: req.params.ID }, (err) => {
-        if(err){
-            res.status(404).json({ err });
-            return;
-        }
-        res.json({ message: "success"});
+  public deleteFlight(req: Request, res: Response) {
+    res.setHeader("Content-Type", "application/json");
+    Flight.deleteOne({ _id: req.params.ID }, err => {
+      if (err) {
+        res.status(404).json({ err });
+        return;
+      }
+      res.json({ message: "success" });
     });
-}
+  }
 }
