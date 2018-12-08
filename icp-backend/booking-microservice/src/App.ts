@@ -103,14 +103,13 @@ class App {
         .getConnection()
         .then(conn => {
           conn
-            .query(
-              "SELECT * FROM SAMPLE.Booking WHERE UserID=? ",
-              [req.params.id,]
-            )
+            .query("SELECT * FROM SAMPLE.Booking WHERE UserID=? ", [
+              req.params.id
+            ])
             .then(res => {
               conn.end();
               console.log(res);
-              res.json({res});
+              res.json({ res });
             })
             .catch(err => {
               conn.end();
