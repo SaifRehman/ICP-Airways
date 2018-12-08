@@ -4,6 +4,10 @@ import * as bodyParser from "body-parser";
 import * as passport from "passport";
 import * as passportJWT from "passport-jwt";
 import * as epimetheus from "epimetheus";
+const axios = require("axios");
+
+var request = require("request");
+
 let mariadb = require("mariadb");
 
 class App {
@@ -108,7 +112,21 @@ class App {
             ])
             .then(data => {
               conn.end();
-              console.log(data);
+              console.log("dataaaaaaa", data.length);
+              // logic here
+              for (var i = 0; i < data.length; i++) {
+                var obj = data[i];
+                axios
+                  .get('listingsvc.default:7000/listFlights/' + obj.FlightID)
+                  .then(response => {
+                    console.log(response.data);
+                    data[i]["flight"] = response.data;
+                  })
+                  .catch(error => {
+                    res.status(404).json({ message: "listingsvc api is down" });
+                  });
+                console.log("flightidddd", obj.FlightID);
+              }
               res.json({ data });
             })
             .catch(err => {
