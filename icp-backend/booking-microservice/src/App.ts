@@ -98,39 +98,34 @@ class App {
     });
 
     router.get("/listBookingByUser/:id", this.ensureToken, (req, res, next) => {
-      res.send("success");
-      // ibmdb.open(this.connectionString, function(err, conn) {
-      //   conn.prepare(
-      //     "select * from  SAMPLE.FlightsData f inner join SAMPLE.Booking b on f.ID = b.FlightID where b.UserID=?",
-      //     function(err, stmt) {
-      //       if (err) {
-      //         console.log("errorr", err);
-      //       }
-      //       stmt.execute([req.params.id], function(err, result) {
-      //         result.fetchAll(function(err, data) {
-      //           if (err) {
-      //             console.error(err);
-      //             res.status(401).json({ message: "Server error" });
-      //             result.closeSync();
-      //           } else {
-      //             if (data) {
-      //               res.json({
-      //                 data,
-      //                 message: true
-      //               });
-      //               result.closeSync();
-      //             } else {
-      // res.json({
-      //   message: false
-      // });
-      //             }
-      //           }
-      //           result.closeSync();
-      //         });
-      //       });
-      //     }
-      //   );
-      // });
+      let pool = mariadb.mariadb.createPool(this.connectionString);
+      pool
+        .getConnection()
+        .then(conn => {
+          conn
+            .query(
+              "SELECT * FROM SAMPLE.Booking WHERE UserID=? ",
+              [req.params.id,]
+            )
+            .then(res => {
+              conn.end();
+              console.log(res);
+              res.json({res});
+            })
+            .catch(err => {
+              conn.end();
+              if (err) {
+                console.log(err);
+                res.status(404).json({ err });
+              }
+            });
+        })
+        .catch(err => {
+          if (err) {
+            console.log(err);
+            res.status(404).json({ err });
+          }
+        });
     });
     router.get(
       "/checkin/:bookid/:userid",
