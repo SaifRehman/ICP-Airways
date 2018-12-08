@@ -60,9 +60,9 @@ class App {
         .then(conn => {
           conn
             .query(
-              "INSERT INTO SAMPLE.Booking  (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing,\
+              "INSERT INTO SAMPLE.Booking  ( Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing,\
                 CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) \
-                VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
+                VALUES ('0', ?, ?, ?, ?, ?, ?, ?, ?)",
               [
                 req.body.UserID,
                 req.body.FlightID,
