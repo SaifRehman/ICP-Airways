@@ -56,15 +56,15 @@ image:
     
 envOfSecrets:
   envUID:
-    name: UID
+    name: MARIADBUID
     secretKeyRef:
       name: mysecret
-      key: UID
+      key: MARIADBUID
   envPASSWORD:
-    name: PASSWORD
+    name: MARIADBPASSWORD
     secretKeyRef:
       name: mysecret
-      key: PASSWORD
+      key: MARIADBPASSWORD
   envSECRET:
     name: SECRET
     secretKeyRef:
@@ -72,31 +72,26 @@ envOfSecrets:
       key: SECRET
 
 envOfConfigmaps:
-  envNODE_ENV:
-    name: NODE_ENV
-    configMapKeyRef:
-      name: env-database
-      key: NODE_ENV
   envDATABASE:
-    name: DATABASE
+    name: MARIADBDATABASE
     configMapKeyRef:
       name: env-database
-      key: DATABASE
+      key: MARIADBDATABASE
   envPORT:
-    name: PORT
+    name: MARIADBPORT
     configMapKeyRef:
       name: env-database
-      key: PORT
+      key: MARIADBPORT
   envHOSTNAME:
-    name: HOSTNAME
+    name: MARIADBHOSTNAME
     configMapKeyRef:
       name: env-database
-      key: HOSTNAME
+      key: MARIADBHOSTNAME
   envPROTOCOL:
-    name: PROTOCOL
+    name: MARIADBPROTOCOL
     configMapKeyRef:
       name: env-database
-      key: PROTOCOL
+      key: MARIADBPROTOCOL
 
 
 service:
