@@ -5,6 +5,7 @@ import * as passport from "passport";
 import * as passportJWT from "passport-jwt";
 import * as epimetheus from "epimetheus";
 let mariadb = require("mariadb");
+const request = require("request");
 
 class App {
   public jwtOptions: any = {};
@@ -12,6 +13,7 @@ class App {
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
   public connectionString: any;
+  public data: any;
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
@@ -60,9 +62,9 @@ class App {
         .then(conn => {
           conn
             .query(
-              "INSERT INTO SAMPLE.Booking  (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing,\
+              "INSERT INTO SAMPLE.Booking  ( Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing,\
                 CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) \
-                VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
+                VALUES ('0', ?, ?, ?, ?, ?, ?, ?, ?)",
               [
                 req.body.UserID,
                 req.body.FlightID,
@@ -74,7 +76,7 @@ class App {
                 req.body.CostUpgrade
               ]
             )
-            .then(res => {
+            .then(data => {
               conn.end();
               console.log(res);
               res.json({
@@ -98,6 +100,7 @@ class App {
     });
 
     router.get("/listBookingByUser/:id", this.ensureToken, (req, res, next) => {
+      this.data = null;
       let pool = mariadb.createPool(this.connectionString);
       pool
         .getConnection()
@@ -106,22 +109,41 @@ class App {
             .query("SELECT * FROM SAMPLE.Booking WHERE UserID=? ", [
               req.params.id
             ])
-            .then(res => {
-              conn.end();
-              console.log(res);
-              res.json({ res });
+            .then(data => {
+              console.log("dataaaaaaa", data.length);
+              this.data = data;
+              for (var i = 0; i < this.data.length; i++) {
+                var obj = this.data[i];
+                console.log(
+                  "loggsss",
+                  "http://listingsvc.default:7000/listFlights/" + obj.FlightID
+                );
+                request(
+                  "http://listingsvc.default:7000/listFlights/" + obj.FlightID,
+                  { json: true },
+                  (err, response, body) => {
+                    if (err) {
+                      // conn.end();
+                      console.log(err);
+                      res.status(404).json({ message: err });
+                    }
+                    console.log("bodyyyyyy issss ----->>>> ", body);
+                    this.data[i].flight = body;
+                  }
+                );
+                console.log("flightidddd", obj.FlightID);
+              }
+              res.json(this.data);
             })
             .catch(err => {
               conn.end();
               if (err) {
-                console.log(err);
                 res.status(404).json({ err });
               }
             });
         })
         .catch(err => {
           if (err) {
-            console.log(err);
             res.status(404).json({ err });
           }
         });
@@ -139,9 +161,9 @@ class App {
                 "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE BookingID = ? AND UserID=? ",
                 [req.params.bookid, req.params.userid]
               )
-              .then(res => {
+              .then(data => {
                 conn.end();
-                console.log(res);
+                console.log(data);
                 res.json({
                   message: "sucesfully inserted"
                 });
