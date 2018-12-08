@@ -54,43 +54,45 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.post("/book", this.ensureToken, (req, res, next) => {
-      ibmdb.open(this.connectionString, function(err, conn) {
-        conn.prepare(
-          "insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
-          function(err, stmt) {
-            if (err) {
-              console.log(err);
-              return conn.closeSync();
-            }
-            console.log(req.body.lastName);
-            stmt.execute(
-              [
-                req.body.UserID,
-                req.body.FlightID,
-                req.body.OfferNamePricing,
-                req.body.OfferTypePricing,
-                req.body.CostPricing,
-                req.body.OfferNameUpgrade,
-                req.body.OfferTypeUpgrade,
-                req.body.CostUpgrade
-              ],
-              function(err, result) {
-                if (err) {
-                  res.status(404).json({ err });
-                  console.log(err);
-                }
-                else {
-                  res.json({
-                    message: "sucessful"
-                  });
-                  result.closeSync();
-                }
-                conn.close(function(err) {});
-              }
-            );
-          }
-        );
-      });
+      let pool = mariadb.mariadb.createPool(this.connectionString)
+      // ibmdb.open(this.connectionString, function(err, conn) {
+      //   conn.prepare(
+      //     "insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
+      //     function(err, stmt) {
+      //       if (err) {
+      //         console.log(err);
+      //         return conn.closeSync();
+      //       }
+      //       console.log(req.body.lastName);
+      //       stmt.execute(
+      //         [
+      //           req.body.UserID,
+      //           req.body.FlightID,
+      //           req.body.OfferNamePricing,
+      //           req.body.OfferTypePricing,
+      //           req.body.CostPricing,
+      //           req.body.OfferNameUpgrade,
+      //           req.body.OfferTypeUpgrade,
+      //           req.body.CostUpgrade
+      //         ],
+      //         function(err, result) {
+      //           if (err) {
+      //             res.status(404).json({ err });
+      //             console.log(err);
+      //           }
+      //           else {
+      //             res.json({
+      //               message: "sucessful"
+      //             });
+      //             result.closeSync();
+      //           }
+      //           conn.close(function(err) {});
+      //         }
+      //       );
+      //     }
+      //   );
+      // });
+
     });
 
     router.get("/listBookingByUser/:id", this.ensureToken, (req, res, next) => {
