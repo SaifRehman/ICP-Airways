@@ -5,9 +5,6 @@ import * as passport from "passport";
 import * as passportJWT from "passport-jwt";
 import * as epimetheus from "epimetheus";
 const axios = require("axios");
-
-var request = require("request");
-
 let mariadb = require("mariadb");
 
 class App {
@@ -16,6 +13,7 @@ class App {
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
   public connectionString: any;
+  public data:any;
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
@@ -102,6 +100,7 @@ class App {
     });
 
     router.get("/listBookingByUser/:id", this.ensureToken, (req, res, next) => {
+      this.data = null;
       let pool = mariadb.createPool(this.connectionString);
       pool
         .getConnection()
@@ -113,20 +112,23 @@ class App {
             .then(data => {
               conn.end();
               console.log("dataaaaaaa", data.length);
-              for (var i = 0; i < data.length; i++) {
-                var obj = data[i];
+              this.data = data;
+              for (var i = 0; i < this.data.length; i++) {
+                var obj = this.data[i];
                 axios
                   .get('listingsvc.default:7000/listFlights/' + obj.FlightID)
                   .then(response => {
                     console.log(response.data);
-                    data[i]["flight"] = response.data;
+                    this.data[i]["flight"] = response.data;
+                    
                   })
                   .catch(error => {
                     res.status(404).json({ message: "listingsvc api is down" });
                   });
                 console.log("flightidddd", obj.FlightID);
               }
-              res.json({ data });
+              console.log('my new json is ', this.data)
+              res.json(this.data);
             })
             .catch(err => {
               conn.end();

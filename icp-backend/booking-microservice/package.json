@@ -33,6 +33,7 @@
     "@types/http-server": "^0.10.0",
     "@types/node": "^6.0.112",
     "@types/utf8": "^2.1.6",
+    "axios": "^0.16.2",
     "body-parser": "^1.18.3",
     "clean-webpack-plugin": "^0.1.19",
     "debug": "^2.6.9",
