@@ -1,42 +1,28 @@
 import * as express from "express";
 import * as logger from "morgan";
 import * as bodyParser from "body-parser";
-import * as passwordhash from "password-hash";
 import * as passport from "passport";
-import * as jwt from "jsonwebtoken";
 import * as passportJWT from "passport-jwt";
 import * as epimetheus from "epimetheus";
-
-var ibmdb = require("ibm_db");
+let mariadb = require('mariadb');
 
 class App {
   public jwtOptions: any = {};
   public ExtractJwt = passportJWT.ExtractJwt;
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
-  public connectionString: String;
+  public connectionString: any;
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
-    this.connectionString =
-      "DATABASE=" +
-      process.env.DATABASE +
-      ";" +
-      "HOSTNAME=" +
-      process.env.HOSTNAME +
-      ";" +
-      "UID=" +
-      process.env.UID +
-      ";" +
-      "PWD=" +
-      process.env.PASSWORD +
-      ";" +
-      "PORT=" +
-      process.env.PORT +
-      ";" +
-      "PROTOCOL=" +
-      process.env.PROTOCOL +
-      ";";
+    this.connectionString ={
+      host: process.env.HOSTNAMEMARIADB , 
+      user: process.env.UIDMARIADB, 
+      password: process.env.PASSWORDMARIADB ,
+      database: process.env.DATABASEMARIADB,
+      connectionLimit: 5,
+      port: process.env.PORTMARIADB
+    }
     console.log(this.connectionString);
     this.express = express();
     epimetheus.instrument(this.express);
