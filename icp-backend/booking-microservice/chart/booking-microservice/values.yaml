@@ -38,7 +38,7 @@ hpa:
 
 image:
   name: bookingsvc
-  imageName: "mycluster.icp.icp:8500/default/booking-microservice:0.0.1" 
+  imageName: "mycluster.icp:8500/default/booking-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 3000
@@ -56,15 +56,15 @@ image:
     
 envOfSecrets:
   envUID:
-    name: MARIADBUID
+    name: UIDMARIADB
     secretKeyRef:
       name: mysecret
-      key: MARIADBUID
+      key: UIDMARIADB
   envPASSWORD:
-    name: MARIADBPASSWORD
+    name: PASSWORDMARIADB
     secretKeyRef:
       name: mysecret
-      key: MARIADBPASSWORD
+      key: PASSWORDMARIADB
   envSECRET:
     name: SECRET
     secretKeyRef:
@@ -73,25 +73,25 @@ envOfSecrets:
 
 envOfConfigmaps:
   envDATABASE:
-    name: MARIADBDATABASE
+    name: DATABASEMARIADB
     configMapKeyRef:
       name: env-database
-      key: MARIADBDATABASE
+      key: DATABASEMARIADB
   envPORT:
-    name: MARIADBPORT
+    name: PORTMARIADB
     configMapKeyRef:
       name: env-database
-      key: MARIADBPORT
+      key: PORTMARIADB
   envHOSTNAME:
-    name: MARIADBHOSTNAME
+    name: HOSTNAMEMARIADB
     configMapKeyRef:
       name: env-database
-      key: MARIADBHOSTNAME
+      key: HOSTNAMEMARIADB
   envPROTOCOL:
-    name: MARIADBPROTOCOL
+    name: PROTOCOLMARIADB
     configMapKeyRef:
       name: env-database
-      key: MARIADBPROTOCOL
+      key: PROTOCOLMARIADB
 
 
 service:
@@ -104,6 +104,6 @@ service:
   servicePortConfiguration:
     protocol: TCP
     name: bookingsvc
-    type: NodePort
+    type: ClusterIP
     port: 3000
     targetPort: 3000
