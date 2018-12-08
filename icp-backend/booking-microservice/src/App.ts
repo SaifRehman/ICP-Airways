@@ -114,17 +114,20 @@ class App {
               this.data = data;
               for (var i = 0; i < this.data.length; i++) {
                 var obj = this.data[i];
-                console.log('loggsss',"http://listingsvc.default:7000/listFlights/" + obj.FlightID)
+                console.log(
+                  "loggsss",
+                  "http://listingsvc.default:7000/listFlights/" + obj.FlightID
+                );
                 request(
                   "http://listingsvc.default:7000/listFlights/" + obj.FlightID,
                   { json: true },
                   (err, response, body) => {
                     if (err) {
                       // conn.end();
-                      console.log(err)
+                      console.log(err);
                       res.status(404).json({ message: err });
                     }
-                    console.log('bodyyyyyy issss ----->>>> ',body);
+                    console.log("bodyyyyyy issss ----->>>> ", body);
                     this.data[i].flight = body;
                   }
                 );
