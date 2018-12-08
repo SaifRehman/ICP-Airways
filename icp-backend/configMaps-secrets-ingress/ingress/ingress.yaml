@@ -28,5 +28,5 @@ spec:
           servicePort: 3003
       - path: /bookingsvc
         backend:
-          serviceName: /bookingsvc
+          serviceName: bookingsvc
           servicePort: 3000

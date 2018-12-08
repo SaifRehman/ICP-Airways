@@ -22,7 +22,7 @@
     "@types/node": "^6.0.111",
     "babel-loader": "^8.0.4",
     "babel-polyfill": "^6.26.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-typescript": "^3.1.1",
     "typescript": "^2.8.3",
     "webpack": "^4.27.1"
@@ -39,7 +39,6 @@
     "dotenv": "^5.0.1",
     "epimetheus": "^1.0.92",
     "express": "^4.16.3",
-    "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.4",
     "http": "0.0.0",
     "jsonwebtoken": "^8.2.2",
