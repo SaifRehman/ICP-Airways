@@ -59,24 +59,21 @@ class App {
         .getConnection()
         .then(conn => {
           conn
-            .query("SELECT 1 as val")
-            .then(rows => {
-              return conn.query(
-                "INSERT INTO SAMPLE.Booking  (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing,\
+            .query(
+              "INSERT INTO SAMPLE.Booking  (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing,\
                 CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) \
                 VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
-                [
-                  req.body.UserID,
-                  req.body.FlightID,
-                  req.body.OfferNamePricing,
-                  req.body.OfferTypePricing,
-                  req.body.CostPricing,
-                  req.body.OfferNameUpgrade,
-                  req.body.OfferTypeUpgrade,
-                  req.body.CostUpgrade
-                ]
-              );
-            })
+              [
+                req.body.UserID,
+                req.body.FlightID,
+                req.body.OfferNamePricing,
+                req.body.OfferTypePricing,
+                req.body.CostPricing,
+                req.body.OfferNameUpgrade,
+                req.body.OfferTypeUpgrade,
+                req.body.CostUpgrade
+              ]
+            )
             .then(res => {
               conn.end();
               console.log(res);
@@ -144,13 +141,10 @@ class App {
           .getConnection()
           .then(conn => {
             conn
-              .query("SELECT 1 as val")
-              .then(rows => {
-                return conn.query(
-                  "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE BookingID = ? AND UserID=? ",
-                  [req.params.BookingID, req.params.UserID]
-                );
-              })
+              .query(
+                "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE BookingID = ? AND UserID=? ",
+                [req.params.bookid, req.params.userid]
+              )
               .then(res => {
                 conn.end();
                 console.log(res);
