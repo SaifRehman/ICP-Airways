@@ -113,7 +113,6 @@ class App {
             .then(data => {
               conn.end();
               console.log("dataaaaaaa", data.length);
-              // logic here
               for (var i = 0; i < data.length; i++) {
                 var obj = data[i];
                 axios
