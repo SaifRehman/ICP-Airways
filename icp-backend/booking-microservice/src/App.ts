@@ -139,7 +139,43 @@ class App {
       "/checkin/:bookid/:userid",
       this.ensureToken,
       (req, res, next) => {
-        res.send("success");
+        
+        let pool = mariadb.mariadb.createPool(this.connectionString);
+        pool
+          .getConnection()
+          .then(conn => {
+            conn
+              .query("SELECT 1 as val")
+              .then(rows => {
+                return conn.query(
+                  "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE BookingID = ? AND UserID=? ",
+                  [
+                    req.params.BookingID,
+                    req.params.UserID,
+                  ]
+                );
+              })
+              .then(res => {
+                conn.end();
+                console.log(res);
+                res.json({
+                  message: "sucesfully inserted"
+                });
+              })
+              .catch(err => {
+                conn.end();
+                if (err) {
+                  res.status(404).json({ err });
+                  console.log(err);
+                }
+              });
+          })
+          .catch(err => {
+            if (err) {
+              res.status(404).json({ err });
+              console.log(err);
+            }
+          });
         // ibmdb.open(this.connectionString, function(err, conn) {
         //   conn.prepare(
         //     "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE FlightID = ? AND UserID=? ",
