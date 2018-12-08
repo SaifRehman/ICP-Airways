@@ -4,8 +4,8 @@ import * as bodyParser from "body-parser";
 import * as passport from "passport";
 import * as passportJWT from "passport-jwt";
 import * as epimetheus from "epimetheus";
-const axios = require("axios");
 let mariadb = require("mariadb");
+const request = require("request");
 
 class App {
   public jwtOptions: any = {};
@@ -13,7 +13,7 @@ class App {
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
   public connectionString: any;
-  public data:any;
+  public data: any;
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
@@ -110,37 +110,37 @@ class App {
               req.params.id
             ])
             .then(data => {
-              conn.end();
               console.log("dataaaaaaa", data.length);
               this.data = data;
               for (var i = 0; i < this.data.length; i++) {
                 var obj = this.data[i];
-                axios
-                  .get('listingsvc.default:7000/listFlights/' + obj.FlightID)
-                  .then(response => {
-                    console.log(response.data);
-                    this.data[i]["flight"] = response.data;
-                    
-                  })
-                  .catch(error => {
-                    res.status(404).json({ message: "listingsvc api is down" });
-                  });
+                console.log('loggsss',"http://listingsvc.default:7000/listFlights/" + obj.FlightID)
+                request(
+                  "http://listingsvc.default:7000/listFlights/" + obj.FlightID,
+                  { json: true },
+                  (err, response, body) => {
+                    if (err) {
+                      // conn.end();
+                      console.log(err)
+                      res.status(404).json({ message: err });
+                    }
+                    console.log('bodyyyyyy issss ----->>>> ',body);
+                    this.data[i].flight = body;
+                  }
+                );
                 console.log("flightidddd", obj.FlightID);
               }
-              console.log('my new json is ', this.data)
               res.json(this.data);
             })
             .catch(err => {
               conn.end();
               if (err) {
-                console.log(err);
                 res.status(404).json({ err });
               }
             });
         })
         .catch(err => {
           if (err) {
-            console.log(err);
             res.status(404).json({ err });
           }
         });
