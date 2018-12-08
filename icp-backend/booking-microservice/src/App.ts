@@ -74,7 +74,7 @@ class App {
                 req.body.CostUpgrade
               ]
             )
-            .then(res => {
+            .then(data => {
               conn.end();
               console.log(res);
               res.json({
@@ -106,10 +106,10 @@ class App {
             .query("SELECT * FROM SAMPLE.Booking WHERE UserID=? ", [
               req.params.id
             ])
-            .then(res => {
+            .then(data => {
               conn.end();
-              console.log(res);
-              res.json({ res });
+              console.log(data);
+              res.json({ data });
             })
             .catch(err => {
               conn.end();
@@ -139,9 +139,9 @@ class App {
                 "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE BookingID = ? AND UserID=? ",
                 [req.params.bookid, req.params.userid]
               )
-              .then(res => {
+              .then(data => {
                 conn.end();
-                console.log(res);
+                console.log(data);
                 res.json({
                   message: "sucesfully inserted"
                 });
