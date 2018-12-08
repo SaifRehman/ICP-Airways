@@ -55,6 +55,7 @@ class App {
     let router = express.Router();
     router.post("/book", this.ensureToken, (req, res, next) => {
       let pool = mariadb.mariadb.createPool(this.connectionString)
+      
       // ibmdb.open(this.connectionString, function(err, conn) {
       //   conn.prepare(
       //     "insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
