@@ -172,19 +172,21 @@ export class HomeComponent implements OnInit {
     this.modalActions.emit({action:"modal",params:['close']});
   }
   book(id) {
+      console.log(this.provider.userData.data.USERID, id)
     this.loading = true
     this.bookingService
-    .booking(this.provider.userData.data.USERID, id,this.offerNamePricing,this.offerTypePricing,this.costPricing,this.offerNameUpgrade,this.offerTypeUpgrade,this.costUpgrade)
+    // .booking(this.provider.userData.data.USERID, id,this.offerNamePricing,this.offerTypePricing,this.costPricing,this.offerNameUpgrade,this.offerTypeUpgrade,this.costUpgrade)
+    .booking(this.provider.userData.data.USERID, id,'','','','','','')
     .subscribe(
       data => {
         this.loading = false
         console.log('booked flight', data);
-        this.modalActions.emit({action:"modal",params:['close']});
+        // this.modalActions.emit({action:"modal",params:['close']});
         this.show = data;
       },
       error => {
         this.loading = false
-        this.modalActions.emit({action:"modal",params:['close']});
+        // this.modalActions.emit({action:"modal",params:['close']});
         console.log(error);
       })
     // this.ethereumService.getBlockchain().subscribe((data) => {
