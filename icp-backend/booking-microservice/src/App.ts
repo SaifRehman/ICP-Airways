@@ -1,42 +1,28 @@
 import * as express from "express";
 import * as logger from "morgan";
 import * as bodyParser from "body-parser";
-import * as passwordhash from "password-hash";
 import * as passport from "passport";
-import * as jwt from "jsonwebtoken";
 import * as passportJWT from "passport-jwt";
 import * as epimetheus from "epimetheus";
-
-var ibmdb = require("ibm_db");
+let mariadb = require("mariadb");
 
 class App {
   public jwtOptions: any = {};
   public ExtractJwt = passportJWT.ExtractJwt;
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
-  public connectionString: String;
+  public connectionString: any;
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
-    this.connectionString =
-      "DATABASE=" +
-      process.env.DATABASE +
-      ";" +
-      "HOSTNAME=" +
-      process.env.HOSTNAME +
-      ";" +
-      "UID=" +
-      process.env.UID +
-      ";" +
-      "PWD=" +
-      process.env.PASSWORD +
-      ";" +
-      "PORT=" +
-      process.env.PORT +
-      ";" +
-      "PROTOCOL=" +
-      process.env.PROTOCOL +
-      ";";
+    this.connectionString = {
+      host: process.env.HOSTNAMEMARIADB,
+      user: process.env.UIDMARIADB,
+      password: process.env.PASSWORDMARIADB,
+      database: process.env.DATABASEMARIADB,
+      connectionLimit: 5,
+      port: process.env.PORTMARIADB
+    };
     console.log(this.connectionString);
     this.express = express();
     epimetheus.instrument(this.express);
@@ -68,16 +54,15 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.post("/book", this.ensureToken, (req, res, next) => {
-      ibmdb.open(this.connectionString, function(err, conn) {
-        conn.prepare(
-          "insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
-          function(err, stmt) {
-            if (err) {
-              console.log(err);
-              return conn.closeSync();
-            }
-            console.log(req.body.lastName);
-            stmt.execute(
+      let pool = mariadb.mariadb.createPool(this.connectionString);
+      pool
+        .getConnection()
+        .then(conn => {
+          conn
+            .query(
+              "INSERT INTO SAMPLE.Booking  (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing,\
+                CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) \
+                VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
               [
                 req.body.UserID,
                 req.body.FlightID,
@@ -87,102 +72,95 @@ class App {
                 req.body.OfferNameUpgrade,
                 req.body.OfferTypeUpgrade,
                 req.body.CostUpgrade
-              ],
-              function(err, result) {
-                if (err) {
-                  res.status(404).json({ err });
-                  console.log(err);
-                }
-                else {
-                  res.json({
-                    message: "sucessful"
-                  });
-                  result.closeSync();
-                }
-                conn.close(function(err) {});
+              ]
+            )
+            .then(res => {
+              conn.end();
+              console.log(res);
+              res.json({
+                message: "sucesfully inserted"
+              });
+            })
+            .catch(err => {
+              conn.end();
+              if (err) {
+                res.status(404).json({ err });
+                console.log(err);
               }
-            );
+            });
+        })
+        .catch(err => {
+          if (err) {
+            res.status(404).json({ err });
+            console.log(err);
           }
-        );
-      });
+        });
     });
 
     router.get("/listBookingByUser/:id", this.ensureToken, (req, res, next) => {
-      ibmdb.open(this.connectionString, function(err, conn) {
-        conn.prepare(
-          "select * from  SAMPLE.FlightsData f inner join SAMPLE.Booking b on f.ID = b.FlightID where b.UserID=?",
-          function(err, stmt) {
-            if (err) {
-              console.log("errorr", err);
-            }
-            stmt.execute([req.params.id], function(err, result) {
-              result.fetchAll(function(err, data) {
-                if (err) {
-                  console.error(err);
-                  res.status(401).json({ message: "Server error" });
-                  result.closeSync();
-                } else {
-                  if (data) {
-                    res.json({
-                      data,
-                      message: true
-                    });
-                    result.closeSync();
-                  } else {
-                    res.json({
-                      message: false
-                    });
-                  }
-                }
-                result.closeSync();
-              });
+      let pool = mariadb.mariadb.createPool(this.connectionString);
+      pool
+        .getConnection()
+        .then(conn => {
+          conn
+            .query(
+              "SELECT * FROM SAMPLE.Booking WHERE UserID=? ",
+              [req.params.id,]
+            )
+            .then(res => {
+              conn.end();
+              console.log(res);
+              res.json({res});
+            })
+            .catch(err => {
+              conn.end();
+              if (err) {
+                console.log(err);
+                res.status(404).json({ err });
+              }
             });
+        })
+        .catch(err => {
+          if (err) {
+            console.log(err);
+            res.status(404).json({ err });
           }
-        );
-      });
+        });
     });
     router.get(
       "/checkin/:bookid/:userid",
       this.ensureToken,
       (req, res, next) => {
-        ibmdb.open(this.connectionString, function(err, conn) {
-          conn.prepare(
-            "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE FlightID = ? AND UserID=? ",
-            function(err, stmt) {
-              if (err) {
-                console.log("errorr", err);
+        let pool = mariadb.mariadb.createPool(this.connectionString);
+        pool
+          .getConnection()
+          .then(conn => {
+            conn
+              .query(
+                "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE BookingID = ? AND UserID=? ",
+                [req.params.bookid, req.params.userid]
+              )
+              .then(res => {
+                conn.end();
+                console.log(res);
                 res.json({
-                  message: true
+                  message: "sucesfully inserted"
                 });
-              }
-              stmt.execute([req.params.bookid, req.params.userid], function(
-                err,
-                result
-              ) {
-                console.log(req.params.bookid, req.params.userid);
+              })
+              .catch(err => {
+                conn.end();
                 if (err) {
-                  console.log("error", err);
-                  res.json({
-                    message: true
-                  });
-                } else {
-                  result.fetch(function(err, data) {
-                    if (err) {
-                      console.error("errorrrr", err);
-                      res.status(401).json({ message: "Server error" });
-                      result.closeSync();
-                    } else {
-                      res.json({
-                        message: true
-                      });
-                      result.closeSync();
-                    }
-                  });
+                  res.status(404).json({ err });
+                  console.log(err);
                 }
               });
+          })
+          .catch(err => {
+            if (err) {
+              res.status(404).json({ err });
+              console.log(err);
             }
-          );
-        });
+          });
       }
     );
     router.get("/healthz", (req, res, next) => {
