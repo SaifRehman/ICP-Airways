@@ -139,7 +139,6 @@ class App {
       "/checkin/:bookid/:userid",
       this.ensureToken,
       (req, res, next) => {
-        
         let pool = mariadb.mariadb.createPool(this.connectionString);
         pool
           .getConnection()
@@ -149,10 +148,7 @@ class App {
               .then(rows => {
                 return conn.query(
                   "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE BookingID = ? AND UserID=? ",
-                  [
-                    req.params.BookingID,
-                    req.params.UserID,
-                  ]
+                  [req.params.BookingID, req.params.UserID]
                 );
               })
               .then(res => {
@@ -176,44 +172,6 @@ class App {
               console.log(err);
             }
           });
-        // ibmdb.open(this.connectionString, function(err, conn) {
-        //   conn.prepare(
-        //     "UPDATE SAMPLE.Booking SET Checkin = '1' WHERE FlightID = ? AND UserID=? ",
-        //     function(err, stmt) {
-        //       if (err) {
-        //         console.log("errorr", err);
-        //         res.json({
-        //           message: true
-        //         });
-        //       }
-        //       stmt.execute([req.params.bookid, req.params.userid], function(
-        //         err,
-        //         result
-        //       ) {
-        //         console.log(req.params.bookid, req.params.userid);
-        //         if (err) {
-        //           console.log("error", err);
-        //           res.json({
-        //             message: true
-        //           });
-        //         } else {
-        //           result.fetch(function(err, data) {
-        //             if (err) {
-        //               console.error("errorrrr", err);
-        //               res.status(401).json({ message: "Server error" });
-        //               result.closeSync();
-        //             } else {
-        //               res.json({
-        //                 message: true
-        //               });
-        //               result.closeSync();
-        //             }
-        //           });
-        //         }
-        //       });
-        //     }
-        //   );
-        // });
       }
     );
     router.get("/healthz", (req, res, next) => {
