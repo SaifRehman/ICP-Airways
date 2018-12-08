@@ -61,11 +61,10 @@ class App {
           conn
             .query("SELECT 1 as val")
             .then(rows => {
-              console.log(rows); //[ {val: 1}, meta: ... ]
               return conn.query(
                 "INSERT INTO SAMPLE.Booking  (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing,\
-                  CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) \
-                  VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
+                CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) \
+                VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
                 [
                   req.body.UserID,
                   req.body.FlightID,
@@ -82,7 +81,7 @@ class App {
               conn.end();
               console.log(res);
               res.json({
-                message: 'sucesfully inserted'
+                message: "sucesfully inserted"
               });
             })
             .catch(err => {
@@ -99,7 +98,6 @@ class App {
             console.log(err);
           }
         });
-
       // ibmdb.open(this.connectionString, function(err, conn) {
       //   conn.prepare(
       //     "insert into SAMPLE.Booking (TS, Checkin, UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade,CostNameUpgrade) VALUES (CURRENT TIMESTAMP, '0', ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -161,9 +159,9 @@ class App {
       //               });
       //               result.closeSync();
       //             } else {
-                    // res.json({
-                    //   message: false
-                    // });
+      // res.json({
+      //   message: false
+      // });
       //             }
       //           }
       //           result.closeSync();
