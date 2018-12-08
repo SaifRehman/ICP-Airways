@@ -54,7 +54,7 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.post("/book", this.ensureToken, (req, res, next) => {
-      let pool = mariadb.mariadb.createPool(this.connectionString);
+      let pool = mariadb.createPool(this.connectionString);
       pool
         .getConnection()
         .then(conn => {
@@ -98,7 +98,7 @@ class App {
     });
 
     router.get("/listBookingByUser/:id", this.ensureToken, (req, res, next) => {
-      let pool = mariadb.mariadb.createPool(this.connectionString);
+      let pool = mariadb.createPool(this.connectionString);
       pool
         .getConnection()
         .then(conn => {
@@ -131,7 +131,7 @@ class App {
       "/checkin/:bookid/:userid",
       this.ensureToken,
       (req, res, next) => {
-        let pool = mariadb.mariadb.createPool(this.connectionString);
+        let pool = mariadb.createPool(this.connectionString);
         pool
           .getConnection()
           .then(conn => {

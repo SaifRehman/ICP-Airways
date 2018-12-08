@@ -190,7 +190,8 @@
                 <div class="col s3">
                   <!-- <button  type='submit'
                     id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="book(listshow.ID)">Book</button> -->
-                  <button type='submit' id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="ask(data.Origin,data.Dest,provider.userData.data.FIRSTNAME,data._id)">Book</button>
+                  <button type='submit' id='btn_book' name='btn_login' class='btn waves-effect colour-pink' (click)="book(data._id)">Book</button>
+                  <!-- (click)="ask(data.Origin,data.Dest,provider.userData.data.FIRSTNAME,data._id)" -->
                 </div>
               </div>
             </ng-container>
@@ -204,7 +205,7 @@
 </div>
 
 
-<div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+<!-- <div id="modal1" class="modal" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
     <div class="modal-content">
         <h4>Select Pricing</h4>
         <ng-container *ngIf="modalData">
@@ -231,7 +232,7 @@
         <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
         <a class="waves-effect waves-green btn-flat" (click)="bookFlight()">Book</a>
       </div>
-  </div>
+  </div> -->
 
 
 <!-- <div id="modal1" class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
