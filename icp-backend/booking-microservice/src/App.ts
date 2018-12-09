@@ -13,7 +13,7 @@ class App {
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
   public connectionString: any;
-  public data: any;
+  public newdata: any =[];
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
@@ -100,7 +100,7 @@ class App {
     });
 
     router.get("/listBookingByUser/:id", this.ensureToken, (req, res, next) => {
-      this.data = null;
+      this.newdata = [];
       let pool = mariadb.createPool(this.connectionString);
       pool
         .getConnection()
@@ -110,30 +110,33 @@ class App {
               req.params.id
             ])
             .then(data => {
-              console.log("dataaaaaaa", data.length);
-              this.data = data;
-              for (var i = 0; i < this.data.length; i++) {
-                var obj = this.data[i];
+              for (var i = 0; i < data.length; i++) {
                 console.log(
                   "loggsss",
-                  "http://listingsvc.default:7000/listFlights/" + obj.FlightID
+                  "http://listingsvc.default:7000/listFlights/" + data[i].FlightID
                 );
+                console.log('fuckinggggggg noooooooo',data[i])
+                this.newdata = JSON.parse(JSON.stringify(data));
+                console.log('newwwwww noooooooo',this.newdata[i])
                 request(
-                  "http://listingsvc.default:7000/listFlights/" + obj.FlightID,
+                  "http://listingsvc.default:7000/listFlights/" + this.newdata[i].FlightID,
                   { json: true },
                   (err, response, body) => {
                     if (err) {
-                      // conn.end();
                       console.log(err);
+                      conn.end();
                       res.status(404).json({ message: err });
                     }
-                    console.log("bodyyyyyy issss ----->>>> ", body);
-                    this.data[i].flight = body;
+                    Object.assign(this.newdata[i-1], {
+                      flight: body
+                    });
+                    console.log('consuminnggggggg dataaaa',this.newdata)
                   }
                 );
-                console.log("flightidddd", obj.FlightID);
               }
-              res.json(this.data);
+              console.log('newwww dataaaa',this.newdata)
+              conn.end();
+              res.json(this.newdata);
             })
             .catch(err => {
               conn.end();
