@@ -46,30 +46,55 @@ export class HistoryComponent implements OnInit {
     }
     return get;
   }
-  checkin(flightid, userid, src, dest) {
+  checkin(bookingid, userid, src, dest) {
     this.loading = true;
-    console.log(flightid, userid);
-    this.checkinService.checkin(flightid, userid).subscribe(
+    this.checkinService.checkin(bookingid, userid).subscribe(
       data => {
+        console.log('dataaaa',data)
         this.bookingService
           .listBookingByUser(this.provider.userData.data.USERID)
           .subscribe(
             data => {
               this.loading = false;
+              var temp  = JSON.parse(JSON.stringify(data));
               console.log("data", data);
-              this.show = data;
-              var newsrc = this.convert(src);
-              var newdest = this.convert(dest);
-              console.log("srcccccccc", newsrc, newdest);
-              this.emailService
-                .postEmail(this.provider.userData.data.EMAIL, newsrc, newdest)
-                .subscribe(
-                  data => {},
-                  error => {
-                    this.loading = false;
-                    console.log(error);
-                  }
-                );
+              const url = "https://10.150.20.151/listingsvc/listFlights/";
+              const getData = async (url,iter) => {
+                try {
+                  const response = await axios.get(url);
+                  const dataa = response.data;
+                  console.log(dataa);
+                  Object.assign(temp[iter], {
+                    flight: dataa
+                  });
+                } catch (error) {
+                  this.loading = false;
+                  console.log(error);
+                }
+              };
+              for (var iter = 0; iter < data.length; iter++) {
+              getData(url+data[iter]['FlightID'],iter);
+              if(iter === data.length-1)
+                {
+                  this.loading = false;
+                  this.show = temp;
+                  console.log('showwwwwww',this.show)
+                }
+              }
+              // console.log("data", data);
+              // this.show = data;
+              // var newsrc = this.convert(src);
+              // var newdest = this.convert(dest);
+              // console.log("srcccccccc", newsrc, newdest);
+              // // this.emailService
+              //   .postEmail(this.provider.userData.data.EMAIL, newsrc, newdest)
+              //   .subscribe(
+              //     data => {},
+              //     error => {
+              //       this.loading = false;
+              //       console.log(error);
+              //     }
+              //   );
             },
             error => {
               this.loading = false;
@@ -105,15 +130,19 @@ export class HistoryComponent implements OnInit {
                 flight: dataa
               });
             } catch (error) {
+              this.loading = false;
               console.log(error);
             }
           };
           for (var iter = 0; iter < data.length; iter++) {
           getData(url+data[iter]['FlightID'],iter);
+          if(iter === data.length-1)
+            {
+              this.loading = false;
+              this.show = temp;
+              console.log('showwwwwww',this.show)
+            }
           }
-          this.loading = false;
-          this.show = temp;
-          console.log('showwwwwww',this.show)
         },
         error => {
           this.loading = false;

@@ -110,33 +110,32 @@ class App {
               req.params.id
             ])
             .then(data => {
-              for (var i = 0; i < data.length; i++) {
-                console.log(
-                  "loggsss",
-                  "http://listingsvc.default:7000/listFlights/" + data[i].FlightID
-                );
-                console.log('fuckinggggggg noooooooo',data[i])
-                this.newdata = JSON.parse(JSON.stringify(data));
-                console.log('newwwwww noooooooo',this.newdata[i])
-                request(
-                  "http://listingsvc.default:7000/listFlights/" + this.newdata[i].FlightID,
-                  { json: true },
-                  (err, response, body) => {
-                    if (err) {
-                      console.log(err);
-                      conn.end();
-                      res.status(404).json({ message: err });
-                    }
-                    Object.assign(this.newdata[i-1], {
-                      flight: body
-                    });
-                    console.log('consuminnggggggg dataaaa',this.newdata)
-                  }
-                );
-              }
-              console.log('newwww dataaaa',this.newdata)
+              // for (var i = 0; i < data.length; i++) {
+              //   console.log(
+              //     "loggsss",
+              //     "http://listingsvc.default:7000/listFlights/" + data[i].FlightID
+              //   );
+              //   console.log('fuckinggggggg noooooooo',data[i])
+              //   this.newdata = JSON.parse(JSON.stringify(data));
+              //   console.log('newwwwww noooooooo',this.newdata[i])
+              //   request(
+              //     "http://listingsvc.default:7000/listFlights/" + this.newdata[i].FlightID,
+              //     { json: true },
+              //     (err, response, body) => {
+              //       if (err) {
+              //         console.log(err);
+              //         conn.end();
+              //         res.status(404).json({ message: err });
+              //       }
+              //       Object.assign(this.newdata[i-1], {
+              //         flight: body
+              //       });
+              //       console.log('consuminnggggggg dataaaa',this.newdata)
+              //     }
+              //   );
+              // }
               conn.end();
-              res.json(this.newdata);
+              res.json(data);
             })
             .catch(err => {
               conn.end();
