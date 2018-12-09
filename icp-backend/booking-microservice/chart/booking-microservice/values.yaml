@@ -43,11 +43,11 @@ image:
   ports:
     containerPort: 3000
   requests:
-    cpu: "150m"
-    memory: "300Mi"
+    cpu: "750m"
+    memory: "800Mi"
   limits:
-    cpu: "200m"
-    memory: "400Mi"
+    cpu: "900m"
+    memory: "1000Mi"
   maxSurge: 1
   maxUnavailable: 0
   lifecycle:

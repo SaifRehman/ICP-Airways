@@ -30,3 +30,7 @@ spec:
         backend:
           serviceName: bookingsvc
           servicePort: 3000
+      - path: /
+        backend:
+          serviceName: angular
+          servicePort: 80

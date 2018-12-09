@@ -92,6 +92,7 @@ class App {
             });
         })
         .catch(err => {
+          
           if (err) {
             res.status(404).json({ err });
             console.log(err);

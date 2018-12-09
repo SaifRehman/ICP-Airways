@@ -6,27 +6,33 @@ metadata:
 
 hpa:
   metadata:
-    name: frontend-microservice-HPA
+    name: frontendmicroservicehpa
   spec:
     maxReplicas: 10
-    minReplicas: 2
+    minReplicas: 1
   metrics:
     pods:
       targetAverageValue: 50
     resource:
       name: cpu
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 50
     memory:
-      targetAverageUtilization: 80 
+      targetAverageUtilization: 50
   scaleTargetRef:  
     name: angular
 
 image:
   name: angular
-  imageName: "icpdevcluster.icp:8500/default/angular:latest" 
+  imageName: "mycluster.icp:8500/default/angular:0.0.1" 
   imagePullPolicy: Always
-  maxSurge: 2
+  maxSurge: 1
   maxUnavailable: 0
+  requests:
+    cpu: "400m"
+    memory: "800Mi"
+  limits:
+    cpu: "900m"
+    memory: "1000Mi"
 
 ingress:
   metadeta:
@@ -42,18 +48,6 @@ service:
     selectorName: angular
   servicePortConfiguration:
     name: angular
-    type: NodePort
+    type: ClusterIP
     port: 80
     targetPort: 80
-
-
-serviceMonitor:
-  metadata:
-    name: serviceMonitorAngular
-    labels:
-      app: serviceMonitorAngular
-  specs: 
-    selector:
-      matchLabels:
-        app: serviceMonitorAngular
-    port: angular
