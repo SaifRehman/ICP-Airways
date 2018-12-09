@@ -26,14 +26,14 @@ export class HistoryComponent implements OnInit {
     public emailService: EmailService
   ) {}
   test() {
-    this.ethereumService.getBlockchain().subscribe(
-      data => {
-        console.log("data", data);
-      },
-      error => {
-        alert("Login not Succesfull");
-      }
-    );
+    // this.ethereumService.getBlockchain().subscribe(
+    //   data => {
+    //     console.log("data", data);
+    //   },
+    //   error => {
+    //     alert("Login not Succesfull");
+    //   }
+    // );
   }
   convert(val) {
     var get = "not found";
@@ -138,11 +138,11 @@ export class HistoryComponent implements OnInit {
           getData(url+data[iter]['FlightID'],iter);
           if(iter === data.length-1)
             {
-              this.loading = false;
               this.show = temp;
               console.log('showwwwwww',this.show)
             }
           }
+          this.loading = false;
         },
         error => {
           this.loading = false;

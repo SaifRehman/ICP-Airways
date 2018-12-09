@@ -51,12 +51,12 @@ export class LandingComponent implements OnInit {
   }
   ngOnInit() { }
   test() {
-    this.ethereumService.getBlockchain().subscribe((data) => {
-      console.log('data', data);
-  },
-  (error) => {
-      alert("Login not Succesfull")
-  });
+  //   this.ethereumService.getBlockchain().subscribe((data) => {
+  //     console.log('data', data);
+  // },
+  // (error) => {
+  //     alert("Login not Succesfull")
+  // });
   }
   login() {
     this.loading = true;
