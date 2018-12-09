@@ -13,8 +13,8 @@ class App {
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
   public connectionString: any;
-  public newdata: any =[];
-  public pool:any;
+  public newdata: any = [];
+  public pool: any;
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
@@ -93,7 +93,6 @@ class App {
             });
         })
         .catch(err => {
-          
           if (err) {
             res.status(404).json({ err });
             console.log(err);
