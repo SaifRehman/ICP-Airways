@@ -179,7 +179,7 @@ export class HomeComponent implements OnInit {
     .booking(this.provider.userData.data.USERID, id,'','','','','','')
     .subscribe(
       data => {
-        this.loading = false
+        this.loading = false;
         console.log('booked flight', data);
         // this.modalActions.emit({action:"modal",params:['close']});
         this.show = data;
