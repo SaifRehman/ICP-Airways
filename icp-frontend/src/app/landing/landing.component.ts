@@ -8,7 +8,6 @@ import { EthereumService } from '../services/ethereum-service/ethereum.component
 import {MaterializeAction} from 'angular2-materialize';
 
 import * as jwtDecode from 'jwt-decode';
-var Web3 = require('web3')
 
 declare let require: any;
 declare let window: any;
@@ -33,7 +32,6 @@ export class LandingComponent implements OnInit {
   age: Number;
   passwordSignup: String;
   public modalData = ['GOLD','SILVER','BRONZE']
-  private web3Provider;
   constructor(
     public ethereumService:EthereumService,
     public loginService: LoginService,
@@ -42,8 +40,6 @@ export class LandingComponent implements OnInit {
     public signupService: SignupService
   ) {
 
-    var web3 = Web3.currentProvider
-    console.log(web3);
 
     setTimeout(() => {
       this.displayHeading = true;
