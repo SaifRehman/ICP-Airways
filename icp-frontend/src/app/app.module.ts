@@ -8,7 +8,6 @@ import { ROUTING } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { ShopComponent } from './shop/shop.component';
 
 import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
@@ -39,8 +38,7 @@ import { XrpService } from './services/xrp-service/xrp.component.service';
     HistoryComponent,
     LandingComponent,
     SlideAuthComponent,
-    OdmDetailComponent,
-    ShopComponent
+    OdmDetailComponent
   ],
   imports: [
     MaterializeModule,

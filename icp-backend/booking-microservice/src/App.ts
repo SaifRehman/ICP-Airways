@@ -14,6 +14,7 @@ class App {
   public express: express.Application;
   public connectionString: any;
   public newdata: any =[];
+  public pool:any;
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
@@ -25,6 +26,7 @@ class App {
       connectionLimit: 5,
       port: process.env.PORTMARIADB
     };
+    this.pool = mariadb.createPool(this.connectionString);
     console.log(this.connectionString);
     this.express = express();
     epimetheus.instrument(this.express);
@@ -56,8 +58,7 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.post("/book", this.ensureToken, (req, res, next) => {
-      let pool = mariadb.createPool(this.connectionString);
-      pool
+      this.pool
         .getConnection()
         .then(conn => {
           conn
@@ -102,8 +103,7 @@ class App {
 
     router.get("/listBookingByUser/:id", this.ensureToken, (req, res, next) => {
       this.newdata = [];
-      let pool = mariadb.createPool(this.connectionString);
-      pool
+      this.pool
         .getConnection()
         .then(conn => {
           conn
@@ -155,8 +155,7 @@ class App {
       "/checkin/:bookid/:userid",
       this.ensureToken,
       (req, res, next) => {
-        let pool = mariadb.createPool(this.connectionString);
-        pool
+        this.pool
           .getConnection()
           .then(conn => {
             conn
