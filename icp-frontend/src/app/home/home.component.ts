@@ -182,7 +182,7 @@ export class HomeComponent implements OnInit {
         this.loading = false;
         console.log('booked flight', data);
         // this.modalActions.emit({action:"modal",params:['close']});
-        this.show = data;
+        this.show = [];
       },
       error => {
         this.loading = false
