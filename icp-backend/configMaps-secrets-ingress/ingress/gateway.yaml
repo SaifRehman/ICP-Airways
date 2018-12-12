@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: gateway
+  name: gatewaylistingsvc
 spec:
   selector:
     istio: ingressgateway
@@ -16,18 +16,59 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: servicemesh
+  name: servicemeshlistingsvc
 spec:
   gateways:
-  - gateway
+  - gatewaylistingsvc
   hosts:
   - '*'
   http:
   - match:
     - uri:
-        prefix: /listingsvc
+        prefix: /listingsvc/
     rewrite:
       uri: "/"
     route:
     - destination:
         host: listingsvc.default.svc.cluster.local
+  - match:
+    - uri:
+        prefix: /loginsvc/
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: loginsvc.default.svc.cluster.local
+  - match:
+    - uri:
+        prefix: /emailsvc/
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: odmsvc.default.svc.cluster.local
+  - match:
+    - uri:
+        prefix: /odmsvc/
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: odmsvc.default.svc.cluster.local
+  - match:
+    - uri:
+        prefix: /bookingsvc/
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: bookingsvc.default.svc.cluster.local
+  - match:
+    - uri:
+        prefix: /icpairways/
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: angular.default.svc.cluster.local
+
