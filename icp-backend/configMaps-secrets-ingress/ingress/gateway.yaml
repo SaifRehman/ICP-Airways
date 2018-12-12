@@ -46,15 +46,7 @@ spec:
       uri: "/"
     route:
     - destination:
-        host: odmsvc.default.svc.cluster.local
-  - match:
-    - uri:
-        prefix: /odmsvc/
-    rewrite:
-      uri: "/"
-    route:
-    - destination:
-        host: odmsvc.default.svc.cluster.local
+        host: emailsvc.default.svc.cluster.local
   - match:
     - uri:
         prefix: /bookingsvc/
