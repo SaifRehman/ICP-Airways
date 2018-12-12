@@ -4,9 +4,10 @@ metadata:
   name: saqrairwayingress
   annotations:
     ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "istio"
 spec:
-  tls:
-  - secretName: foo-secret
+  # tls:
+  # - secretName: foo-secret
   rules:
    - http:
       paths:
