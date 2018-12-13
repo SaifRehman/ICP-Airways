@@ -1,0 +1,60 @@
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: listingsvc
+spec:
+  destination:
+    namespace: default
+    name: listingsvc
+  route:
+  - labels:
+      app: listingsvc
+  httpReqTimeout:
+    simpleTimeout:
+      timeout: 2s
+---
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: loginsvc
+spec:
+  destination:
+    namespace: default
+    name: loginsvc
+  route:
+  - labels:
+      app: loginsvc
+  httpReqTimeout:
+    simpleTimeout:
+      timeout: 2s
+---
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: emailsvc
+spec:
+  destination:
+    namespace: default
+    name: emailsvc
+  route:
+  - labels:
+      app: emailsvc
+  httpReqTimeout:
+    simpleTimeout:
+      timeout: 1s
+---
+apiVersion: config.istio.io/v1alpha2
+kind: RouteRule
+metadata:
+  name: bookingsvc
+spec:
+  destination:
+    namespace: default
+    name: bookingsvc
+  precedence: 1
+  route:
+  - labels:
+      app: bookingsvc
+  httpReqTimeout:
+    simpleTimeout:
+      timeout: 2s

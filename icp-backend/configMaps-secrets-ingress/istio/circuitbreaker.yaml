@@ -1,0 +1,80 @@
+apiVersion: config.istio.io/v1alpha2
+kind: DestinationPolicy
+metadata:
+  name: listingsvc-circuitbreaker
+spec:
+  destination:
+    namespace: default
+    name: listingsvc
+    labels:
+      app: listingsvc
+  circuitBreaker:
+    simpleCb:
+      maxConnections: 1
+      httpMaxPendingRequests: 1
+      sleepWindow: 1m
+      httpDetectionInterval: 1s
+      httpMaxEjectionPercent: 100
+      httpConsecutiveErrors: 1
+      httpMaxRequestsPerConnection: 1
+---
+apiVersion: config.istio.io/v1alpha2
+kind: DestinationPolicy
+metadata:
+  name: emailsvc-circuitbreaker
+spec:
+  destination:
+    namespace: default
+    name: emailsvc
+    labels:
+      app: emailsvc
+  circuitBreaker:
+    simpleCb:
+      maxConnections: 1
+      httpMaxPendingRequests: 1
+      sleepWindow: 1m
+      httpDetectionInterval: 1s
+      httpMaxEjectionPercent: 100
+      httpConsecutiveErrors: 1
+      httpMaxRequestsPerConnection: 1
+---
+apiVersion: config.istio.io/v1alpha2
+kind: DestinationPolicy
+metadata:
+  name: loginsvc-circuitbreaker
+spec:
+  destination:
+    namespace: default
+    name: loginsvc
+    labels:
+      app: loginsvc
+  circuitBreaker:
+    simpleCb:
+      maxConnections: 1
+      httpMaxPendingRequests: 1
+      sleepWindow: 1m
+      httpDetectionInterval: 1s
+      httpMaxEjectionPercent: 100
+      httpConsecutiveErrors: 1
+      httpMaxRequestsPerConnection: 1
+---
+apiVersion: config.istio.io/v1alpha2
+kind: DestinationPolicy
+metadata:
+  name: bookingsvc-circuitbreaker
+spec:
+  destination:
+    namespace: default
+    name: bookingsvc
+    labels:
+      app: bookingsvc
+  circuitBreaker:
+    simpleCb:
+      maxConnections: 1
+      httpMaxPendingRequests: 1
+      sleepWindow: 1m
+      httpDetectionInterval: 1s
+      httpMaxEjectionPercent: 100
+      httpConsecutiveErrors: 1
+      httpMaxRequestsPerConnection: 1
+
