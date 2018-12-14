@@ -1,59 +1,44 @@
 apiVersion: extensions/v1beta1
 kind: NetworkPolicy
 metadata:
-  name: angularpolicy
+  name: mongodbpolicy
   namespace: default
 spec:
   ingress:
   - from:
     - podSelector:
         matchLabels:
-          istio: ingress
+          app: listingsvc
   podSelector:
     matchLabels:
-      app: angular
+      app: saqrairwaymongo-ibm-mongodb-dev
 ---
 apiVersion: extensions/v1beta1
 kind: NetworkPolicy
 metadata:
-  name: listingsvcpolicy
+  name: db2policy
   namespace: default
 spec:
   ingress:
   - from:
     - podSelector:
         matchLabels:
-          istio: ingress
+          app: loginsvc
   podSelector:
     matchLabels:
-      app: listingsvc
+      app: saqrairway-ibm-db2oltp-dev
 ---
 apiVersion: extensions/v1beta1
 kind: NetworkPolicy
 metadata:
-  name: bookingsvcpolicy
+  name: mariadbpolicy
   namespace: default
 spec:
   ingress:
   - from:
     - podSelector:
         matchLabels:
-          istio: ingress
+          app: bookingsvc
   podSelector:
     matchLabels:
-      app: bookingsvc
----
-apiVersion: extensions/v1beta1
-kind: NetworkPolicy
-metadata:
-  name: loginsvcpolicy
-  namespace: default
-spec:
-  ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          istio: ingress
-  podSelector:
-    matchLabels:
-      app: loginsvc
+      app: saqrairwaymariadb-ibm-mariadb-dev
