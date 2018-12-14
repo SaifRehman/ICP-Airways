@@ -1,0 +1,59 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: angularpolicy
+  namespace: default
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          istio: ingress
+  podSelector:
+    matchLabels:
+      app: angular
+---
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: listingsvcpolicy
+  namespace: default
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          istio: ingress
+  podSelector:
+    matchLabels:
+      app: listingsvc
+---
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: bookingsvcpolicy
+  namespace: default
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          istio: ingress
+  podSelector:
+    matchLabels:
+      app: bookingsvc
+---
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: loginsvcpolicy
+  namespace: default
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          istio: ingress
+  podSelector:
+    matchLabels:
+      app: loginsvc
