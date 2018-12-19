@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 
 metadata:
  name: loginsvc 
@@ -39,7 +39,7 @@ hpa:
     name: loginsvcmicroservicehpa
   spec:
     maxReplicas: 10
-    minReplicas: 1
+    minReplicas: 2
   metrics:
     pods:
       targetAverageValue: 30

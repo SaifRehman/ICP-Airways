@@ -43,10 +43,7 @@
               }
             ],
             "styles": [
-              "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/assets/css/reset.css",
-              "src/assets/css/loading.css",
-              "src/app/styles/global.scss"
+              "node_modules/@nebular/theme/styles/prebuilt/default.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -108,12 +105,8 @@
               "src/assets/js/modernizr.js"
             ],
             "styles": [
-              {
-                "input": "node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
-              },
-              "src/assets/css/reset.css",
-              "src/assets/css/loading.css",
-              "src/app/styles/global.scss"
+              "../node_modules/@nebular/theme/styles/prebuilt/default.scss",
+              "../node_modules/@nebular/theme/styles/prebuilt/cosmic.scss"
             ],
             "assets": [
               {
