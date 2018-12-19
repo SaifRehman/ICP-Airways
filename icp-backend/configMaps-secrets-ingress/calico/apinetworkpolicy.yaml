@@ -5,6 +5,9 @@ metadata:
   namespace: default
 spec:
   ingress:
+  - ports:
+    - protocol: TCP
+      port: 80
   - from:
     - podSelector:
         matchLabels:
@@ -20,6 +23,9 @@ metadata:
   namespace: default
 spec:
   ingress:
+  - ports:
+    - protocol: TCP
+      port: 7000
   - from:
     - podSelector:
         matchLabels:
@@ -35,6 +41,9 @@ metadata:
   namespace: default
 spec:
   ingress:
+  - ports:
+    - protocol: TCP
+      port: 3000
   - from:
     - podSelector:
         matchLabels:
@@ -50,6 +59,9 @@ metadata:
   namespace: default
 spec:
   ingress:
+  - ports:
+    - protocol: TCP
+      port: 3003
   - from:
     - podSelector:
         matchLabels:
