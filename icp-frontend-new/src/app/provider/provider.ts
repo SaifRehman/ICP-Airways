@@ -5,7 +5,7 @@ export class Provider {
   public userData: any = null;
   public token: any = null;
   public rawData: any = null;
-  public url: any = "10.150.20.151";
+  public url: any = "10.150.20.151:31380";
   public gethURL: any = "10.150.20.151";
   public abi: any;
   constructor() {
@@ -54,19 +54,19 @@ export class Provider {
       }
     ];
     this.apiUrl = {
-      login: "https://" + this.url + "/loginsvc/login",
-      signup: "https://" + this.url + "/loginsvc/createUser",
-      book: "https://" + this.url + "/bookingsvc/book",
+      login: "http://" + this.url + "/loginsvc/login",
+      signup: "http://" + this.url + "/loginsvc/createUser",
+      book: "http://" + this.url + "/bookingsvc/book",
       listBookingByUser:
-        "https://" + this.url + "/bookingsvc/listBookingByUser",
-      checkin: "https://" + this.url + "/bookingsvc/checkin",
-      listFlightsByID: "https://" + this.url + "/listingsvc/listFlights",
-      listFlights: "https://" + this.url + "/listingsvc/searchFlights",
-      getBlockchain: "https://" + this.url + ":30089/getBlockchain",
-      setBlockchain: "https://" + this.url + ":30089/setBlockchain",
-      setODM: "https://" + this.url + ":30095/odm",
-      postEmail: "https://" + this.url + ":30989/postEmail",
-      xrp: "https://localhost:3066/xrp"
+        "http://" + this.url + "/bookingsvc/listBookingByUser",
+      checkin: "http://" + this.url + "/bookingsvc/checkin",
+      listFlightsByID: "http://" + this.url + "/listingsvc/listFlights",
+      listFlights: "http://" + this.url + "/listingsvc/searchFlights",
+      getBlockchain: "http://" + this.url + ":30089/getBlockchain",
+      setBlockchain: "http://" + this.url + ":30089/setBlockchain",
+      setODM: "http://" + this.url + ":30095/odm",
+      postEmail: "http://" + this.url + ":30989/postEmail",
+      xrp: "http://localhost:3066/xrp"
     };
   }
 }

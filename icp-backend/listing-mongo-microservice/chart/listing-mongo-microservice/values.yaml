@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 2
 
 metadata:
  name: listingsvc 
@@ -67,7 +67,7 @@ hpa:
     name: listingsvcmicroservicehpa
   spec:
     maxReplicas: 10
-    minReplicas: 1
+    minReplicas: 2
   metrics:
     pods:
       targetAverageValue: 20
@@ -75,7 +75,7 @@ hpa:
       name: cpu
       targetAverageUtilization: 50
     memory:
-      targetAverageUtilization: 70
+      targetAverageUtilization: 50
   scaleTargetRef:  
     name: listingsvc
 

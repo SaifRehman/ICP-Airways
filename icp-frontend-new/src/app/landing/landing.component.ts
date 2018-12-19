@@ -5,16 +5,15 @@ import { SignupService } from '../signup/signup.component.service';
 import { Provider } from '../provider/provider';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { EthereumService } from '../services/ethereum-service/ethereum.component.service'
-import {MaterializeAction} from 'angular2-materialize';
-
+import { NbSidebarModule, NbLayoutModule, NbSidebarService } from '@nebular/theme';
+import { NgModule } from '@angular/core';
 import * as jwtDecode from 'jwt-decode';
-
 declare let require: any;
 declare let window: any;
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css'],
+  styleUrls: ['./landing.component.scss'],
   animations: [translateTrigger]
 })
 export class LandingComponent implements OnInit {
