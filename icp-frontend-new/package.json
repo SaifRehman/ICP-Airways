@@ -26,7 +26,7 @@
     "@nebular/security": "^3.0.1",
     "@nebular/theme": "^3.0.1",
     "axios": "^0.18.0",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
     "crypto": "^1.0.1",
     "iso-3166-1": "^1.1.0",

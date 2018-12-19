@@ -28,7 +28,7 @@ import { OdmDetailComponent } from './odm-detail/odm-detail.component';
 import { EmailService } from './services/email-service/email.component.service';
 import { XrpService } from './services/xrp-service/xrp.component.service';
 import { NbThemeModule } from '@nebular/theme';
-import { NbSidebarModule, NbLayoutModule, NbSidebarService } from '@nebular/theme';
+import { NbSidebarModule, NbLayoutModule, NbSidebarService, NbAlertModule } from '@nebular/theme';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +50,7 @@ import { NbSidebarModule, NbLayoutModule, NbSidebarService } from '@nebular/them
     SharedModule,
     NbLayoutModule,
     NbSidebarModule,
+    NbAlertModule,
     NbThemeModule.forRoot({ name: 'default' }),
   ],
   providers: [

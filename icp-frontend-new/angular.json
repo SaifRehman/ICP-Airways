@@ -106,7 +106,8 @@
             ],
             "styles": [
               "../node_modules/@nebular/theme/styles/prebuilt/default.scss",
-              "../node_modules/@nebular/theme/styles/prebuilt/cosmic.scss"
+              "../node_modules/@nebular/theme/styles/prebuilt/cosmic.scss",
+              "../node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "assets": [
               {
