@@ -5,7 +5,4 @@ metadata:
   namespace: default
 spec:
   podSelector:
-    matchLabels:
-      app: bookingsvc
-      
-      
+    matchLabels: {}

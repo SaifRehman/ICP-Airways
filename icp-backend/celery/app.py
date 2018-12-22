@@ -16,10 +16,10 @@ import time
 app = Flask(__name__)  
 CORS(app)
   
-app.config['CELERY_RESULT_BACKEND'] = 'amqp://admin:admin@10.150.20.151:30554'
+app.config['CELERY_RESULT_BACKEND'] = 'mqtt://admin:admin@10.150.20.151:30375'
 # app.config['CELERY_ACKS_LATE'] = True
 CELERY_ACKS_LATE = True
-app.config['CELERY_BROKER_URL'] = 'amqp://admin:admin@10.150.20.151:30554'
+app.config['CELERY_BROKER_URL'] = 'mqtt://admin:admin@10.150.20.151:30375'
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'],backend = app.config['CELERY_RESULT_BACKEND'])
 celery.conf.update(app.config)
 
