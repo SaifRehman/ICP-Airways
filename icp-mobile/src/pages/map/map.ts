@@ -1,14 +1,6 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import leaflet from "leaflet";
-import 'leaflet-routing-machine';
-
-/**
- * Generated class for the MapPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -25,7 +17,6 @@ export class MapPage {
     console.log(this.values);
   }
   ionViewDidEnter() {
-    this.loadmap();
   }
   loadmap() {
     this.map = leaflet.map("map").fitWorld();
@@ -60,6 +51,7 @@ export class MapPage {
 
   }
   ionViewDidLoad() {
+    this.loadmap();
     console.log("ionViewDidLoad MapPage");
     let tabs = document.querySelectorAll(".show-tabbar");
     if (tabs !== null) {
