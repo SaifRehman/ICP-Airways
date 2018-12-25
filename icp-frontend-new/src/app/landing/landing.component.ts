@@ -30,7 +30,7 @@ export class LandingComponent implements OnInit {
   location: String;
   age: Number;
   passwordSignup: String;
-  public modalData = ['GOLD','SILVER','BRONZE']
+  public modalData = ['GOLD', 'SILVER', 'BRONZE'];
   constructor(
     public ethereumService:EthereumService,
     public loginService: LoginService,

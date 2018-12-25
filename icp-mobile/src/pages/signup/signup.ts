@@ -41,7 +41,6 @@ export class SignupPage {
     let loading = this.loadingCtrl.create({
       content: "Please wait..."
     });
-
     loading.present();
     this.signupService
       .signup(
