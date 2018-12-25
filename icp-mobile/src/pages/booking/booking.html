@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons start>
+        <button ion-button icon-only>
+          <img src="../assets/ibm.png" alt="ibm" height="20" width="40">
+        </button>
+      </ion-buttons>
+      <ion-title color="primary">Booking</ion-title>
+      <ion-buttons end>
+          <button ion-button icon-only color="danger" (click)="cancel()">
+            CANCEL
+          </button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-card class="card-5">
+  
+          <ion-item>
+            <ion-icon name="logo-buffer" item-start large color="tab"></ion-icon>
+            <h2>Flight Number</h2>
+            <p>#123</p>
+          </ion-item>
+      
+          <ion-item>
+            <ion-icon name="plane" item-start large color="tab"></ion-icon>
+            <h2>From</h2>
+            <p>Dubai International Airport</p>
+          </ion-item>
+      
+          <ion-item>
+            <ion-icon name="plane" item-start large color="tab"></ion-icon>
+            <h2>To</h2>
+            <p>Islamabad International Airport</p>
+          </ion-item>
+      
+          <ion-item>
+            <ion-icon name="time" item-start large color="tab"></ion-icon>
+            <h2>Arrival Time</h2>
+            <p>2:30</p>
+          </ion-item>
+      
+          <ion-item>
+            <ion-icon name="time" item-start large color="tab"></ion-icon>
+            <h2>Departure Time</h2>
+            <p>10:54</p>
+          </ion-item>
+      
+          <ion-item>
+            <button ion-button icon-start clear item-end (click)="confirm()">
+              <ion-icon name="navigate"></ion-icon>
+              Book
+            </button>
+          </ion-item>
+      
+        </ion-card>
+  
+  
+  </ion-content>
+  

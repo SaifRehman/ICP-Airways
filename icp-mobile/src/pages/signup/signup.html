@@ -1,0 +1,58 @@
+<ion-content class="background">
+  <ion-card>
+    <ion-card-content>
+      <ion-list no-line>
+        <ion-item>
+          <ion-label>
+            <ion-icon name="person" color="tab"></ion-icon>
+          </ion-label>
+          <ion-input type="text" placeholder="First Name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-icon name="person" color="tab"></ion-icon>
+          </ion-label>
+          <ion-input type="text" placeholder="Last Name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-icon name="body" color="tab"></ion-icon>
+          </ion-label>
+          <ion-input type="number" placeholder="Age"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-icon name="locate" color="tab"></ion-icon>
+          </ion-label>
+          <ion-input type="text" placeholder="Location"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-icon name="at" color="tab"></ion-icon>
+          </ion-label>
+          <ion-input type="email" placeholder="Email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-icon name="medical" color="tab"></ion-icon>
+          </ion-label>
+          <ion-input type="password" placeholder="Password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <div class="cc-selector-2">
+            <input checked="checked" id="visa2" type="radio" name="creditcard" value="gold" />
+            <label class="drinkcard-cc gold" for="visa2"></label>
+            <input id="mastercard2" type="radio" name="creditcard" value="silver" />
+            <label class="drinkcard-cc silver" for="mastercard2"></label>
+
+            <input id="mastercard3" type="radio" name="creditcard" value="bronze" />
+            <label class="drinkcard-cc bronze" for="mastercard3"></label>
+          </div>
+        </ion-item>
+        <button ion-button block outline color="light">Signup</button>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+  <button class="bottom" ion-button clear full color="light" (click)="signin()">Already have an account? Sign in</button>
+</ion-content>
