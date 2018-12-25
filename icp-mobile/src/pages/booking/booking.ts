@@ -19,8 +19,23 @@ export class BookingPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BookingPage');
+    console.log('ionViewDidLoad MapPage');
+    let tabs = document.querySelectorAll('.show-tabbar');
+    if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+            tabs[key].style.display = 'none';
+        });
+    }
   }
+  ionViewWillLeave() {
+    let tabs = document.querySelectorAll('.show-tabbar');
+    if (tabs !== null) {
+        Object.keys(tabs).map((key) => {
+            tabs[key].style.display = 'flex';
+        });
+
+    }
+}
   cancel(){
     this.navCtrl.pop()
   }

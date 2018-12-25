@@ -1,60 +1,22 @@
 <ion-header>
-    <ion-navbar color="dark">
-      <ion-title text-center>
-        Dashboard
-      </ion-title>
-    </ion-navbar>
+    <ion-toolbar>
+      <ion-buttons start>
+        <button ion-button icon-only>
+          <img src="../assets/ibm.png" alt="ibm" height="20" width="40">
+        </button>
+      </ion-buttons>
+      <ion-title color="primary">Travel</ion-title>
+    </ion-toolbar>
   </ion-header>
   
   <ion-content>
-    <section text-center margin-bottom>
-      <ion-icon name="person"></ion-icon>
-      <h1 style="font-size:1.4em" no-margin>Welcome, <br>
-        Mr. John Doe, <br>
-      Choose your Destination</h1>
-    </section>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6>
-          <ion-card text-center padding color="danger">
-            <ion-icon name="person"></ion-icon>
-            <h2>Profile</h2>
-          </ion-card>
-        </ion-col>
-        <ion-col col-6>
-          <ion-card text-center padding color="danger">
-            <ion-icon name="people"></ion-icon>
-            <h2>Group</h2>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-6>
-          <ion-card text-center padding color="danger">
-            <ion-icon name="settings"></ion-icon>
-            <h2>Settings</h2>
-          </ion-card>
-        </ion-col>
-        <ion-col col-6>
-          <ion-card text-center padding color="danger">
-            <ion-icon name="list"></ion-icon>
-            <h2>Tasks</h2>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-6>
-          <ion-card text-center padding color="danger">
-            <ion-icon name="add"></ion-icon>
-            <h2>Add Task</h2>
-          </ion-card>
-        </ion-col>
-        <ion-col col-6>
-            <ion-card text-center padding color="danger">
-              <ion-icon name="calendar"></ion-icon>
-              <h2>Appointment</h2>
-            </ion-card>
-          </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-list>
+      <ng-container *ngIf="show">
+      <ion-item *ngFor="let listshow of show">
+        <h2>{{listshow.Location.Name}}</h2>
+        <p>{{listshow.Location.Address.County}} • {{listshow.Location.LocationType}}</p>
+        <button ion-button clear item-end (click)="go(listshow.Location.DisplayPosition.Latitude,listshow.Location.DisplayPosition.Longitude)">View</button>
+      </ion-item>
+      </ng-container>
+    </ion-list>
   </ion-content>

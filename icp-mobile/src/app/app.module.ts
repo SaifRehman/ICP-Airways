@@ -2,11 +2,13 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import {HttpModule} from '@angular/http';
 
 import { AboutPage } from '../pages/about/about';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { BookingPage } from '../pages/booking/booking';
+import {MapPage} from '../pages/map/map'
 
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -16,7 +18,7 @@ import { DashboardPage } from '../pages/dashboard/dashboard';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FlashCardComponent } from '../components/flash/flash';
-
+import {DashboardService} from '../pages/dashboard/dashboard.service'
 @NgModule({
   declarations: [
     MyApp,
@@ -27,10 +29,12 @@ import { FlashCardComponent } from '../components/flash/flash';
     LoginPage,
     SignupPage,
     BookingPage,
-    DashboardPage
+    DashboardPage,
+    MapPage
     // FlashCardComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -44,11 +48,13 @@ import { FlashCardComponent } from '../components/flash/flash';
     LoginPage,
     SignupPage,
     BookingPage,
-    DashboardPage
+    DashboardPage,
+    MapPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    DashboardService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
