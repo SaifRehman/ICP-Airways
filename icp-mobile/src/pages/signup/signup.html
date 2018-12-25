@@ -6,50 +6,53 @@
           <ion-label>
             <ion-icon name="person" color="tab"></ion-icon>
           </ion-label>
-          <ion-input type="text" placeholder="First Name"></ion-input>
+          <ion-input type="text" placeholder="First Name" [(ngModel)]="firstName"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>
             <ion-icon name="person" color="tab"></ion-icon>
           </ion-label>
-          <ion-input type="text" placeholder="Last Name"></ion-input>
+          <ion-input type="text" placeholder="Last Name" [(ngModel)]="lastName"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>
             <ion-icon name="body" color="tab"></ion-icon>
           </ion-label>
-          <ion-input type="number" placeholder="Age"></ion-input>
+          <ion-input type="number" placeholder="Age" [(ngModel)]="age"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>
             <ion-icon name="locate" color="tab"></ion-icon>
           </ion-label>
-          <ion-input type="text" placeholder="Location"></ion-input>
+          <ion-input type="text" placeholder="Location" [(ngModel)]="location"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>
             <ion-icon name="at" color="tab"></ion-icon>
           </ion-label>
-          <ion-input type="email" placeholder="Email"></ion-input>
+          <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>
             <ion-icon name="medical" color="tab"></ion-icon>
           </ion-label>
-          <ion-input type="password" placeholder="Password"></ion-input>
+          <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
         </ion-item>
-        <ion-item>
-          <div class="cc-selector-2">
-            <input checked="checked" id="visa2" type="radio" name="creditcard" value="gold" />
-            <label class="drinkcard-cc gold" for="visa2"></label>
-            <input id="mastercard2" type="radio" name="creditcard" value="silver" />
-            <label class="drinkcard-cc silver" for="mastercard2"></label>
-
-            <input id="mastercard3" type="radio" name="creditcard" value="bronze" />
-            <label class="drinkcard-cc bronze" for="mastercard3"></label>
-          </div>
-        </ion-item>
-        <button ion-button block outline color="light">Signup</button>
+        <ion-grid >
+        <ion-row>
+          <ng-container *ngIf="modalData">
+            <ion-col width-10 *ngFor="let data of modalData; let i = index">
+              <ion-item>
+                <div class="cc-selector-2">
+                  <input name={{i}} [value]='data' type="radio" [(ngModel)]="tier" id={{i}} />
+                  <label class="drinkcard-cc {{data}}" for={{i}}></label>
+                </div>
+              </ion-item>
+            </ion-col>
+          </ng-container>
+        </ion-row>
+        </ion-grid>
+        <button ion-button block outline color="light" (click)="signup()">Signup</button>
       </ion-list>
 
     </ion-card-content>

@@ -51668,15 +51668,15 @@ page-signup .cc-selector-2 input {
   z-index: 999;
 }
 
-page-signup .gold {
+page-signup .GOLD {
   background-image: url(https://cdn1.iconfinder.com/data/icons/web-design-18/50/45-512.png);
 }
 
-page-signup .silver {
+page-signup .SILVER {
   background-image: url(https://ya-webdesign.com/images/silver-badge-png-6.png);
 }
 
-page-signup .bronze {
+page-signup .BRONZE {
   background-image: url(http://www.smurfsreviews.com/wp-content/uploads/2016/08/bronze-badge.png);
 }
 
@@ -51699,9 +51699,9 @@ page-signup .drinkcard-cc {
   height: 70px;
   -webkit-transition: all 100ms ease-in;
   transition: all 100ms ease-in;
-  -webkit-filter: brightness(1.8) grayscale(1) opacity(0.7);
-  -moz-filter: brightness(1.8) grayscale(1) opacity(0.7);
-  filter: brightness(1.8) grayscale(1) opacity(0.7);
+  -webkit-filter: brightness(1.8) grayscale(1) opacity(0.9);
+  -moz-filter: brightness(1.8) grayscale(1) opacity(0.9);
+  filter: brightness(1.8) grayscale(1) opacity(0.9);
 }
 
 page-signup .drinkcard-cc:hover {

@@ -34,7 +34,7 @@ spec:
     retries:
       attempts: 3
       perTryTimeout: 2s
-    timeout: 2s
+    timeout: 5s
   - match:
     - uri:
         prefix: /loginsvc/
@@ -46,7 +46,7 @@ spec:
     retries:
       attempts: 3
       perTryTimeout: 2s
-    timeout: 2s
+    timeout: 5s
   - match:
     - uri:
         prefix: /emailsvc/
@@ -58,7 +58,7 @@ spec:
     retries:
       attempts: 3
       perTryTimeout: 2s
-    timeout: 2s
+    timeout: 5s
   - match:
     - uri:
         prefix: /bookingsvc/
@@ -70,7 +70,7 @@ spec:
     retries:
       attempts: 3
       perTryTimeout: 2s
-    timeout: 2s
+    timeout: 5s
   - match:
     - uri:
         prefix: /icpairways/

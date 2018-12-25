@@ -26,9 +26,9 @@ spec:
   trafficPolicy:
     connectionPool:
       tcp:
-        maxConnections: 1
+        maxConnections: 100
       http:
-        http1MaxPendingRequests: 1
+        http1MaxPendingRequests: 1024
         maxRequestsPerConnection: 1
     outlierDetection:
       consecutiveErrors: 1
@@ -45,9 +45,9 @@ spec:
   trafficPolicy:
     connectionPool:
       tcp:
-        maxConnections: 1
+        maxConnections: 100
       http:
-        http1MaxPendingRequests: 1
+        http1MaxPendingRequests: 1024
         maxRequestsPerConnection: 1
     outlierDetection:
       consecutiveErrors: 1
@@ -64,9 +64,9 @@ spec:
   trafficPolicy:
     connectionPool:
       tcp:
-        maxConnections: 1
+        maxConnections: 100
       http:
-        http1MaxPendingRequests: 1
+        http1MaxPendingRequests: 1024
         maxRequestsPerConnection: 1
     outlierDetection:
       consecutiveErrors: 1

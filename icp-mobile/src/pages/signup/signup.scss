@@ -83,9 +83,9 @@ page-signup {
     z-index:999;
 }
 
-.gold{background-image:url(https://cdn1.iconfinder.com/data/icons/web-design-18/50/45-512.png);}
-.silver{background-image:url(https://ya-webdesign.com/images/silver-badge-png-6.png);}
-.bronze{background-image:url(http://www.smurfsreviews.com/wp-content/uploads/2016/08/bronze-badge.png);}
+.GOLD{background-image:url(https://cdn1.iconfinder.com/data/icons/web-design-18/50/45-512.png);}
+.SILVER{background-image:url(https://ya-webdesign.com/images/silver-badge-png-6.png);}
+.BRONZE{background-image:url(http://www.smurfsreviews.com/wp-content/uploads/2016/08/bronze-badge.png);}
 
 .cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
 .cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
@@ -102,9 +102,9 @@ page-signup {
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
-    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
-       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
-            filter: brightness(1.8) grayscale(1) opacity(.7);
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.9);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.9);
+            filter: brightness(1.8) grayscale(1) opacity(.9);
 }
 .drinkcard-cc:hover{
     -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);

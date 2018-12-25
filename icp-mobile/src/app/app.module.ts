@@ -9,16 +9,18 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { BookingPage } from '../pages/booking/booking';
 import {MapPage} from '../pages/map/map'
-
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import {LoginService} from '../services/login-service/login.component.service'
+import {SignupService} from '../services/signup-service/signup.component.service'
 import { DashboardPage } from '../pages/dashboard/dashboard';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { FlashCardComponent } from '../components/flash/flash';
 import {DashboardService} from '../pages/dashboard/dashboard.service'
+import {Provider} from '../provider/provider'
+import 'leaflet-routing-machine';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -55,6 +57,9 @@ import {DashboardService} from '../pages/dashboard/dashboard.service'
     StatusBar,
     SplashScreen,
     DashboardService,
+    LoginService,
+    SignupService,
+    Provider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
