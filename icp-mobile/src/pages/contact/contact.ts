@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login'
+import { Provider } from '../../provider/provider'
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -8,7 +9,7 @@ import { LoginPage } from '../login/login'
 
 export class ContactPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public provider:Provider) {
 
   }
 

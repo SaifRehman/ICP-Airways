@@ -76,7 +76,6 @@ export class LandingComponent implements OnInit {
   }
 
   signup() {
-    console.log(this.tier)
     this.loading = true;
     this.signupService
       .signup(

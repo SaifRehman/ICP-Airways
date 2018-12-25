@@ -4,6 +4,8 @@ import { TabsPage } from "../tabs/tabs";
 import { SignupPage } from "../signup/signup";
 import { LoginService } from "../../services/login-service/login.component.service";
 import { AlertController, LoadingController } from "ionic-angular";
+import {Provider} from '../../provider/provider'
+import * as jwtDecode from 'jwt-decode';
 
 /**
  * Generated class for the LoginPage page.
@@ -25,7 +27,8 @@ export class LoginPage {
     public navParams: NavParams,
     public loginService: LoginService,
     private alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public provider:Provider
   ) {}
   login() {
     let loading = this.loadingCtrl.create({
@@ -34,6 +37,10 @@ export class LoginPage {
     loading.present();
     this.loginService.login(this.username, this.password).subscribe(
       data => {
+        this.provider.token = data['token'];
+        localStorage.setItem('token', this.provider.token);
+        this.provider.userData = jwtDecode( data['token']);
+        console.log(this.provider.userData)
         this.navCtrl.push(TabsPage);
         loading.dismiss();
       },

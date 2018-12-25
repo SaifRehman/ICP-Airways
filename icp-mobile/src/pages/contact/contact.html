@@ -21,19 +21,19 @@
   <ion-list>
     <ion-item>
       <ion-icon name="person" item-start color="tab"></ion-icon>
-      Saif Rehman
+      {{provider.userData.data.FIRSTNAME + ' '}} {{provider.userData.data.LASTNAME + ' '}} 
     </ion-item>
     <ion-item>
       <ion-icon name="body" item-start color="tab"></ion-icon>
-      23 years
+      {{provider.userData.data.AGE}}  years
     </ion-item>
     <ion-item>
       <ion-icon name="at" item-start color="tab"></ion-icon>
-      s4saif.121@gmail.com
+      {{provider.userData.data.EMAIL}} 
     </ion-item>
     <ion-item>
       <ion-icon name="medal" item-start color="tab"></ion-icon>
-      Gold class
+      {{provider.userData.data.TIER}}  class
     </ion-item>
   </ion-list>
 
