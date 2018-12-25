@@ -42,26 +42,6 @@ export class MapPage {
         maxZoom: 13
       })
       .on("locationfound", e => {
-        // let markerGroup = leaflet.featureGroup();
-        // let marker: any = leaflet
-        //   .marker([e.latitude, e.longitude], {
-        //     icon: leaflet.icon({
-        //       iconUrl: "../assets/current.png",
-        //       iconSize: [37, 37],
-        //       iconAnchor: [18, 37]
-        //     })
-        //   })
-        //   .on("click", () => {
-        //     console.log(e.latitude, e.longitude);
-        //   });
-        // let marker2: any = leaflet
-        //   .marker([this.values.lat, this.values.long])
-        //   .on("click", () => {
-        //     alert("Marker clicked");
-        //   });
-        // markerGroup.addLayer(marker);
-        // markerGroup.addLayer(marker2);
-        // this.map.addLayer(markerGroup);
         var latlngs = [[e.latitude, e.longitude], [this.values.lat, this.values.long]];
         var polyline = leaflet.polyline(latlngs, { color: "blue" }).addTo(this.map);
         // zoom the map to the polyline
