@@ -1,39 +1,108 @@
-import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
-import {BookingPage} from '../booking/booking'
+import { Component } from "@angular/core";
+import { NavController, ModalController } from "ionic-angular";
+import { BookingPage } from "../booking/booking";
+import { ListingService } from "../../services/listing-schedule-service/listing.component.service";
+import { AlertController, LoadingController } from "ionic-angular";
+
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: "page-home",
+  templateUrl: "home.html"
 })
 export class HomePage {
   public like_btn = {
-    color: 'black',
-    icon_name: 'heart-outline'
+    color: "black",
+    icon_name: "heart-outline"
   };
   public tap: number = 0;
+  public Year: any;
+  public Month: any;
+  public DayOfMonth: any;
+  origin: any;
+  dest: any;
+  date: any;
 
-  constructor(public navCtrl: NavController) {
-
-  }
-  tapPhotoLike(times) { // If we click double times, it will trigger like the post
+  constructor(
+    public navCtrl: NavController,
+    public listingService: ListingService,
+    private alertCtrl: AlertController,
+    public loadingCtrl: LoadingController
+  ) {}
+  tapPhotoLike(times) {
+    // If we click double times, it will trigger like the post
     this.tap++;
-    if(this.tap % 2 === 0) {
+    if (this.tap % 2 === 0) {
       this.likeButton();
     }
   }
   likeButton() {
-    if(this.like_btn.icon_name === 'heart-outline') {
-      this.like_btn.icon_name = 'heart';
-      this.like_btn.color = 'danger';
+    if (this.like_btn.icon_name === "heart-outline") {
+      this.like_btn.icon_name = "heart";
+      this.like_btn.color = "danger";
       // Do some API job in here for real!
-    }
-    else {
-      this.like_btn.icon_name = 'heart-outline';
-      this.like_btn.color = 'black';
+    } else {
+      this.like_btn.icon_name = "heart-outline";
+      this.like_btn.color = "black";
     }
   }
-  search(){
-    this.navCtrl.push(BookingPage)
-  }
+  search() {
+    let loading = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    loading.present();
+    if ((this.origin, this.dest, this.date)) {
+      this.Year = Number(this.date.split("-")[0]);
+      this.Year = String(this.Year);
+      this.Month = Number(this.date.split("-")[1]);
+      this.Month = String(this.Month);
+      this.DayOfMonth = Number(this.date.split("-")[2]);
+      this.DayOfMonth = String(this.DayOfMonth);
 
+      this.listingService
+        .listFlights(
+          this.Year,
+          this.Month,
+          this.DayOfMonth,
+          this.origin,
+          this.dest
+        )
+        .subscribe(
+          data => {
+            if(data.length){
+            console.log("data", data);
+            loading.dismiss()
+            this.navCtrl.push(BookingPage, {
+              item: data
+            });
+          }
+          else{
+            let alert = this.alertCtrl.create({
+              title: "Alert!",
+              subTitle: "OOOOPS... No flights found!",
+              buttons: ["Dismiss"]
+            });
+            loading.dismiss();
+            alert.present();
+          }
+          },
+          error => {
+            let alert = this.alertCtrl.create({
+              title: "Alert!",
+              subTitle: "OOOOPS... Something Went Wrong",
+              buttons: ["Dismiss"]
+            });
+            loading.dismiss();
+            alert.present();
+            console.log(error);
+          }
+        );
+    } else {
+      let alert = this.alertCtrl.create({
+        title: "Alert!",
+        subTitle: "Please enter all informatio",
+        buttons: ["Dismiss"]
+      });
+      loading.dismiss();
+      alert.present();
+    }
+  }
 }

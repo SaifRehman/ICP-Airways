@@ -13,21 +13,25 @@
     <ion-list no-line>
       <ion-item>
         <ion-label>Select Source</ion-label>
-        <ion-select>
-          <ion-option value="f">IND</ion-option>
-          <ion-option value="m">PK</ion-option>
+        <ion-select [(ngModel)]="origin">
+          <ion-option value="DXB">Dubai</ion-option>
+          <ion-option value="CAI">Cairo</ion-option>
+          <ion-option value="IND">India</ion-option>
+          <ion-option value="BWI">Washington</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>Select Destination </ion-label>
-        <ion-select>
-          <ion-option value="f">INDIA</ion-option>
-          <ion-option value="m">PK</ion-option>
+        <ion-select [(ngModel)]="dest">
+          <ion-option value="DXB">Dubai</ion-option>
+          <ion-option value="CAI">Cairo</ion-option>
+          <ion-option value="IND">India</ion-option>
+          <ion-option value="BWI">Washington</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>Travel Date</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
       </ion-item>
     </ion-list>
     <button ion-button block outline color="tab" (click)="search()">Search</button>

@@ -34,6 +34,21 @@ export class ListingService {
             });
     }
 
+    public listAllFlights(): Observable<any> {
+        const options = new RequestOptions({
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        });
+        const link = this.provider.apiUrl.listAllFlights
+        return this.http.post(link, options) // ...using post request
+            .map((res: Response) => res.json())
+            .catch((error: any) => {
+                console.log(error);
+                return Observable.throw(error.json().error || 'Server error');
+            });
+    }
+
     public listFlightsByID(ID): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({

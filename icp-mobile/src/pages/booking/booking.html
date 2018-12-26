@@ -15,36 +15,37 @@
   </ion-header>
   
   <ion-content padding>
-      <ion-card class="card-5">
+    <ng-container *ngIf="data">
+      <ion-card class="card-5" *ngFor="let data of data">
   
           <ion-item>
             <ion-icon name="logo-buffer" item-start large color="tab"></ion-icon>
             <h2>Flight Number</h2>
-            <p>#123</p>
+            <p>#{{data._id}}</p>
           </ion-item>
       
           <ion-item>
             <ion-icon name="plane" item-start large color="tab"></ion-icon>
             <h2>From</h2>
-            <p>Dubai International Airport</p>
+            <p>{{data.Origin | isoToCountryName}}</p>
           </ion-item>
       
           <ion-item>
             <ion-icon name="plane" item-start large color="tab"></ion-icon>
             <h2>To</h2>
-            <p>Islamabad International Airport</p>
+            <p>{{data.Dest | isoToCountryName}}</p>
           </ion-item>
       
           <ion-item>
             <ion-icon name="time" item-start large color="tab"></ion-icon>
             <h2>Arrival Time</h2>
-            <p>2:30</p>
+            <p>{{data.ArrTime | timeRefactor}}</p>
           </ion-item>
       
           <ion-item>
             <ion-icon name="time" item-start large color="tab"></ion-icon>
             <h2>Departure Time</h2>
-            <p>10:54</p>
+            <p>{{data.DepTime | timeRefactor}}</p>
           </ion-item>
       
           <ion-item>
@@ -55,7 +56,7 @@
           </ion-item>
       
         </ion-card>
-  
+  </ng-container>
   
   </ion-content>
   

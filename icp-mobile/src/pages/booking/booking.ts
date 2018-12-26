@@ -14,8 +14,10 @@ import { IonicPage, NavController, NavParams, ModalController, AlertController }
   templateUrl: 'booking.html',
 })
 export class BookingPage {
-
+  public data:any;
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl:ModalController, public alertCtrl: AlertController) {
+    this.data = navParams.get("item");
+    console.log('this is data',this.data)
   }
 
   ionViewDidLoad() {

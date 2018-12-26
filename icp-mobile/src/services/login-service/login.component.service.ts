@@ -10,10 +10,19 @@ export class LoginService {
     public parameters: any;
     public params: any;
     public temp:any;
+    public _url: any = "../assets/airports.json";
+    public getJSON() {
+        return this.http
+          .get(this._url)
+          .map((response: Response) => response.json());
+      }
 
     public constructor(public http: Http, public provider:Provider) {
         this.parameters = {};
         this.params = {};
+        this.getJSON().subscribe(data => {
+            this.provider.rawData = data;
+          });
     }
 
     public login(email,password): Observable<any> {

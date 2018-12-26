@@ -8,7 +8,6 @@ import { ROUTING } from './app.routing';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-
 import { HomeComponent } from './home/home.component';
 import { HistoryComponent } from './history/history.component';
 import { RouterModule } from '@angular/router';

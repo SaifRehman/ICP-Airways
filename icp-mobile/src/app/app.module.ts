@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import {HttpModule} from '@angular/http';
-
 import { AboutPage } from '../pages/about/about';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
@@ -19,6 +18,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {DashboardService} from '../pages/dashboard/dashboard.service'
 import {Provider} from '../provider/provider'
+import {ListingService} from '../services/listing-schedule-service/listing.component.service'
+import { SharedModule } from '../shared/shared.module';
+
 import 'leaflet-routing-machine';
 
 @NgModule({
@@ -33,9 +35,9 @@ import 'leaflet-routing-machine';
     BookingPage,
     DashboardPage,
     MapPage
-    // FlashCardComponent
   ],
   imports: [
+    SharedModule,
     HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
@@ -60,6 +62,7 @@ import 'leaflet-routing-machine';
     LoginService,
     SignupService,
     Provider,
+    ListingService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
