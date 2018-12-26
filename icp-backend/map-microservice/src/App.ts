@@ -25,14 +25,14 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.post('/getMap', (req, res, next) => { 
-      // res.send('hello')
+      console.log(process.env.APPID,process.env.APPCODE,req.body.lat,req.body.long)
       axios.get('https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?app_id='+process.env.APPID+'&app_code='+process.env.APPCODE+'&mode=retrieveLandmarks&prox='+req.body.lat+','+req.body.long)
       .then(function(response) {
           console.log(response.data)
         res.send(response.data);
       }).catch(error => {
-        console.log(error.response)
-        res.status(404).send(error.response);
+        console.log(error)
+        res.status(404).send(error);
     });
     });
     router.get('/healthz', (req, res, next) => {

@@ -19,7 +19,7 @@ livenessProbe:
 
 hpa:
   metadata:
-    name: emailmicroservicehpa
+    name: mapmicroservicehpa
   spec:
     maxReplicas: 10
     minReplicas: 1
