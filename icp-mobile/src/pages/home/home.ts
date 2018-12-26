@@ -27,13 +27,6 @@ export class HomePage {
     private alertCtrl: AlertController,
     public loadingCtrl: LoadingController
   ) {}
-  tapPhotoLike(times) {
-    // If we click double times, it will trigger like the post
-    this.tap++;
-    if (this.tap % 2 === 0) {
-      this.likeButton();
-    }
-  }
   likeButton() {
     if (this.like_btn.icon_name === "heart-outline") {
       this.like_btn.icon_name = "heart";
@@ -105,4 +98,5 @@ export class HomePage {
       alert.present();
     }
   }
+  
 }

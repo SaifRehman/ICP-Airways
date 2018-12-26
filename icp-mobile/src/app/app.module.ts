@@ -20,7 +20,7 @@ import {DashboardService} from '../pages/dashboard/dashboard.service'
 import {Provider} from '../provider/provider'
 import {ListingService} from '../services/listing-schedule-service/listing.component.service'
 import { SharedModule } from '../shared/shared.module';
-
+import {BookingService} from '../services/booking-service/booking.component.service'
 import 'leaflet-routing-machine';
 
 @NgModule({
@@ -63,6 +63,7 @@ import 'leaflet-routing-machine';
     SignupService,
     Provider,
     ListingService,
+    BookingService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
