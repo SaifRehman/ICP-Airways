@@ -1,14 +1,12 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import * as epimetheus from 'epimetheus'
 import axios from 'axios'
 class App {
 
   public express: express.Application;
   constructor() {
     this.express = express();
-    epimetheus.instrument(this.express)
     this.middleware();
     this.routes();
   }
@@ -26,7 +24,8 @@ class App {
   }
   private routes(): void {
     let router = express.Router();
-    router.post('/getMap', (req, res, next) => {
+    router.post('/getMap', (req, res, next) => { 
+      // res.send('hello')
       axios.get('https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?app_id='+process.env.APPID+'&app_code='+process.env.APPCODE+'&mode=retrieveLandmarks&prox='+req.body.lat+','+req.body.long)
       .then(function(response) {
           console.log(response.data)

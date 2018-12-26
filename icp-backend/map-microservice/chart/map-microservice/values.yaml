@@ -5,14 +5,14 @@ metadata:
  label: mapsvc
 readinessProbe:
   path: /healthz
-  port: 30016
+  port: 3016
   initialDelaySeconds: 5
   timeoutSeconds: 1
   periodSeconds: 15
 
 livenessProbe:
   path: /healthz
-  port: 30016
+  port: 3016
   initialDelaySeconds: 5
   timeoutSeconds: 1 
   periodSeconds: 15
@@ -39,7 +39,7 @@ image:
   imageName: "mycluster.icp:8500/default/map-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
-    containerPort: 30016
+    containerPort: 3016
   requests:
     cpu: "60m"
     memory: "150Mi"
@@ -56,12 +56,12 @@ envOfConfigmaps:
   envAPPID:
     name: APPID
     configMapKeyRef:
-      name: mysecret
+      name: env-database
       key: APPID
   envAPPCODE:
     name: APPCODE
     configMapKeyRef:
-      name: mysecret
+      name: env-database
       key: APPCODE
 
 
@@ -70,7 +70,7 @@ ingress:
     name: mapsvc
   path: /mapsvc
   serviceName: mapsvc
-  servicePort: 30016
+  servicePort: 3016
 
 service:
   serviceMetadata:
@@ -83,8 +83,8 @@ service:
     protocol: TCP
     name: mapsvc
     type: ClusterIP
-    port: 30016
-    targetPort: 30016
+    port: 3016
+    targetPort: 3016
 
 serviceMonitor:
   metadata:
