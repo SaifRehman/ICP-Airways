@@ -1,18 +1,18 @@
-replicaCount: 1
+replicaCount: 2
 
 metadata:
- name: emailsvc 
- label: emailsvc
+ name: mapsvc 
+ label: mapsvc
 readinessProbe:
   path: /healthz
-  port: 3006
+  port: 30016
   initialDelaySeconds: 5
   timeoutSeconds: 1
   periodSeconds: 15
 
 livenessProbe:
   path: /healthz
-  port: 3006
+  port: 30016
   initialDelaySeconds: 5
   timeoutSeconds: 1 
   periodSeconds: 15
@@ -32,14 +32,14 @@ hpa:
     memory:
       targetAverageUtilization: 50
   scaleTargetRef:  
-    name: emailsvc
+    name: mapsvc
 
 image:
-  name: emailsvc
-  imageName: "mycluster.icp:8500/default/email-microservice:0.0.1" 
+  name: mapsvc
+  imageName: "mycluster.icp:8500/default/map-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
-    containerPort: 3006
+    containerPort: 30016
   requests:
     cpu: "60m"
     memory: "150Mi"
@@ -53,46 +53,46 @@ image:
       command: ["/bin/bash", "-c", "sleep 20"]
 
 envOfSecrets:
-  envEMAILPASSWORD:
-    name: EMAILPASSWORD
+  envAPPID:
+    name: APPID
     secretKeyRef:
       name: mysecret
-      key: EMAILPASSWORD
-  envEMAILUSERNAME:
-    name: EMAILUSERNAME
+      key: APPID
+  envAPPCODE:
+    name: APPCODE
     secretKeyRef:
       name: mysecret
-      key: EMAILUSERNAME
+      key: APPCODE
 
 
 ingress:
   metadeta:
-    name: emailsvc
-  path: /emailsvc
-  serviceName: emailsvc
-  servicePort: 3006
+    name: mapsvc
+  path: /mapsvc
+  serviceName: mapsvc
+  servicePort: 30016
 
 service:
   serviceMetadata:
-    name: emailsvc
+    name: mapsvc
     labels:
-      app: emailsvc
+      app: mapsvc
   selector:
-    selectorName: emailsvc
+    selectorName: mapsvc
   servicePortConfiguration:
     protocol: TCP
-    name: emailsvc
+    name: mapsvc
     type: ClusterIP
-    port: 3006
-    targetPort: 3006
+    port: 30016
+    targetPort: 30016
 
 serviceMonitor:
   metadata:
-    name: serviceMonitorEmailsvc
+    name: serviceMonitormapsvc
     labels:
-      app: serviceMonitorEmailsvc
+      app: serviceMonitormapsvc
   specs: 
     selector:
       matchLabels:
-        app: serviceMonitorEmailsvc
-    port: emailsvc
+        app: serviceMonitormapsvc
+    port: mapsvc

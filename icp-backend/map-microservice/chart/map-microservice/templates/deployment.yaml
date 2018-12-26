@@ -11,6 +11,8 @@ spec:
     maxUnavailable: {{ .Values.image.maxUnavailable }} 
  template:
    metadata:
+     annotations:
+       sidecar.istio.io/inject: "true"
      name: {{ .Values.metadata.name }} 
      labels:
        app: {{ .Values.metadata.label }} 
@@ -47,15 +49,15 @@ spec:
             cpu: {{ .Values.image.limits.cpu }} 
             memory: {{ .Values.image.limits.memory }} 
          env:
-          - name: {{ .Values.envOfSecrets.envEMAILPASSWORD.name }} 
+          - name: {{ .Values.envOfSecrets.envAPPID.name }} 
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.envOfSecrets.envEMAILPASSWORD.secretKeyRef.name }} 
-                key: {{ .Values.envOfSecrets.envEMAILPASSWORD.secretKeyRef.key }} 
-          - name: {{ .Values.envOfSecrets.envEMAILUSERNAME.name }} 
+                name: {{ .Values.envOfSecrets.envAPPID.secretKeyRef.name }} 
+                key: {{ .Values.envOfSecrets.envAPPID.secretKeyRef.key }} 
+          - name: {{ .Values.envOfSecrets.envAPPCODE.name }} 
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.envOfSecrets.envEMAILUSERNAME.secretKeyRef.name }} 
-                key: {{ .Values.envOfSecrets.envEMAILUSERNAME.secretKeyRef.key }} 
+                name: {{ .Values.envOfSecrets.envAPPCODE.secretKeyRef.name }} 
+                key: {{ .Values.envOfSecrets.envAPPCODE.secretKeyRef.key }} 
          ports:
          - containerPort: {{ .Values.image.ports.containerPort }} 
