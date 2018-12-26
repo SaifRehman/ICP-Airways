@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import leaflet from "leaflet";
+import 'leaflet-routing-machine';
 
 @IonicPage()
 @Component({
