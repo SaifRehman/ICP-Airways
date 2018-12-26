@@ -186,7 +186,7 @@ export class HomeComponent implements OnInit {
         this.loading = false
         // this.modalActions.emit({action:"modal",params:['close']});
         console.log(error);
-      })
+      });
     // this.ethereumService.getBlockchain().subscribe((data) => {
     //   var temp = true;
     //   for (var i = 0; i < data.length; i++) {
@@ -232,5 +232,5 @@ export class HomeComponent implements OnInit {
     //   this.loading = false
     //     alert("cant get data from blockchain")
     //   });
-    }   
+    }
 }

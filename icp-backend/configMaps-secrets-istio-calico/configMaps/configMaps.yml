@@ -14,7 +14,7 @@ data:
   CELERY_BROKER_URL: 'amqp://admin:admin@10.150.20.151:30554'
   EMAILAPI: 'http://emailsvc.default:3006/email'
   MONGOPORT: '27017'
-  HOSTNAMEMARIADB: 'saqrairwaymariadb-ibm-mariadb-dev.default'
+  HOSTNAMEMARIADB: 'saqrairwaymariadbnew-ibm-mariadb-dev.default' 
   DATABASEMARIADB: 'SAMPLE'
   PROTOCOLMARIADB: 'TCPIP'
   PORTMARIADB: '3306'

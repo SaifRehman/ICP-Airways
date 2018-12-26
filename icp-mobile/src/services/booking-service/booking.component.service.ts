@@ -19,7 +19,6 @@ export class BookingService {
     CostUpgrade
   ): Observable<any> {
     console.log(
-     'dataaaa',
       UserID,
       FlightID,
       OfferNamePricing,
