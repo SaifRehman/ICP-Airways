@@ -49,15 +49,15 @@ spec:
             cpu: {{ .Values.image.limits.cpu }} 
             memory: {{ .Values.image.limits.memory }} 
          env:
-          - name: {{ .Values.envOfSecrets.envAPPID.name }} 
+          - name: {{ .Values.envOfConfigmaps.envAPPID.name }} 
             valueFrom:
-              secretKeyRef:
-                name: {{ .Values.envOfSecrets.envAPPID.secretKeyRef.name }} 
-                key: {{ .Values.envOfSecrets.envAPPID.secretKeyRef.key }} 
-          - name: {{ .Values.envOfSecrets.envAPPCODE.name }} 
+              configMapKeyRef:
+                name: {{ .Values.envOfConfigmaps.envAPPID.configMapKeyRef.name }} 
+                key: {{ .Values.envOfConfigmaps.envAPPID.configMapKeyRef.key }} 
+          - name: {{ .Values.envOfConfigmaps.envAPPCODE.name }} 
             valueFrom:
-              secretKeyRef:
-                name: {{ .Values.envOfSecrets.envAPPCODE.secretKeyRef.name }} 
-                key: {{ .Values.envOfSecrets.envAPPCODE.secretKeyRef.key }} 
+              configMapKeyRef:
+                name: {{ .Values.envOfConfigmaps.envAPPCODE.configMapKeyRef.name }} 
+                key: {{ .Values.envOfConfigmaps.envAPPCODE.configMapKeyRef.key }} 
          ports:
          - containerPort: {{ .Values.image.ports.containerPort }} 

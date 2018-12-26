@@ -52,15 +52,15 @@ image:
     preStop:
       command: ["/bin/bash", "-c", "sleep 20"]
 
-envOfSecrets:
+envOfConfigmaps:
   envAPPID:
     name: APPID
-    secretKeyRef:
+    configMapKeyRef:
       name: mysecret
       key: APPID
   envAPPCODE:
     name: APPCODE
-    secretKeyRef:
+    configMapKeyRef:
       name: mysecret
       key: APPCODE
 
