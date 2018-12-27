@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Provider } from '../../provider/provider';
+import {HttpWrapper} from "ionic-native-http-angular-wrapper";
+
 import 'rxjs/Rx';
 
 @Injectable()
 export class CheckinService {
-    public constructor(public http: Http, public provider:Provider) {
+    public constructor(public http: HttpWrapper, public provider:Provider) {
     }
 
     public checkin(BookingID,UserID): Observable<any> {
