@@ -4,7 +4,6 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { error } from 'util';
 import { Provider } from '../../provider/provider';
 import 'rxjs/Rx';
-import {HttpWrapper} from "ionic-native-http-angular-wrapper";
 
 @Injectable()
 export class SignupService {
@@ -13,7 +12,7 @@ export class SignupService {
     public params: any;
     public temp:any;
 
-    public constructor(public http: Http, public provider:Provider, public Http:HttpWrapper) {
+    public constructor(public http: Http, public provider:Provider) {
         this.parameters = {};
         this.params = {};
     }

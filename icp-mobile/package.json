@@ -39,7 +39,7 @@
     "cordova-plugin-whitelist": "^1.3.3",
     "ionic-angular": "3.9.2",
     "ionic-native-http-angular-wrapper": "^1.0.1",
-    "ionic-native-http-connection-backend": "^4.0.8",
+    "ionic-native-http-connection-backend": "^5.0.2",
     "ionicons": "3.0.0",
     "iso-3166-1": "^1.1.0",
     "jwt-decode": "^2.2.0",

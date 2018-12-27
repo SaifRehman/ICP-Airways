@@ -3,11 +3,10 @@ import { Observable } from "rxjs";
 import { Headers, Http, RequestOptions, Response } from "@angular/http";
 import { Provider } from "../../provider/provider";
 import "rxjs/Rx";
-import {HttpWrapper} from "ionic-native-http-angular-wrapper";
 
 @Injectable()
 export class BookingService {
-  public constructor(public http: Http, public provider: Provider, public Http:HttpWrapper) {}
+  public constructor(public http: Http, public provider: Provider) {}
 
   public booking(
     UserID,
@@ -47,7 +46,7 @@ export class BookingService {
       CostUpgrade
     };
     const bodyString = JSON.stringify(bodyObject); // Stringify payload
-    return this.Http
+    return this.http
       .post(link, bodyObject, options) // ...using post request
       .map((res: Response) => res.json())
       .catch((error: any) => {
@@ -64,7 +63,7 @@ export class BookingService {
       })
     });
     const link = this.provider.apiUrl.listBookingByUser + "/" + String(ID);
-    return this.Http
+    return this.http
       .get(link, options) // ...using post request
       .map((res: Response) => res.json())
       .catch((error: any) => {

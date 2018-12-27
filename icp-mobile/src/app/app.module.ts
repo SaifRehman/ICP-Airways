@@ -23,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
 import {BookingService} from '../services/booking-service/booking.component.service'
 import {CheckinService} from '../services/checkin-service/checkin.component.service'
 import {NativeHttpWrapper} from 'ionic-native-http-angular-wrapper';
+import { Geolocation } from "@ionic-native/geolocation";
 
 import 'leaflet-routing-machine';
 
@@ -69,6 +70,7 @@ import 'leaflet-routing-machine';
     ListingService,
     BookingService,
     CheckinService,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

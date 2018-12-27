@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { DashboardService } from "../dashboard/dashboard.service";
 import { MapPage } from "../map/map";
 import { Geolocation } from "@ionic-native/geolocation";
+import { AlertController, LoadingController } from "ionic-angular";
 
 /**
  * Generated class for the DashboardPage page.
@@ -23,23 +24,32 @@ export class DashboardPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public dashboardService: DashboardService,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    public loadingCtrl: LoadingController,
+
   ) {}
 
   ionViewDidLoad() {
+    let loading = this.loadingCtrl.create({
+      content: "Map is loading..."
+    });
+    loading.present();
     this.geolocation.getCurrentPosition().then((resp) => {
       console.log('abe to get cooord',resp)
       console.log("ionViewDidLoad DashboardPage");
       this.dashboardService.list(resp.coords.latitude.toString(),resp.coords.longitude.toString()).subscribe(
         data => {
+          loading.dismiss();
           console.log(data["Response"]["View"][0]["Result"]);
           this.show = data["Response"]["View"][0]["Result"];
         },
         error => {
+          loading.dismiss();
           console.log('errorrrrr',error);
         }
       );
      }).catch((error) => {
+      loading.dismiss();
        console.log('Error getting location', error);
      });
      
