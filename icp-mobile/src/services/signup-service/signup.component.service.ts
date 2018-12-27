@@ -13,7 +13,7 @@ export class SignupService {
     public params: any;
     public temp:any;
 
-    public constructor(public http: HttpWrapper, public provider:Provider) {
+    public constructor(public http: Http, public provider:Provider, public Http:HttpWrapper) {
         this.parameters = {};
         this.params = {};
     }

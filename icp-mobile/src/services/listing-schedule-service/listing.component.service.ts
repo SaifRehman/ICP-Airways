@@ -9,7 +9,7 @@ import {HttpWrapper} from "ionic-native-http-angular-wrapper";
 
 @Injectable()
 export class ListingService {
-    public constructor(public http: HttpWrapper, public provider:Provider) {
+    public constructor(public http: Http, public provider:Provider, public Http:HttpWrapper ) {
     }
 
     public listFlights(Year,Month,DayOfMonth,Origin,Dest): Observable<any> {
@@ -27,7 +27,7 @@ export class ListingService {
             dest:Dest
         }
         const bodyString = JSON.stringify(bodyObject); // Stringify payload
-        return this.http.post(link, bodyObject, options) // ...using post request
+        return this.Http.post(link, bodyObject, options) // ...using post request
             .map((res: Response) => res.json())
             .catch((error: any) => {
                 console.log(error);
@@ -42,7 +42,7 @@ export class ListingService {
             })
         });
         const link = this.provider.apiUrl.listAllFlights
-        return this.http.post(link, options) // ...using post request
+        return this.Http.post(link, options) // ...using post request
             .map((res: Response) => res.json())
             .catch((error: any) => {
                 console.log(error);
@@ -57,7 +57,7 @@ export class ListingService {
             })
         });
         const link = this.provider.apiUrl.listFlightsByID+'/'+String(ID)
-        return this.http.get(link, options) // ...using post request
+        return this.Http.get(link, options) // ...using post request
             .map((res: Response) => res.json())
             .catch((error: any) => {
                 console.log(error);

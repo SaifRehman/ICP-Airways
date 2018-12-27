@@ -7,7 +7,7 @@ import {HttpWrapper} from "ionic-native-http-angular-wrapper";
 
 @Injectable()
 export class BookingService {
-  public constructor(public http: HttpWrapper, public provider: Provider) {}
+  public constructor(public http: Http, public provider: Provider, public Http:HttpWrapper) {}
 
   public booking(
     UserID,
@@ -47,7 +47,7 @@ export class BookingService {
       CostUpgrade
     };
     const bodyString = JSON.stringify(bodyObject); // Stringify payload
-    return this.http
+    return this.Http
       .post(link, bodyObject, options) // ...using post request
       .map((res: Response) => res.json())
       .catch((error: any) => {
@@ -64,7 +64,7 @@ export class BookingService {
       })
     });
     const link = this.provider.apiUrl.listBookingByUser + "/" + String(ID);
-    return this.http
+    return this.Http
       .get(link, options) // ...using post request
       .map((res: Response) => res.json())
       .catch((error: any) => {

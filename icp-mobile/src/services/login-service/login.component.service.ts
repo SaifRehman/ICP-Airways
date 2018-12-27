@@ -18,8 +18,9 @@ export class LoginService {
   }
 
   public constructor(
-    public http: HttpWrapper,
-    public provider: Provider
+    public http: Http,
+    public provider: Provider,
+    public Http: HttpWrapper,
   ) {
     this.parameters = {};
     this.params = {};
@@ -40,7 +41,7 @@ export class LoginService {
       password: password
     };
     const bodyString = JSON.stringify(bodyObject); // Stringify payload
-    return this.http
+    return this.Http
       .post(link, bodyObject, options) // ...using post request
       .map((res: Response) => res.json())
       .catch((error: any) => {

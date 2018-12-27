@@ -9,7 +9,7 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class CheckinService {
-    public constructor(public http: HttpWrapper, public provider:Provider) {
+    public constructor(public http: Http, public provider:Provider, public Http:HttpWrapper) {
     }
 
     public checkin(BookingID,UserID): Observable<any> {
@@ -20,7 +20,7 @@ export class CheckinService {
             })
         });
         const link = this.provider.apiUrl.checkin+'/'+String(BookingID)+'/'+String(UserID)
-        return this.http.get(link, options) // ...using post request
+        return this.Http.get(link, options) // ...using post request
             .map((res: Response) => res.json())
             .catch((error: any) => {
                 console.log(error);
