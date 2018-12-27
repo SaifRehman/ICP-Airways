@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {DashboardService} from '../dashboard/dashboard.service'
-import {MapPage} from '../map/map'
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { DashboardService } from "../dashboard/dashboard.service";
+import { MapPage } from "../map/map";
+import { Geolocation } from "@ionic-native/geolocation";
+
 /**
  * Generated class for the DashboardPage page.
  *
@@ -11,33 +13,67 @@ import {MapPage} from '../map/map'
 
 @IonicPage()
 @Component({
-  selector: 'page-dashboard',
-  templateUrl: 'dashboard.html',
+  selector: "page-dashboard",
+  templateUrl: "dashboard.html"
 })
 export class DashboardPage {
-  public show:any=null;
+  public show: any = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dashboardService:DashboardService) {
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public dashboardService: DashboardService,
+    private geolocation: Geolocation
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DashboardPage');
-    this.dashboardService.list().subscribe((data)=>{
-      console.log(data['Response']['View'][0]['Result']);
-      this.show = (data['Response']['View'][0]['Result']);
-      
-
-    },(error)=>{
-      console.log(error)
-    })
+    this.geolocation.getCurrentPosition().then((resp) => {
+      console.log('abe to get cooord',resp)
+      console.log("ionViewDidLoad DashboardPage");
+      this.dashboardService.list(resp.coords.latitude.toString(),resp.coords.longitude.toString()).subscribe(
+        data => {
+          console.log(data["Response"]["View"][0]["Result"]);
+          this.show = data["Response"]["View"][0]["Result"];
+        },
+        error => {
+          console.log('errorrrrr',error);
+        }
+      );
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+     
 
   }
-  go(lat,long){
-    this.navCtrl.push(MapPage,{
-      item:{
-        lat:lat,
-        long:long
+  doRefresh(refresher) {
+    console.log("Begin async operation", refresher);
+    this.geolocation.getCurrentPosition().then((resp) => {
+      console.log("ionViewDidLoad DashboardPage");
+      this.dashboardService.list(resp.coords.latitude,resp.coords.longitude).subscribe(
+        data => {
+          console.log(data["Response"]["View"][0]["Result"]);
+          this.show = data["Response"]["View"][0]["Result"];
+          refresher.complete();
+        },
+        error => {
+          refresher.complete();
+          console.log(error);
+        }
+      );
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+    setTimeout(() => {
+      console.log("Async operation has ended");
+      refresher.complete();
+    }, 7000);
+  }
+  go(lat, long) {
+    this.navCtrl.push(MapPage, {
+      item: {
+        lat: lat,
+        long: long
       }
-    })
+    });
   }
 }

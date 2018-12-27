@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		02F14058B06842BEBA07AC12 /* CDVWKWebViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 522F9BE600FC42A2B52390DB /* CDVWKWebViewEngine.m */; };
@@ -38,6 +37,8 @@
 		D7FA694B611448FA8C88940B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2A655E34A6F4EF088479E72 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E69E812099614F0FAE11844E /* CDVWKWebViewUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D91691AB630F46D1B5F49A06 /* CDVWKWebViewUIDelegate.m */; };
 		F19C4DE0118642E09A85E87D /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC960FFE5D4646A8D53B78 /* GCDWebServerRequest.m */; };
+		4C14023F52214BE8885B377C /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C893E5889C9944F7BDE24FC8 /* CDVLocation.m */; };
+		08A17C85D03B4164BD957CED /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E08DB080D39C4E6383D5BB46 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,9 @@
 		F73E5070209548F7951F648A /* CDVDevice.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVDevice.h; path = "cordova-plugin-device/CDVDevice.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = MyApp/config.xml; sourceTree = "<group>"; };
 		FA82183BC3444832ADECEAC2 /* GCDWebServer.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = GCDWebServer.m; path = "cordova-plugin-ionic-webview/GCDWebServer.m"; sourceTree = "<group>"; };
+		C893E5889C9944F7BDE24FC8 /* CDVLocation.m */ = {isa = PBXFileReference; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		7A8CB2AB77FC46D29D13BB77 /* CDVLocation.h */ = {isa = PBXFileReference; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E08DB080D39C4E6383D5BB46 /* CoreLocation.framework */ = {isa = PBXFileReference; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				D7FA694B611448FA8C88940B /* WebKit.framework in Frameworks */,
 				A5E44158156449E7B1C37804 /* libz.tbd in Frameworks */,
+				08A17C85D03B4164BD957CED /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +220,7 @@
 			children = (
 				F2A655E34A6F4EF088479E72 /* WebKit.framework */,
 				54E10DB79B214694B5FBE499 /* libz.tbd */,
+				E08DB080D39C4E6383D5BB46 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -287,6 +293,8 @@
 				B28E9B51FADD448AB6162FB9 /* CDVViewController+SplashScreen.h */,
 				A2846FAAF348411AB3A29F16 /* CDVStatusBar.m */,
 				BF1671DB793C4280BF35BC7B /* CDVStatusBar.h */,
+				C893E5889C9944F7BDE24FC8 /* CDVLocation.m */,
+				7A8CB2AB77FC46D29D13BB77 /* CDVLocation.h */,
 			);
 			name = Plugins;
 			path = MyApp/Plugins;
@@ -436,6 +444,7 @@
 				6FECDE5E7B8C4F11906B5B86 /* CDVSplashScreen.m in Sources */,
 				20F917692775465A880F3110 /* CDVViewController+SplashScreen.m in Sources */,
 				10278E7B258E47B6902657D6 /* CDVStatusBar.m in Sources */,
+				4C14023F52214BE8885B377C /* CDVLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

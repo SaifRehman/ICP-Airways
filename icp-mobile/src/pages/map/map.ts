@@ -36,7 +36,6 @@ export class MapPage {
       .on("locationfound", e => {
         var latlngs = [[e.latitude, e.longitude], [this.values.lat, this.values.long]];
         var polyline = leaflet.polyline(latlngs, { color: "blue" }).addTo(this.map);
-        // zoom the map to the polyline
         this.map.fitBounds(polyline.getBounds());
         leaflet.Routing.control({
           waypoints: [

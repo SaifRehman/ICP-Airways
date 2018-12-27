@@ -22,6 +22,7 @@ import {ListingService} from '../services/listing-schedule-service/listing.compo
 import { SharedModule } from '../shared/shared.module';
 import {BookingService} from '../services/booking-service/booking.component.service'
 import {CheckinService} from '../services/checkin-service/checkin.component.service'
+import { Geolocation } from '@ionic-native/geolocation';
 
 import 'leaflet-routing-machine';
 
@@ -58,6 +59,7 @@ import 'leaflet-routing-machine';
     MapPage
   ],
   providers: [
+    Geolocation,
     StatusBar,
     SplashScreen,
     DashboardService,

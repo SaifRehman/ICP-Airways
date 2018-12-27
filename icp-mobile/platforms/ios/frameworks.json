@@ -1,4 +1,5 @@
 {
     "WebKit.framework": 1,
-    "libz.tbd": 1
+    "libz.tbd": 1,
+    "CoreLocation.framework": 1
 }

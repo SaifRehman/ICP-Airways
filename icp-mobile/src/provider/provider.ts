@@ -18,8 +18,7 @@ export class Provider {
       listFlightsByID: "http://" + this.url + "/listingsvc/listFlights",
       listFlights: "http://" + this.url + "/listingsvc/searchFlights",
       listAllFlights: "http://" + this.url + "/listingsvc/listFlights",
-      setODM: "http://" + this.url + ":30095/odm",
-      postEmail: "http://" + this.url + ":30989/postEmail",
+      map:  "http://" + this.url + "/mapsvc/getMap"
     };
   }
 }
