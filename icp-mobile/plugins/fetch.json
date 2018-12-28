@@ -47,16 +47,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-geolocation": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-geolocation@4.0.1"
-    },
-    "is_top_level": true,
-    "variables": {
-      "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-    }
-  },
   "cordova-plugin-advanced-http": {
     "source": {
       "type": "registry",
@@ -72,5 +62,15 @@
     },
     "is_top_level": false,
     "variables": {}
+  },
+  "cordova-plugin-geolocation": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-geolocation@4.0.1"
+    },
+    "is_top_level": true,
+    "variables": {
+      "GEOLOCATION_USAGE_DESCRIPTION": "my_project would like to use your location"
+    }
   }
 }

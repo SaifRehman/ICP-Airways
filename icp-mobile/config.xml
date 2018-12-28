@@ -51,6 +51,9 @@
                 <true />
             </dict>
         </config-file>
+        <config-file overwrite="true" parent="NSLocationWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
+            <string>Allow the app to know your location</string>
+        </config-file>
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -93,5 +96,8 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-advanced-http" spec="2.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
+        <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="my_project would like to use your location" />
+    </plugin>
     <engine name="ios" spec="4.4.0" />
 </widget>

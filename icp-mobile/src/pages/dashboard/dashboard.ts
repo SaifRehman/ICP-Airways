@@ -52,6 +52,10 @@ export class DashboardPage {
       loading.dismiss();
        console.log('Error getting location', error);
      });
+     setTimeout(() => {
+      console.log("Async operation has ended");
+      loading.dismiss();
+    }, 7000);
      
 
   }

@@ -67,5 +67,7 @@
       <string>UIInterfaceOrientationPortraitUpsideDown</string>
       <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Allow the app to know your location</string>
   </dict>
 </plist>

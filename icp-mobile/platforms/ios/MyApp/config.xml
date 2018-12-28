@@ -25,9 +25,6 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
-    <feature name="Geolocation">
-        <param name="ios-package" value="CDVLocation" />
-    </feature>
     <feature name="Keyboard">
         <param name="ios-package" onload="true" value="CDVIonicKeyboard" />
     </feature>
@@ -45,6 +42,9 @@
         <param name="ios-package" value="CDVStatusBar" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -61,6 +61,9 @@
             <key>NSAllowsArbitraryLoads</key>
             <true />
         </dict>
+    </config-file>
+    <config-file overwrite="true" parent="NSLocationWhenInUseUsageDescription" platform="ios" target="*-Info.plist">
+        <string>Allow the app to know your location</string>
     </config-file>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />

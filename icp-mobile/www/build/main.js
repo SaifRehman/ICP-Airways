@@ -1,6 +1,6 @@
 webpackJsonp([5],{
 
-/***/ 119:
+/***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12,7 +12,6 @@ webpackJsonp([5],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_native_http_angular_wrapper__ = __webpack_require__(66);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -27,12 +26,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var BookingService = /** @class */ (function () {
-    function BookingService(http, provider, Http) {
+    function BookingService(http, provider) {
         this.http = http;
         this.provider = provider;
-        this.Http = Http;
     }
     BookingService.prototype.booking = function (UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade, CostUpgrade) {
         console.log(UserID, FlightID, OfferNamePricing, OfferTypePricing, CostPricing, OfferNameUpgrade, OfferTypeUpgrade, CostUpgrade);
@@ -54,7 +51,7 @@ var BookingService = /** @class */ (function () {
             CostUpgrade: CostUpgrade
         };
         var bodyString = JSON.stringify(bodyObject); // Stringify payload
-        return this.Http
+        return this.http
             .post(link, bodyObject, options) // ...using post request
             .map(function (res) { return res.json(); })
             .catch(function (error) {
@@ -70,7 +67,7 @@ var BookingService = /** @class */ (function () {
             })
         });
         var link = this.provider.apiUrl.listBookingByUser + "/" + String(ID);
-        return this.Http
+        return this.http
             .get(link, options) // ...using post request
             .map(function (res) { return res.json(); })
             .catch(function (error) {
@@ -80,7 +77,7 @@ var BookingService = /** @class */ (function () {
     };
     BookingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */], __WEBPACK_IMPORTED_MODULE_5_ionic_native_http_angular_wrapper__["a" /* HttpWrapper */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
     ], BookingService);
     return BookingService;
 }());
@@ -89,14 +86,14 @@ var BookingService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 158:
+/***/ 156:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(23);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -216,16 +213,16 @@ var BookingPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 159:
+/***/ 157:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_dashboard_service__ = __webpack_require__(313);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__map_map__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_dashboard_service__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__map_map__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(311);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -277,6 +274,10 @@ var DashboardPage = /** @class */ (function () {
             loading.dismiss();
             console.log('Error getting location', error);
         });
+        setTimeout(function () {
+            console.log("Async operation has ended");
+            loading.dismiss();
+        }, 7000);
     };
     DashboardPage.prototype.doRefresh = function (refresher) {
         var _this = this;
@@ -324,16 +325,16 @@ var DashboardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 160:
+/***/ 158:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(682);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(677);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_routing_machine__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_routing_machine__ = __webpack_require__(310);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_leaflet_routing_machine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_leaflet_routing_machine__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -425,14 +426,14 @@ var MapPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 161:
+/***/ 159:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_signup_service_signup_component_service__ = __webpack_require__(327);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_signup_service_signup_component_service__ = __webpack_require__(324);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -515,7 +516,7 @@ var SignupPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 172:
+/***/ 170:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -528,11 +529,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 172;
+webpackEmptyAsyncContext.id = 170;
 
 /***/ }),
 
-/***/ 217:
+/***/ 215:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -549,11 +550,11 @@ var map = {
 		2
 	],
 	"../pages/map/map.module": [
-		730,
+		729,
 		1
 	],
 	"../pages/signup/signup.module": [
-		729,
+		730,
 		0
 	]
 };
@@ -568,7 +569,7 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 217;
+webpackAsyncContext.id = 215;
 module.exports = webpackAsyncContext;
 
 /***/ }),
@@ -618,7 +619,7 @@ var Provider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 313:
+/***/ 309:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -680,16 +681,16 @@ var DashboardService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 316:
+/***/ 313:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TabsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(317);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(324);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(325);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_dashboard__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__about_about__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__contact_contact__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_dashboard__ = __webpack_require__(157);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -723,7 +724,7 @@ var TabsPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 317:
+/***/ 314:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -731,9 +732,9 @@ var TabsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__provider_provider__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_checkin_service_checkin_component_service__ = __webpack_require__(318);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_booking_service_booking_component_service__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(683);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_checkin_service_checkin_component_service__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_booking_service_booking_component_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(681);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -970,7 +971,7 @@ var AboutPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 318:
+/***/ 315:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -980,9 +981,8 @@ var AboutPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_native_http_angular_wrapper__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Rx__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -997,12 +997,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var CheckinService = /** @class */ (function () {
-    function CheckinService(http, provider, Http) {
+    function CheckinService(http, provider) {
         this.http = http;
         this.provider = provider;
-        this.Http = Http;
     }
     CheckinService.prototype.checkin = function (BookingID, UserID) {
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({
@@ -1012,7 +1010,7 @@ var CheckinService = /** @class */ (function () {
             })
         });
         var link = this.provider.apiUrl.checkin + '/' + String(BookingID) + '/' + String(UserID);
-        return this.Http.get(link, options) // ...using post request
+        return this.http.get(link, options) // ...using post request
             .map(function (res) { return res.json(); })
             .catch(function (error) {
             console.log(error);
@@ -1021,7 +1019,7 @@ var CheckinService = /** @class */ (function () {
     };
     CheckinService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */], __WEBPACK_IMPORTED_MODULE_4_ionic_native_http_angular_wrapper__["a" /* HttpWrapper */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
     ], CheckinService);
     return CheckinService;
 }());
@@ -1030,14 +1028,14 @@ var CheckinService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 324:
+/***/ 321:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(23);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1073,15 +1071,15 @@ var ContactPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 325:
+/***/ 322:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__booking_booking__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_listing_schedule_service_listing_component_service__ = __webpack_require__(326);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__booking_booking__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_listing_schedule_service_listing_component_service__ = __webpack_require__(323);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1188,7 +1186,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 326:
+/***/ 323:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1200,7 +1198,6 @@ var HomePage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_native_http_angular_wrapper__ = __webpack_require__(66);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1215,12 +1212,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var ListingService = /** @class */ (function () {
-    function ListingService(http, provider, Http) {
+    function ListingService(http, provider) {
         this.http = http;
         this.provider = provider;
-        this.Http = Http;
     }
     ListingService.prototype.listFlights = function (Year, Month, DayOfMonth, Origin, Dest) {
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({
@@ -1237,7 +1232,7 @@ var ListingService = /** @class */ (function () {
             dest: Dest
         };
         var bodyString = JSON.stringify(bodyObject); // Stringify payload
-        return this.Http.post(link, bodyObject, options) // ...using post request
+        return this.http.post(link, bodyObject, options) // ...using post request
             .map(function (res) { return res.json(); })
             .catch(function (error) {
             console.log(error);
@@ -1251,7 +1246,7 @@ var ListingService = /** @class */ (function () {
             })
         });
         var link = this.provider.apiUrl.listAllFlights;
-        return this.Http.post(link, options) // ...using post request
+        return this.http.post(link, options) // ...using post request
             .map(function (res) { return res.json(); })
             .catch(function (error) {
             console.log(error);
@@ -1265,7 +1260,7 @@ var ListingService = /** @class */ (function () {
             })
         });
         var link = this.provider.apiUrl.listFlightsByID + '/' + String(ID);
-        return this.Http.get(link, options) // ...using post request
+        return this.http.get(link, options) // ...using post request
             .map(function (res) { return res.json(); })
             .catch(function (error) {
             console.log(error);
@@ -1274,7 +1269,7 @@ var ListingService = /** @class */ (function () {
     };
     ListingService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */], __WEBPACK_IMPORTED_MODULE_5_ionic_native_http_angular_wrapper__["a" /* HttpWrapper */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
     ], ListingService);
     return ListingService;
 }());
@@ -1283,7 +1278,7 @@ var ListingService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 327:
+/***/ 324:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1295,7 +1290,6 @@ var ListingService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_native_http_angular_wrapper__ = __webpack_require__(66);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1310,45 +1304,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var SignupService = /** @class */ (function () {
-    function SignupService(http, provider, Http) {
+    function SignupService(http, provider) {
         this.http = http;
         this.provider = provider;
-        this.Http = Http;
         this.parameters = {};
         this.params = {};
     }
     SignupService.prototype.signup = function (firstName, lastName, age, email, password, location, tier) {
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({
             headers: new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             })
         });
         var link = this.provider.apiUrl.signup;
         var bodyObject = {
-            firstName: firstName,
-            lastName: lastName,
-            age: Number(age),
-            email: email,
-            password: password,
-            location: location,
-            tier: tier
+            'firstName': firstName,
+            'lastName': lastName,
+            'age': Number(age),
+            'email': email,
+            'password': password,
+            'location': location,
+            'tier': tier
         };
         var bodyString = JSON.stringify(bodyObject); // Stringify payload
-        return this.http
-            .post(link, bodyObject, options) // ...using post request
+        return this.http.post(link, bodyObject, options) // ...using post request
             .map(function (res) { return res.json(); })
             .catch(function (error) {
             console.log(error);
-            return __WEBPACK_IMPORTED_MODULE_1_rxjs__["Observable"].throw(error.json().error || "Server error");
+            return __WEBPACK_IMPORTED_MODULE_1_rxjs__["Observable"].throw(error.json().error || 'Server error');
         });
     };
     SignupService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */],
-            __WEBPACK_IMPORTED_MODULE_5_ionic_native_http_angular_wrapper__["a" /* HttpWrapper */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
     ], SignupService);
     return SignupService;
 }());
@@ -1357,7 +1346,7 @@ var SignupService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 328:
+/***/ 325:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1369,7 +1358,6 @@ var SignupService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__ = __webpack_require__(134);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1384,13 +1372,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var LoginService = /** @class */ (function () {
-    function LoginService(http, provider, Http) {
+    function LoginService(http, provider) {
         var _this = this;
         this.http = http;
         this.provider = provider;
-        this.Http = Http;
         this._url = "../assets/airports.json";
         this.parameters = {};
         this.params = {};
@@ -1406,7 +1392,7 @@ var LoginService = /** @class */ (function () {
     LoginService.prototype.login = function (email, password) {
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({
             headers: new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             })
         });
         var link = this.provider.apiUrl.login;
@@ -1415,25 +1401,16 @@ var LoginService = /** @class */ (function () {
             password: password
         };
         var bodyString = JSON.stringify(bodyObject); // Stringify payload
-        return this.http
-            .post(link, bodyObject, options) // ...using post request
+        return this.http.post(link, bodyObject, options) // ...using post request
             .map(function (res) { return res.json(); })
             .catch(function (error) {
             console.log(error);
-            return __WEBPACK_IMPORTED_MODULE_1_rxjs__["Observable"].throw(error.json().error || "Server error");
+            return __WEBPACK_IMPORTED_MODULE_1_rxjs__["Observable"].throw(error.json().error || 'Server error');
         });
-        //   return this.Http.post(link, bodyObject, options)
-        //   .then(data => {
-        //   })
-        //   .catch(error => {
-        //     return Observable.throw(error.json().error || "Server error");
-        //   });
     };
     LoginService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */],
-            __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */],
-            __WEBPACK_IMPORTED_MODULE_5__ionic_native_http__["a" /* HTTP */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
     ], LoginService);
     return LoginService;
 }());
@@ -1442,13 +1419,13 @@ var LoginService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 370:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(375);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(374);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1456,7 +1433,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 375:
+/***/ 374:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1464,30 +1441,30 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(720);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_about_about__ = __webpack_require__(317);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_signup_signup__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_booking_booking__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_map_map__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_contact_contact__ = __webpack_require__(324);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(325);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_tabs_tabs__ = __webpack_require__(316);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_login_service_login_component_service__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_signup_service_signup_component_service__ = __webpack_require__(327);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_dashboard_dashboard__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_status_bar__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_splash_screen__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_dashboard_dashboard_service__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_about_about__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_signup_signup__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_booking_booking__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_map_map__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_contact_contact__ = __webpack_require__(321);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_home_home__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_tabs_tabs__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__services_login_service_login_component_service__ = __webpack_require__(325);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_signup_service_signup_component_service__ = __webpack_require__(324);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_dashboard_dashboard__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_status_bar__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_splash_screen__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_dashboard_dashboard_service__ = __webpack_require__(309);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__provider_provider__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_listing_schedule_service_listing_component_service__ = __webpack_require__(326);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shared_shared_module__ = __webpack_require__(723);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_booking_service_booking_component_service__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_checkin_service_checkin_component_service__ = __webpack_require__(318);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_ionic_native_http_angular_wrapper__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_geolocation__ = __webpack_require__(315);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_leaflet_routing_machine__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_listing_schedule_service_listing_component_service__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shared_shared_module__ = __webpack_require__(721);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_booking_service_booking_component_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_checkin_service_checkin_component_service__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_ionic_native_http_angular_wrapper__ = __webpack_require__(724);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_native_geolocation__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_leaflet_routing_machine__ = __webpack_require__(310);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_leaflet_routing_machine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_leaflet_routing_machine__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1540,7 +1517,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_9__pages_map_map__["a" /* MapPage */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_24_ionic_native_http_angular_wrapper__["b" /* NativeHttpWrapper */],
+                __WEBPACK_IMPORTED_MODULE_24_ionic_native_http_angular_wrapper__["a" /* NativeHttpWrapper */],
                 __WEBPACK_IMPORTED_MODULE_21__shared_shared_module__["a" /* SharedModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -1549,8 +1526,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/booking/booking.module#BookingPageModule', name: 'BookingPage', segment: 'booking', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/map/map.module#MapPageModule', name: 'MapPage', segment: 'map', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/map/map.module#MapPageModule', name: 'MapPage', segment: 'map', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
                     ]
                 })
             ],
@@ -1589,16 +1566,16 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 722:
+/***/ 720:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(369);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(366);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(90);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1635,13 +1612,13 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 723:
+/***/ 721:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SharedModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipes_country_pipe__ = __webpack_require__(724);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipes_time_pipe__ = __webpack_require__(725);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pipes_country_pipe__ = __webpack_require__(722);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pipes_time_pipe__ = __webpack_require__(723);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1668,7 +1645,7 @@ var SharedModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 724:
+/***/ 722:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1734,7 +1711,7 @@ var CountryRefactorPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 725:
+/***/ 723:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1774,18 +1751,18 @@ var TimeRefactorPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 91:
+/***/ 90:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(316);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_signup__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_login_service_login_component_service__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(313);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_signup__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_login_service_login_component_service__ = __webpack_require__(325);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__provider_provider__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jwt_decode__ = __webpack_require__(702);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jwt_decode__ = __webpack_require__(700);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jwt_decode___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_jwt_decode__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1867,5 +1844,5 @@ var LoginPage = /** @class */ (function () {
 
 /***/ })
 
-},[370]);
+},[369]);
 //# sourceMappingURL=main.js.map
