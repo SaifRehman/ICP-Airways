@@ -34,12 +34,6 @@ image:
     cpu: "900m"
     memory: "1000Mi"
 
-ingress:
-  metadeta:
-    name: angular
-  path: /
-  serviceName: angular
-  servicePort: 80
 
 service:
   serviceMetadata:

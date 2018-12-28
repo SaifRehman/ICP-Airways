@@ -100,4 +100,5 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="my_project would like to use your location" />
     </plugin>
     <engine name="ios" spec="4.4.0" />
+    <engine name="browser" spec="5.0.4" />
 </widget>
