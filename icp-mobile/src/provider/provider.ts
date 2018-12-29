@@ -18,7 +18,8 @@ export class Provider {
       listFlightsByID: "http://" + this.url + "/listingsvc/listFlights",
       listFlights: "http://" + this.url + "/listingsvc/searchFlights",
       listAllFlights: "http://" + this.url + "/listingsvc/listFlights",
-      map:  "http://" + this.url + "/mapsvc/getMap"
+      map:  "http://" + this.url + "/mapsvc/getMap",
+      email: 'http://' +this.url + "/celerysvc/postEmail"
     };
   }
 }

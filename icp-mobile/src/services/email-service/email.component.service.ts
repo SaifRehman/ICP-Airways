@@ -17,7 +17,7 @@ export class EmailService {
                 'Content-Type': 'application/json'
             })
         });
-        const link = this.provider.apiUrl.postEmail
+        const link = this.provider.apiUrl.email
         const bodyObject = {
                 toemail,
                 src,
@@ -25,10 +25,10 @@ export class EmailService {
         }
         const bodyString = JSON.stringify(bodyObject); // Stringify payload
         return this.http.post(link, bodyObject, options) // ...using post request
-            .map((res: Response) => res.json())
+            .map((res: Response) => {"success"})
             .catch((error: any) => {
                 console.log(error);
-                return Observable.throw(error.json().error || 'Server error');
+                return Observable.throw({"error":"you have a error"});
             });
     }
 }

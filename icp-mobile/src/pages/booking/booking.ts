@@ -8,7 +8,7 @@ import {
 import { BookingService } from "../../services/booking-service/booking.component.service";
 import { Provider } from "../../provider/provider";
 import { LoadingController } from "ionic-angular";
-
+import {EmailService} from '../../services/email-service/email.component.service'
 /**
  * Generated class for the BookingPage page.
  *
@@ -29,7 +29,8 @@ export class BookingPage {
     public alertCtrl: AlertController,
     public bookingService: BookingService,
     public provider: Provider,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public emailService:EmailService
   ) {
     this.data = navParams.get("item");
     console.log("this is data", this.data);
@@ -55,7 +56,8 @@ export class BookingPage {
   cancel() {
     this.navCtrl.pop();
   }
-  confirm(id) {
+  confirm(id,src,dest) {
+    console.log(src,dest)
     let alert = this.alertCtrl.create({
       title: "Confirm Booking",
       message: "Are you sure, you want to book this flight?",
@@ -93,6 +95,11 @@ export class BookingPage {
                     subTitle: "You Have Successfully Booked Your Flight",
                     buttons: ["Dismiss"]
                   });
+                  this.emailService.postEmail(this.provider.userData.data.EMAIL,src,dest).subscribe(data=>{
+
+                  },(error)=>{
+
+                  })
                   loading.dismiss();
                   alert2.present();
                   this.navCtrl.pop();
