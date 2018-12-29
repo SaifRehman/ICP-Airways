@@ -1,13 +1,14 @@
-import pymqi
-
-queue_manager = "admin"
-channel = "DEV.ADMIN.SVRCONN"
-host = "10.150.20.151"
-port = "30375"
-conn_info = "%s(%s)" % (host, port)
-
-user = 'admin'
-password = 'admin'
-
-qmgr = pymqi.connect(queue_manager, channel, conn_info, user, password)
-qmgr.disconnect()
+import smtplib
+gmail_user = 'icpairways@gmail.com'  
+gmail_password = '.icpairways'
+sent_from = gmail_user  
+to = ['icpairways@gmail.com','s4saif.121@gmail.com']  
+subject = 'Your Flight'  
+body = 'Hey there!, Your Flight Booking Deatil!'
+email_text = 'yo will be going from '
+server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+server.ehlo()
+server.login(gmail_user, gmail_password)
+server.sendmail(sent_from, to, email_text)
+server.close()
+print 'Email sent!'

@@ -16,10 +16,10 @@ import time
 app = Flask(__name__)  
 CORS(app)
   
-app.config['CELERY_RESULT_BACKEND'] = 'mqtt://admin:admin@10.150.20.151:30375'
+app.config['CELERY_RESULT_BACKEND'] = os.environ['CELERY_RESULT_BACKEND']
 # app.config['CELERY_ACKS_LATE'] = True
 CELERY_ACKS_LATE = True
-app.config['CELERY_BROKER_URL'] = 'mqtt://admin:admin@10.150.20.151:30375'
+app.config['CELERY_BROKER_URL'] = os.environ['CELERY_RESULT_BACKEND']
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'],backend = app.config['CELERY_RESULT_BACKEND'])
 celery.conf.update(app.config)
 
@@ -28,15 +28,10 @@ def email_task(self,toEmail,src,dest):
     gmail_user = 'icpairways@gmail.com'  
     gmail_password = '.icpairways'
     sent_from = gmail_user  
-    to = ['icpairways@gmail.com','s4saif.121@gmail.com']  
-    subject = 'OMG Super Important Message'  
-    body = 'Hey'
-    email_text = """\  
-    From: %s  
-    To: %s  
-    Subject: %s
-    %s
-    """ % (sent_from, ", ".join(to), subject, body)
+    to = ['icpairways@gmail.com',toEmail]  
+    subject = 'Your Flight'  
+    body = 'Hey there!, Your Flight Booking Deatil!'
+    email_text = 'yo will be going from '+src+' to '+ dest
     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
     server.ehlo()
     server.login(gmail_user, gmail_password)
@@ -58,7 +53,7 @@ def email(id=None):
     b = a.task_id
     res = celery.AsyncResult(b)
     print res
-    data = {'result':"data"}
+    data = {'result':"success"}
     js = json.dumps(data)
     return Response(
         mimetype='application/json',

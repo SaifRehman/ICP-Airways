@@ -10,8 +10,8 @@ data:
   HOSTNAME: 'saqrairway-ibm-db2oltp-dev-db2.default'
   PROTOCOL: TCPIP
   ODM: 'http://169.61.62.89:32473/DecisionService/rest/FlightBooking/FlightPricing'
-  CELERY_RESULT_BACKEND: 'amqp://admin:admin@10.150.20.151:30554'
-  CELERY_BROKER_URL: 'amqp://admin:admin@10.150.20.151:30554'
+  CELERY_RESULT_BACKEND: 'amqp://admin:admin@saqrairwayrabbitmq-ibm-rabbitmq-dev.default:5671'
+  CELERY_BROKER_URL: 'amqp://admin:admin@saqrairwayrabbitmq-ibm-rabbitmq-dev.default:5671'
   EMAILAPI: 'http://emailsvc.default:3006/email'
   MONGOPORT: '27017'
   HOSTNAMEMARIADB: 'saqrairwaymariadbnew-ibm-mariadb-dev.default' 

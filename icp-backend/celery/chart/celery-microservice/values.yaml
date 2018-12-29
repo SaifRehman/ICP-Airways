@@ -6,7 +6,7 @@ metadata:
 
 hpa:
   metadata:
-    name: celery-microservice-HPA
+    name: celerymicroservicehpa
   spec:
     maxReplicas: 10
     minReplicas: 1
@@ -23,7 +23,7 @@ hpa:
 
 image:
   name: celerysvc
-  imageName: "mycluster.icp.icp:8500/default/celery:0.0.1" 
+  imageName: "mycluster.icp:8500/default/celery:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 4000

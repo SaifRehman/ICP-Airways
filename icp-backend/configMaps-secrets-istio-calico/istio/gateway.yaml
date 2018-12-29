@@ -83,6 +83,18 @@ spec:
       attempts: 3
       perTryTimeout: 2s
     timeout: 5s
+  - match:
+    - uri:
+        prefix: /celerysvc/
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: celerysvc.default.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 2s
+    timeout: 5s
   # - match:
   #   - uri:
   #       prefix: /icpairways/

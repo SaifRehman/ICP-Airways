@@ -4,8 +4,16 @@ metadata:
  name: {{ .Values.metadata.name }} 
 spec:
  replicas: {{ .Values.replicaCount }}
+ strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: {{ .Values.image.maxSurge }} 
+    maxUnavailable: {{ .Values.image.maxUnavailable }} 
  template:
    metadata:
+     annotations:
+       sidecar.istio.io/inject: "true"
+       traffic.sidecar.istio.io/excludeOutboundIPRanges: 0.0.0.0/0
      name: {{ .Values.metadata.name }} 
      labels:
        app: {{ .Values.metadata.label }} 
@@ -14,13 +22,6 @@ spec:
        - name: {{ .Values.image.name }} 
          image: {{ .Values.image.imageName }} 
          imagePullPolicy: {{ .Values.image.imagePullPolicy }} 
-         resources:
-          requests:
-            cpu: {{ .Values.image.requests.cpu }} 
-            memory: {{ .Values.image.requests.memory }} 
-          limits:
-            cpu: {{ .Values.image.limits.cpu }} 
-            memory: {{ .Values.image.limits.memory }} 
          env:
           - name: {{ .Values.envOfConfigmaps.envCELERY_RESULT_BACKEND.name }} 
             valueFrom:
