@@ -26,7 +26,7 @@ import {EmailService} from '../services/email-service/email.component.service'
 import {CheckinService} from '../services/checkin-service/checkin.component.service'
 import {NativeHttpWrapper} from 'ionic-native-http-angular-wrapper';
 import { Geolocation } from "@ionic-native/geolocation";
-
+import {OdmService} from '../services/odm-service/odm.component.service'
 import 'leaflet-routing-machine';
 
 @NgModule({
@@ -76,6 +76,7 @@ import 'leaflet-routing-machine';
     CheckinService,
     Geolocation,
     EmailService,
+    OdmService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

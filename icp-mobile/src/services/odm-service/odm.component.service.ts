@@ -11,19 +11,18 @@ export class OdmService {
     public constructor(public http: Http, public provider:Provider) {
     }
 
-    public getODM(srcAirport,dstAirport,customerTier,customerName,milesBalance): Observable<any> {
+    public getODM(srcAirport,dstAirport,customerTier,milesBalance): Observable<any> {
         const options = new RequestOptions({
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': this.provider.token
             })
         });
-        const link = this.provider.apiUrl.setODM
+        const link = this.provider.apiUrl.odm
         const bodyObject = {
                 srcAirport,
                 dstAirport,
                 customerTier,
-                customerName,
                 milesBalance,
                 offers:[],
                 messages:[]   

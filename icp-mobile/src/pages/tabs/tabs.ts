@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
@@ -14,7 +15,8 @@ export class TabsPage {
   tab3Root = ContactPage;
   tab4Root = DashboardPage;
 
-  constructor() {
-
+  constructor(statusBar: StatusBar) {
+    statusBar.overlaysWebView(true);
+    statusBar.backgroundColorByHexString('#000000');
   }
 }
