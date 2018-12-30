@@ -19,8 +19,8 @@ livenessProbe:
   periodSeconds: 10
 image:
   name: odmsvc
-  imageName: "icpdevcluster.icp:8500/default/odm-microservice:0.0.1" 
-  imagePullPolicy: IfNotPresent
+  imageName: "mycluster.icp:8500/default/odm-microservice:0.0.1" 
+  imagePullPolicy: Always
   ports:
     containerPort: 3005
   requests:
@@ -65,12 +65,6 @@ envOfConfigmaps:
       name: env-database
       key: ODM
 
-ingress:
-  metadeta:
-    name: odmsvc
-  path: /odmsvc
-  serviceName: odmsvc
-  servicePort: 3005
 
 service:
   serviceMetadata:
@@ -85,15 +79,3 @@ service:
     type: NodePort
     port: 3005
     targetPort: 3005
-
-  
-serviceMonitor:
-  metadata:
-    name: serviceMonitorOdmsvc
-    labels:
-      app: serviceMonitorOdmsvc
-  specs: 
-    selector:
-      matchLabels:
-        app: serviceMonitorOdmsvc
-    port: odmsvc
