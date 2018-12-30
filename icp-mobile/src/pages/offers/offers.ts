@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { BookingService } from '../../services/booking-service/booking.component.service'
+import { EmailService } from '../../services/email-service/email.component.service'
+import {Provider} from '../../provider/provider'
 /**
  * Generated class for the OffersPage page.
  *
@@ -17,7 +19,7 @@ export class OffersPage {
   public values:any;
   upgrades:any;
   pricing:any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public bookingService:BookingService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public bookingService:BookingService, public alertCtrl: AlertController, public loadingCtrl: LoadingController,public emailService:EmailService, public provider:Provider) {
     this.values = navParams.get("item");
     console.log(this.values);
   }
@@ -30,5 +32,72 @@ export class OffersPage {
   }
   confirm(){
     console.log(this.pricing,this.upgrades)
+    let alert = this.alertCtrl.create({
+      title: "Confirm Booking",
+      message: "Are you sure, you want to book this flight?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel clicked");
+          }
+        },
+        {
+          text: "Book",
+          handler: () => {
+            let loading = this.loadingCtrl.create({
+              content: "Please wait..."
+            });
+            loading.present();
+            this.bookingService
+              .booking(
+                this.values.userid,
+                this.values.id,
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+              )
+              .subscribe(
+                data => {
+                  console.log("booked flight", data);
+                  let alert2 = this.alertCtrl.create({
+                    title: "Success!",
+                    subTitle:
+                      "You Have Successfully Booked Your Flight",
+                    buttons: ["Dismiss"]
+                  });
+                  this.emailService
+                    .postEmail(
+                      this.provider.userData.data.EMAIL,
+                      this.values.src,
+                      this.values.dest
+                    )
+                    .subscribe(data => {}, error => {});
+                  loading.dismiss();
+                  alert2.present();
+                  this.navCtrl.pop();
+                },
+                error => {
+                  let alert3 = this.alertCtrl.create({
+                    title: "Alert!",
+                    subTitle:
+                      "OOOPS... Something Went Wrong While Booking",
+                    buttons: ["Dismiss"]
+                  });
+                  loading.dismiss();
+                  alert3.present();
+                  this.navCtrl.pop();
+                  console.log(error);
+                }
+              );
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

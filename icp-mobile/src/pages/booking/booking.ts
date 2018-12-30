@@ -85,7 +85,9 @@ export class BookingPage {
                       item: {
                         userid: this.provider.userData.data.USERID,
                         id: id,
-                        data: data["flightBooking"]["offers"]
+                        data: data["flightBooking"]["offers"],
+                        src: src,
+                        dest: dest
                       }
                     });
                   } else {

@@ -178,7 +178,9 @@ var BookingPage = /** @class */ (function () {
                                     item: {
                                         userid: _this.provider.userData.data.USERID,
                                         id: id,
-                                        data: data["flightBooking"]["offers"]
+                                        data: data["flightBooking"]["offers"],
+                                        src: src,
+                                        dest: dest
                                     }
                                 });
                             }
@@ -284,6 +286,8 @@ var BookingPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service_email_component_service__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__provider_provider__ = __webpack_require__(23);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -296,6 +300,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 /**
  * Generated class for the OffersPage page.
  *
@@ -303,10 +309,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var OffersPage = /** @class */ (function () {
-    function OffersPage(navCtrl, navParams, bookingService) {
+    function OffersPage(navCtrl, navParams, bookingService, alertCtrl, loadingCtrl, emailService, provider) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.bookingService = bookingService;
+        this.alertCtrl = alertCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.emailService = emailService;
+        this.provider = provider;
         this.values = navParams.get("item");
         console.log(this.values);
     }
@@ -317,16 +327,66 @@ var OffersPage = /** @class */ (function () {
         this.navCtrl.pop();
     };
     OffersPage.prototype.confirm = function () {
+        var _this = this;
         console.log(this.pricing, this.upgrades);
+        var alert = this.alertCtrl.create({
+            title: "Confirm Booking",
+            message: "Are you sure, you want to book this flight?",
+            buttons: [
+                {
+                    text: "Cancel",
+                    role: "cancel",
+                    handler: function () {
+                        console.log("Cancel clicked");
+                    }
+                },
+                {
+                    text: "Book",
+                    handler: function () {
+                        var loading = _this.loadingCtrl.create({
+                            content: "Please wait..."
+                        });
+                        loading.present();
+                        _this.bookingService
+                            .booking(_this.values.userid, _this.values.id, "", "", "", "", "", "")
+                            .subscribe(function (data) {
+                            console.log("booked flight", data);
+                            var alert2 = _this.alertCtrl.create({
+                                title: "Success!",
+                                subTitle: "You Have Successfully Booked Your Flight",
+                                buttons: ["Dismiss"]
+                            });
+                            _this.emailService
+                                .postEmail(_this.provider.userData.data.EMAIL, _this.values.src, _this.values.dest)
+                                .subscribe(function (data) { }, function (error) { });
+                            loading.dismiss();
+                            alert2.present();
+                            _this.navCtrl.pop();
+                        }, function (error) {
+                            var alert3 = _this.alertCtrl.create({
+                                title: "Alert!",
+                                subTitle: "OOOPS... Something Went Wrong While Booking",
+                                buttons: ["Dismiss"]
+                            });
+                            loading.dismiss();
+                            alert3.present();
+                            _this.navCtrl.pop();
+                            console.log(error);
+                        });
+                    }
+                }
+            ]
+        });
+        alert.present();
     };
     OffersPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-offers',template:/*ion-inline-start:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/offers/offers.html"*/'<!--\n  Generated template for the OffersPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons start>\n      <button ion-button icon-only>\n        <img src="../assets/ibm.png" alt="ibm" height="20" width="40">\n      </button>\n    </ion-buttons>\n    <ion-title color="primary">Offers</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only color="danger" (click)="cancel()">\n        CANCEL\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-item-divider color="light">Select Pricing</ion-item-divider>\n  <ion-list radio-group [(ngModel)]="pricing">\n    <ng-container *ngIf="values">\n      <ng-container *ngFor="let listshow of values.data">\n    <ion-item *ngIf="listshow.offerType === \'Pricing\' ">\n      <ion-label>\n        <h3>\n          <ion-icon name="information-circle" item-start></ion-icon>\n          {{listshow.offerName}}\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          {{listshow.cost}} DHS\n        </h3>\n      </ion-label>\n      <ion-radio value= "{{listshow.offerName}},{{listshow.cost}}"></ion-radio>\n    </ion-item>\n    </ng-container>\n    </ng-container>\n  </ion-list>\n  <ion-item-divider color="light">Select Upgrades</ion-item-divider>\n  <ion-list radio-group [(ngModel)]="upgrades">\n      <ng-container *ngIf="values">\n          <ng-container *ngFor="let listshow of values.data">\n        <ion-item *ngIf="listshow.offerType === \'Upgrade\' ">\n          <ion-label>\n            <h3>\n              <ion-icon name="home" item-start *ngIf="listshow.offerName === \'Hotel\' "></ion-icon>\n              <ion-icon name="plane" item-start *ngIf="listshow.offerName === \'Air transporation\' "></ion-icon>\n              <ion-icon name="star" item-start *ngIf="listshow.offerName === \'Business Class\' "></ion-icon>\n              {{listshow.offerName}}\n            </h3>\n            <h3>\n              <ion-icon name="cash" item-start></ion-icon>\n              {{listshow.cost}} DHS\n            </h3>\n          </ion-label>\n          <ion-radio value= "{{listshow.offerName}},{{listshow.cost}}"></ion-radio>\n        </ion-item>\n        </ng-container>\n        </ng-container>\n    <!-- <ion-item>\n      <ion-label>\n        <h3>\n          <ion-icon name="home" item-start></ion-icon>\n          Hotel\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          1000 DHS\n        </h3>\n      </ion-label>\n      <ion-radio value="friends" checked></ion-radio>\n    </ion-item>\n    <ion-item>\n      <ion-label>\n        <h3>\n          <ion-icon name="plane" item-start></ion-icon>\n          Air Transportation\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          900 DHS\n        </h3>\n      </ion-label>\n      <ion-radio value="3"></ion-radio>\n    </ion-item>\n    <ion-item>\n      <ion-label>\n        <h3>\n          <ion-icon name="star" item-start></ion-icon>\n          Buisness Class\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          900 DHS\n        </h3>\n      </ion-label>\n      <ion-radio value="6"></ion-radio>\n    </ion-item> -->\n  </ion-list>\n        \n  <ion-item>\n      <button ion-button block outline color="tab" (click)="confirm()">BOOK</button>\n  </ion-item>\n</ion-content>'/*ion-inline-end:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/offers/offers.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__["a" /* BookingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__["a" /* BookingService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__["a" /* BookingService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__["a" /* BookingService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__services_email_service_email_component_service__["a" /* EmailService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_email_service_email_component_service__["a" /* EmailService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__provider_provider__["a" /* Provider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__provider_provider__["a" /* Provider */]) === "function" && _g || Object])
     ], OffersPage);
     return OffersPage;
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=offers.js.map
