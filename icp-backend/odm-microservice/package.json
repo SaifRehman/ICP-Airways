@@ -4,7 +4,7 @@
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
-    "start": "node dist/main.js"
+    "start": "node dist/bundle-be.js"
   },
   "keywords": [],
   "author": "",
