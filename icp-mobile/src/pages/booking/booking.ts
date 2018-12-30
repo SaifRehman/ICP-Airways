@@ -78,18 +78,17 @@ export class BookingPage {
               .getODM(src, dest, this.provider.userData.data.TIER, 30000)
               .subscribe(
                 data => {
-                  if(data['code']!=404){
-                  console.log(data);
-                  loading.dismiss();
-                  this.navCtrl.push(OffersPage, {
-                    item: {
-                      userid: this.provider.userData.data.USERID,
-                      id: id,
-                      data: data
-                    }
-                  });
-                  }
-                  else{
+                  if (data["code"] != 404) {
+                    console.log(data);
+                    loading.dismiss();
+                    this.navCtrl.push(OffersPage, {
+                      item: {
+                        userid: this.provider.userData.data.USERID,
+                        id: id,
+                        data: data["flightBooking"]["offers"]
+                      }
+                    });
+                  } else {
                     let alert3 = this.alertCtrl.create({
                       title: "Alert!",
                       subTitle:

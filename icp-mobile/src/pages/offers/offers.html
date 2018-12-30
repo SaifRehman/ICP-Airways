@@ -23,37 +23,47 @@
 
 <ion-content padding>
   <ion-item-divider color="light">Select Pricing</ion-item-divider>
-  <ion-list radio-group>
-    <ion-item>
+  <ion-list radio-group [(ngModel)]="pricing">
+    <ng-container *ngIf="values">
+      <ng-container *ngFor="let listshow of values.data">
+    <ion-item *ngIf="listshow.offerType === 'Pricing' ">
       <ion-label>
         <h3>
           <ion-icon name="information-circle" item-start></ion-icon>
-          Cash + 30 Thousand Miles
+          {{listshow.offerName}}
         </h3>
         <h3>
           <ion-icon name="cash" item-start></ion-icon>
-          1000 DHS
+          {{listshow.cost}} DHS
         </h3>
       </ion-label>
-      <ion-radio value="friends" checked></ion-radio>
+      <ion-radio value= "{{listshow.offerName}},{{listshow.cost}}"></ion-radio>
     </ion-item>
-    <ion-item>
-      <ion-label>
-        <h3>
-          <ion-icon name="information-circle" item-start></ion-icon>
-          Cash
-        </h3>
-        <h3>
-          <ion-icon name="cash" item-start></ion-icon>
-          900 DHS
-        </h3>
-      </ion-label>
-      <ion-radio value="3"></ion-radio>
-    </ion-item>
+    </ng-container>
+    </ng-container>
   </ion-list>
   <ion-item-divider color="light">Select Upgrades</ion-item-divider>
-  <ion-list radio-group>
-    <ion-item>
+  <ion-list radio-group [(ngModel)]="upgrades">
+      <ng-container *ngIf="values">
+          <ng-container *ngFor="let listshow of values.data">
+        <ion-item *ngIf="listshow.offerType === 'Upgrade' ">
+          <ion-label>
+            <h3>
+              <ion-icon name="home" item-start *ngIf="listshow.offerName === 'Hotel' "></ion-icon>
+              <ion-icon name="plane" item-start *ngIf="listshow.offerName === 'Air transporation' "></ion-icon>
+              <ion-icon name="star" item-start *ngIf="listshow.offerName === 'Business Class' "></ion-icon>
+              {{listshow.offerName}}
+            </h3>
+            <h3>
+              <ion-icon name="cash" item-start></ion-icon>
+              {{listshow.cost}} DHS
+            </h3>
+          </ion-label>
+          <ion-radio value= "{{listshow.offerName}},{{listshow.cost}}"></ion-radio>
+        </ion-item>
+        </ng-container>
+        </ng-container>
+    <!-- <ion-item>
       <ion-label>
         <h3>
           <ion-icon name="home" item-start></ion-icon>
@@ -91,6 +101,10 @@
         </h3>
       </ion-label>
       <ion-radio value="6"></ion-radio>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
+        
+  <ion-item>
+      <button ion-button block outline color="tab" (click)="confirm()">BOOK</button>
+  </ion-item>
 </ion-content>
