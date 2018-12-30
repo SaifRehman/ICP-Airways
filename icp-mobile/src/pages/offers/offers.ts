@@ -16,6 +16,12 @@ import {Provider} from '../../provider/provider'
   templateUrl: 'offers.html',
 })
 export class OffersPage {
+  public OfferNamePricing: any;
+  public OfferTypePricing: any;
+  public CostPricing: any;
+  public OfferNameUpgrade:any;
+  public OfferTypeUpgrade:any
+  public CostUpgrade
   public values:any;
   upgrades:any;
   pricing:any;
@@ -31,7 +37,26 @@ export class OffersPage {
     this.navCtrl.pop();
   }
   confirm(){
-    console.log(this.pricing,this.upgrades)
+    if(this.pricing){
+      this.OfferTypePricing='Pricing'
+      this.OfferNamePricing = this.pricing.split(',')[0];
+      this.CostPricing = this.pricing.split(',')[1];
+
+    }else{
+      this.OfferNamePricing='';
+      this.OfferTypePricing='';
+      this.CostPricing='';
+    }
+    if(this.upgrades){
+      this.OfferNameUpgrade =  this.upgrades.split(',')[0];
+      this.CostUpgrade = this.upgrades.split(',')[1];
+      this.OfferTypeUpgrade='Upgrade'
+    }else{
+      this.OfferNameUpgrade='';
+      this.OfferTypeUpgrade='';
+      this.CostUpgrade='';
+    }
+    console.log(this.OfferNamePricing,this.OfferTypePricing,this.CostPricing,this.OfferNameUpgrade,this.OfferTypeUpgrade,this.CostUpgrade)
     let alert = this.alertCtrl.create({
       title: "Confirm Booking",
       message: "Are you sure, you want to book this flight?",
@@ -54,12 +79,12 @@ export class OffersPage {
               .booking(
                 this.values.userid,
                 this.values.id,
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
+                this.OfferNamePricing,
+                this.OfferTypePricing,
+                this.CostPricing,
+                this.OfferNameUpgrade,
+                this.OfferTypeUpgrade,
+                this.CostUpgrade
               )
               .subscribe(
                 data => {

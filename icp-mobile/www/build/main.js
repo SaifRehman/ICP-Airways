@@ -328,7 +328,27 @@ var OffersPage = /** @class */ (function () {
     };
     OffersPage.prototype.confirm = function () {
         var _this = this;
-        console.log(this.pricing, this.upgrades);
+        if (this.pricing) {
+            this.OfferTypePricing = 'Pricing';
+            this.OfferNamePricing = this.pricing.split(',')[0];
+            this.CostPricing = this.pricing.split(',')[1];
+        }
+        else {
+            this.OfferNamePricing = '';
+            this.OfferTypePricing = '';
+            this.CostPricing = '';
+        }
+        if (this.upgrades) {
+            this.OfferNameUpgrade = this.upgrades.split(',')[0];
+            this.CostUpgrade = this.upgrades.split(',')[1];
+            this.OfferTypeUpgrade = 'Upgrade';
+        }
+        else {
+            this.OfferNameUpgrade = '';
+            this.OfferTypeUpgrade = '';
+            this.CostUpgrade = '';
+        }
+        console.log(this.OfferNamePricing, this.OfferTypePricing, this.CostPricing, this.OfferNameUpgrade, this.OfferTypeUpgrade, this.CostUpgrade);
         var alert = this.alertCtrl.create({
             title: "Confirm Booking",
             message: "Are you sure, you want to book this flight?",
@@ -348,7 +368,7 @@ var OffersPage = /** @class */ (function () {
                         });
                         loading.present();
                         _this.bookingService
-                            .booking(_this.values.userid, _this.values.id, "", "", "", "", "", "")
+                            .booking(_this.values.userid, _this.values.id, _this.OfferNamePricing, _this.OfferTypePricing, _this.CostPricing, _this.OfferNameUpgrade, _this.OfferTypeUpgrade, _this.CostUpgrade)
                             .subscribe(function (data) {
                             console.log("booked flight", data);
                             var alert2 = _this.alertCtrl.create({
