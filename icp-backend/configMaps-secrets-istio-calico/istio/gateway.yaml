@@ -25,6 +25,18 @@ spec:
   http:
   - match:
     - uri:
+        prefix: /odmsvc/
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: odmsvc.default.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 2s
+    timeout: 5s
+  - match:
+    - uri:
         prefix: /listingsvc/
     rewrite:
       uri: "/"

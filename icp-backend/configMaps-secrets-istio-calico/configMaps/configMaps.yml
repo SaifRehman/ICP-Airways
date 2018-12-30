@@ -9,7 +9,7 @@ data:
   PORT: '50000'
   HOSTNAME: 'saqrairway-ibm-db2oltp-dev-db2.default'
   PROTOCOL: TCPIP
-  ODM: 'http://saqrairwayodm-ibm-odm-dev.default:9060/DecisionService/rest/FlightBooking/FlightPricing'
+  ODM: 'http://saqrairwayodm-ibm-odm-dev.default:9060/DecisionService/rest/ICPAirlinesRuleApp/FlightPricing'
   CELERY_RESULT_BACKEND: 'amqp://admin:admin@saqrairwayrabbitmq-ibm-rabbitmq-dev.default:5671'
   CELERY_BROKER_URL: 'amqp://admin:admin@saqrairwayrabbitmq-ibm-rabbitmq-dev.default:5671'
   EMAILAPI: 'http://emailsvc.default:3006/email'

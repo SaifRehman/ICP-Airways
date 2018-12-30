@@ -78,6 +78,7 @@ export class BookingPage {
               .getODM(src, dest, this.provider.userData.data.TIER, 30000)
               .subscribe(
                 data => {
+                  if(data['code']!=404){
                   console.log(data);
                   loading.dismiss();
                   this.navCtrl.push(OffersPage, {
@@ -87,6 +88,17 @@ export class BookingPage {
                       data: data
                     }
                   });
+                  }
+                  else{
+                    let alert3 = this.alertCtrl.create({
+                      title: "Alert!",
+                      subTitle:
+                        "OOOPS... Something Went Wrong While Choosing Offers",
+                      buttons: ["Dismiss"]
+                    });
+                    loading.dismiss();
+                    alert3.present();
+                  }
                 },
                 error => {
                   loading.dismiss();
