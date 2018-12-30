@@ -81,7 +81,7 @@ export class HistoryComponent implements OnInit {
         data => {
           var temp  = JSON.parse(JSON.stringify(data));
           console.log("data", data);
-          const url = "https://10.150.20.151/listingsvc/listFlights/";
+          const url = "http://10.150.20.151:31380/listingsvc/listFlights/";
           const getData = async (url,iter) => {
             try {
               const response = await axios.get(url);
