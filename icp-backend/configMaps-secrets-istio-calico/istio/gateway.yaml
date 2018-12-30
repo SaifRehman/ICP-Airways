@@ -95,25 +95,6 @@ spec:
       attempts: 3
       perTryTimeout: 2s
     timeout: 5s
-  # - match:
-  #   - uri:
-  #       prefix: /icpairways/
-  #   rewrite:
-  #     uri: "/"
-  #   route:
-  #   - destination:
-  #       host: angular.default.svc.cluster.local
-  # - match:
-  #   - headers:
-  #       user-agent: 
-  #         regex: '.*iPhone.*'
-  #   - uri:
-  #       prefix: ''
-  #   rewrite:
-  #     uri: "/"
-  #   route:
-  #   - destination:
-  #       host: ionic.default.svc.cluster.local
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
