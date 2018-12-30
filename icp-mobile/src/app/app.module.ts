@@ -5,6 +5,7 @@ import { MyApp } from './app.component';
 import {HttpModule} from '@angular/http';
 import { AboutPage } from '../pages/about/about';
 import { LoginPage } from '../pages/login/login';
+import { OffersPage } from '../pages/offers/offers';
 import { SignupPage } from '../pages/signup/signup';
 import { BookingPage } from '../pages/booking/booking';
 import {MapPage} from '../pages/map/map'
@@ -22,7 +23,6 @@ import {ListingService} from '../services/listing-schedule-service/listing.compo
 import { SharedModule } from '../shared/shared.module';
 import {BookingService} from '../services/booking-service/booking.component.service'
 import {EmailService} from '../services/email-service/email.component.service'
-
 import {CheckinService} from '../services/checkin-service/checkin.component.service'
 import {NativeHttpWrapper} from 'ionic-native-http-angular-wrapper';
 import { Geolocation } from "@ionic-native/geolocation";
@@ -40,7 +40,8 @@ import 'leaflet-routing-machine';
     SignupPage,
     BookingPage,
     DashboardPage,
-    MapPage
+    MapPage,
+    OffersPage
   ],
   imports: [
     NativeHttpWrapper,
@@ -60,7 +61,8 @@ import 'leaflet-routing-machine';
     SignupPage,
     BookingPage,
     DashboardPage,
-    MapPage
+    MapPage,
+    OffersPage
   ],
   providers: [
     StatusBar,
