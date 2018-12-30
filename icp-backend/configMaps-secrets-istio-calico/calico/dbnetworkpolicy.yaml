@@ -50,4 +50,22 @@ spec:
           app: bookingsvc
   podSelector:
     matchLabels:
-      app: saqrairwaymariadb-ibm-mariadb-dev
+      app: saqrairwaymariadbnew-ibm-mariadb-dev
+---
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: rabbitmqpolicy
+  namespace: default
+spec:
+  ingress:
+  - ports:
+    - protocol: TCP
+      port: 5671
+  - from:
+    - podSelector:
+        matchLabels:
+          app: celerysvc
+  podSelector:
+    matchLabels:
+      app: saqrairwayrabbitmq-ibm-rabbitmq-dev

@@ -69,3 +69,39 @@ spec:
   podSelector:
     matchLabels:
       app: loginsvc
+---
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: celerysvcpolicy
+  namespace: default
+spec:
+  ingress:
+  - ports:
+    - protocol: TCP
+      port: 4000
+  - from:
+    - podSelector:
+        matchLabels:
+          istio: ingress
+  podSelector:
+    matchLabels:
+      app: celerysvc
+---
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: mapsvcpolicy
+  namespace: default
+spec:
+  ingress:
+  - ports:
+    - protocol: TCP
+      port: 3016
+  - from:
+    - podSelector:
+        matchLabels:
+          istio: ingress
+  podSelector:
+    matchLabels:
+      app: mapsvc
