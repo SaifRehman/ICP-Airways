@@ -206,7 +206,6 @@ $ docker push <icpdns>:8500/default/map:0.0.1
 2. Click on configure, click on copy, and paste all these commands in your terminal
 ![icp5](icp5.png)
 
-
 ### Configuring Persistance storage in IBM Cloud Private for (DB2, MariaDB, MongoDB, RabbitMQ, and ODM)
 1. Login to IBM Cloud Private by going to this link ``` https://icplink:8443 ```
 
@@ -232,6 +231,23 @@ path: /anypath
 * RabbitMQ
 * ODM 
 
+### Deploy Istio
+1. Go to ```Catalog``` and filter ```istio```
+
+![icp16](icp16.png)
+
+2. Choose target namespace as istio-system
+
+![icp17](icp17.png)
+
+> Enable Grafana
+> Enable Prometheus
+> Enable Servicegraph
+> Enable Tracing
+> Enable Kiali
+
+3. Click on Install
+
 ### Deploying DB2
 1. Go to ```Catalog``` and filter ```db2```
 
@@ -239,9 +255,9 @@ path: /anypath
 
 2. Click on configure, fil up the required field and deploy
 3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
-> Note: when asked for persistance volume claim give shared-pvc while filling the form tio deploy DB2
 > Make sure your Table name is "Sample"
 > Make sure your username and password is "admin"
+> Deploy as clusterip
 ### Database creation and configuration of DB2
 1. ssh to db2 pod
 ```
@@ -251,11 +267,11 @@ $ kubectl exec -it <podname> bash
 ```
 $ su - <username>
 ```
-6. Connect to SAMPLE db
+3. Connect to SAMPLE db
 ```s
 $ db2 connect to SAMPLE
 ```
-8. Create Database and importing existing data to Flights table
+4. Create Database and importing existing data to Flights table
 * User Table
 ```SQL
 db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, Tier varchar(255) NULL, PRIMARY KEY (UserID))"
@@ -265,16 +281,16 @@ db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENT
 CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, OfferNamePricing varchar(255) NOT NULL, OfferTypePricing varchar(255) NOT NULL , CostPricing varchar(255) NOT NULL, OfferNameUpgrade varchar(255) NOT NULL, OfferTypeUpgrade varchar(255) NOT NULL , CostNameUpgrade varchar(255) NOT NULL,  UserID INT NOT NULL, FlightID varchar(255) NOT NULL , PRIMARY KEY (BookingID));
 ```
 ### Deploying MariaDB
-1. Go to ```Catalog``` and filter ```db2```
+1. Go to ```Catalog``` and filter ```mariadb```
 
-![icp4](icp4.png)
+![icp15](icp15.png)
 
 2. Click on configure, fil up the required field and deploy
-3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
-> Note: when asked for persistance volume claim give shared-pvc while filling the form tio deploy DB2
 > Make sure your Table name is "Sample"
+> Make sure your username and password is "admin"
+> deploy as ClusterIP
 ### Database creation and configuration of DB2
-1. ssh to db2 pod
+1. ssh to mariadb pod
 ```
 $ kubectl exec -it <podname> bash
 ```
@@ -282,7 +298,7 @@ $ kubectl exec -it <podname> bash
 ```
 $ su - <username>
 ```
-6. Connect to SAMPLE db
+3. Connect to SAMPLE db
 ```s
 $ db2 connect to SAMPLE
 ```
@@ -298,7 +314,6 @@ CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP
 ### Deplying RabbitMQ 
 1. Go to ```Catalog``` and filter ```rabbitmq```
 2. Select ```RabbitMQ```, Click ``` Configure```, fill the form and click on deploy
-3. Expose ampq port of rabbitmq
 ```
 $ kubectl expose deployment <rabbitmq deployment name> --name=mq-amqp --type=NodePort --port=5671
 ```
