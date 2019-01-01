@@ -331,7 +331,7 @@ CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP
 
 > deploy as ClusterIP
 
-### Deplying RabbitMQ 
+### Deploying RabbitMQ 
 1. Go to ```Catalog``` and filter ```rabbitmq```
 2. Select ```RabbitMQ```, Click ``` Configure```, fill the form and click on deploy
 > use clusterip
