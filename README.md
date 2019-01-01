@@ -191,7 +191,7 @@ $ docker push <icpdns>:8500/default/ionic:0.0.1
 
 8. Map Microservice
 ```s
-$ cd icp-mobile
+$ cd map-microservice
 $ npm i
 $ docker build -t map:0.0.1 --no-cache .
 $ docker tag map:0.0.1 <icpdns>:8500/default/map:0.0.1
@@ -207,11 +207,7 @@ $ docker push <icpdns>:8500/default/map:0.0.1
 ![icp5](icp5.png)
 
 
-### Configuring Persistance storage in IBM Cloud Private
-1. ssh to your icp proxy and create a folder in a specific directory
-```
-$ ssh icpproxyip
-```
+### Configuring Persistance storage in IBM Cloud Private for (DB2, MariaDB, MongoDB, RabbitMQ, and ODM)
 1. Login to IBM Cloud Private by going to this link ``` https://icplink:8443 ```
 
 ![icp1](icp1.png)
@@ -220,23 +216,21 @@ $ ssh icpproxyip
 ![icp2](icp2.png)
 
 3. Provide the name ```shared``` for persistance volume
-4. Provide storage capacity for around ```30GB```
+4. Provide storage capacity for around ```5GB```
 5. Access mode change to ``` Read Write Many ```
-6. Storage type to ``` NFS ```
+6. Storage type to ``` HostPath ```
 7. Click on parameters tab and add the follow parameters
 ```
-server : youricpip
-path: your folder path you created in your icp proxy
+path: /anypath
 ```
-> This screenshot is an example
-![icp3](icp3.png)
-8. Click ```Create```
-9. Click on ``` Persistance Volume Claim ``` tab
-10. Click on ``` Create Persistance Volume Claim ```
-11. Give the name ```shared-pvc```
-12. Provide storage request ```30GB```
-13. Provide access mode ``` Read Write Many ```
-14. Click on Create
+8. Click on create
+
+> Create Persistant volume using the steps above for
+* DB2
+* MariaDB
+* MongoDB
+* RabbitMQ
+* ODM 
 
 ### Deploying DB2
 1. Go to ```Catalog``` and filter ```db2```
@@ -246,6 +240,7 @@ path: your folder path you created in your icp proxy
 2. Click on configure, fil up the required field and deploy
 3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
 > Note: when asked for persistance volume claim give shared-pvc while filling the form tio deploy DB2
+> Make sure your Table name is "Sample"
 ### Database creation and configuration of DB2
 1. ssh to db2 pod
 ```
@@ -259,15 +254,7 @@ $ su - <username>
 ```s
 $ db2 connect to SAMPLE
 ```
-7. Download existing flight data from github and set permissions
-```s
-$ wget https://raw.githubusercontent.com/SaifRehman/ICP-Airways/master/dataset/flights.csv
-```
 8. Create Database and importing existing data to Flights table
-* Flights Table
-```SQL
-db2 CREATE TABLE "SAMPLE.FlightsData (ID int NOT NULL , Year varchar(255) NULL , Month varchar(255) NULL, DayofMonth varchar(255) NULL, DepTime varchar(255) NULL,  CRSDepTime varchar(255) NULL, ArrTime varchar(255) NULL, CRSArrTime varchar(255) NULL, FlightNum varchar(255) NULL, TailNum varchar(255) NULL, ActualElapsedTime varchar(255) NULL, CRSElapsedTime varchar(255) NULL, Airtime varchar(255) NULL, ArrDelay varchar(255) NULL, DepDelay varchar(255) NULL,   Origin varchar(255) NULL, Dest varchar(255) NULL, Distance varchar(255) NULL, PRIMARY KEY (ID))"
-``` 
 * User Table
 ```SQL
 db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, Tier varchar(255) NULL, PRIMARY KEY (UserID))"
