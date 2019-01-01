@@ -32,6 +32,8 @@ In this Code Pattern, we will build a cloud native application based on microser
 * Docker
 * Kubernetes 
 * IBM Cloud Private
+* Istio
+* Calico
 
 Cloud native application is a buzzword these days. Technologies like Kubernetes and Docker are picking up reputation and popularity in Cloud native world. This Pattern will show an end to end process of building highly available Cloud Native Application on IBM Cloud Private. The Application backend is based on Nodejs and DB2, MariaDB, and MongoDB as a Database. The frontend is built using Angular4. Distributed Asynchronous task queue is based on RabbitMQ and Celery. Container orchestration is managed by Kubernetes.
 
@@ -41,6 +43,9 @@ When you've completed this Code Pattern, you will understand how to:
 * Break the application into different microservices
 * Deploying microservices based application on IBM Cloud Private
 * Leveraging IBM Middlewares such as ODM and DB2 on Kubernetes
+* Using Istio to build service mesh
+* Using Grafana, Prometheus, kiali, and Weavnet for visualisation 
+* Securing kubernetes networking through Calico
 * Designing business rules and decision by IBM ODM
 * Create distributed task ques using RabbitMQ and Celery
 * Leveraging DB2, MariaDB, and MongoDB as backend data storage
@@ -102,11 +107,7 @@ If you want a quick walkthrough of the end result, a video is available [here](h
 2. Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 3. Intall [Docker](https://docs.docker.com/install/)
 4. Install [Angular4Cli](https://cli.angular.io)
-5. Install [DBVisualiser](https://www.dbvis.com/download/)
-6. Install gulpcli 
-``` s
-$ npm i gulp-cli -g
-```
+5. Install [Ionic](https://ionicframework.com)
 
 ### Connect Docker (Private registery) with IBM Cloud Private
 1. From your terminal type
