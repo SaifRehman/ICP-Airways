@@ -354,7 +354,6 @@ CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP
 
 
 ### Configuring and deploying secrets
-![icp6](icp6.png)
 
 1. *UID* is ur database username
 2. *PASSWORD* is your database password
@@ -380,7 +379,6 @@ $ echo -n 'admin' | base64
 YWRtaW4=
 ```
 ### Configuring and deploying config-maps
-![icp7](icp7.png)
 1. *DATABASE*:- is your database name, which should be SAMPLE
 2. *PORT*:- is your exposed db2 port from port 5000, get this port by running and finding db2 service ``` kubectl get service ```
 3. *HOSTNAME*:- is your db2 service name of db2
