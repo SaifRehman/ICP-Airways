@@ -23,12 +23,12 @@ In this Code Pattern, we will build a cloud native application based on microser
 * Nodejs (Typescript)
 * IBM DB2
 * IBM ODM
-* RabbitMQ,
+* RabbitMQ
+* MariaDB
+* MongoDB
+* Here Map
 * Celery
 * Angular
-* Hypereledger Fabric
-* Hyperledger Burrow
-* Solidity
 * Docker
 * Kubernetes 
 * IBM Cloud Private
