@@ -241,6 +241,38 @@ path: /anypath
 3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
 > Note: when asked for persistance volume claim give shared-pvc while filling the form tio deploy DB2
 > Make sure your Table name is "Sample"
+> Make sure your username and password is "admin"
+### Database creation and configuration of DB2
+1. ssh to db2 pod
+```
+$ kubectl exec -it <podname> bash
+```
+2. switch the user you have created
+```
+$ su - <username>
+```
+6. Connect to SAMPLE db
+```s
+$ db2 connect to SAMPLE
+```
+8. Create Database and importing existing data to Flights table
+* User Table
+```SQL
+db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, Tier varchar(255) NULL, PRIMARY KEY (UserID))"
+```
+* Booking Table
+```SQL
+CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, OfferNamePricing varchar(255) NOT NULL, OfferTypePricing varchar(255) NOT NULL , CostPricing varchar(255) NOT NULL, OfferNameUpgrade varchar(255) NOT NULL, OfferTypeUpgrade varchar(255) NOT NULL , CostNameUpgrade varchar(255) NOT NULL,  UserID INT NOT NULL, FlightID varchar(255) NOT NULL , PRIMARY KEY (BookingID));
+```
+### Deploying MariaDB
+1. Go to ```Catalog``` and filter ```db2```
+
+![icp4](icp4.png)
+
+2. Click on configure, fil up the required field and deploy
+3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
+> Note: when asked for persistance volume claim give shared-pvc while filling the form tio deploy DB2
+> Make sure your Table name is "Sample"
 ### Database creation and configuration of DB2
 1. ssh to db2 pod
 ```
