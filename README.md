@@ -293,9 +293,6 @@ db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENT
 ```
 ### Deploying MariaDB
 1. Go to ```Catalog``` and filter ```mariadb```
-
-![icp15](icp15.png)
-
 2. Click on configure, fil up the required field and deploy
 > Make sure your Table name is "Sample"
 
