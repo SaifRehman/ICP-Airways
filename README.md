@@ -172,6 +172,7 @@ $ docker push <icpdns>:8500/default/odm-microservice:0.0.1
 ```
 
 6. Angular Frontend
+> under src/app/provider/provider.ts. Find url and change it to your icp ip
 ```s
 $ cd icp-frontend-new
 $ npm i
@@ -390,90 +391,58 @@ YWRtaW4=
 5. *CELERY_RESULT_BACKEND*:- replace dns with ur rabbitmq service name
 6. *HOSTNAMEMARIADB*:- replace with mariadb servicename
 7. *HOSTNAMEMONGODB*:- replace with mongodb servicename
-```
-$ npm i
-$ node app.js
-```
-7. *CELERY_RESULT_BACKEND* and *CELERY_BROKER_URL*:- replace with your icp ip, and replace it with amqp port. get amqp port by running ```kubesctl get service mq-amqp```
-8. *EMAILAPI*:- replace ip with your icpip
+8. *APPID*:-  your here map appid
+9. *APPCODE*:- your here map appcode
 
-### Deploying all services and deployments 
+### Deploying microservices through helm
 1. Booking Microservice
 ```s
-$ cd booking-microservice
-$ kubectl create -f service-deployment.yml
+$ cd booking-microservice/chart/booking-microservice
+$ helm install ./booking-microservice-0.1.0.tgz --name="bookingsvc" --tls
 ```
-2. Checkin Microservice
+2. Listing Microservice
 ```s
-$ cd checkin-microservice
-$ kubectl create -f service-deployment.yml
-
+$ cd listing-microservice/chart/listing-microservice
+$ helm install ./listing-microservice-0.1.0.tgz --name="listingsvc" --tls
 ```
-3. Listing Microservice
+3. Authentication Microservice
 ```s
-$ cd listing-microservice
-$ kubectl create -f service-deployment.yml
-```
-4. Login Microservice
-```s
-$ cd login-microservice
-$ npm i
-$ kubectl create -f service-deployment.yml
-```
-5. Signup Microservice
-```s
-$ cd signup-microservice
-$ kubectl create -f service-deployment.yml
+$ cd login-microservice/chart/login-microservice
+$ helm install ./login-microservice-0.1.0.tgz --name="loginsvc" --tls
 ```
 
-6. Celery Microservice
+4. Celery Microservice
 ```s
-$ cd celery
-$ kubectl create -f service-deployment.yml
+$ cd celery/chart/celery-microservice
+$ helm install ./celery-0.1.0.tgz --name="celerysvc" --tls
 ```
 
-7. Email Microservice
+5. Odm Microservice
 ```s
-$ cd email-microservice
-$ kubectl create -f service-deployment.yml
+$ cd odm-microservice/chart/odm-microservice
+$ helm install ./odm-microservice-0.1.0.tgz --name="odmsvc" --tls
 ```
 
-8. Ethereum Microservice
+6. Map Microservice
 ```s
-$ cd ethereum-microservice
-$ kubectl create -f service-deployment.yml
+$ cd map-microservice/chart/map-microservice
+$ helm install ./map-microservice-0.1.0.tgz --name="mapsvc" --tls
 ```
 
-9. Ethereum Proxy
+7. Angular Frontend
 ```s
-$ cd fabric-evm-proxy
-$ kubectl create -f service-deployment.yml
-```
-
-10. Odm Microservice
-```s
-$ cd odm-microservice
-$ kubectl create -f service-deployment.yml
-```
-
-11. Angular Frontend
-```s
-$ cd icp-frontend
-$ kubectl create -f service-deployment.yml
+$ cd icp-frontend-new/chart/angular
+$ helm install ./angular-microservice-0.1.0.tgz --name="angular" --tls
 ```
 
 ### Microservices available 
-* [x] Booking-microservice [3000:30090]
-* [x] Checkin-microservice [3001:30091]
-* [x] Listing-microservice [3002:30092]
-* [x] Login-microservice [3003:30093]
-* [x] Signup-microservice [3004:30094]
-* [x] Blockchain-microservice [3006:30199]
-* [x] Angular frontend [80:30080]
-* [x] Ethereum Proxy microservice [5000:30081]
-* [x] Celery microservice [4000:30989]
-* [x] Odm Microservice [3005:30095]
-
+* [x] Booking-microservice [:31380/bookingsvc/]
+* [x] Listing-microservice [:31380/listingsvc]
+* [x] Authentication-microservice [:31380/loginsvc/]
+* [x] Angular frontend [:31380/icpairways/]
+* [x] Celery microservice [:31380/emailsvc/]
+* [x] Odm Microservice [:31380/odmsvc/]
+* [x] Map Microservice [:31380/mapsvc/]
 
 # Docs
 Documentation of all the backend endpoints is available [here](apidocs/README.md)
