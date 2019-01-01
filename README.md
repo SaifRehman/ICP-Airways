@@ -1,8 +1,6 @@
 #  ICP-Airways
 <h1 align="center">
   <br>
-  <a href="https://github.com/SaifRehman/ICP-Airways"><img src="https://github.com/SaifRehman/ICP-Airways/blob/385dc500e84dffd1fa57edbadbf3f94546d88f13/gitpic.png?raw=true" alt="Lotion" width="IBM"></a>
-  <br>
       Air-Line ticketing and booking application on IBM Cloud Private 
   <br>
   <br>
