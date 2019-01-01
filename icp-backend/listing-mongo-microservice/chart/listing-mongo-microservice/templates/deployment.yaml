@@ -65,5 +65,10 @@ spec:
               configMapKeyRef:
                 name: {{ .Values.envOfConfigmaps.envMONGOPORT.configMapKeyRef.name }}
                 key: {{ .Values.envOfConfigmaps.envMONGOPORT.configMapKeyRef.key }}
+          - name: {{ .Values.envOfConfigmaps.envHOSTNAMEMONGODB.name }} 
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Values.envOfConfigmaps.envHOSTNAMEMONGODB.configMapKeyRef.name }}
+                key: {{ .Values.envOfConfigmaps.envHOSTNAMEMONGODB.configMapKeyRef.key }}
          ports:
          - containerPort: {{ .Values.image.ports.containerPort }} 

@@ -60,6 +60,11 @@ envOfConfigmaps:
     configMapKeyRef:
       name: env-database
       key: MONGOPORT
+  envHOSTNAMEMONGODB:
+    name: HOSTNAMEMONGODB
+    configMapKeyRef:
+      name: env-database
+      key: HOSTNAMEMONGODB
 
 
 hpa:
