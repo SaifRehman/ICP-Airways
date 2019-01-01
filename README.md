@@ -335,6 +335,7 @@ CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP
 1. Go to ```Catalog``` and filter ```rabbitmq```
 2. Select ```RabbitMQ```, Click ``` Configure```, fill the form and click on deploy
 > use clusterip
+
 ### Deploying ODM
 1. Go to ```Catalog``` and filter ```odm```
 2. Select ```odm```, Click ``` Configure```, fill the form and click on deploy
