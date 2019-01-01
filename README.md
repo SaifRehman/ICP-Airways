@@ -241,9 +241,13 @@ path: /anypath
 ![icp17](icp17.png)
 
 > Enable Grafana
+
 > Enable Prometheus
+
 > Enable Servicegraph
+
 > Enable Tracing
+
 > Enable Kiali
 
 3. Click on Install
