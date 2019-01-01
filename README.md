@@ -33,7 +33,7 @@ In this Code Pattern, we will build a cloud native application based on microser
 * Kubernetes 
 * IBM Cloud Private
 
-Cloud native application is a buzzword these days. Technologies like Kubernetes and Docker are picking up reputation and popularity in Cloud native world. This Pattern will show an end to end process of building highly available Cloud Native Application on IBM Cloud Private. The Application backend is based on Nodejs and DB2, MariaDB, and MongoDB as a Database. The frontend is built using Angular4. Distributed Asynchronous task queue is based on RabbitMQ and Celery. Container orchestration is managed by Kubernetes. Finally, the Blockchain is based on Hyperledger Fabric, Hyperledger Burrow and Ethereum Smart Contract. 
+Cloud native application is a buzzword these days. Technologies like Kubernetes and Docker are picking up reputation and popularity in Cloud native world. This Pattern will show an end to end process of building highly available Cloud Native Application on IBM Cloud Private. The Application backend is based on Nodejs and DB2, MariaDB, and MongoDB as a Database. The frontend is built using Angular4. Distributed Asynchronous task queue is based on RabbitMQ and Celery. Container orchestration is managed by Kubernetes.
 
 ### Learning objectives
 When you've completed this Code Pattern, you will understand how to:
@@ -43,9 +43,9 @@ When you've completed this Code Pattern, you will understand how to:
 * Leveraging IBM Middlewares such as ODM and DB2 on Kubernetes
 * Designing business rules and decision by IBM ODM
 * Create distributed task ques using RabbitMQ and Celery
-* Leveraging DB2 as backend data storage
-* Deploying Ethereum smart contract on Hyperledger fabric by leveraging Hyperledger Burrow
+* Leveraging DB2, MariaDB, and MongoDB as backend data storage
 * Learn how to use IBM Cloud Private, Docker, and Kubernetes
+* Leveraging Heremap to fetch nearby landmarks
 
 ### App Screenshot
 
