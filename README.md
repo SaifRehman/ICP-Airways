@@ -260,8 +260,11 @@ path: /anypath
 2. Click on configure, fil up the required field and deploy
 3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
 > Make sure your Table name is "Sample"
+
 > Make sure your username and password is "admin"
+
 > Deploy as clusterip
+
 ### Database creation and configuration of DB2
 1. ssh to db2 pod
 ```
@@ -275,14 +278,10 @@ $ su - <username>
 ```s
 $ db2 connect to SAMPLE
 ```
-4. Create Database and importing existing data to Flights table
+4. Create UserData table to store user information
 * User Table
 ```SQL
 db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, Tier varchar(255) NULL, PRIMARY KEY (UserID))"
-```
-* Booking Table
-```SQL
-CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, OfferNamePricing varchar(255) NOT NULL, OfferTypePricing varchar(255) NOT NULL , CostPricing varchar(255) NOT NULL, OfferNameUpgrade varchar(255) NOT NULL, OfferTypeUpgrade varchar(255) NOT NULL , CostNameUpgrade varchar(255) NOT NULL,  UserID INT NOT NULL, FlightID varchar(255) NOT NULL , PRIMARY KEY (BookingID));
 ```
 ### Deploying MariaDB
 1. Go to ```Catalog``` and filter ```mariadb```
@@ -298,19 +297,15 @@ CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP
 ```
 $ kubectl exec -it <podname> bash
 ```
-2. switch the user you have created
+2. Get in to mysql cli
 ```
-$ su - <username>
+$ mysql
 ```
 3. Connect to SAMPLE db
 ```s
-$ db2 connect to SAMPLE
+$ use SAMPLE
 ```
-8. Create Database and importing existing data to Flights table
-* User Table
-```SQL
-db2 CREATE TABLE "SAMPLE.UserData (UserID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1) , LastName varchar(255) NULL , FirstName varchar(255) NULL, Location varchar(255) NULL, Email varchar(255) NULL,  Password varchar(255) NULL, Age int NULL, Tier varchar(255) NULL, PRIMARY KEY (UserID))"
-```
+8. Create Booking Table
 * Booking Table
 ```SQL
 CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, OfferNamePricing varchar(255) NOT NULL, OfferTypePricing varchar(255) NOT NULL , CostPricing varchar(255) NOT NULL, OfferNameUpgrade varchar(255) NOT NULL, OfferTypeUpgrade varchar(255) NOT NULL , CostNameUpgrade varchar(255) NOT NULL,  UserID INT NOT NULL, FlightID varchar(255) NOT NULL , PRIMARY KEY (BookingID));
@@ -318,10 +313,7 @@ CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP
 ### Deplying RabbitMQ 
 1. Go to ```Catalog``` and filter ```rabbitmq```
 2. Select ```RabbitMQ```, Click ``` Configure```, fill the form and click on deploy
-```
-$ kubectl expose deployment <rabbitmq deployment name> --name=mq-amqp --type=NodePort --port=5671
-```
-
+> use clusterip
 ### Deploying ODM
 1. Go to ```Catalog``` and filter ```odm```
 2. Select ```odm```, Click ``` Configure```, fill the form and click on deploy
@@ -340,33 +332,6 @@ $ kubectl expose deployment <rabbitmq deployment name> --name=mq-amqp --type=Nod
 
 ![icp12](icp14.png)
 
-### Deploying Blockchain
-1. Navigate to ```fabric-deploy/cs-offerings/scripts```
-```
-$ cd fabric-deploy/cs-offerings/scripts
-```
-2. Run the create all script
-```
-$ ./create_all.sh
-```
-3. Give it sometime to load and finish
-
-### Deploying Ethereum Proxy
-1. Navigate to ```fabric-evm-proxy/fabric-evm-deployment/cs-offerings```
-2. run ```kubesctl get pods```
-3. copy any of blockchain pod name which is deployed by ```create_all.sh``` script
-4. Delete the ```crypto-config``` folder
-5. run ``` kubectl cp <pod name>:/shared/crypto-config crypto-config ```
-6. Open ```fabric-cluster.yml``` in ```fabric-evm-proxy``` folder 
-7. Find and replace ```<path-to-crypto-config-directory>``` in the file with ```crypto-config directory```
-8. Find and replace ```<cluster-ip>``` in the file with ```cluster ip of your cluster```
-9. Navigate to ```fabric-evm-proxy```
-10. Deploy Ethereum Proxy image to ICP Private registery
-```s
-$ docker build -t ethereumproxy --no-cache .
-$ docker tag ethereumproxy <icpdns>:8500/default/ethereumproxy:latest
-$ docker push <icpdns>:8500/default/ethereumproxy:latest
-```
 
 ### Configuring and deploying secrets
 ![icp6](icp6.png)
