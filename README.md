@@ -360,11 +360,15 @@ CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP
 
 1. *UID* is ur database username
 2. *PASSWORD* is your database password
-3. *SECRET* is your unique secret you give for your app for jwt authentication
-4. *EMAILUSERNAME* is your gmail email username from which email would be sent
-5. *EMAILPASSWORD* is your email password of your gmail email
-6. Navigate to ```secrets``` folder in ```configMaps-secrets/secrets```
-7. Deploy secrets to kubernetes 
+3. *UIDMARIADB* is your mariadb username
+4. *PASSWORDMARIADB* is your mariadb password
+5. *MONGOUSERNAME* is your mongodb username
+6. *MONGOPASSWORD* is your mongodb password
+7. *SECRET* is your unique secret you give for your app for jwt authentication
+8. *EMAILUSERNAME* is your gmail email username from which email would be sent
+9. *EMAILPASSWORD* is your email password of your gmail email
+10. Navigate to ```secrets``` folder in ```configMaps-secrets/secrets```
+11. Deploy secrets to kubernetes, navigate to folder icp-backend/configMaps-secrets-istio-calico/secrets
 ```
 $ kubectl create -f secrets.yml
 ```
@@ -381,10 +385,11 @@ YWRtaW4=
 ![icp7](icp7.png)
 1. *DATABASE*:- is your database name, which should be SAMPLE
 2. *PORT*:- is your exposed db2 port from port 5000, get this port by running and finding db2 service ``` kubectl get service ```
-3. *HOSTNAME*:- is your icpip
-4. *ODM*:- is your ODM buisness api you have created, get odm port number by running and finding the exposed port ``` kubectl get service ```
-5. *HttpProvider*:- replace the ip with your icp ip. This is provider to connect with ethereum proxy
-6. *CONTRACTADRESS* and *ETHEREUMACCOUNT*:- get your contract address and ethereum account by running app.js in ```contracts``` folder. also, replace ip with your icp ip
+3. *HOSTNAME*:- is your db2 service name of db2
+4. *ODM*:- is your ODM api, replace dns with your service name of odm ``` kubectl get service ```
+5. *CELERY_RESULT_BACKEND*:- replace dns with ur rabbitmq service name
+6. *HOSTNAMEMARIADB*:- replace with mariadb servicename
+7. *HOSTNAMEMONGODB*:- replace with mongodb servicename
 ```
 $ npm i
 $ node app.js
