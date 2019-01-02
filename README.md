@@ -392,41 +392,47 @@ YWRtaW4=
 ### Deploying microservices through helm
 1. Booking Microservice
 ```s
-$ cd booking-microservice/chart/booking-microservice
+$ cd booking-microservice/chart
 $ helm install ./booking-microservice-0.1.0.tgz --name="bookingsvc" --tls
 ```
 2. Listing Microservice
 ```s
-$ cd listing-microservice/chart/listing-microservice
+$ cd listing-microservice/chart
 $ helm install ./listing-microservice-0.1.0.tgz --name="listingsvc" --tls
 ```
 3. Authentication Microservice
 ```s
-$ cd login-microservice/chart/login-microservice
+$ cd login-microservice/chart
 $ helm install ./login-microservice-0.1.0.tgz --name="loginsvc" --tls
 ```
 
 4. Celery Microservice
 ```s
-$ cd celery/chart/celery-microservice
+$ cd celery/chart
 $ helm install ./celery-0.1.0.tgz --name="celerysvc" --tls
 ```
 
 5. Odm Microservice
 ```s
-$ cd odm-microservice/chart/odm-microservice
+$ cd odm-microservice/chart
 $ helm install ./odm-microservice-0.1.0.tgz --name="odmsvc" --tls
 ```
 
 6. Map Microservice
 ```s
-$ cd map-microservice/chart/map-microservice
+$ cd map-microservice/chart
 $ helm install ./map-microservice-0.1.0.tgz --name="mapsvc" --tls
 ```
 
 7. Angular Frontend
 ```s
-$ cd icp-frontend-new/chart/angular
+$ cd icp-frontend-new/chart
+$ helm install ./angular-microservice-0.1.0.tgz --name="angular" --tls
+```
+
+8. Ionic Frontend
+```s
+$ cd icp-mobile/chart
 $ helm install ./angular-microservice-0.1.0.tgz --name="angular" --tls
 ```
 
