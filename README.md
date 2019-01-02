@@ -451,6 +451,11 @@ $ ionic cordova prepare ios
 ```
 $ ionic cordova prepare android 
 ```
+
+### Enable Istio-Gateway and Virtual Services
+1. Navigate to ``` icp-backend/configMaps-secrets-istio-calico ```
+2. kubectl apply -f istio/
+
 ### Microservices available 
 * [x] Booking Microservice [:31380/bookingsvc/]
 * [x] Listing Microservice [:31380/listingsvc]
