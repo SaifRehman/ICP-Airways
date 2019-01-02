@@ -452,11 +452,11 @@ $ ionic cordova prepare ios
 $ ionic cordova prepare android 
 ```
 ### Microservices available 
-* [x] Booking-microservice [:31380/bookingsvc/]
-* [x] Listing-microservice [:31380/listingsvc]
-* [x] Authentication-microservice [:31380/loginsvc/]
-* [x] Angular frontend [:31380/icpairways/]
-* [x] Celery microservice [:31380/emailsvc/]
+* [x] Booking Microservice [:31380/bookingsvc/]
+* [x] Listing Microservice [:31380/listingsvc]
+* [x] Authentication Microservice [:31380/loginsvc/]
+* [x] Angular Frontend [:31380/icpairways/]
+* [x] Celery Microservice [:31380/emailsvc/]
 * [x] Odm Microservice [:31380/odmsvc/]
 * [x] Map Microservice [:31380/mapsvc/]
 
