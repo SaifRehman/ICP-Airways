@@ -23,7 +23,7 @@ hpa:
 
 image:
   name: celerysvc
-  imageName: "mycluster.icp:8500/default/celery:0.0.1" 
+  imageName: "mycluster.icp:8500/icp-airways/celery:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 4000

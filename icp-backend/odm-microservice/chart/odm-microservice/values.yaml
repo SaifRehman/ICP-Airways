@@ -19,7 +19,7 @@ livenessProbe:
   periodSeconds: 10
 image:
   name: odmsvc
-  imageName: "mycluster.icp:8500/default/odm-microservice:0.0.1" 
+  imageName: "mycluster.icp:8500/icp-airways/odm-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 3005
