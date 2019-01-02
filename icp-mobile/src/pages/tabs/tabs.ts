@@ -16,7 +16,6 @@ export class TabsPage {
   tab4Root = DashboardPage;
 
   constructor(statusBar: StatusBar) {
-    statusBar.overlaysWebView(true);
     statusBar.backgroundColorByHexString('#000000');
   }
 }

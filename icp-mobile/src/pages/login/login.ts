@@ -6,6 +6,7 @@ import { LoginService } from "../../services/login-service/login.component.servi
 import { AlertController, LoadingController } from "ionic-angular";
 import {Provider} from '../../provider/provider'
 import * as jwtDecode from 'jwt-decode';
+import { StatusBar } from '@ionic-native/status-bar';
 
 /**
  * Generated class for the LoginPage page.
@@ -28,7 +29,8 @@ export class LoginPage {
     public loginService: LoginService,
     private alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    public provider:Provider
+    public provider:Provider,
+    public statusBar: StatusBar
   ) {}
   login() {
     let loading = this.loadingCtrl.create({
@@ -37,6 +39,7 @@ export class LoginPage {
     loading.present();
     this.loginService.login(this.username, this.password).subscribe(
       data => {
+        // this.statusBar.backgroundColorByHexString("#25312C")
         this.provider.token = data['token'];
         localStorage.setItem('token', this.provider.token);
         this.provider.userData = jwtDecode( data['token']);

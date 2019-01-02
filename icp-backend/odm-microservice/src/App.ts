@@ -56,7 +56,6 @@ class App {
           srcAirport: req.body.srcAirport,
           dstAirport: req.body.dstAirport,
           customerTier: req.body.customerTier,
-          customerName: req.body.customerName,
           milesBalance: req.body.milesBalance,
           offers: [],
           messages: []
