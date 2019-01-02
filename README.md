@@ -182,6 +182,7 @@ $ docker push <icpdns>:8500/default/angular:0.0.1
 ```
 
 7. Ionic Frontend
+> under src/app/provider/provider.ts. Find url and change it to your icp ip
 ```s
 $ cd icp-mobile
 $ npm i
@@ -433,7 +434,7 @@ $ helm install ./angular-microservice-0.1.0.tgz --name="angular" --tls
 8. Ionic Frontend
 ```s
 $ cd icp-mobile/chart
-$ helm install ./angular-microservice-0.1.0.tgz --name="angular" --tls
+$ helm install ./ionic-microservice-0.1.0.tgz --name="ionic" --tls
 ```
 
 ### Microservices available 
