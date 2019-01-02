@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: env-database
-  namespace: default
+  namespace: icp-airways
 data:
   NODE_ENV: development
   DATABASE: SAMPLE
