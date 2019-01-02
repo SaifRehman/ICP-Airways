@@ -381,9 +381,9 @@ YWRtaW4=
 ```
 ### Configuring and deploying config-maps
 1. *DATABASE*:- is your database name, which should be SAMPLE
-2. *PORT*:- is your exposed db2 port from port 5000, get this port by running and finding db2 service ``` kubectl get service ```
+2. *PORT*:- is your exposed db2 port from port 5000, get this port by running and finding db2 service
 3. *HOSTNAME*:- is your db2 service name of db2
-4. *ODM*:- is your ODM api, replace dns with your service name of odm ``` kubectl get service ```
+4. *ODM*:- is your ODM api, replace dns with your service name of odm 
 5. *CELERY_RESULT_BACKEND*:- replace dns with ur rabbitmq service name
 6. *HOSTNAMEMARIADB*:- replace with mariadb servicename
 7. *HOSTNAMEMONGODB*:- replace with mongodb servicename
@@ -437,6 +437,20 @@ $ cd icp-mobile/chart
 $ helm install ./ionic-microservice-0.1.0.tgz --name="ionic" --tls
 ```
 
+### Cross Platform Mobile App
+* Make sure you have installed ionic and cordova
+```
+$ npm i -g ionic cordova
+```
+* For IOS, make sure you have installed XCODE. For Android, make sure you have installed Android Studio.
+* For IOS, run 
+```
+$ ionic cordova prepare ios
+```
+* For Android, run
+```
+$ ionic cordova prepare android 
+```
 ### Microservices available 
 * [x] Booking-microservice [:31380/bookingsvc/]
 * [x] Listing-microservice [:31380/listingsvc]
