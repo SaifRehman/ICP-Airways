@@ -253,6 +253,10 @@ path: /anypath
 > Enable Kiali
 
 3. Click on Install
+4. Navigate to ```icp-backend/configMaps-secrets-istio-calico/kiali``` and run
+```
+$ kubectl apply -f secret.yaml
+```
 4. Check if Istio isd installed properly
 ```sh
 $ kubectl get pods -n istio-system
