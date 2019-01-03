@@ -4,6 +4,9 @@ metadata:
   name: authservicecronjob
 spec:
   schedule: "*/1 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
@@ -14,5 +17,9 @@ spec:
           containers:
             - name: cron
               image: "mycluster.icp:8500/icp-airways/cron:0.0.1" 
+              args:
+                - /bin/sh
+                - -ec
+                - siege -c 50 -r 10 -b http://loginsvc.icp-airways:3003/healthz
           restartPolicy: Never
           terminationGracePeriodSeconds: 30
