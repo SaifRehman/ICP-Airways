@@ -4,4 +4,4 @@ RUN apt-get update \
     && apt-get --no-install-recommends -y install \
     siege
 RUN chmod +x run.sh
-# ENTRYPOINT [ "./run.sh" ]
+ENTRYPOINT [ "sh","run.sh" ]
