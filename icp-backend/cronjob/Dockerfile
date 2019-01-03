@@ -6,3 +6,5 @@ RUN apt-get update \
     siege \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists 
+RUN chmod +x run.sh
+ENTRYPOINT [ "./run.sh" ]

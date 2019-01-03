@@ -11,5 +11,4 @@ spec:
           containers:
             - name: cron
               image: "mycluster.icp:8500/icp-airways/cron:0.0.1" 
-              command: ["siege -c 100 -r 10 -b http://192.168.61.226:31380/loginsvc/healthz"]
-          restartPolicy: OnFailure
+          restartPolicy: Never
