@@ -20,7 +20,7 @@ spec:
               args:
                 - /bin/sh
                 - -ec
-                - siege -c 50 -r 800 -b http://loginsvc.icp-airways:3003/healthz
+                - siege -c 50 -r 1000 -b http://loginsvc.icp-airways:3003/healthz
           restartPolicy: Never
           terminationGracePeriodSeconds: 30
 ---
@@ -46,7 +46,7 @@ spec:
               args:
                 - /bin/sh
                 - -ec
-                - siege -c 50 -r 800 -b http://mapsvc.icp-airways:3016/healthz
+                - siege -c 50 -r 1000 -b http://mapsvc.icp-airways:3016/healthz
           restartPolicy: Never
           terminationGracePeriodSeconds: 30
 ---
@@ -72,7 +72,7 @@ spec:
               args:
                 - /bin/sh
                 - -ec
-                - siege -c 50 -r 800 -b http://odmsvc.icp-airways:3005/healthz
+                - siege -c 50 -r 1000 -b http://odmsvc.icp-airways:3005/healthz
           restartPolicy: Never
           terminationGracePeriodSeconds: 30
 ---
@@ -98,7 +98,7 @@ spec:
               args:
                 - /bin/sh
                 - -ec
-                - siege -c 50 -r 800 -b http://bookingsvc.icp-airways:3000/healthz
+                - siege -c 50 -r 1000 -b http://bookingsvc.icp-airways:3000/healthz
           restartPolicy: Never
           terminationGracePeriodSeconds: 30
 ---
@@ -124,6 +124,6 @@ spec:
               args:
                 - /bin/sh
                 - -ec
-                - siege -c 50 -r 800 -b http://listingsvc.icp-airways:7000/healthz
+                - siege -c 50 -r 1000 -b http://listingsvc.icp-airways:7000/healthz
           restartPolicy: Never
           terminationGracePeriodSeconds: 30
