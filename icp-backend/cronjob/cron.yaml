@@ -12,3 +12,4 @@ spec:
             - name: cron
               image: "mycluster.icp:8500/icp-airways/cron:0.0.1" 
           restartPolicy: Never
+          terminationGracePeriodSeconds: 30
