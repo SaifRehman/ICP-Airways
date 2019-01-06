@@ -321,7 +321,7 @@ $ use SAMPLE
 8. Create Booking Table
 * Booking Table
 ```SQL
-CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL AUTO_INCREMENT ,TS TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, OfferNamePricing varchar(255) NOT NULL, OfferTypePricing varchar(255) NOT NULL , CostPricing varchar(255) NOT NULL, OfferNameUpgrade varchar(255) NOT NULL, OfferTypeUpgrade varchar(255) NOT NULL , CostNameUpgrade varchar(255) NOT NULL,  UserID INT NOT NULL, FlightID varchar(255) NOT NULL , PRIMARY KEY (BookingID));
+CREATE TABLE SAMPLE.Booking (BookingID int NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),TS TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL , Checkin varchar(255) NOT NULL, OfferNamePricing varchar(255) NOT NULL, OfferTypePricing varchar(255) NOT NULL , CostPricing varchar(255) NOT NULL, OfferNameUpgrade varchar(255) NOT NULL, OfferTypeUpgrade varchar(255) NOT NULL , CostNameUpgrade varchar(255) NOT NULL,  UserID INT NOT NULL, FlightID varchar(255) NOT NULL , PRIMARY KEY (BookingID));
 ```
 ### Deploying MongoDB
 1. Go to ```Catalog``` and filter ```mongodb```
