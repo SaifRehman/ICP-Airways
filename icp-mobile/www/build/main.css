@@ -51460,6 +51460,19 @@ page-booking .card-5 {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+page-chat .masters {
+  background-color: #F7F7F7;
+}
+
+page-chat .toolbar-background {
+  background-color: #F7F7F7;
+}
+
+page-chat .card-5 {
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
 page-contact .masters {
   background-color: #F7F7F7;
 }

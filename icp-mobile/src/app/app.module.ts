@@ -27,6 +27,7 @@ import {CheckinService} from '../services/checkin-service/checkin.component.serv
 import {NativeHttpWrapper} from 'ionic-native-http-angular-wrapper';
 import { Geolocation } from "@ionic-native/geolocation";
 import {OdmService} from '../services/odm-service/odm.component.service'
+import {ChatPage} from '../pages/chat/chat'
 import 'leaflet-routing-machine';
 
 @NgModule({
@@ -41,7 +42,8 @@ import 'leaflet-routing-machine';
     BookingPage,
     DashboardPage,
     MapPage,
-    OffersPage
+    OffersPage,
+    ChatPage
   ],
   imports: [
     NativeHttpWrapper,
@@ -62,7 +64,8 @@ import 'leaflet-routing-machine';
     BookingPage,
     DashboardPage,
     MapPage,
-    OffersPage
+    OffersPage,
+    ChatPage
   ],
   providers: [
     StatusBar,
