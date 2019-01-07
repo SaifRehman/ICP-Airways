@@ -8,17 +8,23 @@ import * as jwt from 'jsonwebtoken'
 import * as passportJWT from 'passport-jwt'
 import * as Request from 'request'
 import * as epimetheus from 'epimetheus'
-
+import * as watson from 'watson-developer-cloud'
 class App {
   public jwtOptions: any = {};
   public ExtractJwt = passportJWT.ExtractJwt;
   public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
+  public assistant:any
   constructor() {
     this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
     this.jwtOptions.secretOrKey = process.env.SECRET;
     this.express = express();
     epimetheus.instrument(this.express)
+     this.assistant = new watson.AssistantV1({
+      version: '2018-09-20',
+      iam_apikey: 'z7sGR_nRkuBWvYHMLKpdTGHy5F3hXWvw60UsZRlYPts5',
+      url: 'https://gateway-lon.watsonplatform.net/assistant/api'
+    });
     this.middleware();
     this.routes();
   }
@@ -47,7 +53,7 @@ class App {
   }
   private routes(): void {
     let router = express.Router();
-    router.post('/odm', this.ensureToken, (req, res, next) => {
+    router.post('/odm', (req, res, next) => {
       Request.post({
         headers: { "content-type": "application/json" },
         url: process.env.ODM,
