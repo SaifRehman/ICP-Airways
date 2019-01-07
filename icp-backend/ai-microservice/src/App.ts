@@ -53,7 +53,7 @@ class App {
   }
   private routes(): void {
     let router = express.Router();
-    router.post('/odm', (req, res, next) => {
+    router.post('/watson', (req, res, next) => {
       Request.post({
         headers: { "content-type": "application/json" },
         url: process.env.ODM,
