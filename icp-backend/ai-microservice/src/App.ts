@@ -25,6 +25,7 @@ class App {
       iam_apikey: 'z7sGR_nRkuBWvYHMLKpdTGHy5F3hXWvw60UsZRlYPts5',
       url: 'https://gateway-lon.watsonplatform.net/assistant/api'
     });
+    console.log(this.assistant);
     this.middleware();
     this.routes();
   }
@@ -43,7 +44,15 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.post('/watson', (req, res, next) => {
-      
+      this.assistant.message({
+        workspace_id: '8885d1f2-bca6-4443-85a7-74aa82a2fadd',
+        input: {'text': 'Hello'}
+      },  function(err, response) {
+        if (err)
+        res.status(404).json({ err });
+        else
+        res.status(404).json({ response });
+      });
     });
     router.get('/healthz', (req, res, next) => {
       res.send('success');
