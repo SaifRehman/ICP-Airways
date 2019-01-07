@@ -58,14 +58,7 @@ class App {
         headers: { "content-type": "application/json" },
         url: process.env.ODM,
         body: JSON.stringify({
-          flightBooking:{
-          srcAirport: req.body.srcAirport,
-          dstAirport: req.body.dstAirport,
-          customerTier: req.body.customerTier,
-          milesBalance: req.body.milesBalance,
-          offers: [],
-          messages: []
-        }
+          text:req.body.text
         })
       }, (err, response, body) => {
         if (err) {
