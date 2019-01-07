@@ -51473,6 +51473,56 @@ page-chat .card-5 {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+page-chat .grid {
+  padding: 0;
+}
+
+page-chat .sender .friend-img, page-chat .me .friend-img {
+  position: absolute;
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+page-chat .sender p, page-chat .me p {
+  border-radius: 5px;
+  margin: 0;
+}
+
+page-chat .sender p {
+  text-align: left;
+  background-color: #fff;
+  padding: 12px 10px;
+  border: 1px solid #d1d1d1;
+}
+
+page-chat .sender .friend-img {
+  margin: 0 0;
+}
+
+page-chat .me .txt {
+  display: inline;
+  text-align: right;
+}
+
+page-chat .me .friend-img {
+  margin: 0 22px;
+}
+
+page-chat .me p {
+  background-color: #306dd8;
+  color: #fff;
+  padding: 12px 10px;
+}
+
+page-chat .text-input {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 page-contact .masters {
   background-color: #F7F7F7;
 }

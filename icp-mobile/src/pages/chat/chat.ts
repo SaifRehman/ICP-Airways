@@ -21,5 +21,8 @@ export class ChatPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatPage');
   }
+  doSend(){
+
+  }
 
 }

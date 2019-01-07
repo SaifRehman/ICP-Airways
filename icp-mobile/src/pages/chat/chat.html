@@ -17,4 +17,45 @@
 
 <ion-content padding>
 
+  <div class="message-wrap">
+    <div class="sender">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2 text-left>
+            <img class="friend-img" src="../assets/watson_logo.gif" alt="">
+          </ion-col>
+          <ion-col col-10>
+            <p>Hello I am Watson</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="me">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10>
+            <p>Hi</p>
+          </ion-col>
+          <ion-col col-2>
+            <img class="friend-img" src="../assets/avatar.png" alt="">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
 </ion-content>
+
+
+<ion-footer no-border>
+  <ion-toolbar color="primary">
+    <ion-textarea (keyup.enter)="doSend()" [(ngModel)]="input" placeholder="Enter your message" name="message"></ion-textarea>
+    <ion-buttons end>
+      <button (click)="doSend()" ion-button icon-only>
+        <ion-icon name="send" color="light"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-footer>
