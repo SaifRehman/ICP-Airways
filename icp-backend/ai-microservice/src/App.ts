@@ -1,12 +1,8 @@
-import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import * as passwordhash from 'password-hash'
 import * as passport from 'passport'
-import * as jwt from 'jsonwebtoken'
 import * as passportJWT from 'passport-jwt'
-import * as Request from 'request'
 import * as epimetheus from 'epimetheus'
 import * as watson from 'watson-developer-cloud'
 class App {
