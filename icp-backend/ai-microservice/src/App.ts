@@ -28,17 +28,6 @@ class App {
     this.middleware();
     this.routes();
   }
-  private ensureToken(req, res, next) {
-    const bearerHeader = req.headers["authorization"];
-    if (typeof bearerHeader !== 'undefined') {
-      const bearer = bearerHeader.split(" ");
-      const bearerToken = bearer[1];
-      req.token = bearerToken;
-      next();
-    } else {
-      res.sendStatus(403);
-    }
-  }
   private middleware(): void {
     this.express.use(function (req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
@@ -54,19 +43,7 @@ class App {
   private routes(): void {
     let router = express.Router();
     router.post('/watson', (req, res, next) => {
-      Request.post({
-        headers: { "content-type": "application/json" },
-        url: process.env.ODM,
-        body: JSON.stringify({
-          text:req.body.text
-        })
-      }, (err, response, body) => {
-        if (err) {
-          res.status(404).json({ err });
-          console.log(err);
-        }
-        res.json(JSON.parse(body));
-      });
+      
     });
     router.get('/healthz', (req, res, next) => {
       res.send('success');
