@@ -16,8 +16,8 @@ class App {
     this.jwtOptions.secretOrKey = process.env.SECRET;
     this.express = express();
     epimetheus.instrument(this.express)
-     this.assistant = new watson.AssistantV1({
-      version: '2018-09-20',
+     this.assistant = new watson.AssistantV2({
+      version: '2018-11-08',
       iam_apikey: 'z7sGR_nRkuBWvYHMLKpdTGHy5F3hXWvw60UsZRlYPts5',
       url: 'https://gateway-lon.watsonplatform.net/assistant/api'
     });
@@ -41,17 +41,33 @@ class App {
     let router = express.Router();
     router.post('/watson', (req, res, next) => {
       this.assistant.message({
-        workspace_id: '8885d1f2-bca6-4443-85a7-74aa82a2fadd',
-        input: {'text': 'Hello'}
+        assistant_id: '8f87912c-35a1-4b74-9914-6508430f56fa',
+        session_id: req.body.session_id,
+        input: {
+          'message_type': 'text',
+          'text': req.body.text
+        }
       },  function(err, response) {
         if (err)
         res.status(404).json({ err });
         else
-        res.status(404).json({ response });
+        res.status(200).json({ response });
       });
     });
     router.get('/healthz', (req, res, next) => {
       res.send('success');
+    });
+    router.get('/session', (req, res, next) => {
+      this.assistant.createSession({
+        assistant_id: '8f87912c-35a1-4b74-9914-6508430f56fa',
+      }, function(err, response) {
+        if (err) {
+          console.error(err);
+          res.status(400).send(err);
+        } else{
+          res.status(200).send(response);
+        }
+      });
     });
     this.express.use('/', router);
   }
