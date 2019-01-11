@@ -22,6 +22,7 @@ import {Provider} from '../provider/provider'
 import {ListingService} from '../services/listing-schedule-service/listing.component.service'
 import { SharedModule } from '../shared/shared.module';
 import {BookingService} from '../services/booking-service/booking.component.service'
+import {ChatService} from '../services/chat-service/chat.component.service'
 import {EmailService} from '../services/email-service/email.component.service'
 import {CheckinService} from '../services/checkin-service/checkin.component.service'
 import {NativeHttpWrapper} from 'ionic-native-http-angular-wrapper';
@@ -80,6 +81,7 @@ import 'leaflet-routing-machine';
     Geolocation,
     EmailService,
     OdmService,
+    ChatService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

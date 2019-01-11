@@ -5,7 +5,7 @@ export class Provider {
   public userData: any = null;
   public token: any = null;
   public rawData: any = null;
-  public url: any = "10.150.20.151:31380";
+  public url: any = "9.30.251.42:31380";
   public abi: any;
   constructor() {
     this.apiUrl = {
@@ -20,7 +20,9 @@ export class Provider {
       listAllFlights: "http://" + this.url + "/listingsvc/listFlights",
       map:  "http://" + this.url + "/mapsvc/getMap",
       email: 'http://' +this.url + "/celerysvc/postEmail",
-      odm: 'http://' +this.url + "/odmsvc/odm"
+      odm: 'http://' +this.url + "/odmsvc/odm",
+      watsoncall:'http://localhost:3011/watson',
+      getsessionid:'http://localhost:3011/session'
     };
   }
 }
