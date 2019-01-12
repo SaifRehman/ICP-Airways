@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { ChatService } from "../../services/chat-service/chat.component.service";
 import { ListingService } from "../../services/listing-schedule-service/listing.component.service";
+import { BookingPage } from "../booking/booking";
 
 /**
  * Generated class for the ChatPage page.
@@ -76,7 +77,14 @@ export class ChatPage {
           });
         }
         else{
-          this.sessionid=null;
+          this.chatService.getsessionid().subscribe(
+            data => {
+              this.sessionid = data["session_id"];
+            },
+            error => {
+              this.sessionid = null;
+            }
+          );
           this.bookinginfo = data["response"]["output"]["generic"][0]["text"].split(',')
           console.log(this.bookinginfo)
           this.Year = Number(this.bookinginfo[3].split("-")[0]);
@@ -86,7 +94,48 @@ export class ChatPage {
           this.DayOfMonth = Number(this.bookinginfo[3].split("-")[2]);
           this.DayOfMonth = String(this.DayOfMonth);
           console.log(this.Year,this.Month,this.DayOfMonth)
-          // console.log(data["response"]["output"]["generic"][0]["text"].split(','))
+          let loading = this.loadingCtrl.create({
+            content: "Please wait..."
+          });
+          loading.present();
+            this.listingService
+              .listFlights(
+                this.Year,
+                this.Month,
+                this.DayOfMonth,
+                this.bookinginfo[1],
+                this.bookinginfo[2]
+              )
+              .subscribe(
+                data => {
+                  if(data.length){
+                  console.log("data", data);
+                  loading.dismiss()
+                  this.navCtrl.push(BookingPage, {
+                    item: data
+                  });
+                }
+                else{
+                  let alert = this.alertCtrl.create({
+                    title: "Alert!",
+                    subTitle: "OOOOPS... No flights found!",
+                    buttons: ["Dismiss"]
+                  });
+                  loading.dismiss();
+                  alert.present();
+                }
+                },
+                error => {
+                  let alert = this.alertCtrl.create({
+                    title: "Alert!",
+                    subTitle: "OOOOPS... Something Went Wrong",
+                    buttons: ["Dismiss"]
+                  });
+                  loading.dismiss();
+                  alert.present();
+                  console.log(error);
+                }
+              );
         }
         },
         error => {

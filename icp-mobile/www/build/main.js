@@ -455,6 +455,7 @@ var OffersPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_service_chat_component_service__ = __webpack_require__(315);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_listing_schedule_service_listing_component_service__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__booking_booking__ = __webpack_require__(159);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -464,6 +465,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -524,7 +526,11 @@ var ChatPage = /** @class */ (function () {
                     });
                 }
                 else {
-                    _this.sessionid = null;
+                    _this.chatService.getsessionid().subscribe(function (data) {
+                        _this.sessionid = data["session_id"];
+                    }, function (error) {
+                        _this.sessionid = null;
+                    });
                     _this.bookinginfo = data["response"]["output"]["generic"][0]["text"].split(',');
                     console.log(_this.bookinginfo);
                     _this.Year = Number(_this.bookinginfo[3].split("-")[0]);
@@ -534,7 +540,39 @@ var ChatPage = /** @class */ (function () {
                     _this.DayOfMonth = Number(_this.bookinginfo[3].split("-")[2]);
                     _this.DayOfMonth = String(_this.DayOfMonth);
                     console.log(_this.Year, _this.Month, _this.DayOfMonth);
-                    // console.log(data["response"]["output"]["generic"][0]["text"].split(','))
+                    var loading_1 = _this.loadingCtrl.create({
+                        content: "Please wait..."
+                    });
+                    loading_1.present();
+                    _this.listingService
+                        .listFlights(_this.Year, _this.Month, _this.DayOfMonth, _this.bookinginfo[1], _this.bookinginfo[2])
+                        .subscribe(function (data) {
+                        if (data.length) {
+                            console.log("data", data);
+                            loading_1.dismiss();
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__booking_booking__["a" /* BookingPage */], {
+                                item: data
+                            });
+                        }
+                        else {
+                            var alert = _this.alertCtrl.create({
+                                title: "Alert!",
+                                subTitle: "OOOOPS... No flights found!",
+                                buttons: ["Dismiss"]
+                            });
+                            loading_1.dismiss();
+                            alert.present();
+                        }
+                    }, function (error) {
+                        var alert = _this.alertCtrl.create({
+                            title: "Alert!",
+                            subTitle: "OOOOPS... Something Went Wrong",
+                            buttons: ["Dismiss"]
+                        });
+                        loading_1.dismiss();
+                        alert.present();
+                        console.log(error);
+                    });
                 }
             }, function (error) {
                 _this.watsontype = false;
@@ -2164,7 +2202,7 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_timer__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_observable_timer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(164);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2183,7 +2221,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen) {
         var _this = this;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_tabs_tabs__["a" /* TabsPage */];
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_login_login__["a" /* LoginPage */];
         this.showSplash = true;
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
@@ -2198,9 +2236,10 @@ var MyApp = /** @class */ (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/app/app.html"*/'<div *ngIf="showSplash" class="splash">\n        <img src="../assets/watson_logo.gif" alt="ibm">\n</div>      \n<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/app/app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=app.component.js.map
