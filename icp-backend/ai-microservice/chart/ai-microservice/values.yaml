@@ -51,20 +51,17 @@ hpa:
   scaleTargetRef:  
     name: aisvc
 
-envOfSecrets:
-  envAPIKEY:
-    name: APIKEY
-    secretKeyRef:
-      name: mysecret
-      key: APIKEY
-
 envOfConfigmaps:
-  envWORKSPACEID:
-    name: WORKSPACEID
+  envASSISTANTID:
+    name: ASSISTANTID
     configMapKeyRef:
       name: env-database
-      key: WORKSPACEID
-
+      key: ASSISTANTID
+  envAPIKEY:
+    name: APIKEY
+    configMapKeyRef:
+      name: env-database
+      key: APIKEY
 
 service:
   serviceMetadata:
