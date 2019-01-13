@@ -148,8 +148,3 @@ spec:
   - name: angular
     labels:
       app: angular
-
-
-
-
-

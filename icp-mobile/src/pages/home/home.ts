@@ -27,16 +27,6 @@ export class HomePage {
     private alertCtrl: AlertController,
     public loadingCtrl: LoadingController
   ) {}
-  likeButton() {
-    if (this.like_btn.icon_name === "heart-outline") {
-      this.like_btn.icon_name = "heart";
-      this.like_btn.color = "danger";
-      // Do some API job in here for real!
-    } else {
-      this.like_btn.icon_name = "heart-outline";
-      this.like_btn.color = "black";
-    }
-  }
   search() {
     let loading = this.loadingCtrl.create({
       content: "Please wait..."
@@ -91,7 +81,7 @@ export class HomePage {
     } else {
       let alert = this.alertCtrl.create({
         title: "Alert!",
-        subTitle: "Please enter all informatio",
+        subTitle: "Please enter all information",
         buttons: ["Dismiss"]
       });
       loading.dismiss();

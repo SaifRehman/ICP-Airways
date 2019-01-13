@@ -18,7 +18,7 @@ class App {
     epimetheus.instrument(this.express)
      this.assistant = new watson.AssistantV2({
       version: '2018-11-08',
-      iam_apikey: 'z7sGR_nRkuBWvYHMLKpdTGHy5F3hXWvw60UsZRlYPts5',
+      iam_apikey: process.env.APIKEY,
       url: 'https://gateway-lon.watsonplatform.net/assistant/api'
     });
     console.log(this.assistant);
@@ -41,7 +41,7 @@ class App {
     let router = express.Router();
     router.post('/watson', (req, res, next) => {
       this.assistant.message({
-        assistant_id: '8f87912c-35a1-4b74-9914-6508430f56fa',
+        assistant_id: process.env.ASSISTANTID,
         session_id: req.body.session_id,
         input: {
           'message_type': 'text',
@@ -59,7 +59,7 @@ class App {
     });
     router.get('/session', (req, res, next) => {
       this.assistant.createSession({
-        assistant_id: '8f87912c-35a1-4b74-9914-6508430f56fa',
+        assistant_id: process.env.ASSISTANTID,
       }, function(err, response) {
         if (err) {
           console.error(err);
