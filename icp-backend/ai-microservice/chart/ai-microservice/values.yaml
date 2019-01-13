@@ -34,6 +34,7 @@ image:
   lifecycle:
     preStop:
       command: ["/bin/bash", "-c", "sleep 20"]
+      
 hpa:
   metadata:
     name: aisvcmicroservicehpa
