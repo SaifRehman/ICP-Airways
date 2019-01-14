@@ -49,16 +49,5 @@ spec:
           limits:
             cpu: {{ .Values.image.limits.cpu }} 
             memory: {{ .Values.image.limits.memory }} 
-         env:
-          - name: {{ .Values.envOfConfigmaps.envAPPID.name }} 
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.envOfConfigmaps.envAPPID.configMapKeyRef.name }} 
-                key: {{ .Values.envOfConfigmaps.envAPPID.configMapKeyRef.key }} 
-          - name: {{ .Values.envOfConfigmaps.envAPPCODE.name }} 
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.envOfConfigmaps.envAPPCODE.configMapKeyRef.name }} 
-                key: {{ .Values.envOfConfigmaps.envAPPCODE.configMapKeyRef.key }} 
          ports:
          - containerPort: {{ .Values.image.ports.containerPort }} 

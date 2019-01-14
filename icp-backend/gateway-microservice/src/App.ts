@@ -31,7 +31,6 @@ class App {
           console.log(response.data)
         res.send(response.data);
       }).catch(error => {
-        console.log(error)
         res.status(404).send(error);
     });
     });
