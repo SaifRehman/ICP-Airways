@@ -14,10 +14,8 @@ import os
 import smtplib
 import time
 app = Flask(__name__)  
-CORS(app)
-  
+CORS(app)  
 app.config['CELERY_RESULT_BACKEND'] = os.environ['CELERY_RESULT_BACKEND']
-# app.config['CELERY_ACKS_LATE'] = True
 CELERY_ACKS_LATE = True
 app.config['CELERY_BROKER_URL'] = os.environ['CELERY_RESULT_BACKEND']
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'],backend = app.config['CELERY_RESULT_BACKEND'])

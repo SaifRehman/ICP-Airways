@@ -83,18 +83,18 @@ spec:
       attempts: 3
       perTryTimeout: 2s
     timeout: 5s
-  - match:
-    - uri:
-        prefix: /mapsvc/
-    rewrite:
-      uri: "/"
-    route:
-    - destination:
-        host: mapsvc.default.svc.cluster.local
-    retries:
-      attempts: 3
-      perTryTimeout: 2s
-    timeout: 5s
+    # - match:
+    #   - uri:
+    #       prefix: /mapsvc/
+    #   rewrite:
+    #     uri: "/"
+    #   route:
+    #   - destination:
+    #       host: mapsvc.default.svc.cluster.local
+    #   retries:
+    #     attempts: 3
+    #     perTryTimeout: 2s
+    #   timeout: 5s
   - match:
     - uri:
         prefix: /celerysvc/
@@ -120,7 +120,7 @@ spec:
   http:
   - match:
     - uri:
-        prefix: ''
+        prefix: '/ionic/'
     - headers:
         user-agent: 
           regex: '.*iPhone.*'
