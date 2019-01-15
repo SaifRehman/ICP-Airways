@@ -14,7 +14,6 @@ export class ContactPage {
   }
 
   logout(){
-    this.navCtrl.push(LoginPage)
+    this.navCtrl.setRoot(LoginPage, {}, {animate: true, direction: 'backward'});
   }
-
 }

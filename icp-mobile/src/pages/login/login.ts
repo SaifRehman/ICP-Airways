@@ -32,6 +32,14 @@ export class LoginPage {
     public provider:Provider,
     public statusBar: StatusBar
   ) {}
+  ionViewWillEnter() {
+    let tabs = document.querySelectorAll(".show-tabbar");
+    if (tabs !== null) {
+      Object.keys(tabs).map(key => {
+        tabs[key].style.display = "flex";
+      });
+    }
+  }
   login() {
     let loading = this.loadingCtrl.create({
       content: "Please wait..."

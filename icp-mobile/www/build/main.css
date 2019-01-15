@@ -51447,6 +51447,23 @@ page-about .card-5 {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+page-about footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-about p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
 page-booking .masters {
   background-color: #F7F7F7;
 }
@@ -51458,6 +51475,23 @@ page-booking .toolbar-background {
 page-booking .card-5 {
   -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+page-booking footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-booking p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
 }
 
 page-chat .masters {
@@ -51523,6 +51557,23 @@ page-chat .text-input {
   padding: 5px;
 }
 
+page-chat footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-chat p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
 page-contact .masters {
   background-color: #F7F7F7;
 }
@@ -51536,8 +51587,42 @@ page-contact .card-5 {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+page-contact footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-contact p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
 page-dashboard ion-icon {
   font-size: 5em;
+}
+
+page-dashboard footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-dashboard p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
 }
 
 page-home .masters {
@@ -51551,6 +51636,23 @@ page-home .toolbar-background {
 page-home .card-5 {
   -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+page-home footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-home p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
 }
 
 page-login .background {
@@ -51637,12 +51739,46 @@ page-login .bottom {
   bottom: 0;
 }
 
+page-login footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-login p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
 page-map .map-container {
   position: absolute;
   top: 0px;
   bottom: 0px;
   width: 100%;
   height: 100%;
+}
+
+page-map footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-map p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
 }
 
 page-offers .masters {
@@ -51658,8 +51794,42 @@ page-offers .card-5 {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+page-offers footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-offers p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
 page-signup {
   /* Extras */
+}
+
+page-signup footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-signup p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
 }
 
 page-signup .background {
