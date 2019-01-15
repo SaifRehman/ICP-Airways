@@ -13,7 +13,7 @@ export class ContactPage {
 
   }
 
-  logout(){
-    this.navCtrl.setRoot(LoginPage, {}, {animate: true, direction: 'backward'});
-  }
+  // logout(){
+  //   this.navCtrl.setRoot(LoginPage, {}, {animate: true, direction: 'backward'});
+  // }
 }
