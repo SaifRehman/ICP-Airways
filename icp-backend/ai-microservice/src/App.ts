@@ -12,8 +12,6 @@ class App {
   public express: express.Application;
   public assistant:any
   constructor() {
-    this.jwtOptions.jwtFromRequest = this.ExtractJwt.fromAuthHeaderAsBearerToken();
-    this.jwtOptions.secretOrKey = process.env.SECRET;
     this.express = express();
     epimetheus.instrument(this.express)
      this.assistant = new watson.AssistantV2({

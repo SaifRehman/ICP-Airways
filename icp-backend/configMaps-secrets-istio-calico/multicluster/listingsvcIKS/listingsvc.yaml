@@ -6,7 +6,8 @@ metadata:
     app: listingsvc
 spec:
   ports:
-  - port: 7000
+  - port: 80
+    targetPort: 7000
     name: http
   selector:
     app: listingsvc
