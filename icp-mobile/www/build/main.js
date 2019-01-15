@@ -810,8 +810,8 @@ var Provider = /** @class */ (function () {
             map: "http://" + this.url + "/mapsvc/getMap",
             email: 'http://' + this.url + "/celerysvc/postEmail",
             odm: 'http://' + this.url + "/odmsvc/odm",
-            watsoncall: 'http://localhost:3011/watson',
-            getsessionid: 'http://localhost:3011/session'
+            watsoncall: 'http://' + this.url + "/aisvc/watson",
+            getsessionid: 'http://' + this.url + "/aisvc/session"
         };
     }
     Provider = __decorate([
