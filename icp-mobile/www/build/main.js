@@ -1,70 +1,6 @@
 webpackJsonp([7],{
 
-/***/ 136:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var EmailService = /** @class */ (function () {
-    function EmailService(http, provider) {
-        this.http = http;
-        this.provider = provider;
-    }
-    EmailService.prototype.postEmail = function (toemail, src, dest) {
-        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({
-            headers: new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
-                'Content-Type': 'application/json'
-            })
-        });
-        var link = this.provider.apiUrl.email;
-        var bodyObject = {
-            toemail: toemail,
-            src: src,
-            dest: dest,
-        };
-        var bodyString = JSON.stringify(bodyObject); // Stringify payload
-        return this.http.post(link, bodyObject, options) // ...using post request
-            .map(function (res) {
-            "success";
-        })
-            .catch(function (error) {
-            console.log(error);
-            return __WEBPACK_IMPORTED_MODULE_1_rxjs__["Observable"].throw({ "error": "you have a error" });
-        });
-    };
-    EmailService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
-    ], EmailService);
-    return EmailService;
-}());
-
-//# sourceMappingURL=email.component.service.js.map
-
-/***/ }),
-
-/***/ 137:
+/***/ 135:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -156,16 +92,18 @@ var ListingService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 161:
+/***/ 136:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OffersPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EmailService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service_email_component_service__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__provider_provider__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -180,125 +118,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-/**
- * Generated class for the OffersPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var OffersPage = /** @class */ (function () {
-    function OffersPage(navCtrl, navParams, bookingService, alertCtrl, loadingCtrl, emailService, provider) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.bookingService = bookingService;
-        this.alertCtrl = alertCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.emailService = emailService;
+var EmailService = /** @class */ (function () {
+    function EmailService(http, provider) {
+        this.http = http;
         this.provider = provider;
-        this.values = navParams.get("item");
-        console.log(this.values);
     }
-    OffersPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad OffersPage');
-    };
-    OffersPage.prototype.cancel = function () {
-        this.navCtrl.pop();
-    };
-    OffersPage.prototype.confirm = function () {
-        var _this = this;
-        if (this.pricing) {
-            this.OfferTypePricing = 'Pricing';
-            this.OfferNamePricing = this.pricing.split(',')[0];
-            this.CostPricing = this.pricing.split(',')[1];
-        }
-        else {
-            this.OfferNamePricing = '';
-            this.OfferTypePricing = '';
-            this.CostPricing = '';
-        }
-        if (this.upgrades) {
-            this.OfferNameUpgrade = this.upgrades.split(',')[0];
-            this.CostUpgrade = this.upgrades.split(',')[1];
-            this.OfferTypeUpgrade = 'Upgrade';
-        }
-        else {
-            this.OfferNameUpgrade = '';
-            this.OfferTypeUpgrade = '';
-            this.CostUpgrade = '';
-        }
-        console.log(this.OfferNamePricing, this.OfferTypePricing, this.CostPricing, this.OfferNameUpgrade, this.OfferTypeUpgrade, this.CostUpgrade);
-        var alert = this.alertCtrl.create({
-            title: "Confirm Booking",
-            message: "Are you sure, you want to book this flight?",
-            buttons: [
-                {
-                    text: "Cancel",
-                    role: "cancel",
-                    handler: function () {
-                        console.log("Cancel clicked");
-                    }
-                },
-                {
-                    text: "Book",
-                    handler: function () {
-                        var loading = _this.loadingCtrl.create({
-                            content: "Please wait..."
-                        });
-                        loading.present();
-                        _this.bookingService
-                            .booking(_this.values.userid, _this.values.id, _this.OfferNamePricing, _this.OfferTypePricing, _this.CostPricing, _this.OfferNameUpgrade, _this.OfferTypeUpgrade, _this.CostUpgrade)
-                            .subscribe(function (data) {
-                            console.log("booked flight", data);
-                            var alert2 = _this.alertCtrl.create({
-                                title: "Success!",
-                                subTitle: "You Have Successfully Booked Your Flight",
-                                buttons: ["Dismiss"]
-                            });
-                            _this.emailService
-                                .postEmail(_this.provider.userData.data.EMAIL, _this.values.src, _this.values.dest)
-                                .subscribe(function (data) { }, function (error) { });
-                            loading.dismiss();
-                            alert2.present();
-                            _this.navCtrl.pop();
-                        }, function (error) {
-                            var alert3 = _this.alertCtrl.create({
-                                title: "Alert!",
-                                subTitle: "OOOPS... Something Went Wrong While Booking",
-                                buttons: ["Dismiss"]
-                            });
-                            loading.dismiss();
-                            alert3.present();
-                            _this.navCtrl.pop();
-                            console.log(error);
-                        });
-                    }
-                }
-            ]
+    EmailService.prototype.postEmail = function (toemail, src, dest) {
+        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({
+            headers: new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
+                'Content-Type': 'application/json'
+            })
         });
-        alert.present();
+        var link = this.provider.apiUrl.email;
+        var bodyObject = {
+            toemail: toemail,
+            src: src,
+            dest: dest,
+        };
+        var bodyString = JSON.stringify(bodyObject); // Stringify payload
+        return this.http.post(link, bodyObject, options) // ...using post request
+            .map(function (res) {
+            "success";
+        })
+            .catch(function (error) {
+            console.log(error);
+            return __WEBPACK_IMPORTED_MODULE_1_rxjs__["Observable"].throw({ "error": "you have a error" });
+        });
     };
-    OffersPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-offers',template:/*ion-inline-start:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/offers/offers.html"*/'<!--\n  Generated template for the OffersPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons start>\n      <button ion-button icon-only>\n        <img src="../assets/ibm.png" alt="ibm" height="20" width="40">\n      </button>\n    </ion-buttons>\n    <ion-title color="primary">Offers</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only color="danger" (click)="cancel()">\n        CANCEL\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-item-divider color="light">Select Pricing</ion-item-divider>\n  <ion-list radio-group [(ngModel)]="pricing">\n    <ng-container *ngIf="values">\n      <ng-container *ngFor="let listshow of values.data">\n    <ion-item *ngIf="listshow.offerType === \'Pricing\' ">\n      <ion-label>\n        <h3>\n          <ion-icon name="information-circle" item-start></ion-icon>\n          {{listshow.offerName}}\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          {{listshow.cost}} DHS\n        </h3>\n      </ion-label>\n      <ion-radio value= "{{listshow.offerName}},{{listshow.cost}}"></ion-radio>\n    </ion-item>\n    </ng-container>\n    </ng-container>\n  </ion-list>\n  <ion-item-divider color="light">Select Upgrades</ion-item-divider>\n  <ion-list radio-group [(ngModel)]="upgrades">\n      <ng-container *ngIf="values">\n          <ng-container *ngFor="let listshow of values.data">\n        <ion-item *ngIf="listshow.offerType === \'Upgrade\' ">\n          <ion-label>\n            <h3>\n              <ion-icon name="home" item-start *ngIf="listshow.offerName === \'Hotel\' "></ion-icon>\n              <ion-icon name="plane" item-start *ngIf="listshow.offerName === \'Air transporation\' "></ion-icon>\n              <ion-icon name="star" item-start *ngIf="listshow.offerName === \'Business Class\' "></ion-icon>\n              {{listshow.offerName}}\n            </h3>\n            <h3>\n              <ion-icon name="cash" item-start></ion-icon>\n              {{listshow.cost}} DHS\n            </h3>\n          </ion-label>\n          <ion-radio value= "{{listshow.offerName}},{{listshow.cost}}"></ion-radio>\n        </ion-item>\n        </ng-container>\n        </ng-container>\n    <!-- <ion-item>\n      <ion-label>\n        <h3>\n          <ion-icon name="home" item-start></ion-icon>\n          Hotel\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          1000 DHS\n        </h3>\n      </ion-label>\n      <ion-radio value="friends" checked></ion-radio>\n    </ion-item>\n    <ion-item>\n      <ion-label>\n        <h3>\n          <ion-icon name="plane" item-start></ion-icon>\n          Air Transportation\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          900 DHS\n        </h3>\n      </ion-label>\n      <ion-radio value="3"></ion-radio>\n    </ion-item>\n    <ion-item>\n      <ion-label>\n        <h3>\n          <ion-icon name="star" item-start></ion-icon>\n          Buisness Class\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          900 DHS\n        </h3>\n      </ion-label>\n      <ion-radio value="6"></ion-radio>\n    </ion-item> -->\n  </ion-list>\n        \n  <ion-item>\n      <button ion-button block outline color="tab" (click)="confirm()">BOOK</button>\n  </ion-item>\n</ion-content>\n\n<ion-footer no-border>\n\n  <footer>\n    <p class="copyright">© IBM 2019 </p>\n</footer>\n\n</ion-footer>'/*ion-inline-end:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/offers/offers.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__["a" /* BookingService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__services_email_service_email_component_service__["a" /* EmailService */], __WEBPACK_IMPORTED_MODULE_4__provider_provider__["a" /* Provider */]])
-    ], OffersPage);
-    return OffersPage;
+    EmailService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
+    ], EmailService);
+    return EmailService;
 }());
 
-//# sourceMappingURL=offers.js.map
+//# sourceMappingURL=email.component.service.js.map
 
 /***/ }),
 
-/***/ 162:
+/***/ 160:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_service_chat_component_service__ = __webpack_require__(315);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_listing_schedule_service_listing_component_service__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_chat_service_chat_component_service__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_listing_schedule_service_listing_component_service__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__booking_booking__ = __webpack_require__(92);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -456,7 +322,141 @@ var ChatPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 163:
+/***/ 161:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OffersPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_email_service_email_component_service__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__provider_provider__ = __webpack_require__(21);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the OffersPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var OffersPage = /** @class */ (function () {
+    function OffersPage(navCtrl, navParams, bookingService, alertCtrl, loadingCtrl, emailService, provider) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.bookingService = bookingService;
+        this.alertCtrl = alertCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.emailService = emailService;
+        this.provider = provider;
+        this.values = navParams.get("item");
+        console.log(this.values);
+    }
+    OffersPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad OffersPage');
+    };
+    OffersPage.prototype.cancel = function () {
+        this.navCtrl.pop();
+    };
+    OffersPage.prototype.confirm = function () {
+        var _this = this;
+        if (this.pricing) {
+            this.OfferTypePricing = 'Pricing';
+            this.OfferNamePricing = this.pricing.split(',')[0];
+            this.CostPricing = this.pricing.split(',')[1];
+        }
+        else {
+            this.OfferNamePricing = '';
+            this.OfferTypePricing = '';
+            this.CostPricing = '';
+        }
+        if (this.upgrades) {
+            this.OfferNameUpgrade = this.upgrades.split(',')[0];
+            this.CostUpgrade = this.upgrades.split(',')[1];
+            this.OfferTypeUpgrade = 'Upgrade';
+        }
+        else {
+            this.OfferNameUpgrade = '';
+            this.OfferTypeUpgrade = '';
+            this.CostUpgrade = '';
+        }
+        console.log(this.OfferNamePricing, this.OfferTypePricing, this.CostPricing, this.OfferNameUpgrade, this.OfferTypeUpgrade, this.CostUpgrade);
+        var alert = this.alertCtrl.create({
+            title: "Confirm Booking",
+            message: "Are you sure, you want to book this flight?",
+            buttons: [
+                {
+                    text: "Cancel",
+                    role: "cancel",
+                    handler: function () {
+                        console.log("Cancel clicked");
+                    }
+                },
+                {
+                    text: "Book",
+                    handler: function () {
+                        var loading = _this.loadingCtrl.create({
+                            content: "Please wait..."
+                        });
+                        loading.present();
+                        _this.bookingService
+                            .booking(_this.values.userid, _this.values.id, _this.OfferNamePricing, _this.OfferTypePricing, _this.CostPricing, _this.OfferNameUpgrade, _this.OfferTypeUpgrade, _this.CostUpgrade)
+                            .subscribe(function (data) {
+                            console.log("booked flight", data);
+                            var alert2 = _this.alertCtrl.create({
+                                title: "Success!",
+                                subTitle: "You Have Successfully Booked Your Flight",
+                                buttons: ["Dismiss"]
+                            });
+                            _this.emailService
+                                .postEmail(_this.provider.userData.data.EMAIL, _this.values.src, _this.values.dest)
+                                .subscribe(function (data) { }, function (error) { });
+                            loading.dismiss();
+                            alert2.present();
+                            _this.navCtrl.pop();
+                        }, function (error) {
+                            var alert3 = _this.alertCtrl.create({
+                                title: "Alert!",
+                                subTitle: "OOOPS... Something Went Wrong While Booking",
+                                buttons: ["Dismiss"]
+                            });
+                            loading.dismiss();
+                            alert3.present();
+                            _this.navCtrl.pop();
+                            console.log(error);
+                        });
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    OffersPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-offers',template:/*ion-inline-start:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/offers/offers.html"*/'<!--\n  Generated template for the OffersPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-toolbar>\n    <ion-buttons start>\n      <button ion-button icon-only>\n        <img src="../assets/ibm.png" alt="ibm" height="20" width="40">\n      </button>\n    </ion-buttons>\n    <ion-title color="primary">Offers</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only color="danger" (click)="cancel()">\n        CANCEL\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-item-divider color="light">Select Pricing</ion-item-divider>\n  <ion-list radio-group [(ngModel)]="pricing">\n    <ng-container *ngIf="values">\n      <ng-container *ngFor="let listshow of values.data">\n    <ion-item *ngIf="listshow.offerType === \'Pricing\' ">\n      <ion-label>\n        <h3>\n          <ion-icon name="information-circle" item-start></ion-icon>\n          {{listshow.offerName}}\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          {{listshow.cost}} DHS\n        </h3>\n      </ion-label>\n      <ion-radio value= "{{listshow.offerName}},{{listshow.cost}}"></ion-radio>\n    </ion-item>\n    </ng-container>\n    </ng-container>\n  </ion-list>\n  <ion-item-divider color="light">Select Upgrades</ion-item-divider>\n  <ion-list radio-group [(ngModel)]="upgrades">\n      <ng-container *ngIf="values">\n          <ng-container *ngFor="let listshow of values.data">\n        <ion-item *ngIf="listshow.offerType === \'Upgrade\' ">\n          <ion-label>\n            <h3>\n              <ion-icon name="home" item-start *ngIf="listshow.offerName === \'Hotel\' "></ion-icon>\n              <ion-icon name="plane" item-start *ngIf="listshow.offerName === \'Air transporation\' "></ion-icon>\n              <ion-icon name="star" item-start *ngIf="listshow.offerName === \'Business Class\' "></ion-icon>\n              {{listshow.offerName}}\n            </h3>\n            <h3>\n              <ion-icon name="cash" item-start></ion-icon>\n              {{listshow.cost}} DHS\n            </h3>\n          </ion-label>\n          <ion-radio value= "{{listshow.offerName}},{{listshow.cost}}"></ion-radio>\n        </ion-item>\n        </ng-container>\n        </ng-container>\n    <!-- <ion-item>\n      <ion-label>\n        <h3>\n          <ion-icon name="home" item-start></ion-icon>\n          Hotel\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          1000 DHS\n        </h3>\n      </ion-label>\n      <ion-radio value="friends" checked></ion-radio>\n    </ion-item>\n    <ion-item>\n      <ion-label>\n        <h3>\n          <ion-icon name="plane" item-start></ion-icon>\n          Air Transportation\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          900 DHS\n        </h3>\n      </ion-label>\n      <ion-radio value="3"></ion-radio>\n    </ion-item>\n    <ion-item>\n      <ion-label>\n        <h3>\n          <ion-icon name="star" item-start></ion-icon>\n          Buisness Class\n        </h3>\n        <h3>\n          <ion-icon name="cash" item-start></ion-icon>\n          900 DHS\n        </h3>\n      </ion-label>\n      <ion-radio value="6"></ion-radio>\n    </ion-item> -->\n  </ion-list>\n        \n  <ion-item>\n      <button ion-button block outline color="tab" (click)="confirm()">BOOK</button>\n  </ion-item>\n</ion-content>\n\n<ion-footer no-border>\n\n  <footer>\n    <p class="copyright">© IBM 2019 </p>\n</footer>\n\n</ion-footer>'/*ion-inline-end:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/offers/offers.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__["a" /* BookingService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__services_email_service_email_component_service__["a" /* EmailService */], __WEBPACK_IMPORTED_MODULE_4__provider_provider__["a" /* Provider */]])
+    ], OffersPage);
+    return OffersPage;
+}());
+
+//# sourceMappingURL=offers.js.map
+
+/***/ }),
+
+/***/ 162:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -464,7 +464,7 @@ var ChatPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dashboard_dashboard_service__ = __webpack_require__(316);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__map_map__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__map_map__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__ = __webpack_require__(318);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -568,7 +568,7 @@ var DashboardPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 164:
+/***/ 163:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -666,6 +666,112 @@ var MapPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=map.js.map
+
+/***/ }),
+
+/***/ 164:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(320);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_signup__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_login_service_login_component_service__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__provider_provider__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jwt_decode__ = __webpack_require__(705);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jwt_decode___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_jwt_decode__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(87);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+/**
+ * Generated class for the LoginPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var LoginPage = /** @class */ (function () {
+    function LoginPage(navCtrl, navParams, loginService, alertCtrl, loadingCtrl, provider, statusBar) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.loginService = loginService;
+        this.alertCtrl = alertCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.provider = provider;
+        this.statusBar = statusBar;
+    }
+    LoginPage.prototype.ionViewWillEnter = function () {
+        var tabs = document.querySelectorAll(".show-tabbar");
+        if (tabs !== null) {
+            Object.keys(tabs).map(function (key) {
+                tabs[key].style.display = "flex";
+            });
+        }
+    };
+    LoginPage.prototype.login = function () {
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: "Please wait..."
+        });
+        loading.present();
+        this.loginService.login(this.username, this.password).subscribe(function (data) {
+            // this.statusBar.backgroundColorByHexString("#25312C")
+            _this.provider.token = data['token'];
+            localStorage.setItem('token', _this.provider.token);
+            _this.provider.userData = __WEBPACK_IMPORTED_MODULE_6_jwt_decode__(data['token']);
+            console.log(_this.provider.userData);
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
+            loading.dismiss();
+        }, function (error) {
+            console.log(error);
+            var alert = _this.alertCtrl.create({
+                title: "Alert!",
+                subTitle: "OOOOPS... Something Went Wrong",
+                buttons: ["Dismiss"]
+            });
+            loading.dismiss();
+            alert.present();
+        });
+    };
+    LoginPage.prototype.signup = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__signup_signup__["a" /* SignupPage */]);
+    };
+    LoginPage.prototype.ionViewDidLoad = function () {
+        console.log("ionViewDidLoad LoginPage");
+    };
+    LoginPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: "page-login",template:/*ion-inline-start:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/login/login.html"*/'<ion-content class="background">\n	<ion-card>\n		<ion-card-content>\n			<ion-list no-line>\n				<ion-item>\n					<ion-input type="text" placeholder="Username" [(ngModel)]="username"></ion-input>\n				</ion-item>\n				<ion-item>\n					<ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>\n				</ion-item>\n				<button ion-button block outline color="light" (click)="login()">Log in</button>\n			</ion-list>\n		</ion-card-content>\n	</ion-card>\n	<button class="bottom" ion-button clear full color="light" (click)="signup()">Don\'t have an account? Sign up</button>\n</ion-content>\n\n<ion-footer no-border>\n\n	<footer>\n	  <p class="copyright">© IBM 2019 </p>\n  </footer>\n  \n  </ion-footer>'/*ion-inline-end:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/login/login.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_4__services_login_service_login_component_service__["a" /* LoginService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_5__provider_provider__["a" /* Provider */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__["a" /* StatusBar */]])
+    ], LoginPage);
+    return LoginPage;
+}());
+
+//# sourceMappingURL=login.js.map
 
 /***/ }),
 
@@ -810,8 +916,8 @@ var Provider = /** @class */ (function () {
             map: "http://" + this.url + "/mapsvc/getMap",
             email: 'http://' + this.url + "/celerysvc/postEmail",
             odm: 'http://' + this.url + "/odmsvc/odm",
-            watsoncall: 'http://localhost:3011/watson',
-            getsessionid: 'http://localhost:3011/session'
+            watsoncall: 'http://' + this.url + "/aisvc/watson",
+            getsessionid: 'http://' + this.url + "/aisvc/session"
         };
     }
     Provider = __decorate([
@@ -830,11 +936,11 @@ var Provider = /** @class */ (function () {
 
 var map = {
 	"../pages/booking/booking.module": [
-		731,
+		732,
 		6
 	],
 	"../pages/chat/chat.module": [
-		732,
+		731,
 		5
 	],
 	"../pages/dashboard/dashboard.module": [
@@ -842,15 +948,15 @@ var map = {
 		4
 	],
 	"../pages/login/login.module": [
-		736,
+		734,
 		3
 	],
 	"../pages/map/map.module": [
-		734,
+		735,
 		2
 	],
 	"../pages/offers/offers.module": [
-		735,
+		736,
 		1
 	],
 	"../pages/signup/signup.module": [
@@ -874,73 +980,7 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 314:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OdmService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var OdmService = /** @class */ (function () {
-    function OdmService(http, provider) {
-        this.http = http;
-        this.provider = provider;
-    }
-    OdmService.prototype.getODM = function (srcAirport, dstAirport, customerTier, milesBalance) {
-        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({
-            headers: new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
-                'Content-Type': 'application/json',
-                'Authorization': this.provider.token
-            })
-        });
-        var link = this.provider.apiUrl.odm;
-        var bodyObject = {
-            srcAirport: srcAirport,
-            dstAirport: dstAirport,
-            customerTier: customerTier,
-            milesBalance: milesBalance,
-            offers: [],
-            messages: []
-        };
-        var bodyString = JSON.stringify(bodyObject); // Stringify payload
-        return this.http.post(link, bodyObject, options) // ...using post request
-            .map(function (res) { return res.json(); })
-            .catch(function (error) {
-            console.log(error);
-            return __WEBPACK_IMPORTED_MODULE_1_rxjs__["Observable"].throw(error.json().error || 'Server error');
-        });
-    };
-    OdmService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
-    ], OdmService);
-    return OdmService;
-}());
-
-//# sourceMappingURL=odm.component.service.js.map
-
-/***/ }),
-
-/***/ 315:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1017,6 +1057,72 @@ var ChatService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 315:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OdmService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Rx__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var OdmService = /** @class */ (function () {
+    function OdmService(http, provider) {
+        this.http = http;
+        this.provider = provider;
+    }
+    OdmService.prototype.getODM = function (srcAirport, dstAirport, customerTier, milesBalance) {
+        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["e" /* RequestOptions */]({
+            headers: new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
+                'Content-Type': 'application/json',
+                'Authorization': this.provider.token
+            })
+        });
+        var link = this.provider.apiUrl.odm;
+        var bodyObject = {
+            srcAirport: srcAirport,
+            dstAirport: dstAirport,
+            customerTier: customerTier,
+            milesBalance: milesBalance,
+            offers: [],
+            messages: []
+        };
+        var bodyString = JSON.stringify(bodyObject); // Stringify payload
+        return this.http.post(link, bodyObject, options) // ...using post request
+            .map(function (res) { return res.json(); })
+            .catch(function (error) {
+            console.log(error);
+            return __WEBPACK_IMPORTED_MODULE_1_rxjs__["Observable"].throw(error.json().error || 'Server error');
+        });
+    };
+    OdmService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
+    ], OdmService);
+    return OdmService;
+}());
+
+//# sourceMappingURL=odm.component.service.js.map
+
+/***/ }),
+
 /***/ 316:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1089,8 +1195,8 @@ var DashboardService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_about__ = __webpack_require__(321);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contact_contact__ = __webpack_require__(328);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__chat_chat__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__chat_chat__ = __webpack_require__(160);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1137,7 +1243,7 @@ var TabsPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__provider_provider__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_checkin_service_checkin_component_service__ = __webpack_require__(322);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_booking_service_booking_component_service__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_booking_service_booking_component_service__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios__ = __webpack_require__(686);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_axios__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1439,8 +1545,7 @@ var CheckinService = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__login_login__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__provider_provider__ = __webpack_require__(21);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1453,20 +1558,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var ContactPage = /** @class */ (function () {
     function ContactPage(navCtrl, provider) {
         this.navCtrl = navCtrl;
         this.provider = provider;
     }
-    ContactPage.prototype.logout = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__login_login__["a" /* LoginPage */]);
-    };
     ContactPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-contact',template:/*ion-inline-start:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/contact/contact.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-buttons start>\n      <button ion-button icon-only>\n        <img src="../assets/ibm.png" alt="ibm" height="20" width="40">\n      </button>\n    </ion-buttons>\n    <ion-title color="primary">About</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content padding>\n\n  <!-- Profile picture -->\n  <div text-center>\n    <img src="../assets/avatar.png" class="edit-avatar" alt="">\n  </div>\n\n  <!-- Form -->\n\n  <ion-list>\n    <ion-item>\n      <ion-icon name="person" item-start color="tab"></ion-icon>\n      {{provider.userData.data.FIRSTNAME + \' \'}} {{provider.userData.data.LASTNAME + \' \'}} \n    </ion-item>\n    <ion-item>\n      <ion-icon name="body" item-start color="tab"></ion-icon>\n      {{provider.userData.data.AGE}}  years\n    </ion-item>\n    <ion-item>\n      <ion-icon name="at" item-start color="tab"></ion-icon>\n      {{provider.userData.data.EMAIL}} \n    </ion-item>\n    <ion-item>\n      <ion-icon name="medal" item-start color="tab"></ion-icon>\n      {{provider.userData.data.TIER}}  class\n    </ion-item>\n  </ion-list>\n\n\n  <!-- Private information form -->\n\n</ion-content>\n\n<ion-footer no-border>\n\n  <footer>\n    <p class="copyright">© IBM 2019 </p>\n</footer>\n\n</ion-footer>'/*ion-inline-end:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/contact/contact.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__provider_provider__["a" /* Provider */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__provider_provider__["a" /* Provider */]])
     ], ContactPage);
     return ContactPage;
 }());
@@ -1483,7 +1584,7 @@ var ContactPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__booking_booking__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_listing_schedule_service_listing_component_service__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_listing_schedule_service_listing_component_service__ = __webpack_require__(135);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1745,31 +1846,31 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(725);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_about_about__ = __webpack_require__(321);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_offers_offers__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_signup_signup__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_booking_booking__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_map_map__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_map_map__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_contact_contact__ = __webpack_require__(328);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_tabs_tabs__ = __webpack_require__(320);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_login_service_login_component_service__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_signup_service_signup_component_service__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_dashboard_dashboard__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_dashboard_dashboard__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_status_bar__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_splash_screen__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_dashboard_dashboard_service__ = __webpack_require__(316);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__provider_provider__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_listing_schedule_service_listing_component_service__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_listing_schedule_service_listing_component_service__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__shared_shared_module__ = __webpack_require__(726);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_booking_service_booking_component_service__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_chat_service_chat_component_service__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_booking_service_booking_component_service__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_chat_service_chat_component_service__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__services_email_service_email_component_service__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_checkin_service_checkin_component_service__ = __webpack_require__(322);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_ionic_native_http_angular_wrapper__ = __webpack_require__(729);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_native_geolocation__ = __webpack_require__(318);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_odm_service_odm_component_service__ = __webpack_require__(314);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_chat_chat__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_odm_service_odm_component_service__ = __webpack_require__(315);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pages_chat_chat__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_leaflet_routing_machine__ = __webpack_require__(317);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31_leaflet_routing_machine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_31_leaflet_routing_machine__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1836,12 +1937,12 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/booking/booking.module#BookingPageModule', name: 'BookingPage', segment: 'booking', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/chat/chat.module#ChatPageModule', name: 'ChatPage', segment: 'chat', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/booking/booking.module#BookingPageModule', name: 'BookingPage', segment: 'booking', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/dashboard/dashboard.module#DashboardPageModule', name: 'DashboardPage', segment: 'dashboard', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/map/map.module#MapPageModule', name: 'MapPage', segment: 'map', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/offers/offers.module#OffersPageModule', name: 'OffersPage', segment: 'offers', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] }
                     ]
                 })
@@ -1895,9 +1996,9 @@ var AppModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_timer__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_timer__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_observable_timer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_observable_timer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(164);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1919,11 +2020,8 @@ var MyApp = /** @class */ (function () {
         this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_login_login__["a" /* LoginPage */];
         this.showSplash = true;
         platform.ready().then(function () {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
+            console.log = function () { };
             statusBar.styleDefault();
-            // statusBar.overlaysWebView(true);
-            // statusBar.backgroundColorByHexString('#000000');
             splashScreen.hide();
             Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_observable_timer__["timer"])(1000).subscribe(function () { return _this.showSplash = false; }); // <-- hide animation after 3s
         });
@@ -2079,7 +2177,7 @@ var TimeRefactorPipe = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 78:
+/***/ 86:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2172,10 +2270,10 @@ var BookingService = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BookingPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_booking_service_booking_component_service__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provider_provider__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_email_service_email_component_service__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_odm_service_odm_component_service__ = __webpack_require__(314);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_odm_service_odm_component_service__ = __webpack_require__(315);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__offers_offers__ = __webpack_require__(161);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2361,104 +2459,6 @@ var BookingPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=booking.js.map
-
-/***/ }),
-
-/***/ 93:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tabs_tabs__ = __webpack_require__(320);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signup_signup__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_login_service_login_component_service__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__provider_provider__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jwt_decode__ = __webpack_require__(705);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_jwt_decode___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_jwt_decode__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(87);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-
-
-
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var LoginPage = /** @class */ (function () {
-    function LoginPage(navCtrl, navParams, loginService, alertCtrl, loadingCtrl, provider, statusBar) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.loginService = loginService;
-        this.alertCtrl = alertCtrl;
-        this.loadingCtrl = loadingCtrl;
-        this.provider = provider;
-        this.statusBar = statusBar;
-    }
-    LoginPage.prototype.login = function () {
-        var _this = this;
-        var loading = this.loadingCtrl.create({
-            content: "Please wait..."
-        });
-        loading.present();
-        this.loginService.login(this.username, this.password).subscribe(function (data) {
-            // this.statusBar.backgroundColorByHexString("#25312C")
-            _this.provider.token = data['token'];
-            localStorage.setItem('token', _this.provider.token);
-            _this.provider.userData = __WEBPACK_IMPORTED_MODULE_6_jwt_decode__(data['token']);
-            console.log(_this.provider.userData);
-            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__tabs_tabs__["a" /* TabsPage */]);
-            loading.dismiss();
-        }, function (error) {
-            console.log(error);
-            var alert = _this.alertCtrl.create({
-                title: "Alert!",
-                subTitle: "OOOOPS... Something Went Wrong",
-                buttons: ["Dismiss"]
-            });
-            loading.dismiss();
-            alert.present();
-        });
-    };
-    LoginPage.prototype.signup = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__signup_signup__["a" /* SignupPage */]);
-    };
-    LoginPage.prototype.ionViewDidLoad = function () {
-        console.log("ionViewDidLoad LoginPage");
-    };
-    LoginPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: "page-login",template:/*ion-inline-start:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/login/login.html"*/'<ion-content class="background">\n	<ion-card>\n		<ion-card-content>\n			<ion-list no-line>\n				<ion-item>\n					<ion-input type="text" placeholder="Username" [(ngModel)]="username"></ion-input>\n				</ion-item>\n				<ion-item>\n					<ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>\n				</ion-item>\n				<button ion-button block outline color="light" (click)="login()">Log in</button>\n			</ion-list>\n		</ion-card-content>\n	</ion-card>\n	<button class="bottom" ion-button clear full color="light" (click)="signup()">Don\'t have an account? Sign up</button>\n</ion-content>\n\n<ion-footer no-border>\n\n	<footer>\n	  <p class="copyright">© IBM 2019 </p>\n  </footer>\n  \n  </ion-footer>'/*ion-inline-end:"/Users/saifurrehman/Desktop/ICP-Airways/icp-mobile/src/pages/login/login.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_4__services_login_service_login_component_service__["a" /* LoginService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_5__provider_provider__["a" /* Provider */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__["a" /* StatusBar */]])
-    ], LoginPage);
-    return LoginPage;
-}());
-
-//# sourceMappingURL=login.js.map
 
 /***/ })
 
