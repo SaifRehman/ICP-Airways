@@ -54,11 +54,11 @@ When you've completed this Code Pattern, you will understand how to:
 
 ### App Screenshot
 
-1. ![1](1.png) 
+1. ![app1](1.png) 
 
-2. ![2](2.png)
+2. ![app2](2.png)
 
-3. ![3](3.png)
+3. ![app3](3.png)
 
 <!-- 4. ![4](4.png)
 
