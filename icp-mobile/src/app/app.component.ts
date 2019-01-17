@@ -15,8 +15,10 @@ export class MyApp {
   rootPage:any = LoginPage;
   showSplash = true;
   
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen
+    ) {
     platform.ready().then(() => {
+      
       console.log = function(){};
       statusBar.styleDefault();
       splashScreen.hide();

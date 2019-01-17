@@ -51414,6 +51414,26 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+.splash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #000000;
+}
+
 page-about .masters {
   background-color: #F7F7F7;
 }
@@ -51425,6 +51445,23 @@ page-about .toolbar-background {
 page-about .card-5 {
   -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+page-about footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-about p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
 }
 
 page-booking .masters {
@@ -51440,6 +51477,103 @@ page-booking .card-5 {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+page-booking footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-booking p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
+page-chat .masters {
+  background-color: #F7F7F7;
+}
+
+page-chat .toolbar-background {
+  background-color: #F7F7F7;
+}
+
+page-chat .card-5 {
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+page-chat .grid {
+  padding: 0;
+}
+
+page-chat .sender .friend-img, page-chat .me .friend-img {
+  position: absolute;
+  border-radius: 40px;
+  width: 40px;
+  height: 40px;
+  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+page-chat .sender p, page-chat .me p {
+  border-radius: 5px;
+  margin: 0;
+}
+
+page-chat .sender p {
+  text-align: left;
+  background-color: #fff;
+  padding: 12px 10px;
+  border: 1px solid #d1d1d1;
+}
+
+page-chat .sender .friend-img {
+  margin: 0 0;
+}
+
+page-chat .me .txt {
+  display: inline;
+  text-align: right;
+}
+
+page-chat .me .friend-img {
+  margin: 0 22px;
+}
+
+page-chat .me p {
+  background-color: #3A589B;
+  color: #fff;
+  padding: 12px 10px;
+}
+
+page-chat .text-input {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+page-chat footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-chat p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
 page-contact .masters {
   background-color: #F7F7F7;
 }
@@ -51453,8 +51587,42 @@ page-contact .card-5 {
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
+page-contact footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-contact p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
 page-dashboard ion-icon {
   font-size: 5em;
+}
+
+page-dashboard footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-dashboard p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
 }
 
 page-home .masters {
@@ -51468,6 +51636,23 @@ page-home .toolbar-background {
 page-home .card-5 {
   -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+page-home footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-home p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
 }
 
 page-login .background {
@@ -51554,6 +51739,23 @@ page-login .bottom {
   bottom: 0;
 }
 
+page-login footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-login p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
 page-map .map-container {
   position: absolute;
   top: 0px;
@@ -51562,8 +51764,72 @@ page-map .map-container {
   height: 100%;
 }
 
+page-map footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-map p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
+page-offers .masters {
+  background-color: #F7F7F7;
+}
+
+page-offers .toolbar-background {
+  background-color: #F7F7F7;
+}
+
+page-offers .card-5 {
+  -webkit-box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+page-offers footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-offers p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
+}
+
 page-signup {
   /* Extras */
+}
+
+page-signup footer {
+  position: relative;
+  height: 30px;
+  width: 100%;
+  background-color: #333333;
+}
+
+page-signup p.copyright {
+  position: absolute;
+  width: 100%;
+  color: #fff;
+  line-height: 10px;
+  font-size: 0.7em;
+  text-align: center;
+  bottom: 0;
 }
 
 page-signup .background {

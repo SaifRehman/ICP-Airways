@@ -25,8 +25,8 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
-    <feature name="Keyboard">
-        <param name="ios-package" onload="true" value="CDVIonicKeyboard" />
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
     </feature>
     <allow-navigation href="http://localhost:8080/*" />
     <allow-navigation href="http://127.0.0.1:8080/*" />
@@ -41,9 +41,6 @@
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" />
         <param name="onload" value="true" />
-    </feature>
-    <feature name="Geolocation">
-        <param name="ios-package" value="CDVLocation" />
     </feature>
     <name>MyApp</name>
     <description>An awesome Ionic/Cordova app.</description>
@@ -124,5 +121,6 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="FadeSplashScreen" value="true" />
     <preference name="ShowSplashScreen" value="true" />
+    <preference name="WKSuspendInBackground" value="false" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
 </widget>

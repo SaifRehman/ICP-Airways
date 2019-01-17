@@ -13,7 +13,7 @@
     "cordova-plugin-device": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
-    "cordova-plugin-ionic-keyboard": {
+    "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-ionic-webview": {
@@ -26,9 +26,6 @@
       "PACKAGE_NAME": "io.ionic.starter"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-geolocation": {
       "PACKAGE_NAME": "io.ionic.starter"
     }
   },
