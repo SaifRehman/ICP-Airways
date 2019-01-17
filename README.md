@@ -54,7 +54,7 @@ When you've completed this Code Pattern, you will understand how to:
 
 ### App Screenshot
 
-[99](99.png) 
+ ![99](99.png) 
 
 #### Flow
 0. *Mobile App*:- End user mobile app who will access the application. It leverages restful endpoints by backend microservices
