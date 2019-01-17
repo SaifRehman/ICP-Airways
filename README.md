@@ -54,26 +54,7 @@ When you've completed this Code Pattern, you will understand how to:
 
 ### App Screenshot
 
-1. ![1](1.jpg) 
-
-2. ![2](2.jpg)
-
-3. ![3](3.jpg)
-
-4. ![4](4.jpg)
-
-5. ![5](5.jpg)
-
-6. ![6](6.jpg)
-
-7. ![7](7.jpg)
-
-8. ![8](8.jpg)
-
-9. ![9](9.jpg)
-
-10. ![10](1.jpg)
-
+[99](99.png) 
 
 #### Flow
 0. *Mobile App*:- End user mobile app who will access the application. It leverages restful endpoints by backend microservices
