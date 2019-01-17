@@ -54,25 +54,25 @@ When you've completed this Code Pattern, you will understand how to:
 
 ### App Screenshot
 
-1. ![app1](1.png) 
+1. ![1](1.jpeg) 
 
-2. ![app2](2.png)
+2. ![2](2.jpeg)
 
-3. ![app3](3.png)
+3. ![3](3.jpeg)
 
-<!-- 4. ![4](4.png)
+4. ![4](4.jpeg)
 
-5. ![5](5.png)
+5. ![5](5.jpeg)
 
-6. ![6](6.png)
+6. ![6](6.jpeg)
 
-7. ![7](7.png)
+7. ![7](7.jpeg)
 
-8. ![8](8.png)
+8. ![8](8.jpeg)
 
-9. ![9](9.png)
+9. ![9](9.jpeg)
 
-10. ![10](10.png) -->
+10. ![10](1.jpeg)
 
 
 #### Flow
