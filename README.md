@@ -60,7 +60,7 @@ When you've completed this Code Pattern, you will understand how to:
 
 3. ![3](3.png)
 
-4. ![4](4.png)
+<!-- 4. ![4](4.png)
 
 5. ![5](5.png)
 
@@ -72,7 +72,7 @@ When you've completed this Code Pattern, you will understand how to:
 
 9. ![9](9.png)
 
-10. ![10](10.png)
+10. ![10](10.png) -->
 
 
 #### Flow
