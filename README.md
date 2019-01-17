@@ -54,11 +54,25 @@ When you've completed this Code Pattern, you will understand how to:
 
 ### App Screenshot
 
-1. ![icp8](icp8.png) ![icp9](icp9.png)
+1. ![1](1.png) 
 
-2. ![icp9](icp9.png)
+2. ![2](2.png)
 
-3. ![icp10](icp10.png)
+3. ![3](3.png)
+
+4. ![4](4.png)
+
+5. ![5](5.png)
+
+6. ![6](6.png)
+
+7. ![7](7.png)
+
+8. ![8](8.png)
+
+9. ![9](9.png)
+
+10. ![10](10.png)
 
 
 #### Flow
