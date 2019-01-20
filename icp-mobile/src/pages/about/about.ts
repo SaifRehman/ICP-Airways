@@ -54,7 +54,6 @@ export class AboutPage {
             getData(url + data[iter]["FlightID"], iter);
             if (iter === data.length - 1) {
               this.show = temp;
-              console.log("showwwwwww", this.show);
               loading.dismiss();
             }
           }
@@ -150,7 +149,6 @@ export class AboutPage {
             getData(url + data[iter]["FlightID"], iter);
             if (iter === data.length - 1) {
               this.show = temp;
-              console.log("showwwwwww", this.show);
               loading.dismiss();
               refresher.complete();
             }
