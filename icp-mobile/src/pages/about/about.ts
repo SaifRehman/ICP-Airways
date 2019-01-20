@@ -34,7 +34,7 @@ export class AboutPage {
           console.log("data", data);
           const url = this.provider.apiUrl.listFlightsByID + "/";
           console.log("urlss", url);
-          if(data.length===0){
+          if (data.length === 0) {
             loading.dismiss();
           }
           const getData = async (url, iter) => {
@@ -90,18 +90,18 @@ export class AboutPage {
                   .subscribe(
                     data2 => {
                       let alert = this.alertCtrl.create({
-                        title: 'Success',
-                        subTitle: 'Congrats You Have Successfully Checkedin',
-                        buttons: ['Dismiss']
+                        title: "Success",
+                        subTitle: "Congrats You Have Successfully Checkedin",
+                        buttons: ["Dismiss"]
                       });
                       alert.present();
                       loading.dismiss();
                     },
                     error => {
                       let alert = this.alertCtrl.create({
-                        title: 'OOOPS... Something Went Wrong',
-                        subTitle: 'Please try again later',
-                        buttons: ['Dismiss']
+                        title: "OOOPS... Something Went Wrong",
+                        subTitle: "Please try again later",
+                        buttons: ["Dismiss"]
                       });
                       alert.present();
                       loading.dismiss();
