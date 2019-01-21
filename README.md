@@ -321,7 +321,7 @@ CREATE TABLE SAMPLE.Booking (BookingID  MEDIUMINT NOT NULL AUTO_INCREMENT,TS TIM
 ### Deploying MongoDB
 1. Go to ```Catalog``` and filter ```mongodb```
 
-![icp15](icp15.png)
+![icp15](img/icp15.png)
 
 2. Click on configure, fill up the required field and deploy
 
