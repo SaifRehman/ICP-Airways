@@ -54,7 +54,7 @@ When you've completed this Code Pattern, you will understand how to:
 
 ### App Screenshot
 
- ![99](99.png) 
+ ![99](img/99.png) 
 
 #### Flow
 0. *Mobile App*:- End user mobile app who will access the application. It leverages restful endpoints by backend microservices
@@ -72,7 +72,7 @@ When you've completed this Code Pattern, you will understand how to:
 12. *RabbitMQ*:- RabbitMQ is a messaging broker - an intermediary for messaging. It gives your applications a common platform to send and receive messages, and your messages a safe place to live until received.
 13. *Here Map*:- Here map api to fetch nearby locations
 
- ![high](high_level_arch.png)
+ ![high](img/high_level_arch.png)
 
  #### Featured technologies
 1. [Angular](https://angular.io/):- Angular is a platform that makes it easy to build applications with the web. Angular combines declarative templates, dependency injection, end to end tooling, and integrated best practices to solve development challenges
@@ -109,16 +109,16 @@ If you want a quick walkthrough of the end result, a video is available [here](h
 ```
 $ sudo nano /etc/hosts
 ```
-![icp-docker](icp-docker.png)
+![icp-docker](img/icp-docker.png)
 
 2. Type in your ICP ip and provide a dns name, quit and save the file
 3. Go to Docker prefernces
 
-![pref](pref.png)
+![pref](img/pref.png)
 
 4. Navigate to Daemon tab, click on + button and add an entry “icpdns:85000”, click Apply & Restart button to restart Docker service. 
 
-![dock-pi](dock-pi.png)
+![dock-pi](img/dock-pi.png)
 
 5. In your terminal type
 ```
@@ -196,20 +196,20 @@ $ docker push <icpdns>:8500/default/map:0.0.1
 ```
 > Find all your images in ```https://icpip:8443/console/manage/images``` 
 
-![images](images.png)
+![images](img/images.png)
 
 ### Connect kubesctl with IBM Cloud Private Kubernetes
 1. Login to your icp instance by going to ```https://icpip:8443```
 2. Click on configure, click on copy, and paste all these commands in your terminal
-![icp5](icp5.png)
+![icp5](img/icp5.png)
 
 ### Configuring Persistance storage in IBM Cloud Private for (DB2, MariaDB, MongoDB, RabbitMQ, and ODM)
 1. Login to IBM Cloud Private by going to this link ``` https://icplink:8443 ```
 
-![icp1](icp1.png)
+![icp1](img/icp1.png)
 
 2. Click on ```Platform``` and choose ```Storage```, then click on ``` Create PersistentVolume```
-![icp2](icp2.png)
+![icp2](img/icp2.png)
 
 3. Provide the name ```shared``` for persistance volume
 4. Provide storage capacity for around ```5GB```
@@ -231,11 +231,11 @@ path: /anypath
 ### Deploy Istio
 1. Go to ```Catalog``` and filter ```istio```
 
-![icp16](icp16.png)
+![icp16](img/icp16.png)
 
 2. Choose target namespace as istio-system
 
-![icp17](icp17.png)
+![icp17](img/icp17.png)
 
 > Enable Grafana
 
@@ -257,13 +257,13 @@ $ kubectl apply -f secret.yaml
 $ kubectl get pods -n istio-system
 ```
 
-![icp18](icp18.png)
+![icp18](img/icp18.png)
 
 
 ### Deploying DB2
 1. Go to ```Catalog``` and filter ```db2```
 
-![icp4](icp4.png)
+![icp4](img/icp4.png)
 
 2. Click on configure, fil up the required field and deploy
 3. Follow this [tutorial](https://developer.ibm.com/recipes/tutorials/deploy-db2-into-ibm-cloud-private/) to deploy db2 in IBM Cloud Private
@@ -340,17 +340,17 @@ CREATE TABLE SAMPLE.Booking (BookingID  MEDIUMINT NOT NULL AUTO_INCREMENT,TS TIM
 
 ### Configuring ODM and loading buisness rules
 1. Go to ``` http://icpip:odmport/teamserver/faces/login.jsp```, and login with *username*:- ```rtsAdmin```, and pass ```rtsAdmin```
-![icp11](icp11.png)
+![icp11](img/icp11.png)
 
 2. Click on ```Configure``` tab, then click on ```import project```. Select the zip file under ```odm-microservice``` folder
-![icp12](icp12.png)
+![icp12](img/icp12.png)
 
 3. Go to ``` http://icpip:odmport/decisioncenter/t/library```, and login with *username*:- ```rtsAdmin```, and pass ```rtsAdmin```
 4. Select ```New Release``` from ```ICPAirlines-Rules```, then select ```ICPAirlinesDeployment``` and click ```deploy```
 
-![icp12](icp13.png)
+![icp12](img/icp13.png)
 
-![icp12](icp14.png)
+![icp12](img/icp14.png)
 
 
 ### Configuring and deploying secrets
