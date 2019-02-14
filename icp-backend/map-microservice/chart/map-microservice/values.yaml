@@ -65,13 +65,6 @@ envOfConfigmaps:
       key: APPCODE
 
 
-ingress:
-  metadeta:
-    name: mapsvc
-  path: /mapsvc
-  serviceName: mapsvc
-  servicePort: 3016
-
 service:
   serviceMetadata:
     name: mapsvc
@@ -86,13 +79,3 @@ service:
     port: 3016
     targetPort: 3016
 
-serviceMonitor:
-  metadata:
-    name: serviceMonitormapsvc
-    labels:
-      app: serviceMonitormapsvc
-  specs: 
-    selector:
-      matchLabels:
-        app: serviceMonitormapsvc
-    port: mapsvc

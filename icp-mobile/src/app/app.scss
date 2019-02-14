@@ -26,3 +26,11 @@
     background: #000000;
 }
 
+body.keyboard-is-open {
+    div.tabbar.show-tabbar {
+        display: none;
+    }
+    scroll-content {
+        margin-bottom: 0 !important;
+    }
+}

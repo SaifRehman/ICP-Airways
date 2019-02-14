@@ -51434,6 +51434,14 @@ ion-navbar.toolbar {
   background: #000000;
 }
 
+body.keyboard-is-open div.tabbar.show-tabbar {
+  display: none;
+}
+
+body.keyboard-is-open scroll-content {
+  margin-bottom: 0 !important;
+}
+
 page-about .masters {
   background-color: #F7F7F7;
 }

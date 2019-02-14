@@ -22,5 +22,6 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="FadeSplashScreen" value="true" />
     <preference name="ShowSplashScreen" value="true" />
+    <preference name="WKSuspendInBackground" value="false" />
     <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
 </widget>

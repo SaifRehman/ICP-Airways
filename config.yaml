@@ -1,0 +1,369 @@
+# Default values for the strongSwan IPsec VPN service Helm chart
+
+# validate: The level of parameter validation to be run against the ipsec.conf data stored in the config map.
+#   "off"     - No parameter validation of the ipsec.conf data
+#   "simple"  - Basic parameter validation, such as checking whether values are set to what is allowed for that option
+#   "strict"  - Parameter validation based on known values required to run strongSwan in a Kubernetes cluster
+validate: "strict"
+
+# (Optional) overRideIpsecConf: If you have an existing ipsec.conf file that you want to use,
+# remove the curly brackets and add the contents of your file. The file contents must be indented.
+#
+# Example:
+#   overRideIpsecConf: |
+#     <contents of ipsec.conf>
+#
+# NOTE: If you use your own file, any values for the ipsec, local, and remote sections are not used.
+# NOTE: Instead of overriding the entire ipsec.conf file, one or more individual properties can be added using the
+#       ipsec.additionalOptions parameter.
+overRideIpsecConf: {}
+
+# (Optional) overRideIpsecConf: If you have an existing ipsec.secrets file that you want to use,
+# remove the curly brackets and add the contents of your file. The file contents must be indented.
+#
+# Example:
+#   overRideIpsecConf: |
+#     <contents of ipsec.secrets>
+#
+# NOTE: If you use your own file, any values for the preshared section are not used.
+overRideIpsecSecrets: {}
+
+# enablePodSNAT: Source Network Address Translation (SNAT) allows pods running in the cluster to communicate with the on-premises
+# network over the VPN without exposing the pod subnet range. SNAT changes the IP address of packets sent by the pod
+# application from the pod subnet to the private IP address of the worker node on which the pod is running.
+#   "true"  = Enable SNAT
+#   "false" = Disable SNAT
+#   "auto"  = Automatically enable SNAT if the pod IP subnet is not listed in local subnets
+enablePodSNAT: "auto"
+
+# enableRBAC: Enable the creation of strongSwan service account, roles, rolebinding, clusterrole, and clusterrolebinding resources.
+# This option must be set to 'true' if you want to install strongSwan in a namespace other than 'kube-system'.
+# If this option is set to 'false', the namespace argument will be ignored; 'kube-system' will always be used.
+#   true  = Enable the creation of RBAC resources
+#   false = Disable the creation of RBAC resources ('kube-system' namespace will be used)
+enableRBAC: true
+
+# enableServiceSourceIP: Sets the 'externalTrafficPolicy' field of the strongSwan Kubernetes service to "Local".
+# This option should only be enabled if IKEv1 key exchange (ipsec.keyexchange=ikev1) is being used for the outbound VPN
+# connection (ipsec.auto=start) and the 'connectUsingLoadBalancerIP' option was specified as "true" or "auto" (and the
+# option 'loadBalancerIP' was specified).
+#   true  = Enable source IP on the Kubernetes service
+#   false = Disable source IP on the Kubernetes service
+enableServiceSourceIP: false
+
+# enableSingleSourceIP: Enable a single source IP address for all traffic from the cluster over the VPN connection.
+# If this options is enabled, the 'local.subnet' option MUST be configured as a single /32 IP address.  This IP address will be
+# used as the single source IP for the cluster.  All traffic sent over the VPN connection must be initiated by the cluster.
+# Inbound requests over the VPN to the cluster are not allowed.  Additional restrictions include:
+#  - the 'local.subnet' option must be a single /32 IP address
+#  - the 'localSubnetNAT' option must be blank / not specified
+#  - the 'enablePodSNAT' option must not be set to "false"
+#
+#   true  = Enable single source IP address for the VPN connection
+#   false = Do not enable single source IP logic
+enableSingleSourceIP: false
+
+# (Optional) localNonClusterSubnet: Specify the list of non-cluster subnet CIDRs to expose over the VPN connection.
+# Use the localNonClusterSubnet option if you are using the strongSwan IPsec VPN service Helm chart as a gateway as
+# part of an on-prem or local cluster deployment and you want to expose resources which are not exposed directly on
+# the cluster itself. Specifying these subnets ensures that remote connections are able to make requests and receive responses
+# from those resources. Masquerade rules will be added to the worker to ensure that the non-cluster resources can respond correctly over the VPN.
+# If specified, you must also add the list of localNonClusterSubnets to the local.subnet list so that they are configured in the ipsec.conf as accessible subnets.
+# Do not include any subnets used by the workers in the cluster.
+localNonClusterSubnet:
+
+# (Optional) localSubnetNAT: Network Address Translation (NAT) for subnets provides a workaround for subnet conflicts
+# between the local and on-premises networks. You can use NAT to remap the cluster's private local IP subnets,
+# the pod subnet (172.30.0.0/16), or the pod service subnet (172.21.0.0/16) to a different private subnet
+# so that the VPN tunnel sees remapped IP subnets instead of the original subnets.
+# Remapping happens before the packets are sent over the VPN tunnel as well as after the packets arrive from the VPN tunnel.
+# You can expose both remapped and non-remapped subnets at the same time over the VPN.
+#
+#  Examples:
+#   localSubnetNAT: 10.171.42.0/25=10.10.10.0/25
+#       --OR--
+#   localSubnetNAT: |-
+#     10.171.42.17/32=10.10.10.2/32
+#     10.171.42.29/32=10.10.10.3/32
+#     10.171.42.46/32=10.10.10.4/32
+#       --OR--
+#   localSubnetNAT: |-
+#     10.171.42.0/25=192.168.168.100/32
+#     172.21.198.196/32=192.168.168.101/32
+#
+# - The first example remaps 1-to-1: all of the IP addresses in the 10.171.42.0/25 subnet are mapped over to 10.10.10.0/25
+# - The second example only remaps three IP addresses: 10.171.42.17, 10.171.42.29, and 10.171.42.46 are mapped over to
+#   10.10.10.2, 10.10.10.3, and 10.10.10.4 respectively.
+# - The third example does a SNAT for all of the IP addresses in 10.171.42.0/25 to the single IP address of 192.168.168.100.
+#   The SNAT is one direction, out of the cluster. This means the 10.171.42.0/25 subnet can not be accessed from the remote network.
+#   The service located at 172.21.198.196 is available to the remote network and can be accessed using 192.168.168.101.
+#
+# If you use this setting, the local subnet that should be exposed over the VPN connection is the subnet AFTER the "=".
+localSubnetNAT:
+
+# (Optional) remoteSubnetNAT: Network Address Translation (NAT) for subnets provides a workaround for subnet conflicts
+# between the local and on-premises networks, or multiple overlapping on-premise networks. You can use NAT to remap
+# on-premises private subnets to a different private subnet so that the cluster workloads see the remapped IP subnets
+# instead of the originals. Remapping happens before the packets are sent over the VPN tunnel as well as after the packets
+# arrive from the VPN tunnel. You can expose both remapped and non-remapped subnets at the same time over the VPN.
+#
+#  Examples:
+#   remoteSubnetNAT: 10.1.1.0/24=172.20.1.0/24
+#       --OR--
+#   remoteSubnetNAT: |-
+#     10.1.1.3/32=172.20.1.1/32
+#     10.1.1.6/32=172.20.1.2/32
+#
+# Subnets listed on the left of the "=" are the original subnets and must exactly match individual entries in the remote.subnet list.
+remoteSubnetNAT:
+
+# (Optional) loadBalancerIp: The portable public IP address that you want to use for the strongSwan VPN service for inbound VPN connections.
+# If this field is set, you must use a public portable IP address from a subnet assigned to this cluster.
+# If this field is not set, the cloud provider uses a free public IP address.
+#
+# If the VPN connection is initiated from the on-premises gateway (ipsec.auto is set to 'add'),
+# this property allows a persistent public IP address to be configured on the on-premises gateway for the cluster.
+loadBalancerIP:
+
+# connectUsingLoadBalancerIP: Use the Load Balancer IP that is indicated in 'loadBalancerIP' to establish the outbound VPN connection.
+# If this option is enabled, then all of the cluster worker nodes must be on the same public VLAN or you must use the 'nodeSelector'
+# setting to ensure that the VPN pod is deployed on a worker node on the same public VLAN that the 'loadBalancerIP' is associated with.
+# This option is ignored if ipsec.auto='add'.
+#   "false"   - Do not connect the VPN using the Load Balancer IP.  Use the public IP address of the worker node where the VPN pod is running.
+#   "true"    - Establish the VPN using the Load Balancer IP as the local source IP.
+#               If 'loadBalancerIP' is not configured, the external IP address assigned to Load Balancer service is used
+#   "auto"    - Set to 'true' if ipsec.auto='start' -AND- 'loadBalancerIP' is set
+connectUsingLoadBalancerIP: "auto"
+
+# (Optional) nodeSelector: To limit which nodes the strongSwan VPN pod deploys to, add the IP address
+# of a specific worker node or a worker node label. The deployment spec for the VPN pod will update
+# with this value for the nodeSelector.
+#
+#  Examples:
+#   nodeSelector:
+#     kubernetes.io/hostname: 10.184.110.141
+#       --OR--
+#   nodeSelector:
+#     strongswan: vpn
+#
+# - The first example restricts the VPN pod to running on that worker node only. If the VPN pod is restricted to a
+#   single node and that node is not available, the VPN will be down.
+# - The second example restricts the VPN to running on any worker nodes with that label.
+#   You can use any node label, but it is recommended to use: 'strongswan: <release name>'
+#   so that different worker nodes can be used with different deployments of this chart.
+#
+# If the VPN connection is initiated by the cluster (ipsec.auto is set to 'start'), this property can be used
+# to limit the source IP addresses of the VPN connection that is observed by the on-premises gateway.
+nodeSelector: {}
+
+# privilegedVpnPod: Run the strongSwan VPN pod with privileged authority.  Normally this is not required.
+# An error message logged by the VPN pod will indicate when privileged authority is required.
+#   true  = Run the VPN pod with privileged authority
+#   false = Run the VPN pod with NET_ADMIN authority
+privilegedVpnPod: false
+
+# A comma separated list of tests that should run during `helm test` or 'ALL' to run them all
+# The test names are:
+#   check-config     - Checks for a valid ipsec config
+#   check-state      - Checks for an ESTABLISHED tunnel status
+#   ping-remote-gw   - Checks that we can ping the remote VPN gateway
+#   ping-remote-ip-1 - Checks that we can ping the remote.privateIPtoPing from the pods' IP range
+#   ping-remote-ip-2 - Checks that we can ping the remote.privateIPtoPing from the workers' IP range
+#
+# Example:
+#  helmTestsToRun: check-config,check-state,ping-remote-ip-1
+helmTestsToRun: ALL
+
+# (Optional) tolerations: To allow the strongSwan route DaemonSet to run on worker nodes that are tainted, add tolerations.
+#
+#  Examples:
+#   tolerations:
+#     - operator: Exists
+#       --OR--
+#   tolerations:
+#     - key: dedicated
+#       operator: "Equal"
+#       value: "master"
+#       effect: "NoSchedule"
+#     - key: dedicated
+#       operator: "Equal"
+#       value: "proxy"
+#       effect: "NoSchedule"
+#
+# - The first example allows the route daemon to run on all worker nodes. Taints are essentially ignored.
+# - The second example allows the route daemon to run on worker nodes that have 'dedicated="master"' or
+#   the 'dedicated="edge"' taints.
+#
+# NOTE: Do not force the route daemon to run on tainted worker nodes unless routes need to be added on those worker nodes.
+tolerations: []
+
+# strongswanLogging: Control which strongSwan components generate logging data and at what level.
+# The default settings for this option set basic logging (log level '1') for all components, enable additional
+# logging for 'cfg', 'dmn', and 'ike' components, and reduce the logging that is done by 'net' component (log level '0').
+# For a complete list of the strongSwan components and logging levels, see: https://wiki.strongswan.org/projects/strongswan/wiki/LoggerConfiguration
+# NOTE: The 'ike' component must be specified as '2' or a higher logging level for the VPN routes to be configured correctly.
+# NOTE: When debugging connectivity issues, you may want to increase the log level for 'net' or some of the other strongSwan components.
+strongswanLogging: |-
+  default = 1
+  cfg = 2
+  dmn = 2
+  ike = 2
+  net = 0
+
+# ipsec: ipsec.conf values that are used for the deployment
+# For further descriptions of each of these properties, see https://wiki.strongswan.org/projects/strongswan/wiki/IpsecConf
+ipsec:
+
+  # ipsec.keyexchange: If your on-premises VPN tunnel endpoint does not support ikev2 as a protocol for initializing the connection,
+  # change this value to 'ikev1' or 'ike'.
+  keyexchange: ikev2
+
+  # (Optional) ipsec.esp: The list of ESP encryption/authentication algorithms your on-premises VPN tunnel
+  # endpoint uses for the connection.
+  #   Chart v1.0  default value: aes128-sha1-modp1024
+  #   Chart v2.0+ default value:
+  #
+  # If 'ipsec.keyexchange=ikev1', this field must be specified.
+  # If 'ipsec.keyexchange=ikev2' and this field is blank, "aes128-sha1,3des-sha1" is used for the connection.
+  esp:
+
+  # (Optional) ipsec.ike: The list of IKE/ISAKMP SA encryption/authentication algorithms your on-premises VPN tunnel
+  # endpoint uses for the connection.
+  #   Chart v1.0  default value:  aes128-sha1-modp1024
+  #   Chart v2.0+ default value:
+  #
+  # If 'ipsec.keyexchange=ikev1', this field must be specified.
+  # If 'ipsec.keyexchange=ikev2' and this field is blank, "aes128-sha1-modp2048,3des-sha1-modp1536" is used for the connection.
+  ike:
+
+  # ipsec.auto: Which side of the VPN connection initiates the VPN connection.
+  #   start - Cluster initiates the VPN connection
+  #   add   - Cluster listens for the incoming VPN connection
+  auto: add
+
+  # ipsec.closeaction: The action to take if the remote peer unexpectedly closes a CHILD_SA. If the remote peer uses re-authentication
+  # or unique ids checking, do not define a close action because the checks might unintentionally trigger the close action.
+  #   none    - No action is performed
+  #   auto    - Set to 'restart' if ipsec.auto='start', otherwise set to 'none'
+  #   restart - Triggers an attempt to renegotiate the connection
+  closeaction: auto
+
+  # ipsec.dpdaction: The action to take if the remote peer does not respond. The Dead Peer Detection protocol (DPD, RFC 3706)
+  # is used to check the liveliness of the IPsec peer by periodically sending 'R_U_THERE' notification messages (IKEv1)
+  # or empty 'INFORMATIONAL' messages (IKEv2).
+  #   none    - DPD is not activated and no action is performed
+  #   clear   - Activates DPD and closes the connection with no further actions taken
+  #   hold    - Activates DPD and installs a trap policy to catch matching traffic and renegotiate the connection on demand
+  #   restart - Activates DPD and immediately triggers an attempt to renegotiate the connection
+  dpdaction: restart
+
+  # ipsec.ikelifetime: How long an IKE SA connection lasts, from negotiation to expiry.
+  #   Seconds - an integer followed by s ('15s')
+  #   Minutes - an integer or decimal followed by m ('2.5m')
+  #   Hours   - an integer or decimal followed by h ('3h', maximum 24h)
+  #   Days    - an integer or decimal followed by d ('1d')
+  ikelifetime: 3h
+
+  # ipsec.keyingtries: How many attempts are made to negotiate an IPsec SA or IKE SA connection or a replacement
+  # for a connection before giving up. Accepted values are positive integers or '%forever' for unlimited attempts.
+  keyingtries: "%forever"
+
+  # ipsec.lifetime: How long an IPsec SA connection lasts, from negotiation to expiry.
+  # See 'ipsec.ikelifetime' above for accepted values.
+  lifetime: 1h
+
+  # ipsec.margintime: How long before the expiry of an IPsec SA or IKE SA connection rekeying should begin. This margin time
+  # for negotiation ensures that the replacement key and connection are ready before the previous connection expires.
+  margintime: 9m
+
+  # (Optional) ipsec.additionalOptions: Additional ipsec options into the default ipsec.conf that is used for the deployment.
+  # For a list and description of all possible ipsec.conf properties, see https://wiki.strongswan.org/projects/strongswan/wiki/IpsecConf
+  #
+  # Example:
+  #   additionalOptions: |-
+  #     dpddelay=30s
+  #     dpdtimeout=150s
+  additionalOptions: {}
+
+# NOTE: The local properties listed here are mapped into "left*" properties in the generated ipsec.conf
+local:
+
+  # local.subnet: The list of cluster subnet CIDRs to expose over the VPN connection to the on-premises network.
+  # This list can include the following subnets:
+  #   The Kubernetes pod subnet CIDR     - 172.30.0.0/16
+  #   The Kubernetes service subnet CIDR - 172.21.0.0/16
+  #   If your applications are exposed by a NodePort service on the private network, the worker node's private subnet CIDR
+  #   If you have applications exposed by LoadBalancer services on the private network, the cluster's private or
+  #   user-managed subnet CIDRs
+  #
+  # NOTE: If 'ipsec.keyexchange=ikev1', only a single subnet can be specified.
+  subnet: 172.30.0.0/16,172.21.0.0/16
+
+  # local.id: The string identifier for the local Kubernetes cluster side your VPN tunnel endpoint uses for the connection.
+  id: ibm-cloud
+
+# NOTE: The remote properties listed here are mapped into "right*" properties in the generated ipsec.conf
+remote:
+
+  # remote.gateway: The public IP address for the on-premises VPN gateway.
+  # When ipsec.auto is set to 'start', this value is required.
+  gateway: "%any"
+
+  # remote.subnet: The list of on-premises private subnet CIDRs that the Kubernetes clusters are allowed to access.
+  #
+  # NOTE: If 'ipsec.keyexchange=ikev1', only a single subnet can be specified.
+  subnet: 10.0.0.0/24
+
+  # remote.id: The string identifier for the remote on-premises side your VPN tunnel endpoint uses for the connection.
+  id: on-prem
+
+  # (Optional) remote.privateIPtoPing: the private IP address in the remote subnet that will be used by the
+  # Helm test validation programs for VPN ping connectivity tests.
+  privateIPtoPing:
+
+preshared:
+
+  # preshared.secret: The pre-shared secret that your on-premises VPN tunnel endpoint gateway uses for the connection.
+  # Stored in ipsec.secrets.
+  secret: "strongswan-preshared-secret"
+
+monitoring:
+  # monitoring.enable: Enable monitoring for the VPN connection
+  enable: false
+
+  # (Optional) monitoring.clusterName: Name of cluster. This is used to identify the cluster in logs and slack (if configured)
+  clusterName: ""
+
+  # (Optional) monitoring.privateIPs: A comma separated list of IP addresses in the remote subnet used to monitor VPN connectivity
+  privateIPs: ""
+
+  # (Optional) monitoring.httpEndpoints: A comma separated list of HTTP endpoints in the remote subnet used to monitor VPN connectivity
+  httpEndpoints: ""
+
+  # (Optional) monitoring.timeout: The maximum amount time, in seconds, that a monitoring test can run
+  # before it is classified as a failure.
+  timeout: 5
+
+  # (Optional) monitoring.delay: The delay, in seconds, between re-running monitoring tests.
+  delay: 120
+
+  # (Optional) monitoring.slackWebhook: The Slack Webhook URL for the "Incoming WebHooks" custom integration app
+  # See the chart README for information on how to configure Slack notifications
+  # This field is required to enable Slack notifications.  Leave blank to disable
+  #
+  # Example:
+  #   slackWebhook: https://hooks.slack.com/services/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
+  slackWebhook: ""
+
+  # (Optional) monitoring.slackChannel: The Slack channel where VPN monitoring updates are posted
+  # If left blank, Slack messages will be sent to the default channel associated with the webhook
+  slackChannel: ""
+
+  # (Optional) monitoring.slackUsername: The Slack username that will be used for monitoring messages.
+  # If left blank, Slack messages will be sent with the default username associated with the webhook
+  slackUsername: "IBM strongSwan VPN"
+
+  # (Optional) monitoring.slackIcon: The Slack icon that will be used for monitoring messages.
+  # If left blank, Slack messages will be sent with the default icon associated with the webhook
+  slackIcon: ":swan:"
+

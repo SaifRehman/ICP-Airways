@@ -25,6 +25,18 @@ spec:
   http:
   - match:
     - uri:
+        prefix: /portal/
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: portal.default.svc.cluster.local
+    retries:
+      attempts: 3
+      perTryTimeout: 2s
+    timeout: 5s
+  - match:
+    - uri:
         prefix: /odmsvc/
     rewrite:
       uri: "/"
@@ -44,9 +56,9 @@ spec:
     - destination:
         host: listingsvc.default.svc.cluster.local
     retries:
-      attempts: 1
-      perTryTimeout: 0.01s
-    timeout: 0.01s
+      attempts: 3
+      perTryTimeout: 3s
+    timeout: 5s
   - match:
     - uri:
         prefix: /loginsvc/

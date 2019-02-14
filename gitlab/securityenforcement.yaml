@@ -1,0 +1,10 @@
+apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: gitlab-cluster-image-policy
+spec:
+  repositories:
+    - name: registry.gitlab.com/gitlab-org/*
+    - name: docker.io/*
+    - name: quay.io/kubernetes-ingress-controller/*
+    - name: k8s.gcr.io/*

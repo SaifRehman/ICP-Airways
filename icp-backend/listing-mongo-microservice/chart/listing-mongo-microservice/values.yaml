@@ -18,15 +18,15 @@ livenessProbe:
   periodSeconds: 10
 image:
   name: listingsvc
-  imageName: "mycluster.icp:8500/icp-airways/listing-mongo-microservice:0.0.1" 
+  imageName: "mycluster.icp:8500/default/listing-mongo-microservice:0.0.1" 
   imagePullPolicy: Always
   ports:
     containerPort: 7000
   requests:
-    cpu: "30m"
+    cpu: "50m"
     memory: "200Mi"
   limits:
-    cpu: "45m"
+    cpu: "80m"
     memory: "210Mi"
   maxSurge: 1
   maxUnavailable: 0

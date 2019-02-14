@@ -1,0 +1,10 @@
+apiVersion: securityenforcement.admission.cloud.ibm.com/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: microclimate-cluster-image-policy
+spec:
+  repositories:
+  - name: mycluster.icp:8500/*
+  - name: docker.io/maven:*
+  - name: docker.io/jenkins/*
+  - name: docker.io/docker:*

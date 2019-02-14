@@ -64,5 +64,13 @@
     "variables": {
       "GEOLOCATION_USAGE_DESCRIPTION": "my_project would like to use your location"
     }
+  },
+  "ionic-plugin-keyboard": {
+    "source": {
+      "type": "registry",
+      "id": "ionic-plugin-keyboard"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
