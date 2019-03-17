@@ -111,30 +111,6 @@ class App {
               req.params.id
             ])
             .then(data => {
-              // for (var i = 0; i < data.length; i++) {
-              //   console.log(
-              //     "loggsss",
-              //     "http://listingsvc.default:7000/listFlights/" + data[i].FlightID
-              //   );
-              //   console.log('fuckinggggggg noooooooo',data[i])
-              //   this.newdata = JSON.parse(JSON.stringify(data));
-              //   console.log('newwwwww noooooooo',this.newdata[i])
-              //   request(
-              //     "http://listingsvc.default:7000/listFlights/" + this.newdata[i].FlightID,
-              //     { json: true },
-              //     (err, response, body) => {
-              //       if (err) {
-              //         console.log(err);
-              //         conn.end();
-              //         res.status(404).json({ message: err });
-              //       }
-              //       Object.assign(this.newdata[i-1], {
-              //         flight: body
-              //       });
-              //       console.log('consuminnggggggg dataaaa',this.newdata)
-              //     }
-              //   );
-              // }
               conn.end();
               res.json(data);
             })
@@ -151,6 +127,31 @@ class App {
           }
         });
     });
+
+    router.get("/delete", (req, res, next) => {
+      this.pool
+        .getConnection()
+        .then(conn => {
+          conn
+            .query("DELETE FROM SAMPLE.Booking")
+            .then(data => {
+              conn.end();
+              res.json({"msg":"success"});
+            })
+            .catch(err => {
+              conn.end();
+              if (err) {
+                res.status(404).json({ err });
+              }
+            });
+        })
+        .catch(err => {
+          if (err) {
+            res.status(404).json({ err });
+          }
+        });
+    });
+    
     router.get(
       "/checkin/:bookid/:userid",
       this.ensureToken,
