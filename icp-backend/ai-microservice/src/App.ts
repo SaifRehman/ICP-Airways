@@ -7,8 +7,6 @@ import * as epimetheus from 'epimetheus'
 import * as watson from 'watson-developer-cloud'
 class App {
   public jwtOptions: any = {};
-  public ExtractJwt = passportJWT.ExtractJwt;
-  public JwtStrategy = passportJWT.ExtractJwt;
   public express: express.Application;
   public assistant:any
   constructor() {

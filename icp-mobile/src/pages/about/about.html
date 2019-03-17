@@ -14,20 +14,13 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ng-container *ngFor="let listshow of show">
-    <ng-container *ngIf="listshow.flight">
-        <ion-fab right top >
-            <button ion-fab>
-              <ion-icon name="ios-checkmark-circle"></ion-icon>
-            </button>
-          </ion-fab>
-      <ion-card class="card-5">
-
+    <ng-container *ngIf="listshow.flight ">
+      <ion-card class="card-5" *ngIf="listshow.Checkin === '0'">
         <ion-item>
           <ion-icon name="logo-buffer" item-start large color="tab"></ion-icon>
           <h2>Flight Number</h2>
           <p>#{{listshow.flight._id}}</p>
         </ion-item>
-
         <ion-item>
           <ion-icon name="plane" item-start large color="tab"></ion-icon>
           <h2>From</h2>
@@ -46,7 +39,7 @@
           <p>{{listshow.flight.ArrTime | timeRefactor}}</p>
         </ion-item>
 
-        <ion-item>
+        <ion-item >
           <ion-icon name="time" item-start large color="tab"></ion-icon>
           <h2>Departure Time</h2>
           <p>{{listshow.flight.DepTime | timeRefactor}}</p>

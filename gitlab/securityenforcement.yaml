@@ -8,3 +8,14 @@ spec:
     - name: docker.io/*
     - name: quay.io/kubernetes-ingress-controller/*
     - name: k8s.gcr.io/*
+
+
+helm install gitlab/gitlab --name="gitlab"  --tls --set global.edition=ce --set global.ingress.enabled=true --set nginx-ingress.enabled=false --set certmanager.install=false --set global.ingress.configureCertmanager=false --set gitlab-runner.install=false --set global.hosts.https=true --set global.hosts.externalIP=9.30.57.109 --set global.hosts.domain=9.30.57.109.nip.io --set global.ingress.class= --set prometheus.install=false \
+  --set gitlab.sidekiq.minReplicas=1 \
+  --set gitlab.sidekiq.maxReplicas=1 \
+  --set registry.minReplicas=1 \
+  --set registry.maxReplicas=1 \
+  --set gitlab.unicorn.minReplicas=1 \
+  --set gitlab.unicorn.maxReplicas=1 \
+  --set gitlab.gitlab-shell.minReplicas=1 \
+  --set gitlab.gitlab-shell.maxReplicas=1 

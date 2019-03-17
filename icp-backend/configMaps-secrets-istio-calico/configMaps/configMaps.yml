@@ -15,7 +15,7 @@ data:
   EMAILAPI: 'http://emailsvc.default:3006/email'
   MONGOPORT: '27017'
   HOSTNAMEMARIADB: 'icpairwayd-ibm-db2oltp-dev-db2.default'
-  HOSTNAMEMONGODB: 'icpairwaymongo-ibm-mongodb-dev.default'
+  HOSTNAMEMONGODB: 'saqrairwaymongo-ibm-mongodb-dev.default'
   DATABASEMARIADB: 'SAMPLE'
   PROTOCOLMARIADB: 'TCPIP'
   PORTMARIADB: '50000'

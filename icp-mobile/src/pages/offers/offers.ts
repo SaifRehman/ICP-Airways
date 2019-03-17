@@ -105,6 +105,7 @@ export class OffersPage {
                   loading.dismiss();
                   alert2.present();
                   this.navCtrl.pop();
+                  this.navCtrl.pop();
                 },
                 error => {
                   let alert3 = this.alertCtrl.create({

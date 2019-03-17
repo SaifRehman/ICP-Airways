@@ -10,13 +10,13 @@
           "NSAppTransportSecurity": [
             {
               "xml": "<dict><key>NSAllowsArbitraryLoads</key><true /></dict>",
-              "count": 11
+              "count": 12
             }
           ],
           "NSLocationWhenInUseUsageDescription": [
             {
               "xml": "<string>Allow the app to know your location</string>",
-              "count": 11
+              "count": 12
             }
           ]
         }
