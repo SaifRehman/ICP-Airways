@@ -128,41 +128,41 @@ $ docker login <icpdns>:8500
 ```s
 $ cd booking-microservice
 $ npm i
-$ docker build -t booking-microservice:0.0.1 --no-cache .
-$ docker tag booking-microservice:0.0.1 <icpdns>:8500/default/booking-microservice:0.0.1
-$ docker push <icpdns>:8500/default/booking-microservice:0.0.1
+$ docker build -t booking-microservice  --no-cache .
+$ docker tag booking-microservice  <icpdns>:8500/default/booking-microservice 
+$ docker push <icpdns>:8500/default/booking-microservice 
 ```
 2. Listing Microservice
 ```s
 $ cd listing-microservice
 $ npm i
-$ docker build -t listing-microservice:0.0.1 --no-cache .
-$ docker tag listing-microservice:0.0.1 <icpdns>:8500/default/listing-microservice:0.0.1
-$ docker push <icpdns>:8500/default/listing-microservice:0.0.1
+$ docker build -t listing-microservice  --no-cache .
+$ docker tag listing-microservice  <icpdns>:8500/default/listing-microservice 
+$ docker push <icpdns>:8500/default/listing-microservice 
 ```
 3. Authentication Microservice
 ```s
 $ cd login-microservice
 $ npm i
-$ docker build -t login-microservice:0.0.1 --no-cache .
-$ docker tag login-microservice:0.0.1 <icpdns>:8500/default/login-microservice:0.0.1
-$ docker push <icpdns>:8500/default/login-microservice:0.0.1
+$ docker build -t login-microservice  --no-cache .
+$ docker tag login-microservice  <icpdns>:8500/default/login-microservice 
+$ docker push <icpdns>:8500/default/login-microservice 
 ```
 4. Email Microservice
 ```s
 $ cd celery
-$ docker build -t celery:0.0.1 --no-cache .
-$ docker tag celery:0.0.1 <icpdns>:8500/default/celery:0.0.1
-$ docker push <icpdns>:8500/default/celery:0.0.1
+$ docker build -t celery  --no-cache .
+$ docker tag celery  <icpdns>:8500/default/celery 
+$ docker push <icpdns>:8500/default/celery 
 ```
 
 5. Odm Microservice
 ```s
 $ cd odm-microservice
 $ npm i
-$ docker build -t odm-microservice:0.0.1 --no-cache .
-$ docker tag odm-microservice:0.0.1 <icpdns>:8500/default/odm-microservice:0.0.1
-$ docker push <icpdns>:8500/default/odm-microservice:0.0.1
+$ docker build -t odm-microservice  --no-cache .
+$ docker tag odm-microservice  <icpdns>:8500/default/odm-microservice 
+$ docker push <icpdns>:8500/default/odm-microservice 
 ```
 
 6. Angular Frontend
@@ -170,9 +170,9 @@ $ docker push <icpdns>:8500/default/odm-microservice:0.0.1
 ```s
 $ cd icp-frontend-new
 $ npm i
-$ docker build -t angular:0.0.1 --no-cache .
-$ docker tag angular:0.0.1 <icpdns>:8500/default/angular:0.0.1
-$ docker push <icpdns>:8500/default/angular:0.0.1
+$ docker build -t angular  --no-cache .
+$ docker tag angular  <icpdns>:8500/default/angular 
+$ docker push <icpdns>:8500/default/angular 
 ```
 
 7. Ionic Frontend
@@ -180,18 +180,18 @@ $ docker push <icpdns>:8500/default/angular:0.0.1
 ```s
 $ cd icp-mobile
 $ npm i
-$ docker build -t ionic:0.0.1 --no-cache .
-$ docker tag ionic <icpdns>:8500/default/ionic:0.0.1
-$ docker push <icpdns>:8500/default/ionic:0.0.1
+$ docker build -t ionic  --no-cache .
+$ docker tag ionic <icpdns>:8500/default/ionic 
+$ docker push <icpdns>:8500/default/ionic 
 ```
 
 8. Map Microservice
 ```s
 $ cd map-microservice
 $ npm i
-$ docker build -t map:0.0.1 --no-cache .
-$ docker tag map:0.0.1 <icpdns>:8500/default/map:0.0.1
-$ docker push <icpdns>:8500/default/map:0.0.1
+$ docker build -t map  --no-cache .
+$ docker tag map  <icpdns>:8500/default/map 
+$ docker push <icpdns>:8500/default/map 
 ```
 > Find all your images in ```https://icpip:8443/console/manage/images``` 
 
