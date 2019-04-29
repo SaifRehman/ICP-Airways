@@ -132,13 +132,13 @@ $ docker build -t booking-microservice  --no-cache .
 $ docker tag booking-microservice  <icpdns>:8500/default/booking-microservice 
 $ docker push <icpdns>:8500/default/booking-microservice 
 ```
-2. Listing Microservice
+2. Listing Mongo Microservice
 ```s
-$ cd listing-microservice
+$ cd listing-mongo-microservice
 $ npm i
-$ docker build -t listing-microservice  --no-cache .
-$ docker tag listing-microservice  <icpdns>:8500/default/listing-microservice 
-$ docker push <icpdns>:8500/default/listing-microservice 
+$ docker build -t listing-mongo-microservice  --no-cache .
+$ docker tag listing-mongo-microservice  <icpdns>:8500/default/listing-mongo-microservice 
+$ docker push <icpdns>:8500/default/listing-mongo-microservice 
 ```
 3. Authentication Microservice
 ```s
