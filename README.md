@@ -101,8 +101,7 @@ If you want a quick walkthrough of the end result, a video is available [here](h
 1. Install [Nodejs](https://nodejs.org/en/download/)
 2. Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 3. Intall [Docker](https://docs.docker.com/install/)
-4. Install [Angular4Cli](https://cli.angular.io)
-5. Install [Ionic](https://ionicframework.com)
+4. Install [Ionic](https://ionicframework.com)
 
 ### Connect Docker (Private registery) with IBM Cloud Private
 1. From your terminal type
@@ -116,13 +115,13 @@ $ sudo nano /etc/hosts
 
 ![pref](img/pref.png)
 
-4. Navigate to Daemon tab, click on + button and add an entry “icpdns:85000”, click Apply & Restart button to restart Docker service. 
+4. Navigate to Daemon tab, click on + button underneath insecure registry and add an entry “<icpdns>:8500”, click Apply & Restart button to restart Docker service. 
 
 ![dock-pi](img/dock-pi.png)
 
 5. In your terminal type
 ```
-$ docker login icpdns:8500
+$ docker login <icpdns>:8500
 ```
 ### Install all dependencies, create images and upload it to Private registery of IBM Cloud Private
 1. Booking Microservice

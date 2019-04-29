@@ -19,7 +19,7 @@ livenessProbe:
   periodSeconds: 10
 image:
   name: aisvc
-  imageName: "mycluster.icp:8500/default/ai-microservice:0.0.1" 
+  imageName: "mycluster.icp:8500/default/ai-microservice" 
   imagePullPolicy: Always
   ports:
     containerPort: 3011

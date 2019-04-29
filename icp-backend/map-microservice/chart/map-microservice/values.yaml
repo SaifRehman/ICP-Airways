@@ -36,7 +36,7 @@ hpa:
 
 image:
   name: mapsvc
-  imageName: "s4saif/map-microservice:0.0.1" 
+  imageName: "mycluster.icp:8500/default/map" 
   imagePullPolicy: Always
   ports:
     containerPort: 3016

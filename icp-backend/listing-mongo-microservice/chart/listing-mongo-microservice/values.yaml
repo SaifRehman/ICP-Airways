@@ -18,7 +18,7 @@ livenessProbe:
   periodSeconds: 10
 image:
   name: listingsvc
-  imageName: "mycluster.icp:8500/default/listing-mongo-microservice:0.0.1" 
+  imageName: "mycluster.icp:8500/default/listing-mongo-microservice" 
   imagePullPolicy: Always
   ports:
     containerPort: 7000

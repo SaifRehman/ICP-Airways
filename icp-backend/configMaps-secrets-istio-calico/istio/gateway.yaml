@@ -25,18 +25,6 @@ spec:
   http:
   - match:
     - uri:
-        prefix: /portal/
-    rewrite:
-      uri: "/"
-    route:
-    - destination:
-        host: portal.default.svc.cluster.local
-    retries:
-      attempts: 3
-      perTryTimeout: 2s
-    timeout: 5s
-  - match:
-    - uri:
         prefix: /odmsvc/
     rewrite:
       uri: "/"
@@ -93,8 +81,8 @@ spec:
         host: bookingsvc.default.svc.cluster.local
     retries:
       attempts: 3
-      perTryTimeout: 2s
-    timeout: 5s
+      perTryTimeout: 5s
+    timeout: 9s
   - match:
     - uri:
         prefix: /mapsvc/
@@ -131,44 +119,3 @@ spec:
       attempts: 3
       perTryTimeout: 2s
     timeout: 5s
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: servicemeshfrontend
-spec:
-  gateways:
-  - gateway
-  hosts:
-  - '*'
-  http:
-  - match:
-    - uri:
-        prefix: ''
-    - headers:
-        user-agent: 
-          regex: '.*iPhone.*'
-    rewrite:
-      uri: "/"
-    route:
-    - destination:
-        host: ionic.default.svc.cluster.local
-        subset: ionic
-  - route:
-    - destination:
-        host: angular.default.svc.cluster.local
-        subset: angular
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: destfrontend
-spec:
-  host: '*'
-  subsets:
-  - name: ionic
-    labels:
-      app: ionic
-  - name: angular
-    labels:
-      app: angular

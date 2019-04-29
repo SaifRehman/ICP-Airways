@@ -132,6 +132,9 @@ export class AboutPage {
           console.log("data", data);
           const url = this.provider.apiUrl.listFlightsByID + "/";
           console.log("urlss", url);
+          if(data.length===0){
+            loading.dismiss();
+          }
           const getData = async (url, iter) => {
             try {
               const response = await axios.get(url);
@@ -141,6 +144,7 @@ export class AboutPage {
                 flight: dataa
               });
             } catch (error) {
+              loading.dismiss();
               refresher.complete();
               console.log(error);
             }
